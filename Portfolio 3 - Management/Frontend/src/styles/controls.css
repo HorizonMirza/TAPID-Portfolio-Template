@@ -43,11 +43,6 @@
   block-size: 1.18rem;
   transition: opacity .24s ease, transform .32s cubic-bezier(.22,.7,.24,1);
 }
-.controls .control-moon {
-  background: currentColor;
-  border-radius: 50%;
-  mask: radial-gradient(circle at 65% 25%, transparent 0 51%, #000 54%);
-}
 .controls .control-sun { opacity: 0; transform: translateY(.28rem) rotate(-32deg) scale(.82); }
 .controls .control-sun::before, .controls .control-sun::after { content: ''; position: absolute; border-radius: 50%; }
 .controls .control-sun::before { inset: .31rem; border: 1.5px solid currentColor; }

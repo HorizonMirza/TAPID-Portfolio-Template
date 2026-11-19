@@ -50,11 +50,6 @@
   block-size: 1.18rem;
   transition: opacity .24s ease, transform .32s cubic-bezier(.22,.7,.24,1);
 }
-.controls .control-moon {
-  background: currentColor;
-  border-radius: 50%;
-  mask: radial-gradient(circle at 65% 25%, transparent 0 51%, #000 54%);
-}
 .controls .control-sun { opacity: 0; transform: translateY(.28rem) rotate(-32deg) scale(.82); }
 .controls .control-sun::before, .controls .control-sun::after { content: ''; position: absolute; border-radius: 50%; }
 .controls .control-sun::before { inset: .31rem; border: 1.5px solid currentColor; }
@@ -217,7 +212,9 @@
           <div class="controls live-controls" data-variant="outline" role="group" aria-label="Pengaturan pratinjau">
             <button type="button" class="control language" aria-label="Switch to English"><span class="control-label">EN</span></button>
             <button type="button" class="control mode" aria-label="Aktifkan mode gelap" aria-pressed="false">
-              <span class="control-glyph control-moon" aria-hidden="true"></span>
+              <svg class="control-glyph control-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"/>
+              </svg>
               <span class="control-glyph control-sun" aria-hidden="true"></span>
             </button>
           </div>
@@ -234,7 +231,9 @@
           <span class="controls">
             <span class="control language"><span class="control-label">EN</span></span>
             <span class="control mode">
-              <span class="control-glyph control-moon"></span>
+              <svg class="control-glyph control-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"/>
+              </svg>
               <span class="control-glyph control-sun"></span>
             </span>
           </span>
