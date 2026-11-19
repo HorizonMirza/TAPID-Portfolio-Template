@@ -3,6 +3,7 @@ import { portfolio, type Language } from './portfolio';
 import './styles/base.css';
 import './styles/font.css';
 import './styles/theme.css';
+import './styles/motion.css';
 
 interface Props { language: Language; skip: string }
 const { language, skip } = Astro.props;
@@ -33,6 +34,14 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
         const root = document.documentElement;
         const key = 'tapid-color-mode';
         const preference = window.matchMedia('(prefers-color-scheme: dark)');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const languageKey = 'tapid-language-transition';
+        try {
+          if (sessionStorage.getItem(languageKey) === location.pathname) {
+            sessionStorage.removeItem(languageKey);
+            root.dataset.languageTransition = 'in';
+          }
+        } catch {}
         let chosen;
         try { chosen = localStorage.getItem(key); } catch {}
         const apply = (mode) => {
@@ -58,13 +67,35 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
             if ('ResizeObserver' in window) new ResizeObserver(updateTopbarHeight).observe(topbar);
           }
           document.querySelector('[data-mode-toggle]')?.addEventListener('click', () => {
-            chosen = root.dataset.mode === 'dark' ? 'light' : 'dark';
+            chosen = getMode() === 'dark' ? 'light' : 'dark';
             try { localStorage.setItem(key, chosen); } catch {}
-            apply(chosen);
+            if (!reducedMotion.matches && document.startViewTransition) {
+              document.startViewTransition(() => apply(getMode()));
+            } else {
+              root.classList.toggle('mode-color-fade', !reducedMotion.matches);
+              apply(chosen);
+            }
+          });
+          const languageLink = document.querySelector('.tapbar a.language');
+          languageLink?.addEventListener('click', (event) => {
+            if (reducedMotion.matches || event.defaultPrevented || event.button !== 0 ||
+                event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+            event.preventDefault();
+            if (root.dataset.languageTransition === 'out') return;
+            root.dataset.languageTransition = 'out';
+
+            window.setTimeout(() => {
+              const target = new URL(languageLink.href);
+              try { sessionStorage.setItem(languageKey, target.pathname); } catch {}
+              location.assign(target.href);
+            }, 160);
           });
           document.querySelectorAll('[data-mobile-nav] a').forEach((link) => {
             link.addEventListener('click', () => link.closest('details')?.removeAttribute('open'));
           });
+        });
+        window.addEventListener('pageshow', (event) => {
+          if (event.persisted) delete root.dataset.languageTransition;
         });
         preference.addEventListener('change', () => apply(getMode()));
       })();
