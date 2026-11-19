@@ -13,7 +13,7 @@
   width: 100%;
   min-height: 4.75rem;
   display: grid;
-  grid-template-columns: minmax(9rem, 1fr) auto minmax(5.7rem, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   grid-template-areas: 'brand links tools';
   align-items: center;
   column-gap: clamp(.45rem, 1.35vw, 1.45rem);
@@ -27,25 +27,10 @@
   display: flex;
   align-items: center;
   justify-self: start;
-  gap: .55rem;
   padding-inline: .2rem;
   font: 700 clamp(.98rem, 1.65vw, 1.28rem)/1.1 var(--top-font);
   letter-spacing: -.035em;
   text-decoration: none;
-}
-.tapbar-symbol {
-  flex-shrink: 0;
-  min-width: 2.25rem;
-  min-height: 2.25rem;
-  display: inline-grid;
-  place-items: center;
-  padding: .2rem .27rem;
-  border: 1px solid transparent;
-  border-radius: var(--top-radius);
-  background: var(--button);
-  color: var(--button-ink);
-  font: 800 .92rem/1 var(--body);
-  letter-spacing: -.02em;
 }
 .tapbar-brand:focus-visible, .tapbar-desktop a:focus-visible { outline-color: var(--ink); }
 .tapbar-desktop {
@@ -82,11 +67,8 @@
 .tapbar-tools .mobile-nav { display: none; position: static; color: var(--ink); }
 .tapbar-tools .mobile-nav summary { min-height: 2.75rem; font-size: .85rem; }
 .tapbar-tools .mobile-nav nav { z-index: 7; border-radius: var(--top-radius); }
-.tapbar-tools .controls :is(a, button) { min-height: 2.75rem; }
 
-.tapbar[data-layout="edge"] .tapbar-inner { grid-template-columns: auto minmax(0, 1fr) auto; }
-.tapbar[data-layout="edge"] .tapbar-desktop { justify-self: end; }
-.tapbar[data-layout="compact"] .tapbar-desktop {
+.tapbar[data-nav="capsule"] .tapbar-desktop {
   gap: 0; padding: .13rem .24rem; border: 1px solid var(--line); border-radius: 99rem;
 }
 
@@ -96,11 +78,6 @@
 .tapbar[data-skin="glass"] .tapbar-inner {
   background: linear-gradient(110deg, var(--surface) 32%, color-mix(in srgb, var(--button) 13%, var(--surface)));
 }
-.tapbar[data-mark="circle"] .tapbar-symbol { border-radius: 50%; }
-.tapbar[data-mark="outline"] .tapbar-symbol { border-color: var(--ink); background: transparent; color: var(--ink); border-radius: 0; }
-.tapbar[data-mark="text"] .tapbar-symbol { display: none; }
-.tapbar[data-mark="soft"] .tapbar-symbol { border-radius: 1rem; }
-.tapbar[data-mark="stamp"] .tapbar-symbol { border-radius: 0; box-shadow: .15rem .16rem 0 currentColor; }
 
 .tapbar[data-links="underline"] .tapbar-desktop a::after {
   content: ''; position: absolute; inset: auto .5rem .37rem; height: .1rem;
@@ -112,7 +89,7 @@
 .tapbar[data-links="solid"] .tapbar-desktop a:is(:hover, :focus-visible) { background: var(--ink); color: var(--surface); }
 
 @media (max-width: 53rem) {
-  .tapbar[data-layout] .tapbar-inner {
+  .tapbar .tapbar-inner {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas: 'brand tools';
     min-height: 4.1rem;
@@ -122,10 +99,7 @@
 }
 @media (max-width: 33rem) {
   .tapbar-tools, .tapbar-tools .controls { gap: .24rem; }
-  .tapbar-tools :is(.controls a, .controls button) { min-width: 2.5rem; padding-inline: .21rem; }
   .tapbar-tools .mobile-nav summary { min-width: 2.62rem; padding-inline: .28rem; }
-  .tapbar-brand { gap: .36rem; }
-  .tapbar-symbol { min-width: 1.63rem; min-height: 1.63rem; font-size: .7rem; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .tapbar-inner { animation-duration: 420ms; animation-timing-function: cubic-bezier(.22,.72,.22,1); }

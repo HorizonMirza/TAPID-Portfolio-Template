@@ -79,7 +79,6 @@ export function localize(language: Language) {
     role: pr.role[language],
     headline: pr.headline[language],
     intro: pr.introduction[language],
-    initials: pr.name.split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase(),
     portrait: getImage(pr.portrait),
   };
   const about = { headline: portfolio.about.headline[language], description: portfolio.about.description[language] };

@@ -33,17 +33,12 @@ ol, ul { list-style: none; margin: 0; padding: 0; }
 #home { scroll-margin-block-start: -.65rem; }
 .section-label { font-size: .82rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
 .copy { color: var(--muted); max-inline-size: 70ch; }
-.controls { display: flex; align-items: center; gap: .42rem; flex-shrink: 0; }
-.controls :is(a, button), .mobile-nav summary {
+.mobile-nav summary {
   display: inline-grid; place-items: center; min-width: 2.65rem; min-height: 2.65rem;
   padding: .22rem .45rem; border: 1px solid var(--line); background: var(--surface);
   color: var(--ink); border-radius: var(--control-radius, .35rem); font-weight: 700; text-decoration: none;
 }
-.controls :is(a, button):hover, .mobile-nav summary:hover { border-color: var(--ink); }
-.language { font-size: .86rem; }
-.mode { font-size: 1.25rem; line-height: 1; }
-.sun, [data-mode="dark"] .moon { display: none; }
-[data-mode="dark"] .sun { display: inline; }
+.mobile-nav summary:hover { border-color: var(--ink); }
 .mobile-nav { display: none; position: relative; }
 .mobile-nav nav {
   position: absolute; top: calc(100% + .55rem); right: 0; z-index: 4;

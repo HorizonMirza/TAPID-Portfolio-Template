@@ -2,6 +2,8 @@
 
 Enam template Astro untuk paket **NFC + Linktree + Website Portofolio** TAP.ID. Setiap demo menampilkan foto profil di Beranda, tiga contoh proyek, serta bagian Tentang, Keahlian, Pengalaman, dan Kontak. Setiap template memakai palet warnanya sendiri dengan top bar yang tetap terlihat saat halaman digulir. Pilihan bahasa tersedia di `/` (Bahasa Indonesia) dan `/en/` (English). Mode terang dan gelap dapat diganti lewat tombol di navigasi.
 
+Keenam top bar menampilkan nama profil, menu di tengah pada desktop, dan tombol bahasa serta mode dengan desain yang sama. Unduh dan buka [kontrol-topbar.html](kontrol-topbar.html) di browser untuk mencoba 10 pilihan desain dan animasi tombol.
+
 | Template | Warna bawaan | Desain | Top bar |
 | --- | --- | --- | --- |
 | [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | Space Grotesk, potret ruang kerja bernuansa biru, kartu proyek, dan riwayat vertikal | 01 · Command Rail |

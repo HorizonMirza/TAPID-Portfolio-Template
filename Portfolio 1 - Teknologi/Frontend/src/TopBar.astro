@@ -7,13 +7,10 @@ import './styles/topbar.css';
 interface Props { language: Language }
 const { language } = Astro.props;
 const { copy, p, nav } = localize(language);
-const topBar = {"layout": "balanced", "skin": "glass", "mark": "soft", "links": "underline", "motion": "glide", "symbol": "</>"};
 ---
-<header class="tapbar tapbar-teknologi" data-layout={topBar.layout} data-skin={topBar.skin}
-        data-mark={topBar.mark} data-links={topBar.links}>
-  <div class="tapbar-inner" data-motion={topBar.motion}>
+<header class="tapbar tapbar-teknologi" data-skin="glass" data-links="underline">
+  <div class="tapbar-inner" data-motion="glide">
     <a class="tapbar-brand" href="#home">
-      <span class="tapbar-symbol" aria-hidden="true">{topBar.symbol || p.initials}</span>
       <strong>{p.name}</strong>
     </a>
     <nav class="tapbar-desktop" aria-label={copy.navigation}>

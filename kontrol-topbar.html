@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo kontrol top bar · TAP.ID</title>
+  <style>
+.controls {
+  --control-surface: #fff;
+  --control-ink: #1b1b1b;
+  --control-line: #c4c4c4;
+  --control-hover: #ececec;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: .42rem;
+}
+:where([data-mode="dark"]) .controls {
+  --control-surface: #212121;
+  --control-ink: #f5f5f5;
+  --control-line: #626262;
+  --control-hover: #353535;
+}
+.controls .control {
+  position: relative;
+  isolation: isolate;
+  min-inline-size: 2.75rem;
+  min-block-size: 2.75rem;
+  display: inline-grid;
+  place-items: center;
+  padding: .24rem .48rem;
+  border: 1px solid var(--control-line);
+  border-radius: .82rem;
+  color: var(--control-ink);
+  background: var(--control-surface);
+  font: 750 .86rem/1 system-ui, sans-serif;
+  letter-spacing: .06em;
+  text-decoration: none;
+  transition: background-color .22s ease, border-color .22s ease, color .22s ease;
+}
+.controls .control:hover { border-color: var(--control-ink); background: var(--control-hover); }
+.controls .control:focus-visible { outline: 2px solid var(--control-ink); outline-offset: 3px; }
+.controls .control-label { transition: transform .22s ease; }
+.controls .language:is(:hover, :focus-visible) .control-label { transform: translateY(-1px); }
+.controls .language:active .control-label { transform: scale(.88); }
+.controls .control-glyph {
+  grid-area: 1 / 1;
+  position: relative;
+  inline-size: 1.18rem;
+  block-size: 1.18rem;
+  transition: opacity .24s ease, transform .32s cubic-bezier(.22,.7,.24,1);
+}
+.controls .control-moon {
+  background: currentColor;
+  border-radius: 50%;
+  mask: radial-gradient(circle at 65% 25%, transparent 0 51%, #000 54%);
+}
+.controls .control-sun { opacity: 0; transform: translateY(.28rem) rotate(-32deg) scale(.82); }
+.controls .control-sun::before, .controls .control-sun::after { content: ''; position: absolute; border-radius: 50%; }
+.controls .control-sun::before { inset: .31rem; border: 1.5px solid currentColor; }
+.controls .control-sun::after {
+  inset: 0;
+  background: repeating-conic-gradient(from -4deg, currentColor 0deg 8deg, transparent 8deg 45deg);
+  mask: radial-gradient(circle, transparent 0 52%, #000 55% 69%, transparent 72%);
+}
+:where([data-mode="dark"]) .controls .control-moon { opacity: 0; transform: translateY(-.28rem) rotate(32deg) scale(.82); }
+:where([data-mode="dark"]) .controls .control-sun { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .controls .control, .controls .control-label, .controls .control-glyph { transition: none; }
+}
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f4f2ee;
+      color: #191919;
+      font: 1rem/1.5 system-ui, sans-serif;
+    }
+    button { cursor: pointer; font: inherit; }
+    main { max-width: 85rem; margin-inline: auto; padding: clamp(1.15rem, 5vw, 4.25rem); }
+    .brand { margin: 0 0 1.2rem; font-weight: 800; letter-spacing: -.05em; }
+    h1 {
+      margin: 0;
+      font: 500 clamp(2.75rem, 7vw, 6.4rem)/.98 Georgia, serif;
+      letter-spacing: -.065em;
+    }
+    .intro { margin: .85rem 0 2rem; color: #52504c; }
+    .workbench { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(1rem, 3vw, 2.5rem); align-items: start; }
+    .preview {
+      --stage: #fff;
+      --stage-ink: #1b1b1b;
+      --stage-line: #d9d7d1;
+      --stage-body: #efede9;
+      position: sticky;
+      inset-block-start: 1rem;
+      z-index: 2;
+      overflow: hidden;
+      border: 1px solid var(--stage-line);
+      border-radius: 1rem;
+      color: var(--stage-ink);
+      background: var(--stage);
+      box-shadow: 0 .5rem 1.8rem #2e292014;
+      transition: background-color .24s, color .24s, border-color .24s;
+    }
+    .preview[data-mode="dark"] { --stage: #202020; --stage-ink: #f7f5f0; --stage-line: #545454; --stage-body: #292929; }
+    .preview-info { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; padding: .85rem 1rem; }
+    .preview-info h2 { margin: 0; font-size: 1rem; }
+    .animation-name { text-align: end; font-size: .78rem; }
+    .mock-topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: .5rem;
+      align-items: center;
+      padding: .65rem clamp(.55rem, 2vw, 1rem);
+      border-block: 1px solid var(--stage-line);
+    }
+    .mock-topbar strong { font: 700 clamp(.95rem, 2vw, 1.35rem)/1.1 Georgia, serif; }
+    .mock-nav { font-size: .78rem; }
+    .mock-content {
+      display: grid;
+      place-content: center;
+      min-height: 8rem;
+      padding: 1.25rem .55rem;
+      text-align: center;
+      background: var(--stage-body);
+      transition: background-color .24s;
+    }
+    .mock-content strong { font: 500 clamp(1.75rem, 4vw, 2.8rem)/1.05 Georgia, serif; letter-spacing: -.045em; }
+    .choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin: 0; padding: 0; list-style: none; }
+    .choice {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      gap: .6rem;
+      padding: .55rem .55rem .7rem;
+      border: 1px solid #d5d2ca;
+      border-radius: .8rem;
+      background: #fff;
+      color: #191919;
+      text-align: start;
+      transition: border-color .18s, box-shadow .18s;
+    }
+    .choice:is(:hover, [aria-pressed="true"]) { border-color: #252525; box-shadow: inset 0 0 0 1px #252525; }
+    .choice:focus-visible { outline: 2px solid #252525; outline-offset: 3px; }
+    .thumbnail {
+      display: grid;
+      place-items: center;
+      min-height: clamp(4.4rem, 8vw, 6rem);
+      border-radius: .45rem;
+      background: #eeece8;
+    }
+    .choice-name { display: flex; gap: .55rem; align-items: baseline; padding-inline: .22rem; font-size: .86rem; font-weight: 700; }
+    .choice-number { color: #62605b; font-size: .72rem; font-variant-numeric: tabular-nums; }
+
+    .controls[data-variant="segment"] { gap: 0; border: 1px solid var(--control-line); border-radius: 99rem; background: var(--control-surface); }
+    .controls[data-variant="segment"] .control { border: 0; border-radius: 0; }
+    .controls[data-variant="segment"] .language { border-radius: 99rem 0 0 99rem; border-inline-end: 1px solid var(--control-line); }
+    .controls[data-variant="segment"] .mode { border-radius: 0 99rem 99rem 0; }
+    .controls[data-variant="orbit"] .control { border-radius: 50%; border: 1px dashed var(--control-ink); }
+    .controls[data-variant="ink"] .language { border-color: var(--control-ink); color: var(--control-surface); background: var(--control-ink); }
+    .controls[data-variant="ink"] .mode { border-color: var(--control-ink); }
+    .controls[data-variant="underline"] .control { border: 0; border-block-end: 2px solid var(--control-ink); border-radius: 0; background: transparent; }
+    .controls[data-variant="lift"] .control { border-color: var(--control-ink); box-shadow: 0 .22rem 0 var(--control-ink); }
+    .controls[data-variant="track"] .language { border: 0; background: transparent; }
+    .controls[data-variant="track"] .mode { min-inline-size: 3.45rem; border-radius: 99rem; background: var(--control-hover); }
+    .controls[data-variant="track"] .mode::before {
+      content: '';
+      position: absolute;
+      inset: .3rem auto .3rem .3rem;
+      width: 1.8rem;
+      border: 1px solid var(--control-line);
+      border-radius: 50%;
+      background: var(--control-surface);
+      transition: transform .32s ease;
+    }
+    .controls[data-variant="track"] .control-moon { inset-inline-start: -.4rem; }
+    .controls[data-variant="track"] .control-sun { inset-inline-start: .3rem; }
+    [data-mode="dark"] .controls[data-variant="track"] .mode::before { transform: translateX(.75rem); }
+    .controls[data-variant="square"] .control { border: 2px solid var(--control-ink); border-radius: 0; }
+    .controls[data-variant="inset"] { gap: .13rem; padding: .18rem; border-radius: .8rem; box-shadow: inset 0 1px 4px #0004; background: var(--control-hover); }
+    .controls[data-variant="inset"] .control { border-color: transparent; border-radius: .6rem; }
+    .controls[data-variant="split"] { gap: .14rem; }
+    .controls[data-variant="split"] .language { border-color: var(--control-ink); color: var(--control-surface); background: var(--control-ink); border-radius: 1.2rem .25rem .25rem .25rem; }
+    .controls[data-variant="split"] .mode { border-color: var(--control-ink); border-radius: .25rem .25rem 1.2rem .25rem; }
+    .controls[data-variant] button:hover { box-shadow: inset 0 0 0 1px var(--control-line); }
+
+    @media (max-width: 48rem) {
+      .workbench { grid-template-columns: 1fr; }
+      .preview { inset-block-start: .4rem; }
+      .mock-content { min-height: 3.65rem; padding-block: .65rem; }
+    }
+    @media (max-width: 24rem) {
+      main { padding-inline: .75rem; }
+      .choices { gap: .55rem; }
+      .mock-nav { display: none; }
+      .choice-name { gap: .38rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .preview, .mock-content, .choice, .controls[data-variant="track"] .mode::before { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="brand">TAP.ID</p>
+    <h1>Kontrol top bar</h1>
+    <p class="intro" id="intro">Klik salah satu dari 10 gambar, lalu tekan EN atau ikon bulan di pratinjau untuk melihat animasinya.</p>
+    <div class="workbench">
+      <section class="preview" data-mode="light" aria-labelledby="selection">
+        <div class="preview-info" aria-live="polite">
+          <h2 id="selection">01 · Outline Pair</h2>
+          <span class="animation-name">Geser halus</span>
+        </div>
+        <div class="mock-topbar">
+          <strong>Arga Pradana</strong>
+          <span class="mock-nav">Beranda</span>
+          <div class="controls live-controls" data-variant="outline" role="group" aria-label="Pengaturan pratinjau">
+            <button type="button" class="control language" aria-label="Switch to English"><span class="control-label">EN</span></button>
+            <button type="button" class="control mode" aria-label="Aktifkan mode gelap" aria-pressed="false">
+              <span class="control-glyph control-moon" aria-hidden="true"></span>
+              <span class="control-glyph control-sun" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+        <div class="mock-content"><strong>Proyek pilihan</strong></div>
+      </section>
+      <ol class="choices" aria-label="Desain kontrol" aria-describedby="intro"></ol>
+    </div>
+  </main>
+  <template id="choice-template">
+    <li>
+      <button type="button" class="choice" aria-pressed="false">
+        <span class="thumbnail" aria-hidden="true">
+          <span class="controls">
+            <span class="control language"><span class="control-label">EN</span></span>
+            <span class="control mode">
+              <span class="control-glyph control-moon"></span>
+              <span class="control-glyph control-sun"></span>
+            </span>
+          </span>
+        </span>
+        <span class="choice-name"><span class="choice-number"></span><span class="choice-title"></span></span>
+      </button>
+    </li>
+  </template>
+  <script>
+    const options = [
+      { variant: 'outline', name: 'Outline Pair', motion: 'Geser halus', start: { transform: 'translateY(8px)', opacity: 0 } },
+      { variant: 'segment', name: 'Segmented Pill', motion: 'Geser samping', start: { transform: 'translateX(-14px)', opacity: 0 } },
+      { variant: 'orbit', name: 'Orbit', motion: 'Putar seperempat', start: { transform: 'rotate(-90deg) scale(.72)', opacity: .2 } },
+      { variant: 'ink', name: 'Ink Pair', motion: 'Balik vertikal', start: { transform: 'perspective(100px) rotateX(-85deg)', opacity: .2 } },
+      { variant: 'underline', name: 'Underline', motion: 'Sapu dari kiri', start: { clipPath: 'inset(0 100% 0 0)' }, end: { clipPath: 'inset(0 0 0 0)' } },
+      { variant: 'lift', name: 'Floating', motion: 'Angkat', start: { transform: 'translateY(5px) scale(1.12)', opacity: .4 } },
+      { variant: 'track', name: 'Switch Track', motion: 'Geser toggle', start: { transform: 'translateX(8px) scale(.7)', opacity: 0 } },
+      { variant: 'square', name: 'Square Frame', motion: 'Perbesar cepat', start: { transform: 'scale(.55)', opacity: .4 } },
+      { variant: 'inset', name: 'Inset', motion: 'Fokus bertahap', start: { filter: 'blur(6px)', opacity: .1 } },
+      { variant: 'split', name: 'Split Plate', motion: 'Ayun', start: { transform: 'rotate(24deg) scale(.7)', opacity: .3 }, peak: { transform: 'rotate(-7deg) scale(1.1)' } },
+    ];
+    const preview = document.querySelector('.preview');
+    const controls = document.querySelector('.live-controls');
+    const languageButton = controls.querySelector('.language');
+    const languageLabel = languageButton.querySelector('.control-label');
+    const modeButton = controls.querySelector('.mode');
+    const selection = document.querySelector('#selection');
+    const animationName = document.querySelector('.animation-name');
+    const choices = document.querySelector('.choices');
+    const template = document.querySelector('#choice-template');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    let current = options[0];
+    let currentButton;
+    let english = false;
+
+    function animate(target) {
+      if (reducedMotion.matches || !target.animate) return;
+      target.getAnimations().forEach((animation) => animation.cancel());
+      const frames = [current.start];
+      if (current.peak) frames.push(current.peak);
+      frames.push(current.end ?? { transform: 'none', opacity: 1, filter: 'none' });
+      target.animate(frames, { duration: 390, easing: 'cubic-bezier(.2,.7,.3,1)' });
+    }
+
+    options.forEach((option, index) => {
+      const row = template.content.cloneNode(true);
+      const button = row.querySelector('.choice');
+      const number = String(index + 1).padStart(2, '0');
+      row.querySelector('.controls').dataset.variant = option.variant;
+      row.querySelector('.choice-number').textContent = number;
+      row.querySelector('.choice-title').textContent = option.name;
+      if (index === 0) {
+        currentButton = button;
+        button.setAttribute('aria-pressed', 'true');
+      }
+      button.addEventListener('click', () => {
+        currentButton.setAttribute('aria-pressed', 'false');
+        button.setAttribute('aria-pressed', 'true');
+        currentButton = button;
+        current = option;
+        controls.dataset.variant = option.variant;
+        selection.textContent = `${number} · ${option.name}`;
+        animationName.textContent = option.motion;
+        animate(controls);
+      });
+      choices.append(row);
+    });
+
+    languageButton.addEventListener('click', () => {
+      english = !english;
+      languageLabel.textContent = english ? 'ID' : 'EN';
+      languageButton.setAttribute('aria-label', english ? 'Ganti ke Bahasa Indonesia' : 'Switch to English');
+      preview.querySelector('.mock-nav').textContent = english ? 'Home' : 'Beranda';
+      preview.querySelector('.mock-content strong').textContent = english ? 'Selected projects' : 'Proyek pilihan';
+      animate(languageLabel);
+    });
+    modeButton.addEventListener('click', () => {
+      const dark = preview.dataset.mode === 'light';
+      preview.dataset.mode = dark ? 'dark' : 'light';
+      modeButton.setAttribute('aria-pressed', String(dark));
+      modeButton.setAttribute('aria-label', dark ? 'Aktifkan mode terang' : 'Aktifkan mode gelap');
+      animate(modeButton);
+    });
+  </script>
+</body>
+</html>
