@@ -90,10 +90,23 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               }
               markSection(current);
             };
-            // Keep an explicitly selected section marked while its anchor scrolls.
+            // Keep the chosen label while scrolling to its anchor. If the user
+            // scrolls elsewhere before it settles, mark the section now in view.
             const holdSection = () => {
               window.clearTimeout(navigationTimer);
-              navigationTimer = window.setTimeout(() => { navigationTimer = undefined; }, 140);
+              navigationTimer = window.setTimeout(() => {
+                navigationTimer = undefined;
+                const target = sections.get(activeSection);
+                if (!target) {
+                  updateSection();
+                  return;
+                }
+                const startInset = parseFloat(getComputedStyle(root).scrollPaddingBlockStart) || 0;
+                const targetMargin = parseFloat(getComputedStyle(target).scrollMarginBlockStart) || 0;
+                const targetPosition = window.scrollY + target.getBoundingClientRect().top - startInset - targetMargin;
+                const expectedScroll = Math.max(0, Math.min(targetPosition, root.scrollHeight - root.clientHeight));
+                if (Math.abs(window.scrollY - expectedScroll) > 3) updateSection();
+              }, 140);
             };
             const selectSection = (hash) => {
               if (!sections.has(hash)) return false;

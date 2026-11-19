@@ -41,17 +41,15 @@
 h2 { font-size: clamp(1.95rem, 3.55vw, 3.2rem); letter-spacing: -.06em; }
 .risk-about h2 { margin: .55rem 0 .6rem; }
 .risk-about .section-label span { padding-inline: .3rem; }
-.risk-skills { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 2fr); gap: 1.25rem; align-items: center; background: var(--subtle); padding-block: 1.55rem; }
+.risk-skills { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 2fr); gap: 1.25rem; align-items: center; background: var(--subtle); }
 .risk-skills ul { display: grid; grid-template-columns: 1fr 1fr; gap: .78rem; }
 .risk-skills li { display: flex; gap: .45rem; align-items: center; }
 .risk-skills li span { flex: 0 0 1.45rem; display: grid; place-items: center; aspect-ratio: 1; border-radius: 50%; background: var(--button); color: var(--button-ink); }
-.risk-career { padding-block: 3.4rem; }
 .risk-career ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
 .risk-career li { border: 1px solid var(--line); border-radius: .95rem; padding: 1.15rem; }
 .risk-career h3 { margin-top: .5rem; }
 .risk-career .role { margin-block: .25rem; font-weight: 650; }
 .risk-footer { background: var(--inverse); color: #fff; }
-.risk-footer section { padding-block: 3.2rem; }
 .risk-footer h2 { margin: .5rem 0; }
 .risk-footer .contact-links { margin-top: 1rem; }
 .risk-footer .contact-links a { border: 1px solid var(--inverse-muted); border-radius: 2rem; padding-inline: .9rem; }

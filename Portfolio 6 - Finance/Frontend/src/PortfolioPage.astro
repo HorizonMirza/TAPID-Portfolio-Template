@@ -35,15 +35,15 @@ const { copy, p, projects, skills, experience, contact, demo } = localize(langua
     )}
     {!previewAbout && <AboutSection language={language} />}
     {!previewProjects && projects.length > 0 && <ProjectSection language={language} />}
-    <div class="wrap finance-record">
+    {(skills.length > 0 || experience.length > 0) && <div class="wrap portfolio-details finance-record">
+      {skills.length > 0 && <section id="skills" class="finance-skills" aria-labelledby="skills-title">
+        <h2 id="skills-title">{copy.skills}</h2><ul>{skills.map((skill) => <li>{skill}</li>)}</ul>
+      </section>}
       {experience.length > 0 && <section id="experience" aria-labelledby="experience-title">
         <h2 id="experience-title">{copy.experience}</h2>
         <ol>{experience.map((job) => <li><span class="section-label">{job.period}</span><h3>{job.title}</h3><strong>{job.organization}</strong><p class="copy">{job.description}</p></li>)}</ol>
       </section>}
-      {skills.length > 0 && <section id="skills" class="finance-skills" aria-labelledby="skills-title">
-        <h2 id="skills-title">{copy.skills}</h2><ul>{skills.map((skill) => <li>{skill}</li>)}</ul>
-      </section>}
-    </div>
+    </div>}
   </main>
   <footer class="finance-footer">
     {contact.links.length > 0 && <section id="contact" class="wrap" aria-labelledby="contact-title">

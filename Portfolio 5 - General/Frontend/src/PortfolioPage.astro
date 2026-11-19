@@ -35,10 +35,10 @@ const { copy, p, projects, skills, experience, contact, demo } = localize(langua
     )}
     {!previewAbout && <AboutSection language={language} />}
     {!previewProjects && projects.length > 0 && <ProjectSection language={language} />}
-    {skills.length > 0 && <section id="skills" class="wrap folio-section reading folio-skills" aria-labelledby="skills-title">
+    {skills.length > 0 && <section id="skills" class="wrap reading folio-skills" aria-labelledby="skills-title">
       <h2 id="skills-title">{copy.skills}</h2><ul>{skills.map((skill) => <li>{skill}</li>)}</ul>
     </section>}
-    {experience.length > 0 && <section id="experience" class="wrap folio-section folio-experience" aria-labelledby="experience-title">
+    {experience.length > 0 && <section id="experience" class="wrap folio-experience" aria-labelledby="experience-title">
       <h2 id="experience-title">{copy.experience}</h2><ol>{experience.map((job) => <li>
         <p class="section-label">{job.period}</p><div><h3>{job.title}</h3><p>{job.organization}</p><p class="copy">{job.description}</p></div>
       </li>)}</ol>

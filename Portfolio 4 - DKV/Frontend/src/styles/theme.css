@@ -36,19 +36,19 @@ h2 { font-size: clamp(2.1rem, 4.7vw, 4.5rem); font-weight: 800; letter-spacing: 
 .studio-about .wrap { display: grid; grid-template-columns: minmax(0,.65fr) minmax(0,2fr); align-items: center; gap: 1.5rem; padding-block: 2.9rem; }
 .studio-about h2 { margin: .4rem 0 .65rem; }
 .studio-mark { font-size: clamp(4rem, 12vw, 11rem); line-height: 1; justify-self: center; }
-.studio-details { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.6fr); gap: 1.8rem; padding-block: 3rem; }
+.studio-details { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.6fr); gap: clamp(1.65rem, 3.5vw, 3.25rem); }
 .studio-details :is(ol, ul) { margin-top: .9rem; }
 .studio-details ul li { border-top: 1px solid var(--line); padding: .42rem 0; font-weight: 650; }
 .studio-details ol li { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: .35rem .75rem; border-top: 1px solid var(--line); padding-block: .65rem; }
 .studio-details li .copy { grid-column: 1 / -1; }
-.studio-footer { border-top: 2px solid var(--ink); }
-.studio-footer section { padding-block: 1.75rem; }
 .studio-footer h2 { margin-block: .35rem; }
 .studio-footer .contact-links { margin-top: .9rem; }
 .studio-footer .contact-links a { background: var(--button); color: var(--button-ink); }
 .studio-footer-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; border-top: 1px solid var(--line); padding-block: .8rem; }
 @media (max-width: 42rem) {
   .studio-details, .studio-about .wrap { grid-template-columns: 1fr; }
+  .studio-details > section + section { padding-block-start: 1.6rem; border-block-start: 1px solid var(--line); }
+  .studio-footer-bar { flex-wrap: wrap; }
   .studio-mark { display: none; }
   .studio-title { gap: .6rem; }
   .studio-title h1 { font-size: clamp(3rem, 14vw, 5.3rem); }

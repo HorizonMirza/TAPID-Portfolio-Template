@@ -7,10 +7,9 @@
   --about-strong: color-mix(in srgb, var(--button) 20%, var(--surface));
   display: flex;
   flex-direction: column;
-  min-block-size: var(--hero-height);
-  scroll-margin-block-start: -.65rem;
   background: var(--bg);
 }
+.about-section.about-demos { min-block-size: var(--hero-height); }
 .about-section[data-theme="teknologi"] {
   --about-label-font: var(--mono);
   --about-radius: .3rem;
@@ -92,10 +91,14 @@
   background-image: var(--about-pattern, none);
   background-size: 2.15rem 2.15rem;
 }
-.about-section:not(.about-demos) .about-stage { align-content: center; }
+.about-section:not(.about-demos) .about-stage {
+  min-block-size: 0;
+  padding-block: var(--section-space);
+  border-block-end: 0;
+}
 .about-intro { grid-area: intro; min-width: 0; }
 .about-heading h2 {
-  font: var(--about-title-weight, 750) clamp(2rem, 3.7vw, 3.65rem)/var(--about-title-line, .98) var(--about-title-font);
+  font: var(--about-title-weight, 750) var(--section-heading-size)/var(--about-title-line, .98) var(--about-title-font);
   letter-spacing: -.055em;
   overflow-wrap: anywhere;
 }
@@ -265,7 +268,6 @@
   .about-stage[data-layout="strip"] .about-fact { border: 1px solid var(--line); }
 }
 @media (max-width: 34rem) {
-  .about-section:not(.about-demos) .about-stage { padding-block: 1.65rem; }
   .about-choice { justify-content: center; align-content: center; padding: .3rem; }
   .about-choice-name { display: none; }
   .about-stage .about-facts { grid-template-columns: minmax(0, 1fr); }

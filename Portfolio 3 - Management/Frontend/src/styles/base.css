@@ -4,7 +4,9 @@
   --button: #191919; --button-ink: #fff; --focus: #171717;
   --inverse: #1b1b1b; --inverse-ink: #f5f5f5; --inverse-muted: #cbcbcb; --inverse-line: #626262;
   --detail-accent: var(--custom-light, var(--muted));
-  --page-gutter: clamp(1rem, 3.55vw, 4.25rem);
+  --page-gutter: max(clamp(1rem, 3.55vw, 4.25rem), calc((100vw - 112rem) / 2));
+  --section-space: clamp(2.35rem, 3.75vw, 3.8rem);
+  --section-heading-size: clamp(1.9rem, 3.4vw, 3.25rem);
   --topbar-height: 4.75rem;
   --hero-height: calc(100svh - var(--topbar-height));
 }
@@ -15,7 +17,7 @@
   --detail-accent: var(--custom-dark, var(--muted));
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-block-start: calc(var(--topbar-height) + .65rem); }
+html { scroll-behavior: smooth; scroll-padding-block-start: var(--topbar-height); }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 1rem/1.6 var(--body); }
 body, button, a { -webkit-tap-highlight-color: transparent; }
 button, summary { cursor: pointer; }
@@ -30,7 +32,19 @@ ol, ul { list-style: none; margin: 0; padding: 0; }
 .skip-link { position: fixed; z-index: 12; top: .5rem; left: .5rem; padding: .5rem 1rem; background: var(--surface); color: var(--ink); transform: translateY(-160%); }
 .skip-link:focus { transform: none; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
-#home { scroll-margin-block-start: -.65rem; }
+:is(#skills, #experience, #contact) { scroll-margin-block-start: .65rem; }
+:is(main > #skills, main > #experience, .portfolio-details) {
+  border-block-start: 1px solid var(--line);
+  padding-block: var(--section-space);
+}
+.portfolio-details > section { min-inline-size: 0; }
+.portfolio-details:has(> section:only-child) { grid-template-columns: minmax(0, 1fr); }
+:is(#skills, #experience, #contact) h2 { font-size: var(--section-heading-size); }
+:is(#skills, #experience, #contact) :is(p, li) { overflow-wrap: anywhere; }
+body > footer { border-block-start: 1px solid var(--line); }
+footer #contact { padding-block: var(--section-space); }
+#contact .contact-links a { max-inline-size: 100%; }
+#contact h2 + p { max-inline-size: 65ch; }
 .section-label { font-size: .82rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
 .copy { color: var(--muted); max-inline-size: 70ch; }
 .mobile-nav summary {

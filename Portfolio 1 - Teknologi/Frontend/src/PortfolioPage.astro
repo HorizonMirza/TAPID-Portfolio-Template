@@ -47,13 +47,13 @@ const { copy, p, projects, skills, experience, contact, demo } = localize(langua
     )}
     {!previewAbout && <AboutSection language={language} />}
     {!previewProjects && projects.length > 0 && <ProjectSection language={language} />}
-    <div class="wrap technical-profile">
+    {(skills.length > 0 || experience.length > 0) && <div class="wrap portfolio-details technical-profile">
       {skills.length > 0 && <section id="skills" aria-labelledby="skills-title"><h2 id="skills-title">{copy.skills}</h2>
         <ul class="chips">{skills.map((skill) => <li>{skill}</li>)}</ul></section>}
       {experience.length > 0 && <section id="experience" aria-labelledby="experience-title"><h2 id="experience-title">{copy.experience}</h2>
         <ol class="history">{experience.map((job) => <li><p class="eyebrow">{job.period}</p><h3>{job.title}</h3><p>{job.organization}</p><p class="copy">{job.description}</p></li>)}</ol>
       </section>}
-    </div>
+    </div>}
   </main>
   <footer class="tech-footer">
     {contact.links.length > 0 && <section id="contact" class="wrap footer-main" aria-labelledby="contact-title">
