@@ -235,8 +235,9 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
             const linkFocused = document.activeElement === languageLink();
             const page = await readLanguage(target, language, controller.signal);
             if (controller.signal.aborted) return;
+            const firstSection = document.querySelector('#main > section')?.id || 'home';
             const position = fromHistory
-              ? { hash: target.hash || (document.querySelector('[data-about-demos]') ? '#about' : '#home'), offset: 0, y: 0 }
+              ? { hash: target.hash || '#' + firstSection, offset: 0, y: 0 }
               : rememberReadingPosition();
             const address = offlinePage ? new URL(location.href) : new URL(target);
             if (offlinePage) {

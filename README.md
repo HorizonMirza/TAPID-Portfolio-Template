@@ -8,6 +8,8 @@ Setiap portofolio demo punya 10 rancangan Beranda bernomor 01–10. Buka `/demo-
 
 Setiap tema juga punya 10 rancangan Tentang di `/demo-tentang/` dan `/en/demo-tentang/`. Ringkasan diambil dari `about.description`. Data akademik opsional ada di `about.education` dan mencakup `university`, `major`, `specialization`, serta `gpa` dengan `value` dan `scale`. Demo menggunakan nama Universitas Bina Nusantara dengan contoh jurusan, spesialisasi, dan GPA yang fiktif.
 
+Untuk mencoba 10 rancangan Proyek, buka `/demo-proyek/` atau `/en/demo-proyek/`. Pilihan dapat dibagikan lewat URL seperti `/demo-proyek/?pilihan=04`. Isi proyek mengikuti `projects` di file data tema.
+
 | Template | Warna bawaan | Beranda utama | Tentang utama | Top bar |
 | --- | --- | --- | --- | --- |
 | [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 06 · Developer Panel | 01 · Command Rail |

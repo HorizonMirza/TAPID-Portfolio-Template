@@ -9,7 +9,8 @@ interface Props { language: Language }
 const { language } = Astro.props;
 const previewHome = Astro.slots.has('home');
 const previewAbout = Astro.slots.has('about-preview');
-const previewPath = previewAbout ? 'demo-tentang/' : previewHome ? 'demo-beranda/' : undefined;
+const previewProjects = Astro.slots.has('projects-preview');
+const previewPath = previewProjects ? 'demo-proyek/' : previewAbout ? 'demo-tentang/' : previewHome ? 'demo-beranda/' : undefined;
 const languageHref = previewPath ? `${language === 'id' ? '/en/' : '/'}${previewPath}` : undefined;
 const { copy, p, projects, skills, experience, contact, demo } = localize(language);
 const heroImage = projects.find((project) => project.image)?.image;
@@ -17,6 +18,7 @@ const heroImage = projects.find((project) => project.image)?.image;
 <Frame language={language} skip={copy.skip} previewPath={previewPath}>
   <TopBar language={language} languageHref={languageHref} />
   <main id="main" tabindex="-1">
+    {previewProjects && <slot name="projects-preview" />}
     {previewAbout && <slot name="about-preview" />}
     {previewHome ? <slot name="home" /> : p.portrait ? (
       <section id="home" aria-labelledby="portfolio-home-title">
@@ -42,7 +44,7 @@ const heroImage = projects.find((project) => project.image)?.image;
       </section>
     )}
     {!previewAbout && <AboutSection language={language} />}
-    {projects.length > 0 && <section id="projects" class="wrap studio-work" aria-labelledby="work-title">
+    {!previewProjects && projects.length > 0 && <section id="projects" class="wrap studio-work" aria-labelledby="work-title">
       <h2 id="work-title">{copy.projects}</h2>
       <div class="gallery">
         {projects.map((project) => <article>
