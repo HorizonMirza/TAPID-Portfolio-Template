@@ -43,8 +43,15 @@
         "en": "Risk assessment"
       },
       "description": {
-        "id": "Inventaris risiko gudang dari penerimaan hingga pengiriman. Saya mengelompokkan temuan per aktivitas dan mencatat pertanyaan yang perlu dikonfirmasi sebelum perpanjangan polis.",
-        "en": "A risk register covering warehouse activities from receiving to dispatch. I grouped findings by activity and captured questions to resolve before policy renewal."
+        "id": "Lembar penilaian risiko untuk gudang simulasi. Matriks menyandingkan kemungkinan dan dampak, lalu daftar kontrol menghubungkan risiko genangan, beban rak, dan jalur forklift dengan tindak lanjut.",
+        "en": "A risk assessment sheet for a simulated warehouse. The matrix compares likelihood and impact, while the control list connects flooding, rack loads, and forklift traffic to follow-up actions."
+      },
+      "image": {
+        "src": "/media/peta-risiko-gudang.webp",
+        "alt": {
+          "id": "Matriks risiko gudang dengan tingkat prioritas dan daftar kontrol utama.",
+          "en": "Warehouse risk matrix with priority levels and a list of key controls."
+        }
       }
     },
     {
@@ -54,8 +61,15 @@
         "en": "Policy analysis"
       },
       "description": {
-        "id": "Format satu halaman untuk merangkum cakupan, batas, dan pengecualian dari contoh polis usaha kecil.",
-        "en": "A one-page format summarizing coverage, limits, and exclusions from sample small-business policies."
+        "id": "Ringkasan perbandingan dua skenario polis untuk toko ritel fiktif. Tabel memisahkan cakupan kebakaran, pencurian, dan gangguan usaha serta mencatat poin yang masih perlu dikonfirmasi.",
+        "en": "A comparison brief for two illustrative policies for a fictional retail shop. The tables separate fire, theft, and business interruption and flag terms that still need confirmation."
+      },
+      "image": {
+        "src": "/media/ringkasan-polis-umkm.webp",
+        "alt": {
+          "id": "Dua tabel berdampingan yang membandingkan cakupan dalam simulasi polis UMKM.",
+          "en": "Two side-by-side tables comparing coverage in a small-business policy exercise."
+        }
       }
     },
     {
@@ -65,8 +79,15 @@
         "en": "Claims documentation"
       },
       "description": {
-        "id": "Daftar periksa dokumen dan pencatatan status berdasarkan tahap pengumpulan, pengajuan, dan tindak lanjut.",
-        "en": "A document checklist and status tracker covering collection, submission, and follow-up."
+        "id": "Prototipe pelacak dokumen klaim kerusakan properti. Setiap baris menunjukkan bukti yang dibutuhkan, status pemeriksaannya, dan dokumen mana yang masih perlu dilengkapi.",
+        "en": "A document tracking prototype for a property damage claim. Each row identifies the evidence needed, its review status, and which documents still need to be supplied."
+      },
+      "image": {
+        "src": "/media/berkas-klaim.webp",
+        "alt": {
+          "id": "Pelacak Berkas Klaim dengan ringkasan status dan daftar empat dokumen pendukung.",
+          "en": "Claims file tracker with a status summary and four supporting documents."
+        }
       }
     }
   ],

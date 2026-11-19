@@ -29,26 +29,56 @@
   "projects": [
     {
       "title": "Budget Bridge",
-      "category": { "id": "Analisis anggaran", "en": "Budget analysis" },
+      "category": {
+        "id": "Analisis anggaran",
+        "en": "Budget analysis"
+      },
       "description": {
-        "id": "Contoh laporan yang mengelompokkan selisih anggaran berdasarkan volume, biaya satuan, dan perubahan jadwal.",
-        "en": "A sample report grouping budget variances by volume, unit cost, and timing."
+        "id": "Laporan simulasi dengan diagram waterfall yang menjelaskan perubahan dari anggaran Rp500 juta ke realisasi Rp530 juta lewat tiga pendorong biaya.",
+        "en": "A simulated budget report with a waterfall chart that explains the move from a budget of IDR 500 million to actual spending of IDR 530 million through three cost drivers."
+      },
+      "image": {
+        "src": "/media/budget-bridge.webp",
+        "alt": {
+          "id": "Dashboard Budget Bridge dengan grafik waterfall dan tabel tiga pendorong selisih.",
+          "en": "Budget Bridge dashboard with a waterfall chart and a table of three variance drivers."
+        }
       }
     },
     {
       "title": "Cash Flow Map",
-      "category": { "id": "Perkiraan arus kas", "en": "Cash flow forecasting" },
+      "category": {
+        "id": "Perkiraan arus kas",
+        "en": "Cash flow forecasting"
+      },
       "description": {
-        "id": "Model fiktif yang membandingkan skenario penerimaan dan pengeluaran mingguan dengan asumsi yang terdokumentasi.",
-        "en": "A fictional model comparing weekly receipts and payments across scenarios with documented assumptions."
+        "id": "Proyeksi kas lima minggu yang menunjukkan saldo akhir dan periode terendah. Catatan asumsi menghubungkan perubahan saldo dengan pembayaran pemasok dan penerimaan pelanggan.",
+        "en": "A five-week cash forecast that shows closing balances and the lowest cash point. Assumption notes tie balance changes to supplier payments and customer receipts."
+      },
+      "image": {
+        "src": "/media/cash-flow-map.webp",
+        "alt": {
+          "id": "Dashboard Cash Flow Map dengan proyeksi saldo akhir lima minggu dan tabel asumsi.",
+          "en": "Cash Flow Map dashboard with five weeks of projected balances and an assumptions table."
+        }
       }
     },
     {
       "title": "Monthly Close Pack",
-      "category": { "id": "Pelaporan manajemen", "en": "Management reporting" },
+      "category": {
+        "id": "Pelaporan manajemen",
+        "en": "Management reporting"
+      },
       "description": {
-        "id": "Contoh paket penutupan bulanan berisi daftar rekonsiliasi, ringkasan perubahan, dan pertanyaan yang masih terbuka.",
-        "en": "A sample monthly close pack with a reconciliation checklist, summary of changes, and outstanding questions."
+        "id": "Paket penutupan bulanan yang merangkum status rekonsiliasi kas, piutang, persediaan, dan beban. Catatan per baris menunjukkan isu yang harus diselesaikan sebelum laporan diserahkan.",
+        "en": "A month-end close pack summarizing cash, receivables, inventory, and expense reconciliation. Row-level notes show what needs to be resolved before reporting."
+      },
+      "image": {
+        "src": "/media/monthly-close-pack.webp",
+        "alt": {
+          "id": "Paket penutupan bulanan dengan ringkasan status dan empat baris rekonsiliasi.",
+          "en": "Month-end close pack with a status summary and four reconciliation rows."
+        }
       }
     }
   ],

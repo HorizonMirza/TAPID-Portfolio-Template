@@ -43,14 +43,14 @@
         "en": "Poster study"
       },
       "description": {
-        "id": "Studi bentuk untuk poster pameran. Lipatan kertas difoto dengan cahaya terarah untuk menguji bagaimana bayangan mendorong mata bergerak di bidang cetak.",
-        "en": "A form study for an exhibition poster. I shot folded paper in directional light to test how shadows guide the eye across the print."
+        "id": "Studi poster yang menempatkan lipatan kertas sebagai titik fokus. Cahaya dari samping menciptakan bayangan diagonal pada bidang merah untuk menguji arah pandang dan keseimbangan ruang.",
+        "en": "A poster study that uses a folded paper sculpture as the focal point. Side lighting casts a diagonal shadow across the red field to explore eye movement and the balance of negative space."
       },
       "image": {
         "src": "/media/bentuk-bebas.webp",
         "alt": {
-          "id": "Patung kertas geometris dengan bayangan di bidang merah",
-          "en": "Geometric paper sculpture and its shadow on a red surface"
+          "id": "Patung kertas berbentuk burung pada latar merah dengan bayangan diagonal.",
+          "en": "A bird-like paper sculpture against red with a diagonal shadow."
         }
       }
     },
@@ -61,8 +61,15 @@
         "en": "Visual identity"
       },
       "description": {
-        "id": "Konsep identitas untuk kegiatan cetak mandiri, dengan bahasa visual yang bisa dipindahkan dari poster ke stempel dan selebaran.",
-        "en": "An identity concept for an independent print event, with a visual language that translates from posters to stamps and flyers."
+        "id": "Identitas visual untuk pasar cetak independen fiktif. Kontras merah, krem, dan hitam serta bentuk cap melingkar dipakai konsisten pada poster utama, tiket masuk, dan kartu peserta.",
+        "en": "A visual identity for a fictional independent print fair. Red, cream, and black contrast and a circular stamp motif carry across the main poster, admission ticket, and participant card."
+      },
+      "image": {
+        "src": "/media/cetak-pasar.webp",
+        "alt": {
+          "id": "Poster Cetak Pasar berdampingan dengan contoh tiket masuk dan kartu peserta.",
+          "en": "Cetak Pasar poster alongside a sample admission ticket and participant card."
+        }
       }
     },
     {
@@ -72,8 +79,15 @@
         "en": "Editorial design"
       },
       "description": {
-        "id": "Zine fiktif yang menyusun potongan cerita kota menggunakan judul berskala besar, foto, dan grid dua kolom.",
-        "en": "A fictional zine that brings together fragments of city stories with oversized titles, photos, and a two-column grid."
+        "id": "Rancangan sampul dan halaman pembuka esai visual tentang suasana kota sehabis hujan. Judul serif, ilustrasi jalan, dan kolom pendek membentuk ritme baca antara gambar dan narasi.",
+        "en": "A cover and opening spread for a visual essay about the city after rain. A serif title, street illustration, and short columns set the pace between imagery and narrative."
+      },
+      "image": {
+        "src": "/media/kota-setelah-hujan.webp",
+        "alt": {
+          "id": "Sampul Kota Setelah Hujan dan halaman pembuka dengan ilustrasi jalan.",
+          "en": "Kota Setelah Hujan cover and opening page with a street illustration."
+        }
       }
     }
   ],

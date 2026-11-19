@@ -43,8 +43,15 @@
         "en": "Community research"
       },
       "description": {
-        "id": "Rangkuman wawancara fiktif tentang bagaimana warga menemukan kegiatan kreatif di lingkungannya, serta kebutuhan informasi untuk acara berikutnya.",
-        "en": "A synthesis of fictional interviews on how residents find creative activities nearby and what information they need for future events."
+        "id": "Lembar sintesis observasi ruang bersama. Catatan simulasi dikelompokkan menjadi akses, waktu penggunaan, dan perawatan, lalu diringkas menjadi agenda pengamatan berikutnya.",
+        "en": "A fieldnote synthesis for observing shared spaces. Simulated notes are grouped into access, usage times, and maintenance, then turned into an agenda for the next visit."
+      },
+      "image": {
+        "src": "/media/cerita-dari-sudut-kota.webp",
+        "alt": {
+          "id": "Lembar riset Cerita dari Sudut Kota dengan tiga tema observasi dan tindak lanjut.",
+          "en": "Cerita dari Sudut Kota research sheet with three observation themes and a follow-up."
+        }
       }
     },
     {
@@ -54,8 +61,15 @@
         "en": "Writing"
       },
       "description": {
-        "id": "Panduan singkat untuk relawan baru dengan peran, jadwal, dan contoh pembaruan yang bisa langsung dipakai.",
-        "en": "A short guide for new volunteers with roles, schedules, and example updates they can reuse."
+        "id": "Panduan satu halaman untuk giliran jaga relawan ruang baca. Dua daftar periksa memisahkan persiapan sebelum membuka ruang dan tugas sebelum pulang agar serah terima mudah diikuti.",
+        "en": "A one-page guide for reading room volunteers. Two checklists separate opening preparations from closing tasks so the next shift can pick up where the previous one left off."
+      },
+      "image": {
+        "src": "/media/catatan-untuk-relawan.webp",
+        "alt": {
+          "id": "Panduan relawan dengan dua panel daftar periksa untuk membuka dan menutup ruang baca.",
+          "en": "Volunteer guide with two checklist panels for opening and closing a reading room."
+        }
       }
     },
     {
@@ -65,8 +79,15 @@
         "en": "Program coordination"
       },
       "description": {
-        "id": "Rencana program baca bulanan yang merangkum jadwal, tanggung jawab, dan format umpan balik peserta.",
-        "en": "A monthly reading program plan covering schedules, responsibilities, and a format for participant feedback."
+        "id": "Kalender kegiatan komunitas yang merangkum sesi baca, tukar buku, dan kelas zine. Setiap entri mencantumkan tanggal, waktu, dan apa yang perlu disiapkan peserta.",
+        "en": "A community calendar for a reading session, book swap, and zine workshop. Each entry gives the date, time, and what participants should bring or prepare."
+      },
+      "image": {
+        "src": "/media/agenda-ruang-baca.webp",
+        "alt": {
+          "id": "Kalender tiga kegiatan ruang baca dengan tanggal, jam, dan petunjuk singkat.",
+          "en": "A three-event reading room calendar with dates, times, and short instructions."
+        }
       }
     }
   ],

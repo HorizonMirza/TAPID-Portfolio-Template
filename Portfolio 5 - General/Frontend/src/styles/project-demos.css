@@ -71,11 +71,11 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
-  margin-block-end: clamp(1rem, 2.3vw, 2.2rem);
+  margin-block-end: clamp(1rem, 1.85vw, 1.75rem);
 }
 .project-preview-title h2 {
-  font: 735 clamp(2.55rem, 6vw, 6rem)/.95 var(--project-display);
-  letter-spacing: -.065em;
+  font: 735 clamp(1.9rem, 3.4vw, 3.25rem)/1.06 var(--project-display);
+  letter-spacing: -.045em;
 }
 .project-preview-showcase, .project-preview-items, .project-preview-items > li { min-inline-size: 0; }
 .project-preview-items {
@@ -231,7 +231,14 @@
   background: var(--bg);
   content: '';
 }
-[data-layout="timeline"] .project-preview-art { display: none; }
+[data-layout="timeline"] .project-preview-graphic { display: none; }
+[data-layout="timeline"] .project-preview-card:has(figure) {
+  display: grid;
+  grid-template-columns: minmax(8rem, .3fr) minmax(0, .7fr);
+  align-items: center;
+}
+[data-layout="timeline"] figure.project-preview-art { align-self: stretch; aspect-ratio: auto; min-block-size: 8rem; }
+[data-layout="timeline"] .project-preview-art img { object-fit: contain; }
 
 [data-layout="spread"] .project-preview-items { grid-template-columns: minmax(0, 1fr); gap: clamp(1.6rem, 4vw, 3.5rem); }
 [data-layout="spread"] .project-preview-card { border: 0; border-block-start: 2px solid var(--ink); border-radius: 0; background: transparent; }
@@ -267,6 +274,8 @@
   [data-layout="mosaic"] .project-preview-items > li:first-child:not(:only-child) { grid-row: auto; }
   [data-layout="mosaic"] .project-preview-items > li:first-child .project-preview-art { aspect-ratio: 1.55; }
   [data-layout="rail"] .project-preview-items { grid-template-columns: none; grid-auto-columns: 86%; }
+  [data-layout="timeline"] .project-preview-card:has(figure) { grid-template-columns: minmax(0, 1fr); }
+  [data-layout="timeline"] figure.project-preview-art { min-block-size: 0; aspect-ratio: 2 / 1; }
   .project-preview-accordion summary { grid-template-columns: minmax(0, 1fr) 1rem; }
   .project-preview-accordion summary::after { grid-area: 1 / 2 / span 2 / 3; }
   .project-preview-detail-title { grid-column: 1; }

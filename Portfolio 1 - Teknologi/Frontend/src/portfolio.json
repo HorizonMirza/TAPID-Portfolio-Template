@@ -43,8 +43,15 @@
         "en": "Operations dashboard"
       },
       "description": {
-        "id": "Dashboard untuk menyaring kiriman tertunda dan menelusuri riwayat satu pengiriman. Saya merancang state pemuatan, kosong, dan gagal agar operator tahu langkah berikutnya.",
-        "en": "A dashboard for filtering delayed shipments and tracing a delivery’s history. I designed loading, empty, and error states so operators know what to do next."
+        "id": "Dashboard prototipe untuk tim logistik. Panel ringkasan memisahkan kiriman aktif, terlambat, dan yang perlu dikonfirmasi. Daftar prioritas memberi petugas langkah tindak lanjut untuk setiap kiriman.",
+        "en": "A dashboard prototype for logistics teams. Summary cards separate active, delayed, and unconfirmed shipments. A priority queue gives operators a next step for each one."
+      },
+      "image": {
+        "src": "/media/dispatch-desk.webp",
+        "alt": {
+          "id": "Dashboard Dispatch Desk dengan tiga metrik kiriman dan tabel antrean prioritas.",
+          "en": "Dispatch Desk dashboard with three shipment metrics and a priority queue."
+        }
       }
     },
     {
@@ -54,8 +61,15 @@
         "en": "Design system"
       },
       "description": {
-        "id": "Pustaka komponen untuk aplikasi internal. Contohnya mencakup formulir yang menampilkan pesan kesalahan pada kolom relevan serta tabel yang bisa dinavigasi dengan keyboard.",
-        "en": "A component library for internal tools, with examples of inline form errors and tables that can be navigated by keyboard."
+        "id": "Kit antarmuka untuk layanan kampus. Lembar komponen memperlihatkan palet, skala tipografi, hierarki tombol, kolom formulir, dan status agar layar yang berbeda memakai pola yang konsisten.",
+        "en": "An interface kit for campus services. The component sheet shows the palette, type scale, button hierarchy, form fields, and status messages so different screens use consistent patterns."
+      },
+      "image": {
+        "src": "/media/kompas-ui.webp",
+        "alt": {
+          "id": "Lembar Kompas UI berisi palet, tipografi, tombol, formulir, dan variasi status.",
+          "en": "Kompas UI sheet showing colors, typography, buttons, a form field, and status labels."
+        }
       }
     },
     {
@@ -65,8 +79,15 @@
         "en": "Web development"
       },
       "description": {
-        "id": "Prototipe pemesanan acara kampus. Saya memakai halaman statis untuk informasi acara dan menguji alur pendaftaran dengan koneksi lambat.",
-        "en": "A campus event booking prototype. I used static pages for event information and tested the registration flow over a slow connection."
+        "id": "Prototipe katalog acara kampus dengan daftar berisi tanggal, lokasi, dan jenis kegiatan. Tampilan ringkas membantu mahasiswa membandingkan acara sebelum menuju pendaftaran.",
+        "en": "A campus event catalogue prototype with dates, venues, and event types. The compact layout helps students compare sessions before registering."
+      },
+      "image": {
+        "src": "/media/tiket-kampus.webp",
+        "alt": {
+          "id": "Katalog Tiket Kampus dengan banner pekan karya dan tiga kartu acara.",
+          "en": "Tiket Kampus catalogue with a student showcase banner and three event cards."
+        }
       }
     }
   ],

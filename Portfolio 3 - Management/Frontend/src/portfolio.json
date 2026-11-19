@@ -43,8 +43,15 @@
         "en": "Project delivery"
       },
       "description": {
-        "id": "Peta kerja untuk pembukaan cabang contoh. Saya menyusun dependensi pengadaan, pelatihan, dan uji operasional dalam satu jadwal yang dapat ditinjau lintas tim.",
-        "en": "A delivery plan for a sample branch opening. I mapped procurement, training, and operational testing into a shared schedule."
+        "id": "Rencana operasional enam minggu untuk pembukaan cabang simulasi. Jadwal menunjukkan urutan izin, pengadaan, penataan ruang, pelatihan, dan uji akhir sehingga dependensi tiap tahap terlihat.",
+        "en": "A six-week operating plan for a simulated branch opening. The schedule sequences permits, procurement, setup, training, and final testing so dependencies are visible."
+      },
+      "image": {
+        "src": "/media/rencana-buka-cabang.webp",
+        "alt": {
+          "id": "Bagan Gantt enam minggu dengan lima jalur kerja penyiapan cabang.",
+          "en": "A six-week Gantt chart showing five workstreams for a branch opening."
+        }
       }
     },
     {
@@ -54,8 +61,15 @@
         "en": "Team planning"
       },
       "description": {
-        "id": "Latihan perencanaan kapasitas yang membandingkan permintaan proyek dan waktu tim sebelum menetapkan jadwal.",
-        "en": "A capacity planning exercise that compares project demand with team availability before committing to a schedule."
+        "id": "Tinjauan kapasitas dua minggu yang membandingkan beban empat fungsi tim. Grafik menandai fungsi yang mendekati penuh dan tabel merangkum keputusan untuk menunda, menerima, atau menyisakan waktu.",
+        "en": "A two-week capacity review comparing four team functions. The chart shows where teams are nearing capacity, while the table records decisions to defer work, accept it, or reserve time."
+      },
+      "image": {
+        "src": "/media/tinjauan-kapasitas.webp",
+        "alt": {
+          "id": "Dashboard kapasitas dengan batang beban empat fungsi dan tabel keputusan perencanaan.",
+          "en": "Capacity dashboard with workload bars for four functions and a planning decision table."
+        }
       }
     },
     {
@@ -65,8 +79,15 @@
         "en": "Process design"
       },
       "description": {
-        "id": "Daftar keputusan dan kriteria kesiapan untuk memindahkan tanggung jawab dari tim peluncuran ke operasional.",
-        "en": "A decision log and readiness checklist for handing over responsibility from the launch team to operations."
+        "id": "Papan serah terima tiga tahap untuk peralihan layanan ke tim operasional. Kartu menampilkan status dan penanggung jawab atas akses, SOP, alur eskalasi, dan kontak dukungan.",
+        "en": "A three-stage handover board for moving a service into operations. Cards show who owns access, documentation, escalation, and support contacts, alongside each item’s status."
+      },
+      "image": {
+        "src": "/media/serah-terima-layanan.webp",
+        "alt": {
+          "id": "Papan Kanban serah terima layanan dengan tiga tahap dan enam tugas.",
+          "en": "Service handover Kanban board with three stages and six tasks."
+        }
       }
     }
   ],
