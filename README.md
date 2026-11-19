@@ -4,6 +4,8 @@ Enam template Astro untuk paket **NFC + Linktree + Website Portofolio** TAP.ID. 
 
 Keenam top bar menampilkan nama profil, menu di tengah pada desktop, dan tombol bahasa serta mode dengan desain yang sama. Unduh dan buka [kontrol-topbar.html](kontrol-topbar.html) di browser untuk mencoba 10 pilihan desain dan animasi tombol.
 
+Setiap portofolio demo punya 10 rancangan Beranda bernomor 01–10. Buka `/demo-beranda/` pada tema yang sedang dijalankan atau `/en/demo-beranda/` untuk versi Inggris. Pilihan dapat dibuka kembali lewat URL seperti `/demo-beranda/?pilihan=04`.
+
 | Template | Warna bawaan | Desain | Top bar |
 | --- | --- | --- | --- |
 | [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | Space Grotesk, potret ruang kerja bernuansa biru, kartu proyek, dan riwayat vertikal | 01 · Command Rail |

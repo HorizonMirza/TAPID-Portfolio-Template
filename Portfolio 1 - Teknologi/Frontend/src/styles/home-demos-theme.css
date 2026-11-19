@@ -1,0 +1,111 @@
+:where(.home-demos[data-theme="teknologi"]) .home-demo-stage {
+  --demo-label-font: var(--mono);
+  --demo-button-radius: .35rem;
+  --stage-surface: var(--surface);
+  background-image: linear-gradient(90deg, color-mix(in srgb, var(--focus) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--focus) 10%, transparent) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+}
+
+.home-demo-stage[data-design="01"] {
+  --areas: "title photo" "copy photo";
+  --columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  --mobile-areas: "title" "photo" "copy";
+  --portrait-shape: .5rem;
+  --subject: 55% 42%;
+}
+.home-demo-stage[data-design="02"] {
+  --areas: "title title" "copy photo" "detail photo";
+  --columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  --detail: grid;
+  --mobile-areas: "title" "photo" "copy" "detail";
+  --stage-surface: var(--inverse);
+  --stage-ink: var(--inverse-ink);
+  --stage-muted: var(--inverse-muted);
+  --stage-rule: var(--inverse-line);
+  --stage-accent: #fff;
+  --title-size: clamp(4rem, 8vw, 9rem);
+  --portrait-size: 17rem;
+}
+.home-demo-stage[data-design="03"] {
+  --areas: "photo title" "photo copy" "photo detail";
+  --columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  --detail: grid;
+  --mobile-areas: "photo" "title" "copy" "detail";
+  --stage-surface: var(--subtle);
+  --portrait-shape: 3rem .35rem .35rem .35rem;
+  --portrait-size: 32rem;
+  --subject: 57% 45%;
+}
+.home-demo-stage[data-design="04"] {
+  --areas: "title ." "copy .";
+  --columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  --shade: #101b31;
+  --subject: 57% 39%;
+  --title-measure: 10ch;
+  --mobile-areas: "title" "photo" "copy";
+}
+.home-demo-stage[data-design="05"] {
+  --areas: "title title photo" "copy detail photo";
+  --columns: minmax(0, 1fr) minmax(0, 0.62fr) minmax(0, 1fr);
+  --detail: grid;
+  --mobile-areas: "title" "photo" "copy" "detail";
+  --portrait-shape: 1.65rem;
+  --demo-card-radius: 1.15rem;
+  --stage-gap: clamp(1rem, 2.6vw, 3rem);
+  --portrait-size: 27rem;
+  --subject: 55% 42%;
+}
+.home-demo-stage[data-design="06"] {
+  --areas: "photo photo" "title copy";
+  --columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  --mobile-areas: "photo" "title" "copy";
+  --stage-inset: 0 var(--page-gutter) 3rem;
+  --portrait-size: clamp(15rem, 24vw, 27rem);
+  --photo-width: calc(100% + var(--page-gutter) * 2);
+  --bleed-margin: 0 calc(-1 * var(--page-gutter));
+  --subject: center 14%;
+  --title-size: clamp(3rem, 5.3vw, 6rem);
+}
+.home-demo-stage[data-design="07"] {
+  --areas: "photo title title" "detail copy copy";
+  --columns: minmax(0, 0.65fr) minmax(0, 0.75fr) minmax(0, 1fr);
+  --detail: grid;
+  --mobile-areas: "photo" "title" "copy" "detail";
+  --portrait-shape: 50%;
+  --photo-width: min(100%, 17rem);
+  --portrait-size: 15rem;
+  --photo-max: 18rem;
+  --photo-align: center;
+  --subject: 58% 37%;
+  --stage-surface: var(--bg);
+}
+.home-demo-stage[data-design="08"] {
+  --areas: "title detail copy" "photo photo photo";
+  --columns: minmax(0, 0.94fr) minmax(0, 0.64fr) minmax(0, 1.05fr);
+  --detail: grid;
+  --mobile-areas: "title" "photo" "copy" "detail";
+  --title-size: clamp(3rem, 5vw, 5.8rem);
+  --portrait-size: clamp(17rem, 24vw, 25rem);
+  --subject: center 14%;
+}
+.home-demo-stage[data-design="09"] {
+  --areas: "detail title photo" "detail copy photo";
+  --columns: minmax(0, 0.54fr) minmax(0, 1.03fr) minmax(0, 1fr);
+  --detail: grid;
+  --mobile-areas: "title" "photo" "copy" "detail";
+  --stage-surface: var(--subtle);
+  --portrait-shape: 12rem 12rem .4rem .4rem;
+  --title-size: clamp(3rem, 5.75vw, 6.55rem);
+}
+.home-demo-stage[data-design="10"] {
+  --areas: "title photo photo" "title copy copy" "detail detail detail";
+  --columns: minmax(0, 1fr) minmax(0, 0.59fr) minmax(0, 0.74fr);
+  --detail: grid;
+  --mobile-areas: "title" "photo" "copy" "detail";
+  --title-measure: 8ch;
+  --portrait-size: clamp(14rem, 20vw, 24rem);
+  --demo-tracking: -.075em;
+  --subject: 55% 40%;
+  --detail-align: stretch;
+}

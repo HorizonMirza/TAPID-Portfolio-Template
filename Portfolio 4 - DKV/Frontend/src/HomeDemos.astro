@@ -1,0 +1,115 @@
+---
+import { localize, type Language } from './portfolio';
+import { homeDemos, demoTheme } from './home-demos';
+import './styles/home-demos.css';
+import './styles/home-demos-theme.css';
+
+interface Props { language: Language }
+const { language } = Astro.props;
+const { copy, p, projects, skills } = localize(language);
+const inEnglish = language === 'en';
+const title = inEnglish ? 'Home layout demos' : 'Demo Beranda';
+const back = inEnglish ? 'Portfolio' : 'Portofolio';
+const previous = homeDemos[0];
+const project = projects[0];
+---
+<section id="home" class="home-demos" data-home-demos data-theme={demoTheme} aria-labelledby="home-demo-heading">
+  <div class="home-demo-picker">
+    <div class="home-demo-picker-title">
+      <h2 id="home-demo-heading">{title}</h2>
+      <a href={inEnglish ? '/en/' : '/'}>{back}</a>
+    </div>
+    <div class="home-demo-options" role="group" aria-labelledby="home-demo-heading">
+      {homeDemos.map((demo, index) => (
+        <button type="button" class="home-demo-option" data-demo-choice={demo.id} data-art={demo.art}
+                aria-label={`${demo.id} ${demo.name}`} aria-pressed={index === 0} aria-controls="home-demo-stage">
+          <span class="home-demo-number">{demo.id}</span>
+          <span class="home-demo-option-name">{demo.name}</span>
+        </button>
+      ))}
+    </div>
+    <p class="home-demo-selection" aria-live="polite" aria-atomic="true">
+      <strong data-demo-name>{previous.id} · {previous.name}</strong>
+      <span data-demo-caption>{previous.caption[language]}</span>
+    </p>
+  </div>
+
+  <div class="home-demo-stage" id="home-demo-stage" data-demo-stage data-design={previous.id} data-art={previous.art}>
+    <div class="home-demo-title">
+      <p>{p.role}</p>
+      <h1>{p.name}</h1>
+    </div>
+    <div class="home-demo-copy">
+      <p class="home-demo-headline">{p.headline}</p>
+      <p class="home-demo-intro">{p.intro}</p>
+      <a class="action home-demo-action" href={projects.length ? '#projects' : '#about'}>
+        {projects.length ? copy.viewProjects : copy.about}
+      </a>
+    </div>
+    {p.portrait && <figure class="home-demo-portrait">
+      <img src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" />
+    </figure>}
+    <div class="home-demo-detail">
+      <p class="home-demo-location">{p.location}</p>
+      {project && <a href="#projects">{project.title}</a>}
+      {skills[0] && <p>{skills[0]}</p>}
+    </div>
+  </div>
+  <div hidden data-demo-labels={JSON.stringify(homeDemos.map(({ caption }) => caption[language]))}></div>
+</section>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('[data-home-demos]');
+    if (!root) return;
+    const choices = Array.from(root.querySelectorAll('[data-demo-choice]'));
+    const stage = root.querySelector('[data-demo-stage]');
+    const status = root.querySelector('[data-demo-name]');
+    const caption = root.querySelector('[data-demo-caption]');
+    const captions = JSON.parse(root.querySelector('[data-demo-labels]').dataset.demoLabels);
+    const languageLink = document.querySelector('.tapbar a.language');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    let current = choices[0];
+    let animation;
+
+    function select(choice, animate) {
+      current.setAttribute('aria-pressed', 'false');
+      choice.setAttribute('aria-pressed', 'true');
+      current = choice;
+      stage.dataset.design = choice.dataset.demoChoice;
+      stage.dataset.art = choice.dataset.art;
+      status.textContent = choice.dataset.demoChoice + ' · ' + choice.querySelector('.home-demo-option-name').textContent;
+      caption.textContent = captions[choices.indexOf(choice)];
+      if (languageLink) {
+        const counterpart = new URL(languageLink.href);
+        counterpart.searchParams.set('pilihan', choice.dataset.demoChoice);
+        languageLink.href = counterpart.href;
+      }
+
+      animation?.cancel();
+      if (animate && !reducedMotion.matches && stage.animate) {
+        animation = stage.animate(
+          [{ opacity: .38, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }],
+          { duration: 280, easing: 'cubic-bezier(.22,.7,.24,1)' },
+        );
+      }
+    }
+
+    function selectFromAddress() {
+      const id = new URLSearchParams(location.search).get('pilihan');
+      select(choices.find((choice) => choice.dataset.demoChoice === id) ?? choices[0], false);
+    }
+
+    for (const choice of choices) {
+      choice.addEventListener('click', () => {
+        const url = new URL(location.href);
+        url.searchParams.set('pilihan', choice.dataset.demoChoice);
+        url.hash = '';
+        try { history.replaceState(history.state, '', url.href); } catch {}
+        if (choice !== current) select(choice, true);
+      });
+    }
+    window.addEventListener('popstate', selectFromAddress);
+    selectFromAddress();
+  })();
+</script>

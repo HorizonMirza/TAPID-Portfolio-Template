@@ -4,8 +4,8 @@ import MobileNav from './MobileNav.astro';
 import { localize, type Language } from './portfolio';
 import './styles/topbar.css';
 
-interface Props { language: Language }
-const { language } = Astro.props;
+interface Props { language: Language; languageHref?: string }
+const { language, languageHref } = Astro.props;
 const { copy, p, nav } = localize(language);
 ---
 <header class="tapbar tapbar-asuransi" data-nav="capsule" data-skin="float" data-links="pill">
@@ -18,7 +18,7 @@ const { copy, p, nav } = localize(language);
     </nav>
     <div class="tapbar-tools">
       <MobileNav label={copy.navigation} menu={copy.menu} links={nav} />
-      <Controls language={language} />
+      <Controls language={language} languageHref={languageHref} />
     </div>
   </div>
 </header>

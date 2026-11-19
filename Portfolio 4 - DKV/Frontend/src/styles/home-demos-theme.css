@@ -1,0 +1,110 @@
+:where(.home-demos[data-theme="dkv"]) .home-demo-stage {
+  --demo-weight: 820;
+  --demo-tracking: -.074em;
+  --demo-line: .86;
+  --stage-rule: var(--focus);
+  --stage-surface: var(--surface);
+  --demo-button-radius: 0;
+}
+
+.home-demo-stage[data-design="01"] {
+  --areas: "title ." "copy .";
+  --columns: minmax(0, 1.09fr) minmax(0, 1fr);
+  --shade: #3b1718;
+  --title-measure: 10ch;
+  --subject: center 34%;
+  --mobile-areas: "title" "photo" "copy";
+}
+.home-demo-stage[data-design="02"] {
+  --areas: "title title title" "detail photo copy";
+  --columns: minmax(0, 0.58fr) minmax(0, 1.16fr) minmax(0, 0.85fr);
+  --detail: grid;
+  --mobile-areas: "title" "photo" "copy" "detail";
+  --title-size: clamp(4rem, 10vw, 11rem);
+  --portrait-size: 24rem;
+  --stage-gap: clamp(.8rem, 2.5vw, 2.6rem);
+  --stage-surface: var(--bg);
+}
+.home-demo-stage[data-design="03"] {
+  --areas: "photo title" "photo copy" "detail copy";
+  --columns: minmax(0, 1.01fr) minmax(0, 1fr);
+  --detail: grid;
+  --mobile-areas: "photo" "title" "copy" "detail";
+  --stage-surface: var(--subtle);
+  --portrait-border: .6rem solid var(--ink);
+  --portrait-size: 30rem;
+}
+.home-demo-stage[data-design="04"] {
+  --areas: "title title" "photo copy";
+  --columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+  --mobile-areas: "title" "photo" "copy";
+  --title-size: clamp(4rem, 13vw, 14rem);
+  --title-measure: 15ch;
+  --portrait-size: 20rem;
+  --stage-gap: 1.3rem;
+  --stage-surface: var(--bg);
+}
+.home-demo-stage[data-design="05"] {
+  --areas: "photo detail detail" "title title copy";
+  --columns: minmax(0, 1.08fr) minmax(0, 0.52fr) minmax(0, 1fr);
+  --detail: grid;
+  --mobile-areas: "photo" "title" "copy" "detail";
+  --portrait-size: 21rem;
+  --portrait-border: .45rem solid var(--surface);
+  --portrait-filter: saturate(.7);
+  --detail-align: stretch;
+  --stage-surface: var(--subtle);
+}
+.home-demo-stage[data-design="06"] {
+  --areas: "title photo" "copy photo";
+  --columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  --mobile-areas: "title" "photo" "copy";
+  --stage-surface: var(--inverse);
+  --stage-ink: var(--inverse-ink);
+  --stage-muted: var(--inverse-muted);
+  --stage-accent: #fff;
+  --portrait-shape: 15rem 15rem 0 0;
+  --portrait-size: 34rem;
+}
+.home-demo-stage[data-design="07"] {
+  --areas: "title detail" "photo photo" "copy copy";
+  --columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  --detail: grid;
+  --mobile-areas: "title" "photo" "copy" "detail";
+  --portrait-size: clamp(15rem, 23vw, 27rem);
+  --subject: center 14%;
+  --portrait-border: .35rem solid var(--ink);
+  --title-size: clamp(3.1rem, 7.8vw, 8.5rem);
+}
+.home-demo-stage[data-design="08"] {
+  --areas: "photo detail" "title copy";
+  --columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  --detail: grid;
+  --mobile-areas: "photo" "title" "copy" "detail";
+  --stage-surface: var(--subtle);
+  --stage-gap: clamp(.8rem, 2vw, 2.5rem);
+  --portrait-size: 19rem;
+  --subject: center 24%;
+  --portrait-shape: 2.8rem 0 0 0;
+  --demo-card-radius: 0;
+}
+.home-demo-stage[data-design="09"] {
+  --areas: "detail title photo" "copy copy photo";
+  --columns: minmax(0, 0.65fr) minmax(0, 1.15fr) minmax(0, 1.03fr);
+  --detail: grid;
+  --mobile-areas: "title" "photo" "copy" "detail";
+  --portrait-border: 1px solid var(--stage-rule);
+  --portrait-size: 27rem;
+  --title-size: clamp(3rem, 6.1vw, 7rem);
+  --stage-surface: var(--bg);
+}
+.home-demo-stage[data-design="10"] {
+  --areas: "title photo" "title photo" "detail copy";
+  --columns: minmax(0, 0.91fr) minmax(0, 1.09fr);
+  --detail: grid;
+  --mobile-areas: "title" "photo" "copy" "detail";
+  --title-size: clamp(3.5rem, 7.25vw, 8.4rem);
+  --portrait-size: 30rem;
+  --portrait-border: .4rem solid var(--surface);
+  --stage-surface: var(--subtle);
+}

@@ -1,0 +1,18 @@
+---
+import PortfolioPage from '../PortfolioPage.astro';
+import HomeDemos from '../HomeDemos.astro';
+import { portfolio, type Language } from '../portfolio';
+
+export function getStaticPaths() {
+  return portfolio.settings.demo ? [
+    { params: { demo: 'demo-beranda' }, props: { language: 'id' as const } },
+    { params: { demo: 'en/demo-beranda' }, props: { language: 'en' as const } },
+  ] : [];
+}
+
+interface Props { language: Language }
+const { language } = Astro.props;
+---
+<PortfolioPage language={language}>
+  <HomeDemos slot="home" language={language} />
+</PortfolioPage>

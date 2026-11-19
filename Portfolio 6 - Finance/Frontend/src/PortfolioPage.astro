@@ -4,12 +4,14 @@ import TopBar from './TopBar.astro';
 import { localize, type Language } from './portfolio';
 interface Props { language: Language }
 const { language } = Astro.props;
+const previewHome = Astro.slots.has('home');
+const languageHref = previewHome ? (language === 'id' ? '/en/demo-beranda/' : '/demo-beranda/') : undefined;
 const { copy, p, about, projects, skills, experience, contact, demo } = localize(language);
 ---
-<Frame language={language} skip={copy.skip}>
-  <TopBar language={language} />
+<Frame language={language} skip={copy.skip} previewHome={previewHome}>
+  <TopBar language={language} languageHref={languageHref} />
   <main id="main" tabindex="-1">
-    <section id="home" class="finance-hero split-hero">
+    {previewHome ? <slot name="home" /> : <section id="home" class="finance-hero split-hero">
       <div class="finance-deck hero-copy">
         <p class="section-label">{p.role}</p><h1>{p.name}</h1>
         <p class="finance-line">{p.headline}</p><p class="finance-intro">{p.intro}</p>
@@ -19,7 +21,7 @@ const { copy, p, about, projects, skills, experience, contact, demo } = localize
         <img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" />
         <figcaption>{p.location}</figcaption>
       </figure>}
-    </section>
+    </section>}
     <section id="about" class="wrap finance-about" aria-labelledby="about-title">
       <div><p class="section-label">{copy.about}</p><h2 id="about-title">{about.headline}</h2></div>
       <p class="copy">{about.description}</p>
