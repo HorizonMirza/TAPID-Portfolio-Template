@@ -1,62 +1,69 @@
 {
   "profile": {
-    "name": "Raka Mahendra",
+    "name": "Arga Pradana",
     "location": "Bandung, Indonesia",
     "role": {
-      "id": "Frontend Developer",
-      "en": "Frontend Developer"
+      "id": "Frontend Engineer",
+      "en": "Frontend Engineer"
     },
     "headline": {
-      "id": "Membangun web yang mudah dipakai.",
-      "en": "Building a web that feels easy to use."
+      "id": "Saya membangun alat web untuk pekerjaan yang rumit.",
+      "en": "I build web tools for complex work."
     },
     "introduction": {
-      "id": "Saya mengembangkan antarmuka web untuk produk yang ingin menyederhanakan pekerjaan sehari-hari.",
-      "en": "I build web interfaces for products that make everyday work a little simpler."
+      "id": "Saya mengembangkan dashboard dan aplikasi internal yang membantu tim menemukan informasi, mengambil keputusan, dan kembali bekerja.",
+      "en": "I build dashboards and internal apps that help teams find information, make decisions, and get back to work."
+    },
+    "portrait": {
+      "src": "/media/home-portrait.webp",
+      "alt": {
+        "id": "Arga duduk di ruang kerja dengan pencahayaan biru",
+        "en": "Arga seated in a blue-lit workspace"
+      }
     }
   },
   "about": {
     "headline": {
-      "id": "Kode yang bisa dirawat.",
-      "en": "Code worth maintaining."
+      "id": "Dari alur pengguna ke komponen.",
+      "en": "From user workflows to components."
     },
     "description": {
-      "id": "Saya memadukan pengetahuan frontend dengan kebiasaan menguji pengalaman pengguna. Saya mulai dari masalah pengguna, lalu memilih struktur yang mudah diuji dan dipahami tim.",
-      "en": "I pair frontend engineering with hands-on usability testing. I start with the user’s problem, then choose an architecture the team can test and understand."
+      "id": "Saya memetakan tugas yang paling sering dikerjakan, membuat prototipe, lalu menguji navigasi keyboard dan keterbacaan. Setelah rilis, saya mendokumentasikan komponen supaya tim bisa mengembangkannya.",
+      "en": "I map the tasks people do most often, prototype the flow, and test keyboard navigation and readability. After release, I document components so the team can keep building on them."
     }
   },
   "projects": [
     {
-      "title": "Kiln Console",
+      "title": "Dispatch Desk",
       "category": {
         "id": "Dashboard operasional",
         "en": "Operations dashboard"
       },
       "description": {
-        "id": "Dashboard untuk menyaring log dan menelusuri kegagalan proses secara berurutan.",
-        "en": "A dashboard for filtering logs and tracing process failures in sequence."
+        "id": "Dashboard untuk menyaring kiriman tertunda dan menelusuri riwayat satu pengiriman. Saya merancang state pemuatan, kosong, dan gagal agar operator tahu langkah berikutnya.",
+        "en": "A dashboard for filtering delayed shipments and tracing a delivery’s history. I designed loading, empty, and error states so operators know what to do next."
       }
     },
     {
-      "title": "Orbit UI",
+      "title": "Kompas UI",
       "category": {
         "id": "Sistem desain",
         "en": "Design system"
       },
       "description": {
-        "id": "Pustaka komponen aksesibel dengan panduan penggunaan dan contoh interaksi.",
-        "en": "An accessible component library with usage guidance and interaction examples."
+        "id": "Pustaka komponen untuk aplikasi internal. Contohnya mencakup formulir yang menampilkan pesan kesalahan pada kolom relevan serta tabel yang bisa dinavigasi dengan keyboard.",
+        "en": "A component library for internal tools, with examples of inline form errors and tables that can be navigated by keyboard."
       }
     },
     {
-      "title": "Saku Budget",
+      "title": "Tiket Kampus",
       "category": {
-        "id": "Aplikasi web",
-        "en": "Web application"
+        "id": "Pengembangan web",
+        "en": "Web development"
       },
       "description": {
-        "id": "Alat pencatat anggaran dengan ringkasan bulanan dan akses keyboard di setiap alur.",
-        "en": "A budget tracker with monthly summaries and keyboard access throughout."
+        "id": "Prototipe pemesanan acara kampus. Saya memakai halaman statis untuk informasi acara dan menguji alur pendaftaran dengan koneksi lambat.",
+        "en": "A campus event booking prototype. I used static pages for event information and tested the registration flow over a slow connection."
       }
     }
   ],
@@ -70,8 +77,8 @@
       "en": "Astro"
     },
     {
-      "id": "Aksesibilitas",
-      "en": "Accessibility"
+      "id": "Aksesibilitas web",
+      "en": "Web accessibility"
     },
     {
       "id": "Pengujian antarmuka",
@@ -81,48 +88,48 @@
   "experience": [
     {
       "title": {
-        "id": "Frontend Developer",
-        "en": "Frontend Developer"
+        "id": "Frontend Engineer",
+        "en": "Frontend Engineer"
       },
-      "organization": "Studio Katalis",
+      "organization": "Rakit Digital",
       "period": {
         "id": "2025–sekarang",
         "en": "2025–present"
       },
       "description": {
-        "id": "Mengembangkan pustaka komponen dan mendampingi proses rilis antarmuka.",
-        "en": "Built a component library and supported frontend releases."
+        "id": "Membangun komponen dashboard dan meninjau perilaku antarmuka pada ukuran layar berbeda.",
+        "en": "Built dashboard components and reviewed interface behavior across screen sizes."
       }
     },
     {
       "title": {
-        "id": "Magang pengembangan web",
-        "en": "Web development intern"
+        "id": "Magang Pengembangan Web",
+        "en": "Web Development Intern"
       },
-      "organization": "Lab Jaringan",
+      "organization": "Lab Cipta Data",
       "period": {
         "id": "2024",
         "en": "2024"
       },
       "description": {
-        "id": "Merancang halaman dokumentasi dan menguji akses menggunakan keyboard.",
-        "en": "Designed documentation pages and tested keyboard access."
+        "id": "Membuat ulang panduan penggunaan internal dan menulis pengujian untuk alur pencarian.",
+        "en": "Rebuilt an internal user guide and wrote tests for the search flow."
       }
     }
   ],
   "contact": {
     "headline": {
-      "id": "Punya masalah web untuk dipecahkan?",
-      "en": "Have a web problem to solve?"
+      "id": "Apa yang ingin Anda buat lebih mudah?",
+      "en": "What would you like to make easier?"
     },
     "description": {
-      "id": "Ceritakan produk dan tantangan yang sedang Anda hadapi.",
-      "en": "Tell me what you are building and where you need help."
+      "id": "Ceritakan aplikasi dan pekerjaan yang ingin Anda sederhanakan.",
+      "en": "Tell me about the app and workflow you want to simplify."
     },
     "links": [
       {
-        "label": "Email",
-        "href": "mailto:raka@example.com"
+        "label": "arga.pradana@example.com",
+        "href": "mailto:arga.pradana@example.com"
       }
     ]
   },

@@ -1,69 +1,76 @@
 {
   "profile": {
-    "name": "Sari Kinasih",
+    "name": "Keira Maheswari",
     "location": "Yogyakarta, Indonesia",
     "role": {
       "id": "Desainer Komunikasi Visual",
       "en": "Visual Communication Designer"
     },
     "headline": {
-      "id": "Desain yang mengambil ruang.",
-      "en": "Design that takes up space."
+      "id": "Saya merancang bentuk untuk ide yang ingin terlihat.",
+      "en": "I give visible form to ideas."
     },
     "introduction": {
-      "id": "Saya merancang identitas visual, poster, dan editorial dengan tipografi tegas, warna, dan eksplorasi material.",
-      "en": "I create identities, posters, and editorial work with expressive typography, color, and material experiments."
+      "id": "Saya bekerja dengan tipografi, warna, dan cetak untuk membuat identitas, poster, dan publikasi yang punya karakter.",
+      "en": "I work with type, color, and print to make identities, posters, and publications with a distinct point of view."
+    },
+    "portrait": {
+      "src": "/media/home-portrait.webp",
+      "alt": {
+        "id": "Keira mengenakan kacamata di studio cetak berwarna merah",
+        "en": "Keira wearing glasses in a red print studio"
+      }
     }
   },
   "about": {
     "headline": {
-      "id": "Dari eksperimen ke sistem visual.",
-      "en": "From experimentation to visual systems."
+      "id": "Bentuk dimulai dari meja kerja.",
+      "en": "Form begins at the worktable."
     },
     "description": {
-      "id": "Saya menguji bentuk lewat sketsa dan potongan kertas, lalu membawa yang berhasil ke sistem visual yang bisa dipakai di berbagai medium.",
-      "en": "I test shapes through sketches and paper studies, then turn what works into a visual system that spans different media."
+      "id": "Saya membuat sketsa dan uji cetak kecil untuk melihat bagaimana bentuk dibaca ketika ukuran dan material berubah. Eksperimen itu menjadi dasar untuk sistem visual proyek.",
+      "en": "I use sketches and small print tests to see how a form reads as scale and material change. Those experiments inform the visual system for each project."
     }
   },
   "projects": [
     {
-      "title": "Bentuk Bebas",
+      "title": "Lipat / Lepas",
       "category": {
-        "id": "Arah seni",
-        "en": "Art direction"
+        "id": "Eksperimen poster",
+        "en": "Poster study"
       },
       "description": {
-        "id": "Studi poster yang menerjemahkan lipatan kertas menjadi bentuk, bayangan, dan tekstur.",
-        "en": "A poster study translating a paper fold into shape, shadow, and texture."
+        "id": "Studi bentuk untuk poster pameran. Lipatan kertas difoto dengan cahaya terarah untuk menguji bagaimana bayangan mendorong mata bergerak di bidang cetak.",
+        "en": "A form study for an exhibition poster. I shot folded paper in directional light to test how shadows guide the eye across the print."
       },
       "image": {
         "src": "/media/bentuk-bebas.webp",
         "alt": {
-          "id": "Patung kertas geometris di latar merah",
-          "en": "Geometric paper sculpture against a red background"
+          "id": "Patung kertas geometris dengan bayangan di bidang merah",
+          "en": "Geometric paper sculpture and its shadow on a red surface"
         }
       }
     },
     {
-      "title": "Garis Kota",
-      "category": {
-        "id": "Editorial",
-        "en": "Editorial"
-      },
-      "description": {
-        "id": "Zine tentang ritme kota yang dibangun dengan grid fleksibel dan tipografi skala besar.",
-        "en": "A zine about urban rhythms built with a flexible grid and oversized type."
-      }
-    },
-    {
-      "title": "Ruang Cetak",
+      "title": "Cetak Pasar",
       "category": {
         "id": "Identitas visual",
         "en": "Visual identity"
       },
       "description": {
-        "id": "Sistem identitas untuk pameran kecil yang beradaptasi pada poster dan kartu undangan.",
-        "en": "An identity system for a small exhibition that adapts to posters and invitations."
+        "id": "Konsep identitas untuk kegiatan cetak mandiri, dengan bahasa visual yang bisa dipindahkan dari poster ke stempel dan selebaran.",
+        "en": "An identity concept for an independent print event, with a visual language that translates from posters to stamps and flyers."
+      }
+    },
+    {
+      "title": "Kota Setelah Hujan",
+      "category": {
+        "id": "Desain editorial",
+        "en": "Editorial design"
+      },
+      "description": {
+        "id": "Zine fiktif yang menyusun potongan cerita kota menggunakan judul berskala besar, foto, dan grid dua kolom.",
+        "en": "A fictional zine that brings together fragments of city stories with oversized titles, photos, and a two-column grid."
       }
     }
   ],
@@ -77,12 +84,12 @@
       "en": "Art direction"
     },
     {
-      "id": "Desain editorial",
-      "en": "Editorial design"
+      "id": "Sistem identitas",
+      "en": "Identity systems"
     },
     {
-      "id": "Identitas visual",
-      "en": "Visual identity"
+      "id": "Persiapan cetak",
+      "en": "Print production"
     }
   ],
   "experience": [
@@ -91,45 +98,45 @@
         "id": "Desainer Visual",
         "en": "Visual Designer"
       },
-      "organization": "Studio Ruas",
+      "organization": "Studio Dua Warna",
       "period": {
         "id": "2025–sekarang",
         "en": "2025–present"
       },
       "description": {
-        "id": "Mengembangkan identitas dan materi cetak untuk proyek seni dan acara.",
-        "en": "Developed identities and print materials for arts projects and events."
+        "id": "Mendesain poster, identitas acara, dan materi publikasi untuk konsep pameran dan lokakarya.",
+        "en": "Designed posters, event identities, and publications for exhibition and workshop concepts."
       }
     },
     {
       "title": {
-        "id": "Asisten Desain",
-        "en": "Design Assistant"
+        "id": "Asisten Studio Cetak",
+        "en": "Print Studio Assistant"
       },
-      "organization": "Lokakarya Cetak",
+      "organization": "Ruang Tinta",
       "period": {
         "id": "2024",
         "en": "2024"
       },
       "description": {
-        "id": "Mempersiapkan file cetak dan mendokumentasikan eksperimen warna.",
-        "en": "Prepared print files and documented color experiments."
+        "id": "Menyiapkan file cetak, memeriksa pemisahan warna, dan mendokumentasikan percobaan bahan.",
+        "en": "Prepared print files, checked color separation, and documented material tests."
       }
     }
   ],
   "contact": {
     "headline": {
-      "id": "Mari buat sesuatu bersama.",
-      "en": "Let’s make something together."
+      "id": "Punya ide yang ingin dicetak?",
+      "en": "Have an idea you want to print?"
     },
     "description": {
-      "id": "Kirim ide atau brief untuk proyek desain Anda.",
-      "en": "Send an idea or a brief for your next design project."
+      "id": "Kirim brief singkat dan ceritakan medium yang ingin Anda pakai.",
+      "en": "Send a short brief and tell me what medium you have in mind."
     },
     "links": [
       {
-        "label": "Email",
-        "href": "mailto:sari@example.com"
+        "label": "keira.maheswari@example.com",
+        "href": "mailto:keira.maheswari@example.com"
       }
     ]
   },

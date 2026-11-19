@@ -6,7 +6,7 @@ import { localize, type Language } from './portfolio';
 interface Props { language: Language }
 const { language } = Astro.props;
 const { copy, p, about, projects, skills, experience, contact, nav, demo } = localize(language);
-const heroImage = p.portrait ?? projects[0]?.image;
+const heroImage = p.portrait ?? projects.find((project) => project.image)?.image;
 ---
 <Frame language={language} skip={copy.skip}>
   <header class="studio-header wrap">
@@ -25,7 +25,7 @@ const heroImage = p.portrait ?? projects[0]?.image;
           <p class="studio-line">{p.headline}</p><p>{p.intro}</p>
           <a class="action" href={projects.length ? '#projects' : '#about'}>{projects.length ? copy.viewProjects : copy.about}</a>
         </div>
-        {heroImage ? <figure><img class="profile-image" src={heroImage.src} alt={heroImage.alt} fetchpriority="high" /></figure> :
+        {heroImage ? <figure class="studio-portrait"><img class="profile-image" src={heroImage.src} alt={heroImage.alt} fetchpriority="high" /></figure> :
           <div class="paper-fold" aria-hidden="true"><span></span></div>}
       </div>
     </section>

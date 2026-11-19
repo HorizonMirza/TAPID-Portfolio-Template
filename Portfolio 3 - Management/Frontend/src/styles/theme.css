@@ -14,12 +14,14 @@
 .ops-nav > div { justify-self: end; }
 .ops-nav .wide-nav a { text-decoration: none; font-size: .93rem; font-weight: 700; }
 .ops-nav .wide-nav a:hover { text-decoration: underline; }
-.ops-hero { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .75fr); gap: 1.1rem; align-items: center; padding: clamp(1.55rem, 5vw, 4.3rem); background: var(--yellow); color: var(--yellow-ink); }
-.ops-hero h1 { font-size: clamp(3rem, 6.8vw, 7.1rem); font-weight: 800; letter-spacing: -.1em; line-height: .95; margin: .65rem 0 .85rem; }
+.ops-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(1.15rem, 4.25vw, 3.6rem); align-items: center; padding: clamp(1.55rem, 5vw, 4.3rem); background: var(--yellow); color: var(--yellow-ink); }
+.ops-hero h1 { font-size: clamp(3rem, 6.3vw, 6.45rem); font-weight: 800; letter-spacing: -.095em; line-height: .95; margin: .65rem 0 .85rem; }
 .ops-line { font-size: clamp(1.35rem, 3vw, 2.65rem); font-weight: 800; line-height: 1.12; letter-spacing: -.06em; }
 .ops-intro { max-width: 33rem; margin-top: .7rem; }
 .ops-hero .action { border: 2px solid currentColor; margin-top: 1.15rem; }
-.ops-hero figure { aspect-ratio: 4 / 3; overflow: hidden; }
+.ops-portrait { background: var(--yellow-ink); color: var(--yellow); padding: 2px; box-shadow: .68rem .68rem 0 color-mix(in srgb, var(--yellow-ink) 21%, transparent); }
+.ops-portrait .profile-image { aspect-ratio: 4 / 3; height: auto; object-position: 49% 44%; }
+.ops-portrait figcaption { padding: .45rem .67rem; letter-spacing: .04em; font-weight: 750; font-size: .86rem; }
 .ops-graphic { display: grid; justify-items: center; align-items: center; min-height: 13rem; aspect-ratio: 1.15; }
 .ops-graphic i { grid-area: 1 / 1; width: 60%; height: 58%; border: 2px solid currentColor; transform: translate(-18%, 19%); }
 .ops-graphic i:nth-child(2) { transform: translate(-1%, 2%); background: var(--yellow); }

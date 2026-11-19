@@ -1,13 +1,13 @@
 # TAP.ID Portfolio Template
 
-Lima template Astro untuk paket **NFC + Linktree + Website Portofolio** TAP.ID. Setiap template menyediakan Beranda, Tentang, Proyek, Keahlian, Pengalaman, dan Kontak. Pilihan bahasa tersedia di `/` (Bahasa Indonesia) dan `/en/` (English). Mode terang dan gelap dapat diganti lewat tombol di navigasi.
+Lima template Astro untuk paket **NFC + Linktree + Website Portofolio** TAP.ID. Setiap demo menampilkan foto profil di Beranda, tiga contoh proyek, serta bagian Tentang, Keahlian, Pengalaman, dan Kontak. Pilihan bahasa tersedia di `/` (Bahasa Indonesia) dan `/en/` (English). Mode terang dan gelap dapat diganti lewat tombol di navigasi.
 
 | Template | Warna bawaan | Desain |
 | --- | --- | --- |
-| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | Space Grotesk, panel terminal, kartu proyek, dan riwayat vertikal |
+| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | Space Grotesk, potret ruang kerja bernuansa biru, kartu proyek, dan riwayat vertikal |
 | [Portfolio 2 - Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau | DM Sans, foto editorial, daftar proyek, dan kartu pengalaman |
-| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | Manrope, hero geometris, papan proyek, dan tabel riwayat |
-| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | Bricolage Grotesque, masthead ekspresif, galeri poster, dan tata letak studio |
+| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | Manrope, foto profesional berbingkai, papan proyek, dan tabel riwayat |
+| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | Bricolage Grotesque, masthead ekspresif, potret studio cetak, dan galeri poster |
 | [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | Playfair Display, potret monokrom, dan tata letak editorial |
 
 ## Jalankan satu template

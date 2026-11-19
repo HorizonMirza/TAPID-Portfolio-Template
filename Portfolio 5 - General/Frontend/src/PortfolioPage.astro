@@ -16,7 +16,7 @@ const { copy, p, about, projects, skills, experience, contact, nav, demo } = loc
     <nav class="wide-nav folio-index" aria-label={copy.navigation}>{nav.map((item) => <a href={item.href}>{item.name}</a>)}</nav>
     <main id="main" tabindex="-1">
       <section id="home" class="folio-hero">
-        <div>
+        <div class="folio-intro">
           <p class="section-label">{p.role}</p><h1>{p.name}</h1>
           <p class="folio-line">{p.headline}</p><p class="copy">{p.intro}</p>
           <a class="folio-action" href={projects.length ? '#projects' : '#about'}>{projects.length ? copy.viewProjects : copy.about}</a>

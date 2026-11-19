@@ -17,12 +17,18 @@
 .insurance-nav .wide-nav { gap: clamp(.65rem, 1.7vw, 1.5rem); }
 .wide-nav a { font-size: .94rem; font-weight: 650; text-decoration: none; }
 .wide-nav a:hover { text-decoration: underline; }
-.risk-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: stretch; gap: .65rem; padding-bottom: 2.5rem; }
+.risk-hero { display: grid; grid-template-columns: minmax(0, 1.03fr) minmax(0, 1fr); align-items: stretch; gap: .65rem; padding-bottom: 2.5rem; }
 .risk-hero:not(:has(figure)) { grid-template-columns: 1fr; }
-.risk-hero figure { min-height: 27rem; border-radius: 1.85rem .45rem .45rem 1.85rem; overflow: hidden; }
-.risk-hero .profile-image { height: 100%; }
-.risk-intro { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.65rem, 4vw, 3.55rem); border-radius: .45rem 1.85rem 1.85rem .45rem; background: var(--subtle); }
-.risk-intro h1 { font-size: clamp(2.8rem, 5.7vw, 5.7rem); line-height: .98; letter-spacing: -.075em; margin: .62rem 0 .88rem; }
+.risk-hero figure { display: grid; min-height: 26rem; border-radius: .4rem 2rem 2rem .4rem; overflow: hidden; }
+.risk-hero figure > * { grid-area: 1 / 1; }
+.risk-hero .profile-image { min-height: 0; object-position: 53% 43%; }
+.risk-hero figcaption {
+  align-self: end; justify-self: start; z-index: 1; margin: .9rem;
+  background: var(--deep); color: #fff; padding: .35rem .75rem; border-radius: 1rem; font-size: .86rem;
+}
+.risk-intro { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.65rem, 4.05vw, 3.7rem); border-radius: 2rem .4rem .4rem 2rem; background: var(--subtle); border: 1px solid var(--line); }
+.risk-hero:not(:has(figure)) .risk-intro { border-radius: 2rem; }
+.risk-intro h1 { font-size: clamp(2.8rem, 5.35vw, 5.4rem); line-height: .98; letter-spacing: -.075em; margin: .62rem 0 .92rem; }
 .risk-line { font-size: clamp(1.25rem, 2.1vw, 1.86rem); line-height: 1.18; font-weight: 650; margin-bottom: .75rem; }
 .risk-intro .action { align-self: start; border-radius: 2rem; background: var(--green); color: var(--green-ink); margin-top: 1.3rem; }
 .risk-about { background: var(--surface); border-block: 1px solid var(--line); }
@@ -55,8 +61,8 @@ h2 { font-size: clamp(1.95rem, 3.55vw, 3.2rem); letter-spacing: -.06em; }
 }
 @media (max-width: 45rem) {
   .risk-hero { grid-template-columns: 1fr; gap: 0; }
-  .risk-hero figure { min-height: 0; aspect-ratio: 4 / 3; border-radius: 1.25rem 1.25rem 0 0; }
-  .risk-intro { border-radius: 0 0 1.25rem 1.25rem; } .risk-hero:not(:has(figure)) .risk-intro { border-radius: 1.25rem; }
+  .risk-hero figure { min-height: 0; aspect-ratio: 4 / 3; border-radius: 0 0 1.25rem 1.25rem; }
+  .risk-intro { border-radius: 1.25rem 1.25rem 0 0; } .risk-hero:not(:has(figure)) .risk-intro { border-radius: 1.25rem; }
   .dossier article, .risk-skills, .risk-career ol { grid-template-columns: 1fr; }
   .dossier .project-image { grid-column: 1; }
 }

@@ -26,7 +26,10 @@ const workLink = projects.length ? '#projects' : '#about';
           <p class="intro">{p.intro}</p>
           <a class="action" href={workLink}>{projects.length ? copy.viewProjects : copy.about}</a>
         </div>
-        {p.portrait ? <figure class="tech-portrait"><img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" /></figure> :
+        {p.portrait ? <figure class="tech-portrait">
+          <div class="tech-photo"><img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" /></div>
+          <figcaption><span>{p.role}</span><span>{p.location}</span></figcaption>
+        </figure> :
           <figure class="terminal" aria-hidden="true">
             <figcaption><span class="lights"><i></i><i></i><i></i></span> portfolio.json</figcaption>
             <div class="console"><b>{'{'}</b><span><i>"name"</i>: <em>{JSON.stringify(p.name)}</em>,</span><span><i>"focus"</i>: [</span>

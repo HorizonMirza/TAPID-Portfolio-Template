@@ -21,7 +21,10 @@ const { copy, p, about, projects, skills, experience, contact, nav, demo } = loc
           <p class="ops-intro">{p.intro}</p>
           <a class="action" href={projects.length ? '#projects' : '#about'}>{projects.length ? copy.viewProjects : copy.about}</a>
         </div>
-        {p.portrait ? <figure><img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" /></figure> :
+        {p.portrait ? <figure class="ops-portrait">
+          <img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" />
+          <figcaption>{p.location}</figcaption>
+        </figure> :
           <div class="ops-graphic" aria-hidden="true"><i></i><i></i><i></i></div>}
       </section>
       <section id="about" class="ops-about" aria-labelledby="about-title">

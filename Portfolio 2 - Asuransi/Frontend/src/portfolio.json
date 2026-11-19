@@ -1,58 +1,69 @@
 {
   "profile": {
-    "name": "Dina Larasati",
+    "name": "Alya Wicaksana",
     "location": "Jakarta, Indonesia",
     "role": {
-      "id": "Analis Risiko dan Asuransi",
-      "en": "Risk and Insurance Analyst"
+      "id": "Analis Risiko & Polis",
+      "en": "Risk & Policy Analyst"
     },
     "headline": {
-      "id": "Membuat risiko lebih mudah dipahami.",
-      "en": "Making risk easier to understand."
+      "id": "Memahami perlindungan sebelum mengambil keputusan.",
+      "en": "Understand coverage before making a decision."
     },
     "introduction": {
-      "id": "Saya membantu tim membaca kebutuhan perlindungan, memahami dokumen polis, dan menyiapkan proses klaim yang terstruktur.",
-      "en": "I help teams assess coverage needs, understand policy documents, and organize their claims processes."
+      "id": "Saya membantu tim dan pemilik usaha mencatat risiko, membandingkan cakupan, dan menyiapkan dokumen klaim.",
+      "en": "I help teams and small businesses document risks, compare coverage, and prepare claim records."
     },
     "portrait": {
-      "src": "/media/advisor.webp",
+      "src": "/media/home-portrait.webp",
       "alt": {
-        "id": "Dina membaca dokumen di meja kerja",
-        "en": "Dina reading a document at her work table"
+        "id": "Alya duduk di meja kerja mengenakan blazer hijau",
+        "en": "Alya seated at a desk in a green blazer"
       }
     }
   },
   "about": {
     "headline": {
-      "id": "Keputusan dimulai dari pertanyaan yang tepat.",
-      "en": "Good decisions start with the right questions."
+      "id": "Dokumen yang bisa dibaca bersama.",
+      "en": "Documents everyone can work from."
     },
     "description": {
-      "id": "Saya mendokumentasikan asumsi dan menjelaskan pilihan perlindungan dalam bahasa yang bisa dipahami berbagai tim.",
-      "en": "I document assumptions and explain coverage options in language that different teams can understand."
+      "id": "Saya menyiapkan ringkasan yang menjelaskan cakupan, pengecualian, dan pertanyaan yang masih terbuka. Tujuannya agar tim operasional dan pengambil keputusan bisa membahas dokumen yang sama.",
+      "en": "I prepare summaries that explain coverage, exclusions, and outstanding questions so operations teams and decision-makers can discuss the same document."
     }
   },
   "projects": [
     {
-      "title": "Peta Risiko Ritel",
+      "title": "Peta Risiko Gudang",
       "category": {
         "id": "Penilaian risiko",
         "en": "Risk assessment"
       },
       "description": {
-        "id": "Inventaris risiko yang membantu tim memilih jenis perlindungan untuk setiap aktivitas operasional.",
-        "en": "A risk register that helps teams compare coverage needs across operating activities."
+        "id": "Inventaris risiko gudang dari penerimaan hingga pengiriman. Saya mengelompokkan temuan per aktivitas dan mencatat pertanyaan yang perlu dikonfirmasi sebelum perpanjangan polis.",
+        "en": "A risk register covering warehouse activities from receiving to dispatch. I grouped findings by activity and captured questions to resolve before policy renewal."
       }
     },
     {
-      "title": "Panduan Klaim",
+      "title": "Ringkasan Polis UMKM",
       "category": {
-        "id": "Dokumentasi proses",
-        "en": "Process documentation"
+        "id": "Analisis polis",
+        "en": "Policy analysis"
       },
       "description": {
-        "id": "Panduan untuk mengumpulkan dokumen dan mencatat status klaim dalam satu alur.",
-        "en": "A guide to gathering documents and tracking the status of a claim in one workflow."
+        "id": "Format satu halaman untuk merangkum cakupan, batas, dan pengecualian dari contoh polis usaha kecil.",
+        "en": "A one-page format summarizing coverage, limits, and exclusions from sample small-business policies."
+      }
+    },
+    {
+      "title": "Berkas Klaim",
+      "category": {
+        "id": "Dokumentasi klaim",
+        "en": "Claims documentation"
+      },
+      "description": {
+        "id": "Daftar periksa dokumen dan pencatatan status berdasarkan tahap pengumpulan, pengajuan, dan tindak lanjut.",
+        "en": "A document checklist and status tracker covering collection, submission, and follow-up."
       }
     }
   ],
@@ -70,8 +81,8 @@
       "en": "Claims documentation"
     },
     {
-      "id": "Komunikasi klien",
-      "en": "Client communication"
+      "id": "Wawancara klien",
+      "en": "Client interviews"
     }
   ],
   "experience": [
@@ -80,45 +91,45 @@
         "id": "Analis Risiko",
         "en": "Risk Analyst"
       },
-      "organization": "Nadi Advisory",
+      "organization": "Ruang Lindung Advisory",
       "period": {
         "id": "2025–sekarang",
         "en": "2025–present"
       },
       "description": {
-        "id": "Menyiapkan peta risiko dan ringkasan dokumen untuk diskusi internal.",
-        "en": "Prepared risk registers and policy summaries for internal discussions."
+        "id": "Menyusun ringkasan penilaian risiko dan memeriksa kelengkapan materi untuk diskusi pembaruan polis.",
+        "en": "Prepared risk summaries and reviewed supporting materials before policy renewal discussions."
       }
     },
     {
       "title": {
-        "id": "Asisten Layanan Polis",
-        "en": "Policy Services Assistant"
+        "id": "Asisten Administrasi Polis",
+        "en": "Policy Administration Assistant"
       },
-      "organization": "Meranti Risk Lab",
+      "organization": "Sela Risk Studio",
       "period": {
         "id": "2023–2025",
         "en": "2023–2025"
       },
       "description": {
-        "id": "Merapikan arsip polis dan menyederhanakan daftar dokumen pendukung.",
-        "en": "Organized policy records and simplified supporting document lists."
+        "id": "Mendokumentasikan perubahan polis dan membantu tim memverifikasi berkas pendukung.",
+        "en": "Documented policy changes and helped verify supporting files."
       }
     }
   ],
   "contact": {
     "headline": {
-      "id": "Mari bahas kebutuhan perlindungan.",
-      "en": "Let’s talk about coverage needs."
+      "id": "Ingin menata dokumen risiko?",
+      "en": "Need to organize your risk documentation?"
     },
     "description": {
-      "id": "Hubungi saya untuk kolaborasi analisis risiko dan dokumentasi asuransi.",
-      "en": "Get in touch about risk analysis and insurance documentation."
+      "id": "Hubungi saya untuk membahas proyek analisis risiko atau dokumentasi polis.",
+      "en": "Get in touch about risk analysis or policy documentation projects."
     },
     "links": [
       {
-        "label": "Email",
-        "href": "mailto:dina@example.com"
+        "label": "alya.wicaksana@example.com",
+        "href": "mailto:alya.wicaksana@example.com"
       }
     ]
   },

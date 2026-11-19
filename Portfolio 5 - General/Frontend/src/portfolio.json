@@ -1,77 +1,88 @@
 {
   "profile": {
-    "name": "Nara Putri",
+    "name": "Kirana Dewi",
     "location": "Jakarta, Indonesia",
     "role": {
-      "id": "Profesional Independen",
-      "en": "Independent Professional"
+      "id": "Peneliti & Koordinator Program",
+      "en": "Researcher & Program Coordinator"
     },
     "headline": {
-      "id": "Kerja yang jelas, dampak yang terasa.",
-      "en": "Clear work, tangible results."
+      "id": "Mendengarkan, merangkum, lalu menggerakkan pekerjaan.",
+      "en": "Listen, synthesize, then move the work forward."
     },
     "introduction": {
-      "id": "Saya bekerja di antara riset, komunikasi, dan koordinasi untuk membantu tim menata pekerjaan dan berbagi hasilnya.",
-      "en": "I work across research, communication, and coordination to help teams organize their work and share what they learn."
+      "id": "Saya membantu tim kecil menjalankan program dan menyampaikan temuan riset dengan bahasa yang jelas.",
+      "en": "I help small teams run programs and communicate what they learn in plain language."
     },
     "portrait": {
-      "src": "/media/portrait.webp",
+      "src": "/media/home-portrait.webp",
       "alt": {
-        "id": "Potret Nara dalam cahaya studio",
-        "en": "Portrait of Nara in studio light"
+        "id": "Potret hitam-putih Kirana dengan cahaya dari jendela",
+        "en": "Black-and-white portrait of Kirana lit by a window"
       }
     }
   },
   "about": {
     "headline": {
-      "id": "Cara saya bekerja.",
-      "en": "How I work."
+      "id": "Catatan yang bisa ditindaklanjuti.",
+      "en": "Notes people can act on."
     },
     "description": {
-      "id": "Saya mulai dengan mendengarkan, mencatat apa yang penting, lalu membuat alur komunikasi yang bisa diikuti semua orang.",
-      "en": "I start by listening, recording what matters, and building a communication rhythm that everyone can follow."
+      "id": "Saya menyukai pekerjaan yang menghubungkan percakapan dengan keputusan. Saya mendokumentasikan pertanyaan, mengelompokkan temuan, dan menyiapkan ringkasan yang bisa dipakai tim untuk menentukan langkah berikutnya.",
+      "en": "I like work that connects conversations with decisions. I document questions, group findings, and prepare summaries a team can use to decide what comes next."
     }
   },
   "projects": [
     {
-      "title": "Catatan Komunitas",
+      "title": "Cerita dari Sudut Kota",
       "category": {
-        "id": "Riset",
-        "en": "Research"
+        "id": "Riset komunitas",
+        "en": "Community research"
       },
       "description": {
-        "id": "Rangkuman wawancara yang membantu pengurus memilih format acara berikutnya.",
-        "en": "An interview synthesis that helped an organizing team choose its next event format."
+        "id": "Rangkuman wawancara fiktif tentang bagaimana warga menemukan kegiatan kreatif di lingkungannya, serta kebutuhan informasi untuk acara berikutnya.",
+        "en": "A synthesis of fictional interviews on how residents find creative activities nearby and what information they need for future events."
       }
     },
     {
-      "title": "Field Notes",
+      "title": "Catatan untuk Relawan",
       "category": {
-        "id": "Komunikasi",
-        "en": "Communications"
+        "id": "Penulisan",
+        "en": "Writing"
       },
       "description": {
-        "id": "Panduan ringkas untuk menyusun pembaruan proyek yang mudah dibaca dan digunakan.",
-        "en": "A short guide to writing project updates that people can read and use."
+        "id": "Panduan singkat untuk relawan baru dengan peran, jadwal, dan contoh pembaruan yang bisa langsung dipakai.",
+        "en": "A short guide for new volunteers with roles, schedules, and example updates they can reuse."
+      }
+    },
+    {
+      "title": "Agenda Ruang Baca",
+      "category": {
+        "id": "Koordinasi program",
+        "en": "Program coordination"
+      },
+      "description": {
+        "id": "Rencana program baca bulanan yang merangkum jadwal, tanggung jawab, dan format umpan balik peserta.",
+        "en": "A monthly reading program plan covering schedules, responsibilities, and a format for participant feedback."
       }
     }
   ],
   "skills": [
     {
-      "id": "Riset",
-      "en": "Research"
+      "id": "Wawancara",
+      "en": "Interviewing"
+    },
+    {
+      "id": "Sintesis temuan",
+      "en": "Research synthesis"
     },
     {
       "id": "Penulisan",
       "en": "Writing"
     },
     {
-      "id": "Koordinasi",
-      "en": "Coordination"
-    },
-    {
-      "id": "Presentasi",
-      "en": "Presentation"
+      "id": "Koordinasi program",
+      "en": "Program coordination"
     }
   ],
   "experience": [
@@ -80,14 +91,14 @@
         "id": "Koordinator Program",
         "en": "Program Coordinator"
       },
-      "organization": "Forum Temu",
+      "organization": "Forum Warga Baca",
       "period": {
         "id": "2025–sekarang",
         "en": "2025–present"
       },
       "description": {
-        "id": "Menyusun rangkaian program, merapikan dokumentasi, dan menyiapkan pembaruan untuk mitra.",
-        "en": "Organized programs, maintained documentation, and prepared partner updates."
+        "id": "Menyusun agenda kegiatan dan menyiapkan pembaruan untuk relawan dan mitra.",
+        "en": "Organized activity schedules and prepared updates for volunteers and partners."
       }
     },
     {
@@ -95,30 +106,30 @@
         "id": "Asisten Riset",
         "en": "Research Assistant"
       },
-      "organization": "Proyek Tumbuh",
+      "organization": "Ruang Dengar",
       "period": {
         "id": "2024",
         "en": "2024"
       },
       "description": {
-        "id": "Mendokumentasikan wawancara dan mengelompokkan temuan berdasarkan tema.",
-        "en": "Documented interviews and grouped findings by theme."
+        "id": "Mendokumentasikan wawancara dan mengelompokkan catatan berdasarkan kebutuhan peserta.",
+        "en": "Documented interviews and grouped notes by participant needs."
       }
     }
   ],
   "contact": {
     "headline": {
-      "id": "Mari terhubung.",
-      "en": "Let’s connect."
+      "id": "Mari mulai percakapan.",
+      "en": "Let’s start a conversation."
     },
     "description": {
-      "id": "Hubungi saya untuk membicarakan proyek, riset, atau peluang kolaborasi.",
-      "en": "Get in touch about projects, research, or collaboration."
+      "id": "Hubungi saya untuk proyek riset, koordinasi program, atau penulisan.",
+      "en": "Get in touch about research, program coordination, or writing."
     },
     "links": [
       {
-        "label": "Email",
-        "href": "mailto:nara@example.com"
+        "label": "kirana.dewi@example.com",
+        "href": "mailto:kirana.dewi@example.com"
       }
     ]
   },
