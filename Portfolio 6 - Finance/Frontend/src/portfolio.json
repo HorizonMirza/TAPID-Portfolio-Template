@@ -16,7 +16,7 @@
   },
   "about": {
     "education": {
-      "university": "Institut Bisnis Arunika",
+      "university": "Universitas Bina Nusantara",
       "major": { "id": "Keuangan", "en": "Finance" },
       "specialization": { "id": "Perencanaan Keuangan dan Pemodelan", "en": "Financial Planning and Modeling" },
       "gpa": { "value": 3.73, "scale": 4 }

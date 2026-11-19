@@ -25,7 +25,7 @@
   },
   "about": {
     "education": {
-      "university": "Institut Seni Rupa Garis",
+      "university": "Universitas Bina Nusantara",
       "major": { "id": "Desain Komunikasi Visual", "en": "Visual Communication Design" },
       "specialization": { "id": "Identitas Visual dan Tipografi", "en": "Visual Identity and Typography" },
       "gpa": { "value": 3.79, "scale": 4 }

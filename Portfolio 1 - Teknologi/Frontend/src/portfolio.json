@@ -25,7 +25,7 @@
   },
   "about": {
     "education": {
-      "university": "Institut Teknologi Cakrawala",
+      "university": "Universitas Bina Nusantara",
       "major": { "id": "Informatika", "en": "Computer Science" },
       "specialization": { "id": "Rekayasa Web dan Sistem Data", "en": "Web Engineering and Data Systems" },
       "gpa": { "value": 3.68, "scale": 4 }

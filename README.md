@@ -6,16 +6,16 @@ Keenam top bar menampilkan nama profil, menu di tengah pada desktop, dan tombol 
 
 Setiap portofolio demo punya 10 rancangan Beranda bernomor 01–10. Buka `/demo-beranda/` pada tema yang sedang dijalankan atau `/en/demo-beranda/` untuk versi Inggris. Pilihan dapat dibuka kembali lewat URL seperti `/demo-beranda/?pilihan=04`.
 
-Setiap tema juga punya 10 rancangan Tentang di `/demo-tentang/` dan `/en/demo-tentang/`. Ringkasan diambil dari `about.description`. Data akademik opsional ada di `about.education` dan mencakup `university`, `major`, `specialization`, serta `gpa` dengan `value` dan `scale`. Data akademik pada demo bersifat fiktif.
+Setiap tema juga punya 10 rancangan Tentang di `/demo-tentang/` dan `/en/demo-tentang/`. Ringkasan diambil dari `about.description`. Data akademik opsional ada di `about.education` dan mencakup `university`, `major`, `specialization`, serta `gpa` dengan `value` dan `scale`. Demo menggunakan nama Universitas Bina Nusantara dengan contoh jurusan, spesialisasi, dan GPA yang fiktif.
 
-| Template | Warna bawaan | Beranda utama | Top bar |
-| --- | --- | --- | --- |
-| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 01 · Command Rail |
-| [Portfolio 2 - Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau | 04 · Green Frame | 05 · Advisor Capsule |
-| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | 03 · Team Lead | 02 · Ops Inline |
-| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | 01 · Poster Cover | 09 · Letterpress |
-| [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | 01 · Classic Editorial | 04 · Soft Capsule |
-| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu tua | 03 · Analyst at Desk | 09 · Review Note |
+| Template | Warna bawaan | Beranda utama | Tentang utama | Top bar |
+| --- | --- | --- | --- | --- |
+| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 06 · Developer Panel | 01 · Command Rail |
+| [Portfolio 2 - Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau | 04 · Green Frame | 09 · Academic Highlight | 05 · Advisor Capsule |
+| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | 03 · Team Lead | 06 · Yellow Statement | 02 · Ops Inline |
+| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | 01 · Poster Cover | 10 · Catalogue Index | 09 · Letterpress |
+| [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | 01 · Classic Editorial | 10 · Academic Record | 04 · Soft Capsule |
+| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu tua | 03 · Analyst at Desk | 10 · Editorial Center | 09 · Review Note |
 
 ## Jalankan satu template
 

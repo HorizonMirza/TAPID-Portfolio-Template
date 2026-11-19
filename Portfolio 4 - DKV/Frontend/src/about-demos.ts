@@ -92,3 +92,5 @@ export const aboutDemos = [
     }
   }
 ];
+
+export const selectedAbout = aboutDemos.find((choice) => choice.id === "10") ?? aboutDemos[0];

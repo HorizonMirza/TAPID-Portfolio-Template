@@ -2,6 +2,7 @@
 import Frame from './Frame.astro';
 import TopBar from './TopBar.astro';
 import HomeHero from './HomeHero.astro';
+import AboutSection from './AboutSection.astro';
 import CvLink from './CvLink.astro';
 import { localize, type Language } from './portfolio';
 interface Props { language: Language }
@@ -10,7 +11,7 @@ const previewHome = Astro.slots.has('home');
 const previewAbout = Astro.slots.has('about-preview');
 const previewPath = previewAbout ? 'demo-tentang/' : previewHome ? 'demo-beranda/' : undefined;
 const languageHref = previewPath ? `${language === 'id' ? '/en/' : '/'}${previewPath}` : undefined;
-const { copy, p, about, projects, skills, experience, contact, demo } = localize(language);
+const { copy, p, projects, skills, experience, contact, demo } = localize(language);
 ---
 <Frame language={language} skip={copy.skip} previewPath={previewPath}>
   <TopBar language={language} languageHref={languageHref} />
@@ -30,14 +31,7 @@ const { copy, p, about, projects, skills, experience, contact, demo } = localize
         </div>
               </section>
     )}
-    {!previewAbout && (
-      <div class="risk-about">
-        <section id="about" class="wrap" aria-labelledby="about-title">
-          <p class="section-label">{copy.about} <span aria-hidden="true">/</span> {p.location}</p>
-          <h2 id="about-title">{about.headline}</h2><p class="copy">{about.description}</p>
-        </section>
-      </div>
-    )}
+    {!previewAbout && <AboutSection language={language} />}
     {projects.length > 0 && <section id="projects" class="wrap dossier" aria-labelledby="work-title">
       <h2 id="work-title">{copy.projects}</h2>
       {projects.map((project) => <article>

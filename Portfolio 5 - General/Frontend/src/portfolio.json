@@ -25,7 +25,7 @@
   },
   "about": {
     "education": {
-      "university": "Universitas Lentera Kota",
+      "university": "Universitas Bina Nusantara",
       "major": { "id": "Ilmu Komunikasi", "en": "Communication Studies" },
       "specialization": { "id": "Riset Kualitatif dan Komunikasi Program", "en": "Qualitative Research and Program Communication" },
       "gpa": { "value": 3.62, "scale": 4 }

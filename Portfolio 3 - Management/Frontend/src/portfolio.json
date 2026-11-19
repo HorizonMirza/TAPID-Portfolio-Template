@@ -25,7 +25,7 @@
   },
   "about": {
     "education": {
-      "university": "Universitas Cipta Mandiri",
+      "university": "Universitas Bina Nusantara",
       "major": { "id": "Manajemen", "en": "Management" },
       "specialization": { "id": "Operasional dan Manajemen Proyek", "en": "Operations and Project Management" },
       "gpa": { "value": 3.71, "scale": 4 }
