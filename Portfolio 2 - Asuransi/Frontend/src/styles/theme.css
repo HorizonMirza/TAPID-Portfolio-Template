@@ -1,15 +1,30 @@
 :root {
   --body: 'DM Sans', sans-serif; --control-radius: 1.2rem;
-  --bg: #effcf6; --ink: #10382c; --muted: #3e6456; --surface: #fff; --subtle: #cef8e5; --line: #9ed4bd;
-  --green: var(--custom-light, #57dca5); --green-ink: var(--custom-ink-light, #09241b);
-  --deep: #064c39; --focus: #007554;
+  --clover: #32a85a;
+  --bg: color-mix(in srgb, var(--clover) 7%, white);
+  --surface: color-mix(in srgb, var(--clover) 3%, white);
+  --subtle: color-mix(in srgb, var(--clover) 60%, white);
+  --line: color-mix(in srgb, var(--clover) 71%, #809583);
+  --ink: color-mix(in srgb, var(--clover) 14%, #102019);
+  --muted: color-mix(in srgb, var(--clover) 20%, #263e31);
+  --green: var(--custom-light, var(--clover)); --green-ink: var(--custom-ink-light, #0c1910);
+  --deep: color-mix(in srgb, var(--clover) 35%, #101f18);
+  --focus: color-mix(in srgb, var(--clover) 37%, #16241b);
   --button: var(--green); --button-ink: var(--green-ink); --detail-accent: var(--green);
-  --inverse: var(--deep); --inverse-muted: #c2eada; --inverse-line: #7eb9a5;
+  --inverse: var(--deep);
+  --inverse-muted: color-mix(in srgb, var(--clover) 22%, white);
+  --inverse-line: color-mix(in srgb, var(--clover) 55%, white);
 }
 :root[data-mode="dark"] {
-  --bg: #09241b; --ink: #effff8; --muted: #add4c4; --surface: #10372a; --subtle: #144434; --line: #3a7560;
-  --green: var(--custom-dark, #83f2c6); --green-ink: var(--custom-ink-dark, #09241b);
-  --deep: #125540; --focus: #83f2c6;
+  --bg: color-mix(in srgb, var(--clover) 10%, #0e1914);
+  --surface: color-mix(in srgb, var(--clover) 16%, #142019);
+  --subtle: color-mix(in srgb, var(--clover) 33%, #13221a);
+  --line: color-mix(in srgb, var(--clover) 59%, #182b20);
+  --ink: color-mix(in srgb, var(--clover) 9%, white);
+  --muted: color-mix(in srgb, var(--clover) 35%, white);
+  --green: var(--custom-dark, color-mix(in srgb, var(--clover) 63%, white));
+  --green-ink: var(--custom-ink-dark, #0c1910);
+  --focus: var(--green);
   --button: var(--green); --button-ink: var(--green-ink); --detail-accent: var(--green);
 }
 .risk-hero { --hero-left: .96fr; --hero-right: 1.04fr; background: var(--surface); }
