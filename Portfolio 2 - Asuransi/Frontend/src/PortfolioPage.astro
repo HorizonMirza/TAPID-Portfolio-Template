@@ -1,0 +1,60 @@
+---
+import Controls from './Controls.astro';
+import Frame from './Frame.astro';
+import MobileNav from './MobileNav.astro';
+import { localize, type Language } from './portfolio';
+interface Props { language: Language }
+const { language } = Astro.props;
+const { copy, p, about, projects, skills, experience, contact, nav, demo } = localize(language);
+---
+<Frame language={language} skip={copy.skip}>
+  <header class="insurance-nav wrap">
+    <a class="brand" href="#home"><span>{p.initials}</span>{p.name}</a>
+    <div class="insurance-nav-links">
+      <nav class="wide-nav" aria-label={copy.navigation}>{nav.filter((item) => item.href !== '#home').map((item) => <a href={item.href}>{item.name}</a>)}</nav>
+      <MobileNav label={copy.navigation} menu={copy.menu} links={nav} /><Controls language={language} />
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section id="home" class="risk-hero wrap">
+      {p.portrait && <figure><img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" /></figure>}
+      <div class="risk-intro">
+        <p class="section-label">{p.role}</p><h1>{p.name}</h1>
+        <p class="risk-line">{p.headline}</p><p class="copy">{p.intro}</p>
+        <a class="action" href={contact.links.length ? '#contact' : '#about'}>{contact.links.length ? copy.viewContact : copy.about}</a>
+      </div>
+    </section>
+    <div class="risk-about">
+      <section id="about" class="wrap" aria-labelledby="about-title">
+        <p class="section-label">{copy.about} <span aria-hidden="true">/</span> {p.location}</p>
+        <h2 id="about-title">{about.headline}</h2><p class="copy">{about.description}</p>
+      </section>
+    </div>
+    {projects.length > 0 && <section id="projects" class="wrap dossier" aria-labelledby="work-title">
+      <h2 id="work-title">{copy.projects}</h2>
+      {projects.map((project) => <article>
+        <p class="section-label">{project.category}</p>
+        <div><h3>{project.title}</h3><p class="copy">{project.description}</p>
+          {project.href && <a class="project-link" href={project.href} aria-label={`${copy.viewProject}: ${project.title}`}>{copy.viewProject}</a>}</div>
+        {project.image && <img class="project-image" src={project.image.src} alt={project.image.alt} loading="lazy" />}
+      </article>)}
+    </section>}
+    {skills.length > 0 && <section id="skills" class="wrap risk-skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">{copy.skills}</h2><ul>{skills.map((skill) => <li><span aria-hidden="true">✓</span>{skill}</li>)}</ul>
+    </section>}
+    {experience.length > 0 && <section id="experience" class="wrap risk-career" aria-labelledby="experience-title">
+      <h2 id="experience-title">{copy.experience}</h2>
+      <ol>{experience.map((job) => <li><p class="section-label">{job.period}</p><h3>{job.organization}</h3>
+        <p class="role">{job.title}</p><p class="copy">{job.description}</p></li>)}</ol>
+    </section>}
+  </main>
+  <footer class="risk-footer">
+    <div class="wrap">
+      {contact.links.length > 0 && <section id="contact" aria-labelledby="contact-title">
+        <p class="section-label">{copy.contact}</p><h2 id="contact-title">{contact.headline}</h2><p>{contact.description}</p>
+        <div class="contact-links">{contact.links.map(({ href, label }) => <a href={href}>{label}</a>)}</div>
+      </section>}
+      <div class="risk-footer-bottom"><a href="#home">{p.name}</a><p>{demo && copy.demo}</p></div>
+    </div>
+  </footer>
+</Frame>

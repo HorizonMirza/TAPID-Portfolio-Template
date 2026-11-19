@@ -1,0 +1,14 @@
+---
+interface Props {
+  label: string;
+  menu: string;
+  links: { href: string; name: string }[];
+}
+const { label, menu, links } = Astro.props;
+---
+<details class="mobile-nav" data-mobile-nav>
+  <summary>{menu}</summary>
+  <nav aria-label={label}>
+    {links.map(({ href, name }) => <a href={href}>{name}</a>)}
+  </nav>
+</details>

@@ -1,0 +1,64 @@
+---
+import Controls from './Controls.astro';
+import Frame from './Frame.astro';
+import MobileNav from './MobileNav.astro';
+import { localize, type Language } from './portfolio';
+interface Props { language: Language }
+const { language } = Astro.props;
+const { copy, p, about, projects, skills, experience, contact, nav, demo } = localize(language);
+const heroImage = p.portrait ?? projects[0]?.image;
+---
+<Frame language={language} skip={copy.skip}>
+  <header class="studio-header wrap">
+    <div class="studio-masthead">
+      <a class="brand" href="#home">{p.initials}<sup>✳</sup></a>
+      <p>{p.role}</p>
+      <div class="studio-tools"><MobileNav label={copy.navigation} menu={copy.menu} links={nav} /><Controls language={language} /></div>
+    </div>
+    <nav class="studio-menu wide-nav" aria-label={copy.navigation}>{nav.map((item) => <a href={item.href}>{item.name}</a>)}</nav>
+  </header>
+  <main id="main" tabindex="-1">
+    <section id="home" class="wrap studio-hero">
+      <div class="studio-title"><h1>{p.name}</h1><p>{p.location}</p></div>
+      <div class="studio-split">
+        <div class="studio-intro">
+          <p class="studio-line">{p.headline}</p><p>{p.intro}</p>
+          <a class="action" href={projects.length ? '#projects' : '#about'}>{projects.length ? copy.viewProjects : copy.about}</a>
+        </div>
+        {heroImage ? <figure><img class="profile-image" src={heroImage.src} alt={heroImage.alt} fetchpriority="high" /></figure> :
+          <div class="paper-fold" aria-hidden="true"><span></span></div>}
+      </div>
+    </section>
+    {projects.length > 0 && <section id="projects" class="wrap studio-work" aria-labelledby="work-title">
+      <h2 id="work-title">{copy.projects}</h2>
+      <div class="gallery">
+        {projects.map((project) => <article>
+          {project.image ? <img class="project-image" src={project.image.src} alt={project.image.alt} loading="lazy" /> :
+            <div class="poster" aria-hidden="true"><i></i><span>{project.title}</span></div>}
+          <div class="caption"><h3>{project.title}</h3><p>{project.category}</p></div>
+          <p class="copy">{project.description}</p>
+          {project.href && <a class="project-link" href={project.href} aria-label={`${copy.viewProject}: ${project.title}`}>{copy.viewProject}</a>}
+        </article>)}
+      </div>
+    </section>}
+    <section id="about" class="studio-about" aria-labelledby="about-title">
+      <div class="wrap"><div class="studio-mark" aria-hidden="true">✳</div>
+        <div><p class="section-label">{copy.about}</p><h2 id="about-title">{about.headline}</h2><p>{about.description}</p></div>
+      </div>
+    </section>
+    <div class="wrap studio-details">
+      {skills.length > 0 && <section id="skills" aria-labelledby="skills-title"><h2 id="skills-title">{copy.skills}</h2>
+        <ul>{skills.map((skill) => <li>{skill}</li>)}</ul></section>}
+      {experience.length > 0 && <section id="experience" aria-labelledby="experience-title"><h2 id="experience-title">{copy.experience}</h2>
+        <ol>{experience.map((job) => <li><div><h3>{job.title}</h3><p>{job.organization}</p></div><p class="section-label">{job.period}</p><p class="copy">{job.description}</p></li>)}</ol>
+      </section>}
+    </div>
+  </main>
+  <footer class="studio-footer wrap">
+    {contact.links.length > 0 && <section id="contact" aria-labelledby="contact-title">
+      <p class="section-label">{copy.contact}</p><h2 id="contact-title">{contact.headline}</h2><p class="copy">{contact.description}</p>
+      <div class="contact-links">{contact.links.map(({ href, label }) => <a href={href}>{label}</a>)}</div>
+    </section>}
+    <div class="studio-footer-bar"><a href="#home">{copy.top}</a><p>{demo ? copy.demo : p.name}</p></div>
+  </footer>
+</Frame>

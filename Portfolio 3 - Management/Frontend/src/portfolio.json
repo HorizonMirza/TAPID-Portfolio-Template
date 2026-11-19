@@ -1,0 +1,133 @@
+{
+  "profile": {
+    "name": "Aditya Wibowo",
+    "location": "Surabaya, Indonesia",
+    "role": {
+      "id": "Manajer Proyek & Operasional",
+      "en": "Project & Operations Manager"
+    },
+    "headline": {
+      "id": "Dari rencana ke tindakan.",
+      "en": "From plans to action."
+    },
+    "introduction": {
+      "id": "Saya membantu tim memetakan prioritas, membagi tanggung jawab, dan memastikan pekerjaan penting selesai.",
+      "en": "I help teams set priorities, make ownership clear, and follow through on the work that matters."
+    }
+  },
+  "about": {
+    "headline": {
+      "id": "Proses yang mudah dijalankan.",
+      "en": "Processes people can actually follow."
+    },
+    "description": {
+      "id": "Saya menerjemahkan tujuan bisnis menjadi langkah yang jelas, lalu merancang cara meninjau pekerjaan bersama tim.",
+      "en": "I translate business goals into clear steps and design a way for the team to review progress together."
+    }
+  },
+  "projects": [
+    {
+      "title": "Launch Playbook",
+      "category": {
+        "id": "Peluncuran produk",
+        "en": "Product launch"
+      },
+      "description": {
+        "id": "Panduan serah terima antarbagian untuk meluncurkan layanan baru.",
+        "en": "A cross-functional handoff guide for launching a new service."
+      }
+    },
+    {
+      "title": "Capacity Review",
+      "category": {
+        "id": "Perencanaan tim",
+        "en": "Team planning"
+      },
+      "description": {
+        "id": "Tinjauan kapasitas untuk menemukan beban berlebih sebelum penjadwalan proyek.",
+        "en": "A capacity review to flag overloaded teams before projects are scheduled."
+      }
+    },
+    {
+      "title": "Weekly Review",
+      "category": {
+        "id": "Operasional",
+        "en": "Operations"
+      },
+      "description": {
+        "id": "Agenda mingguan yang mencatat keputusan, penanggung jawab, dan langkah berikutnya.",
+        "en": "A weekly agenda that records decisions, owners, and next steps."
+      }
+    }
+  ],
+  "skills": [
+    {
+      "id": "Perencanaan proyek",
+      "en": "Project planning"
+    },
+    {
+      "id": "Fasilitasi tim",
+      "en": "Team facilitation"
+    },
+    {
+      "id": "Pemetaan proses",
+      "en": "Process mapping"
+    },
+    {
+      "id": "Pelaporan operasional",
+      "en": "Operations reporting"
+    }
+  ],
+  "experience": [
+    {
+      "title": {
+        "id": "Manajer Operasional",
+        "en": "Operations Manager"
+      },
+      "organization": "Lajur Collective",
+      "period": {
+        "id": "2025–sekarang",
+        "en": "2025–present"
+      },
+      "description": {
+        "id": "Menata alur kerja antartim serta memimpin tinjauan prioritas mingguan.",
+        "en": "Organized cross-team workflows and led weekly priority reviews."
+      }
+    },
+    {
+      "title": {
+        "id": "Koordinator Proyek",
+        "en": "Project Coordinator"
+      },
+      "organization": "Studio Langkah",
+      "period": {
+        "id": "2023–2025",
+        "en": "2023–2025"
+      },
+      "description": {
+        "id": "Menjaga jadwal program, mencatat keputusan, dan berkoordinasi dengan mitra.",
+        "en": "Maintained program schedules, documented decisions, and coordinated with partners."
+      }
+    }
+  ],
+  "contact": {
+    "headline": {
+      "id": "Punya rencana yang perlu dijalankan?",
+      "en": "Have a plan that needs to move?"
+    },
+    "description": {
+      "id": "Saya terbuka untuk proyek operasional dan kolaborasi lintas tim.",
+      "en": "I’m open to operations projects and cross-team collaboration."
+    },
+    "links": [
+      {
+        "label": "Email",
+        "href": "mailto:aditya@example.com"
+      }
+    ]
+  },
+  "settings": {
+    "demo": true,
+    "defaultMode": "system"
+  }
+}

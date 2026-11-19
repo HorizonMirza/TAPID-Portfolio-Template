@@ -1,0 +1,140 @@
+{
+  "profile": {
+    "name": "Sari Kinasih",
+    "location": "Yogyakarta, Indonesia",
+    "role": {
+      "id": "Desainer Komunikasi Visual",
+      "en": "Visual Communication Designer"
+    },
+    "headline": {
+      "id": "Desain yang mengambil ruang.",
+      "en": "Design that takes up space."
+    },
+    "introduction": {
+      "id": "Saya merancang identitas visual, poster, dan editorial dengan tipografi tegas, warna, dan eksplorasi material.",
+      "en": "I create identities, posters, and editorial work with expressive typography, color, and material experiments."
+    }
+  },
+  "about": {
+    "headline": {
+      "id": "Dari eksperimen ke sistem visual.",
+      "en": "From experimentation to visual systems."
+    },
+    "description": {
+      "id": "Saya menguji bentuk lewat sketsa dan potongan kertas, lalu membawa yang berhasil ke sistem visual yang bisa dipakai di berbagai medium.",
+      "en": "I test shapes through sketches and paper studies, then turn what works into a visual system that spans different media."
+    }
+  },
+  "projects": [
+    {
+      "title": "Bentuk Bebas",
+      "category": {
+        "id": "Arah seni",
+        "en": "Art direction"
+      },
+      "description": {
+        "id": "Studi poster yang menerjemahkan lipatan kertas menjadi bentuk, bayangan, dan tekstur.",
+        "en": "A poster study translating a paper fold into shape, shadow, and texture."
+      },
+      "image": {
+        "src": "/media/bentuk-bebas.webp",
+        "alt": {
+          "id": "Patung kertas geometris di latar merah",
+          "en": "Geometric paper sculpture against a red background"
+        }
+      }
+    },
+    {
+      "title": "Garis Kota",
+      "category": {
+        "id": "Editorial",
+        "en": "Editorial"
+      },
+      "description": {
+        "id": "Zine tentang ritme kota yang dibangun dengan grid fleksibel dan tipografi skala besar.",
+        "en": "A zine about urban rhythms built with a flexible grid and oversized type."
+      }
+    },
+    {
+      "title": "Ruang Cetak",
+      "category": {
+        "id": "Identitas visual",
+        "en": "Visual identity"
+      },
+      "description": {
+        "id": "Sistem identitas untuk pameran kecil yang beradaptasi pada poster dan kartu undangan.",
+        "en": "An identity system for a small exhibition that adapts to posters and invitations."
+      }
+    }
+  ],
+  "skills": [
+    {
+      "id": "Tipografi",
+      "en": "Typography"
+    },
+    {
+      "id": "Arah seni",
+      "en": "Art direction"
+    },
+    {
+      "id": "Desain editorial",
+      "en": "Editorial design"
+    },
+    {
+      "id": "Identitas visual",
+      "en": "Visual identity"
+    }
+  ],
+  "experience": [
+    {
+      "title": {
+        "id": "Desainer Visual",
+        "en": "Visual Designer"
+      },
+      "organization": "Studio Ruas",
+      "period": {
+        "id": "2025–sekarang",
+        "en": "2025–present"
+      },
+      "description": {
+        "id": "Mengembangkan identitas dan materi cetak untuk proyek seni dan acara.",
+        "en": "Developed identities and print materials for arts projects and events."
+      }
+    },
+    {
+      "title": {
+        "id": "Asisten Desain",
+        "en": "Design Assistant"
+      },
+      "organization": "Lokakarya Cetak",
+      "period": {
+        "id": "2024",
+        "en": "2024"
+      },
+      "description": {
+        "id": "Mempersiapkan file cetak dan mendokumentasikan eksperimen warna.",
+        "en": "Prepared print files and documented color experiments."
+      }
+    }
+  ],
+  "contact": {
+    "headline": {
+      "id": "Mari buat sesuatu bersama.",
+      "en": "Let’s make something together."
+    },
+    "description": {
+      "id": "Kirim ide atau brief untuk proyek desain Anda.",
+      "en": "Send an idea or a brief for your next design project."
+    },
+    "links": [
+      {
+        "label": "Email",
+        "href": "mailto:sari@example.com"
+      }
+    ]
+  },
+  "settings": {
+    "demo": true,
+    "defaultMode": "system"
+  }
+}

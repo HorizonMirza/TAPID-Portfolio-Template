@@ -1,0 +1,129 @@
+{
+  "profile": {
+    "name": "Nara Putri",
+    "location": "Jakarta, Indonesia",
+    "role": {
+      "id": "Profesional Independen",
+      "en": "Independent Professional"
+    },
+    "headline": {
+      "id": "Kerja yang jelas, dampak yang terasa.",
+      "en": "Clear work, tangible results."
+    },
+    "introduction": {
+      "id": "Saya bekerja di antara riset, komunikasi, dan koordinasi untuk membantu tim menata pekerjaan dan berbagi hasilnya.",
+      "en": "I work across research, communication, and coordination to help teams organize their work and share what they learn."
+    },
+    "portrait": {
+      "src": "/media/portrait.webp",
+      "alt": {
+        "id": "Potret Nara dalam cahaya studio",
+        "en": "Portrait of Nara in studio light"
+      }
+    }
+  },
+  "about": {
+    "headline": {
+      "id": "Cara saya bekerja.",
+      "en": "How I work."
+    },
+    "description": {
+      "id": "Saya mulai dengan mendengarkan, mencatat apa yang penting, lalu membuat alur komunikasi yang bisa diikuti semua orang.",
+      "en": "I start by listening, recording what matters, and building a communication rhythm that everyone can follow."
+    }
+  },
+  "projects": [
+    {
+      "title": "Catatan Komunitas",
+      "category": {
+        "id": "Riset",
+        "en": "Research"
+      },
+      "description": {
+        "id": "Rangkuman wawancara yang membantu pengurus memilih format acara berikutnya.",
+        "en": "An interview synthesis that helped an organizing team choose its next event format."
+      }
+    },
+    {
+      "title": "Field Notes",
+      "category": {
+        "id": "Komunikasi",
+        "en": "Communications"
+      },
+      "description": {
+        "id": "Panduan ringkas untuk menyusun pembaruan proyek yang mudah dibaca dan digunakan.",
+        "en": "A short guide to writing project updates that people can read and use."
+      }
+    }
+  ],
+  "skills": [
+    {
+      "id": "Riset",
+      "en": "Research"
+    },
+    {
+      "id": "Penulisan",
+      "en": "Writing"
+    },
+    {
+      "id": "Koordinasi",
+      "en": "Coordination"
+    },
+    {
+      "id": "Presentasi",
+      "en": "Presentation"
+    }
+  ],
+  "experience": [
+    {
+      "title": {
+        "id": "Koordinator Program",
+        "en": "Program Coordinator"
+      },
+      "organization": "Forum Temu",
+      "period": {
+        "id": "2025–sekarang",
+        "en": "2025–present"
+      },
+      "description": {
+        "id": "Menyusun rangkaian program, merapikan dokumentasi, dan menyiapkan pembaruan untuk mitra.",
+        "en": "Organized programs, maintained documentation, and prepared partner updates."
+      }
+    },
+    {
+      "title": {
+        "id": "Asisten Riset",
+        "en": "Research Assistant"
+      },
+      "organization": "Proyek Tumbuh",
+      "period": {
+        "id": "2024",
+        "en": "2024"
+      },
+      "description": {
+        "id": "Mendokumentasikan wawancara dan mengelompokkan temuan berdasarkan tema.",
+        "en": "Documented interviews and grouped findings by theme."
+      }
+    }
+  ],
+  "contact": {
+    "headline": {
+      "id": "Mari terhubung.",
+      "en": "Let’s connect."
+    },
+    "description": {
+      "id": "Hubungi saya untuk membicarakan proyek, riset, atau peluang kolaborasi.",
+      "en": "Get in touch about projects, research, or collaboration."
+    },
+    "links": [
+      {
+        "label": "Email",
+        "href": "mailto:nara@example.com"
+      }
+    ]
+  },
+  "settings": {
+    "demo": true,
+    "defaultMode": "system"
+  }
+}

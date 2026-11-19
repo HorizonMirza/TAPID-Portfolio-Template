@@ -1,0 +1,129 @@
+{
+  "profile": {
+    "name": "Dina Larasati",
+    "location": "Jakarta, Indonesia",
+    "role": {
+      "id": "Analis Risiko dan Asuransi",
+      "en": "Risk and Insurance Analyst"
+    },
+    "headline": {
+      "id": "Membuat risiko lebih mudah dipahami.",
+      "en": "Making risk easier to understand."
+    },
+    "introduction": {
+      "id": "Saya membantu tim membaca kebutuhan perlindungan, memahami dokumen polis, dan menyiapkan proses klaim yang terstruktur.",
+      "en": "I help teams assess coverage needs, understand policy documents, and organize their claims processes."
+    },
+    "portrait": {
+      "src": "/media/advisor.webp",
+      "alt": {
+        "id": "Dina membaca dokumen di meja kerja",
+        "en": "Dina reading a document at her work table"
+      }
+    }
+  },
+  "about": {
+    "headline": {
+      "id": "Keputusan dimulai dari pertanyaan yang tepat.",
+      "en": "Good decisions start with the right questions."
+    },
+    "description": {
+      "id": "Saya mendokumentasikan asumsi dan menjelaskan pilihan perlindungan dalam bahasa yang bisa dipahami berbagai tim.",
+      "en": "I document assumptions and explain coverage options in language that different teams can understand."
+    }
+  },
+  "projects": [
+    {
+      "title": "Peta Risiko Ritel",
+      "category": {
+        "id": "Penilaian risiko",
+        "en": "Risk assessment"
+      },
+      "description": {
+        "id": "Inventaris risiko yang membantu tim memilih jenis perlindungan untuk setiap aktivitas operasional.",
+        "en": "A risk register that helps teams compare coverage needs across operating activities."
+      }
+    },
+    {
+      "title": "Panduan Klaim",
+      "category": {
+        "id": "Dokumentasi proses",
+        "en": "Process documentation"
+      },
+      "description": {
+        "id": "Panduan untuk mengumpulkan dokumen dan mencatat status klaim dalam satu alur.",
+        "en": "A guide to gathering documents and tracking the status of a claim in one workflow."
+      }
+    }
+  ],
+  "skills": [
+    {
+      "id": "Pemetaan risiko",
+      "en": "Risk mapping"
+    },
+    {
+      "id": "Analisis polis",
+      "en": "Policy analysis"
+    },
+    {
+      "id": "Dokumentasi klaim",
+      "en": "Claims documentation"
+    },
+    {
+      "id": "Komunikasi klien",
+      "en": "Client communication"
+    }
+  ],
+  "experience": [
+    {
+      "title": {
+        "id": "Analis Risiko",
+        "en": "Risk Analyst"
+      },
+      "organization": "Nadi Advisory",
+      "period": {
+        "id": "2025–sekarang",
+        "en": "2025–present"
+      },
+      "description": {
+        "id": "Menyiapkan peta risiko dan ringkasan dokumen untuk diskusi internal.",
+        "en": "Prepared risk registers and policy summaries for internal discussions."
+      }
+    },
+    {
+      "title": {
+        "id": "Asisten Layanan Polis",
+        "en": "Policy Services Assistant"
+      },
+      "organization": "Meranti Risk Lab",
+      "period": {
+        "id": "2023–2025",
+        "en": "2023–2025"
+      },
+      "description": {
+        "id": "Merapikan arsip polis dan menyederhanakan daftar dokumen pendukung.",
+        "en": "Organized policy records and simplified supporting document lists."
+      }
+    }
+  ],
+  "contact": {
+    "headline": {
+      "id": "Mari bahas kebutuhan perlindungan.",
+      "en": "Let’s talk about coverage needs."
+    },
+    "description": {
+      "id": "Hubungi saya untuk kolaborasi analisis risiko dan dokumentasi asuransi.",
+      "en": "Get in touch about risk analysis and insurance documentation."
+    },
+    "links": [
+      {
+        "label": "Email",
+        "href": "mailto:dina@example.com"
+      }
+    ]
+  },
+  "settings": {
+    "demo": true,
+    "defaultMode": "system"
+  }
+}

@@ -1,0 +1,69 @@
+---
+import Controls from './Controls.astro';
+import Frame from './Frame.astro';
+import MobileNav from './MobileNav.astro';
+import { localize, type Language } from './portfolio';
+interface Props { language: Language }
+const { language } = Astro.props;
+const { copy, p, about, projects, skills, experience, contact, nav, demo } = localize(language);
+const workLink = projects.length ? '#projects' : '#about';
+---
+<Frame language={language} skip={copy.skip}>
+  <header class="tech-nav">
+    <div class="wrap bar">
+      <a class="brand" href="#home"><span aria-hidden="true">&lt;/&gt;</span>{p.name}</a>
+      <nav class="wide-nav" aria-label={copy.navigation}>{nav.map((item) => <a href={item.href}>{item.name}</a>)}</nav>
+      <div class="tools"><MobileNav label={copy.navigation} menu={copy.menu} links={nav} /><Controls language={language} /></div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section id="home" class="tech-hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">{p.role}</p>
+          <h1>{p.name}</h1>
+          <p class="tagline">{p.headline}</p>
+          <p class="intro">{p.intro}</p>
+          <a class="action" href={workLink}>{projects.length ? copy.viewProjects : copy.about}</a>
+        </div>
+        {p.portrait ? <figure class="tech-portrait"><img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" /></figure> :
+          <figure class="terminal" aria-hidden="true">
+            <figcaption><span class="lights"><i></i><i></i><i></i></span> portfolio.json</figcaption>
+            <div class="console"><b>{'{'}</b><span><i>"name"</i>: <em>{JSON.stringify(p.name)}</em>,</span><span><i>"focus"</i>: [</span>
+              {skills.slice(0, 3).map((skill) => <span class="indent"><em>{JSON.stringify(skill)}</em>,</span>)}
+              <span>]</span><b>{'}'}</b>
+            </div>
+            <div class="terminal-footer">{p.location}</div>
+          </figure>}
+      </div>
+    </section>
+    <section id="about" class="wrap strip" aria-labelledby="about-title">
+      <p class="section-label">{copy.about}</p>
+      <div><h2 id="about-title">{about.headline}</h2><p class="copy">{about.description}</p></div>
+    </section>
+    {projects.length > 0 && <section id="projects" class="wrap work" aria-labelledby="work-title">
+      <h2 id="work-title">{copy.projects}</h2>
+      <div class="card-grid">
+        {projects.map((project) => <article class="tech-card">
+          {project.image && <img class="project-image" src={project.image.src} alt={project.image.alt} loading="lazy" />}
+          <div><p class="eyebrow"><span aria-hidden="true">~/</span> {project.category}</p><h3>{project.title}</h3>
+            <p class="copy">{project.description}</p>{project.href && <a class="project-link" href={project.href} aria-label={`${copy.viewProject}: ${project.title}`}>{copy.viewProject}</a>}</div>
+        </article>)}
+      </div>
+    </section>}
+    <div class="wrap technical-profile">
+      {skills.length > 0 && <section id="skills" aria-labelledby="skills-title"><h2 id="skills-title">{copy.skills}</h2>
+        <ul class="chips">{skills.map((skill) => <li>{skill}</li>)}</ul></section>}
+      {experience.length > 0 && <section id="experience" aria-labelledby="experience-title"><h2 id="experience-title">{copy.experience}</h2>
+        <ol class="history">{experience.map((job) => <li><p class="eyebrow">{job.period}</p><h3>{job.title}</h3><p>{job.organization}</p><p class="copy">{job.description}</p></li>)}</ol>
+      </section>}
+    </div>
+  </main>
+  <footer class="tech-footer">
+    {contact.links.length > 0 && <section id="contact" class="wrap footer-main" aria-labelledby="contact-title">
+      <div><p class="section-label">{copy.contact}</p><h2 id="contact-title">{contact.headline}</h2><p>{contact.description}</p></div>
+      <div class="contact-links">{contact.links.map(({ href, label }) => <a href={href}>{label}</a>)}</div>
+    </section>}
+    <div class="wrap footer-bottom"><p>{demo ? copy.demo : p.name}</p><a href="#home">{copy.top}</a></div>
+  </footer>
+</Frame>
