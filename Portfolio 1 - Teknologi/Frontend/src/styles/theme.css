@@ -57,12 +57,6 @@
 .strip .section-label { font-family: var(--mono); }
 .strip .copy { margin-top: .6rem; max-width: 39rem; }
 h2 { font-size: clamp(1.9rem, 3.5vw, 3.05rem); letter-spacing: -.055em; }
-.work { padding-block: 3.4rem; }
-.card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.25rem; }
-.tech-card { background: var(--surface); border: 1px solid var(--line); border-radius: .45rem; overflow: hidden; }
-.tech-card > div { padding: 1.15rem; }
-.tech-card h3 { font-size: 1.5rem; margin: .55rem 0 .6rem; }
-.tech-card .eyebrow { color: var(--muted); }
 .technical-profile { display: grid; grid-template-columns: .85fr 1.15fr; gap: 2rem; padding-block: .5rem 3.6rem; }
 .technical-profile h2 { margin-bottom: 1rem; }
 .chips { display: flex; flex-wrap: wrap; gap: .45rem; }
@@ -78,6 +72,5 @@ h2 { font-size: clamp(1.9rem, 3.5vw, 3.05rem); letter-spacing: -.055em; }
 .footer-bottom { padding-block: .85rem; border-top: 1px solid var(--line); color: var(--muted); }
 @media (max-width: 45rem) {
   .strip, .technical-profile { grid-template-columns: 1fr; }
-  .card-grid { grid-template-columns: 1fr; }
   .strip { gap: .6rem; }
 }

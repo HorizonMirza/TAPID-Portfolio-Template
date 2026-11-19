@@ -1,18 +1,24 @@
 ---
 import { localize, type Language } from './portfolio';
-import { projectLayouts, projectTheme } from './project-demos';
+import { projectLayouts, projectTheme, selectedProjectLayout } from './project-demos';
 import './styles/project-demos.css';
 
-interface Props { language: Language }
-const { language } = Astro.props;
+interface Props { language: Language; preview?: boolean }
+const { language, preview = false } = Astro.props;
 const { copy, projects } = localize(language);
 const english = language === 'en';
 const first = projectLayouts[0];
+const layout = preview ? first.layout : selectedProjectLayout;
+const titleId = preview ? 'project-preview-title' : 'work-title';
+const canUseRail = preview || layout === 'rail';
+const canUseTabs = preview || layout === 'tabs';
+const canUseAccordion = preview || layout === 'accordion';
 const picker = english ? 'Project layout demos' : 'Demo tata letak Proyek';
 const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
 ---
-<section id="projects" class="project-previews" data-project-demos data-theme={projectTheme} aria-labelledby="project-preview-title">
-  <div class="project-preview-picker wrap">
+<section id="projects" class="project-previews" data-project-section data-project-demos={preview ? '' : undefined}
+         data-theme={projectTheme} aria-labelledby={titleId}>
+  {preview && <div class="project-preview-picker wrap">
     <div class="project-preview-picker-header">
       <h2 id="project-picker-title">{picker}</h2>
       <a href={english ? '/en/#projects' : '/#projects'}>{english ? 'Back to portfolio' : 'Kembali ke portofolio'}</a>
@@ -27,26 +33,26 @@ const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
       ))}
     </div>
     <p class="project-preview-selection" aria-live="polite">{first.name[language]}</p>
-  </div>
-  <div id="project-preview-stage" class="project-preview-stage wrap" data-layout={first.layout}>
+  </div>}
+  <div id="project-preview-stage" class="project-preview-stage wrap" data-layout={layout}>
     <header class="project-preview-title">
-      <h2 id="project-preview-title">{copy.projects}</h2>
-      <div class="project-preview-rail-controls" role="group" aria-label={english ? 'Scroll projects' : 'Geser proyek'} hidden>
+      <h2 id={titleId}>{copy.projects}</h2>
+      {canUseRail && <div class="project-preview-rail-controls" role="group" aria-label={english ? 'Scroll projects' : 'Geser proyek'} hidden>
         <button type="button" data-project-scroll="-1" aria-controls="project-preview-items"
                 aria-label={english ? 'Previous project' : 'Proyek sebelumnya'}>←</button>
         <button type="button" data-project-scroll="1" aria-controls="project-preview-items"
                 aria-label={english ? 'Next project' : 'Proyek berikutnya'}>→</button>
-      </div>
+      </div>}
     </header>
     <div class="project-preview-showcase">
-      <div class="project-preview-tabs" role="group" aria-label={projectPicker} hidden>
+      {canUseTabs && <div class="project-preview-tabs" role="group" aria-label={projectPicker} hidden>
         {projects.map((project, index) => (
           <button type="button" data-project-tab={index} aria-pressed={index === 0} aria-controls={`project-preview-item-${index}`}>
             {project.title}
           </button>
         ))}
-      </div>
-      <ol class="project-preview-items" id="project-preview-items">
+      </div>}
+      <ol class="project-preview-items" id="project-preview-items" hidden={layout === 'accordion'}>
         {projects.map((project, index) => (
           <li id={`project-preview-item-${index}`} data-project-card>
             <article class="project-preview-card">
@@ -65,7 +71,7 @@ const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
           </li>
         ))}
       </ol>
-      <div class="project-preview-accordion" hidden>
+      {canUseAccordion && <div class="project-preview-accordion" hidden={layout !== 'accordion'}>
         {projects.map((project, index) => (
           <details name="preview-project" open={index === 0}>
             <summary>
@@ -79,21 +85,22 @@ const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
             </div>
           </details>
         ))}
-      </div>
+      </div>}
     </div>
     {!projects.length && <p>{english ? 'No projects yet.' : 'Belum ada proyek.'}</p>}
   </div>
 </section>
 
-<script is:inline>
+{(canUseRail || canUseTabs) && <script is:inline>
   (() => {
     let controller;
+    let activeTab = 0;
 
     function initializeProjects() {
       controller?.abort();
       controller = new AbortController();
       const { signal } = controller;
-      const root = document.querySelector('[data-project-demos]');
+      const root = document.querySelector('[data-project-section]');
       if (!root) return;
 
       const choices = [...root.querySelectorAll('[data-project-choice]')];
@@ -103,10 +110,11 @@ const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
       const list = root.querySelector('#project-preview-items');
       const cards = [...list.children];
       const tabs = root.querySelector('.project-preview-tabs');
-      const tabButtons = [...tabs.querySelectorAll('button')];
+      const tabButtons = tabs ? [...tabs.querySelectorAll('button')] : [];
       const accordion = root.querySelector('.project-preview-accordion');
       const railControls = root.querySelector('.project-preview-rail-controls');
-      const [previous, next] = railControls.querySelectorAll('button');
+      const railButtons = railControls ? [...railControls.querySelectorAll('button')] : [];
+      const [previous, next] = railButtons;
       const languageLink = document.querySelector('.tapbar a.language');
       const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
       let animation;
@@ -117,25 +125,32 @@ const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
       }
 
       function showProject(index) {
+        activeTab = index;
         const isTabbed = stage.dataset.layout === 'tabs';
         cards.forEach((card, position) => { card.hidden = isTabbed && position !== index; });
         tabButtons.forEach((button, position) => button.setAttribute('aria-pressed', String(position === index)));
       }
 
-      function showLayout(choice, animate) {
-        const layout = choice.dataset.layout;
+      function showLayout(layout) {
+        stage.dataset.layout = layout;
+        if (accordion) accordion.hidden = layout !== 'accordion';
+        list.hidden = layout === 'accordion';
+        if (tabs) tabs.hidden = layout !== 'tabs' || cards.length < 2;
+        showProject(activeTab);
+        if (railControls) {
+          railControls.hidden = layout !== 'rail' || cards.length < 2;
+          if (!railControls.hidden) {
+            list.scrollLeft = 0;
+            updateRailControls();
+          }
+        }
+      }
+
+      function selectChoice(choice, animate) {
         choices.forEach((button) => button.setAttribute('aria-pressed', String(button === choice)));
         selection.textContent = choice.querySelector('strong').textContent;
-        stage.dataset.layout = layout;
-        accordion.hidden = layout !== 'accordion';
-        list.hidden = !accordion.hidden;
-        tabs.hidden = layout !== 'tabs' || cards.length < 2;
-        railControls.hidden = layout !== 'rail' || cards.length < 2;
-        showProject(0);
-        if (!railControls.hidden) {
-          list.scrollLeft = 0;
-          updateRailControls();
-        }
+        if (animate) activeTab = 0;
+        showLayout(choice.dataset.layout);
         if (languageLink) {
           const url = new URL(languageLink.href);
           url.searchParams.set('pilihan', choice.dataset.projectChoice);
@@ -152,7 +167,7 @@ const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
 
       function selectFromAddress() {
         const id = new URLSearchParams(location.search).get('pilihan');
-        showLayout(choices.find((choice) => choice.dataset.projectChoice === id) ?? choices[0], false);
+        selectChoice(choices.find((choice) => choice.dataset.projectChoice === id) ?? choices[0], false);
       }
 
       choices.forEach((choice) => choice.addEventListener('click', () => {
@@ -160,20 +175,26 @@ const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
         const url = new URL(location.href);
         url.searchParams.set('pilihan', choice.dataset.projectChoice);
         try { history.replaceState(history.state, '', url.href); } catch {}
-        showLayout(choice, true);
+        selectChoice(choice, true);
       }, { signal }));
       tabButtons.forEach((button) => button.addEventListener('click', () => showProject(Number(button.dataset.projectTab)), { signal }));
-      railControls.querySelectorAll('button').forEach((button) => button.addEventListener('click', () => {
+      railButtons.forEach((button) => button.addEventListener('click', () => {
         const step = cards[0].offsetWidth + parseFloat(getComputedStyle(list).columnGap);
         list.scrollBy({ left: step * Number(button.dataset.projectScroll), behavior: reducedMotion.matches ? 'instant' : 'smooth' });
       }, { signal }));
-      list.addEventListener('scroll', updateRailControls, { passive: true, signal });
-      window.addEventListener('resize', updateRailControls, { signal });
-      window.addEventListener('popstate', selectFromAddress, { signal });
-      selectFromAddress();
+      if (railControls) {
+        list.addEventListener('scroll', updateRailControls, { passive: true, signal });
+        window.addEventListener('resize', updateRailControls, { signal });
+      }
+      if (choices.length) {
+        window.addEventListener('popstate', selectFromAddress, { signal });
+        selectFromAddress();
+      } else {
+        showLayout(stage.dataset.layout);
+      }
     }
 
     initializeProjects();
     document.addEventListener('tapid:language-change', initializeProjects);
   })();
-</script>
+</script>}

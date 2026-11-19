@@ -26,12 +26,6 @@
 .location { margin-top: .4rem; color: var(--muted); }
 h2 { font-size: clamp(1.95rem, 4.3vw, 3.6rem); font-weight: 800; letter-spacing: -.07em; }
 .ops-about h2 { margin-bottom: .55rem; }
-.ops-projects { padding-block: 3rem 2.75rem; }
-.project-board { display: flex; gap: .65rem; flex-wrap: wrap; margin-top: 1rem; }
-.project-board article { flex: 1 1 15.5rem; padding: 1.1rem; border: 1px solid var(--line); background: var(--surface); }
-.project-board article:nth-child(3n + 1) { border-top: .3rem solid var(--detail-accent); }
-.project-board h3 { font-size: 1.5rem; margin: .55rem 0 .4rem; }
-.project-board .project-image { margin-top: .5rem; }
 .ops-skills { background: var(--subtle); padding-block: 1.5rem; display: grid; grid-template-columns: .7fr 1.4fr; gap: 1rem; align-items: center; }
 .ops-skills ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
 .ops-skills li { padding: .45rem .6rem; border-bottom: 1px solid var(--line); font-weight: 650; }

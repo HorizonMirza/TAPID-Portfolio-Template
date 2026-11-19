@@ -10,14 +10,14 @@ Setiap tema juga punya 10 rancangan Tentang di `/demo-tentang/` dan `/en/demo-te
 
 Untuk mencoba 10 rancangan Proyek, buka `/demo-proyek/` atau `/en/demo-proyek/`. Pilihan dapat dibagikan lewat URL seperti `/demo-proyek/?pilihan=04`. Isi proyek mengikuti `projects` di file data tema.
 
-| Template | Warna bawaan | Beranda utama | Tentang utama | Top bar |
-| --- | --- | --- | --- | --- |
-| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 06 · Developer Panel | 01 · Command Rail |
-| [Portfolio 2 - Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau | 04 · Green Frame | 09 · Academic Highlight | 05 · Advisor Capsule |
-| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | 03 · Team Lead | 06 · Yellow Statement | 02 · Ops Inline |
-| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | 01 · Poster Cover | 10 · Catalogue Index | 09 · Letterpress |
-| [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | 01 · Classic Editorial | 10 · Academic Record | 04 · Soft Capsule |
-| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu elektrik | 03 · Analyst at Desk | 10 · Editorial Center | 09 · Review Note |
+| Template | Warna bawaan | Beranda utama | Tentang utama | Proyek utama | Top bar |
+| --- | --- | --- | --- | --- | --- |
+| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 06 · Developer Panel | 05 · Studi Kasus | 01 · Command Rail |
+| [Portfolio 2 - Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau | 04 · Green Frame | 09 · Academic Highlight | 05 · Galeri Kartu | 05 · Advisor Capsule |
+| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | 03 · Team Lead | 06 · Yellow Statement | 01 · Linimasa | 02 · Ops Inline |
+| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | 01 · Poster Cover | 10 · Catalogue Index | 08 · Tab Proyek | 09 · Letterpress |
+| [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | 01 · Classic Editorial | 10 · Academic Record | 05 · Linimasa | 04 · Soft Capsule |
+| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu elektrik | 03 · Analyst at Desk | 10 · Editorial Center | 04 · Galeri Kartu | 09 · Review Note |
 
 ## Jalankan satu template
 

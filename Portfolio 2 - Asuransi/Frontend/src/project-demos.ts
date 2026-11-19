@@ -21,3 +21,5 @@ export const projectLayouts = order.map((layout, index) => ({
   layout,
   name: layouts[layout],
 }));
+
+export const selectedProjectLayout: Layout = 'gallery';

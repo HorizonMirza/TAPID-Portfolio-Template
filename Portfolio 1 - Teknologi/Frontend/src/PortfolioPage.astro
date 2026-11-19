@@ -3,6 +3,7 @@ import Frame from './Frame.astro';
 import TopBar from './TopBar.astro';
 import HomeHero from './HomeHero.astro';
 import AboutSection from './AboutSection.astro';
+import ProjectSection from './ProjectSection.astro';
 import CvLink from './CvLink.astro';
 import { localize, type Language } from './portfolio';
 interface Props { language: Language }
@@ -45,16 +46,7 @@ const { copy, p, projects, skills, experience, contact, demo } = localize(langua
       </section>
     )}
     {!previewAbout && <AboutSection language={language} />}
-    {!previewProjects && projects.length > 0 && <section id="projects" class="wrap work" aria-labelledby="work-title">
-      <h2 id="work-title">{copy.projects}</h2>
-      <div class="card-grid">
-        {projects.map((project) => <article class="tech-card">
-          {project.image && <img class="project-image" src={project.image.src} alt={project.image.alt} loading="lazy" />}
-          <div><p class="eyebrow"><span aria-hidden="true">~/</span> {project.category}</p><h3>{project.title}</h3>
-            <p class="copy">{project.description}</p>{project.href && <a class="project-link" href={project.href} aria-label={`${copy.viewProject}: ${project.title}`}>{copy.viewProject}</a>}</div>
-        </article>)}
-      </div>
-    </section>}
+    {!previewProjects && projects.length > 0 && <ProjectSection language={language} />}
     <div class="wrap technical-profile">
       {skills.length > 0 && <section id="skills" aria-labelledby="skills-title"><h2 id="skills-title">{copy.skills}</h2>
         <ul class="chips">{skills.map((skill) => <li>{skill}</li>)}</ul></section>}
