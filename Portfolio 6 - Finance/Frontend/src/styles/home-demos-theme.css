@@ -1,4 +1,4 @@
-:where(.home-demos[data-theme="finance"]) .home-demo-stage {
+.home-demo-stage:where([data-theme="finance"]) {
   --demo-title-font: var(--finance-serif);
   --demo-weight: 595;
   --demo-tracking: -.049em;

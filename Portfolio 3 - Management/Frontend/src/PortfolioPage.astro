@@ -1,6 +1,7 @@
 ---
 import Frame from './Frame.astro';
 import TopBar from './TopBar.astro';
+import HomeHero from './HomeHero.astro';
 import { localize, type Language } from './portfolio';
 interface Props { language: Language }
 const { language } = Astro.props;
@@ -11,18 +12,20 @@ const { copy, p, about, projects, skills, experience, contact, demo } = localize
 <Frame language={language} skip={copy.skip} previewHome={previewHome}>
   <TopBar language={language} languageHref={languageHref} />
   <main id="main" tabindex="-1">
-    {previewHome ? <slot name="home" /> : <section id="home" class="ops-hero split-hero">
-      <div class="ops-statement hero-copy">
-        <p class="section-label">{p.role}</p><h1>{p.name}</h1><p class="ops-line">{p.headline}</p>
-        <p class="ops-intro">{p.intro}</p>
-        <a class="action" href={projects.length ? '#projects' : '#about'}>{projects.length ? copy.viewProjects : copy.about}</a>
-      </div>
-      {p.portrait ? <figure class="ops-portrait hero-media">
-        <img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" />
-        <figcaption>{p.location}</figcaption>
-      </figure> :
-        <div class="ops-graphic" aria-hidden="true"><i></i><i></i><i></i></div>}
-    </section>}
+    {previewHome ? <slot name="home" /> : p.portrait ? (
+      <section id="home" aria-labelledby="portfolio-home-title">
+        <HomeHero language={language} />
+      </section>
+    ) : (
+      <section id="home" class="ops-hero split-hero">
+        <div class="ops-statement hero-copy">
+          <p class="section-label">{p.role}</p><h1>{p.name}</h1><p class="ops-line">{p.headline}</p>
+          <p class="ops-intro">{p.intro}</p>
+          <a class="action" href={projects.length ? '#projects' : '#about'}>{projects.length ? copy.viewProjects : copy.about}</a>
+        </div>
+        <div class="ops-graphic" aria-hidden="true"><i></i><i></i><i></i></div>
+      </section>
+    )}
     <section id="about" class="wrap ops-about" aria-labelledby="about-title">
       <div><p class="section-label">{copy.about}</p><p class="location">{p.location}</p></div>
       <div><h2 id="about-title">{about.headline}</h2><p class="copy">{about.description}</p></div>

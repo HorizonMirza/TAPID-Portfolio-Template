@@ -6,14 +6,14 @@ Keenam top bar menampilkan nama profil, menu di tengah pada desktop, dan tombol 
 
 Setiap portofolio demo punya 10 rancangan Beranda bernomor 01–10. Buka `/demo-beranda/` pada tema yang sedang dijalankan atau `/en/demo-beranda/` untuk versi Inggris. Pilihan dapat dibuka kembali lewat URL seperti `/demo-beranda/?pilihan=04`.
 
-| Template | Warna bawaan | Desain | Top bar |
+| Template | Warna bawaan | Beranda utama | Top bar |
 | --- | --- | --- | --- |
-| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | Space Grotesk, potret ruang kerja bernuansa biru, kartu proyek, dan riwayat vertikal | 01 · Command Rail |
-| [Portfolio 2 - Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau | DM Sans, foto editorial, daftar proyek, dan kartu pengalaman | 05 · Advisor Capsule |
-| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | Manrope, foto profesional berbingkai, papan proyek, dan tabel riwayat | 02 · Ops Inline |
-| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | Bricolage Grotesque, masthead ekspresif, potret studio cetak, dan galeri poster | 09 · Letterpress |
-| [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | Playfair Display, potret monokrom, dan tata letak editorial | 04 · Soft Capsule |
-| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu tua | Newsreader, potret profesional, dan susunan proyek bergaya buku besar | 09 · Review Note |
+| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 01 · Command Rail |
+| [Portfolio 2 - Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau | 04 · Green Frame | 05 · Advisor Capsule |
+| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | 03 · Team Lead | 02 · Ops Inline |
+| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | 01 · Poster Cover | 09 · Letterpress |
+| [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | 01 · Classic Editorial | 04 · Soft Capsule |
+| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu tua | 03 · Analyst at Desk | 09 · Review Note |
 
 ## Jalankan satu template
 

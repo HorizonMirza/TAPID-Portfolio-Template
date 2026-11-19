@@ -1,60 +1,36 @@
 ---
-import { localize, type Language } from './portfolio';
-import { homeDemos, demoTheme } from './home-demos';
-import './styles/home-demos.css';
-import './styles/home-demos-theme.css';
+import type { Language } from './portfolio';
+import { homeDemos, selectedHome } from './home-demos';
+import HomeHero from './HomeHero.astro';
 
 interface Props { language: Language }
 const { language } = Astro.props;
-const { copy, p, projects, skills } = localize(language);
 const inEnglish = language === 'en';
 const title = inEnglish ? 'Home layout demos' : 'Demo Beranda';
 const back = inEnglish ? 'Portfolio' : 'Portofolio';
-const previous = homeDemos[0];
-const project = projects[0];
 ---
-<section id="home" class="home-demos" data-home-demos data-theme={demoTheme} aria-labelledby="home-demo-heading">
+<section id="home" data-home-demos aria-labelledby="home-demo-heading">
   <div class="home-demo-picker">
     <div class="home-demo-picker-title">
       <h2 id="home-demo-heading">{title}</h2>
       <a href={inEnglish ? '/en/' : '/'}>{back}</a>
     </div>
     <div class="home-demo-options" role="group" aria-labelledby="home-demo-heading">
-      {homeDemos.map((demo, index) => (
+      {homeDemos.map((demo) => (
         <button type="button" class="home-demo-option" data-demo-choice={demo.id} data-art={demo.art}
-                aria-label={`${demo.id} ${demo.name}`} aria-pressed={index === 0} aria-controls="home-demo-stage">
+                aria-label={`${demo.id} ${demo.name}`} aria-pressed={demo.id === selectedHome.id} aria-controls="home-demo-stage">
           <span class="home-demo-number">{demo.id}</span>
           <span class="home-demo-option-name">{demo.name}</span>
         </button>
       ))}
     </div>
     <p class="home-demo-selection" aria-live="polite" aria-atomic="true">
-      <strong data-demo-name>{previous.id} · {previous.name}</strong>
-      <span data-demo-caption>{previous.caption[language]}</span>
+      <strong data-demo-name>{selectedHome.id} · {selectedHome.name}</strong>
+      <span data-demo-caption>{selectedHome.caption[language]}</span>
     </p>
   </div>
 
-  <div class="home-demo-stage" id="home-demo-stage" data-demo-stage data-design={previous.id} data-art={previous.art}>
-    <div class="home-demo-title">
-      <p>{p.role}</p>
-      <h1>{p.name}</h1>
-    </div>
-    <div class="home-demo-copy">
-      <p class="home-demo-headline">{p.headline}</p>
-      <p class="home-demo-intro">{p.intro}</p>
-      <a class="action home-demo-action" href={projects.length ? '#projects' : '#about'}>
-        {projects.length ? copy.viewProjects : copy.about}
-      </a>
-    </div>
-    {p.portrait && <figure class="home-demo-portrait">
-      <img src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" />
-    </figure>}
-    <div class="home-demo-detail">
-      <p class="home-demo-location">{p.location}</p>
-      {project && <a href="#projects">{project.title}</a>}
-      {skills[0] && <p>{skills[0]}</p>}
-    </div>
-  </div>
+  <HomeHero language={language} preview />
   <div hidden data-demo-labels={JSON.stringify(homeDemos.map(({ caption }) => caption[language]))}></div>
 </section>
 
@@ -69,7 +45,8 @@ const project = projects[0];
     const captions = JSON.parse(root.querySelector('[data-demo-labels]').dataset.demoLabels);
     const languageLink = document.querySelector('.tapbar a.language');
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-    let current = choices[0];
+    const initial = choices.find((choice) => choice.getAttribute('aria-pressed') === 'true') ?? choices[0];
+    let current = initial;
     let animation;
 
     function select(choice, animate) {
@@ -97,7 +74,7 @@ const project = projects[0];
 
     function selectFromAddress() {
       const id = new URLSearchParams(location.search).get('pilihan');
-      select(choices.find((choice) => choice.dataset.demoChoice === id) ?? choices[0], false);
+      select(choices.find((choice) => choice.dataset.demoChoice === id) ?? initial, false);
     }
 
     for (const choice of choices) {

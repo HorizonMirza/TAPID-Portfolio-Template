@@ -1,4 +1,4 @@
-:where(.home-demos[data-theme="teknologi"]) .home-demo-stage {
+.home-demo-stage:where([data-theme="teknologi"]) {
   --demo-label-font: var(--mono);
   --demo-button-radius: .35rem;
   --stage-surface: var(--surface);

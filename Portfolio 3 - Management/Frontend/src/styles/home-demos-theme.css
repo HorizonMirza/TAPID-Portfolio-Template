@@ -1,4 +1,4 @@
-:where(.home-demos[data-theme="management"]) .home-demo-stage {
+.home-demo-stage:where([data-theme="management"]) {
   --demo-weight: 800;
   --demo-tracking: -.078em;
   --stage-surface: var(--bg);

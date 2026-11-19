@@ -1,4 +1,4 @@
-:where(.home-demos[data-theme="asuransi"]) .home-demo-stage {
+.home-demo-stage:where([data-theme="asuransi"]) {
   --demo-weight: 730;
   --demo-button-radius: 99rem;
   --portrait-shape: 1.8rem;

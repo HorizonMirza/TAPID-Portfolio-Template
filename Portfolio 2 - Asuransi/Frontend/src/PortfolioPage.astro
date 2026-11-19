@@ -1,6 +1,7 @@
 ---
 import Frame from './Frame.astro';
 import TopBar from './TopBar.astro';
+import HomeHero from './HomeHero.astro';
 import { localize, type Language } from './portfolio';
 interface Props { language: Language }
 const { language } = Astro.props;
@@ -11,17 +12,19 @@ const { copy, p, about, projects, skills, experience, contact, demo } = localize
 <Frame language={language} skip={copy.skip} previewHome={previewHome}>
   <TopBar language={language} languageHref={languageHref} />
   <main id="main" tabindex="-1">
-    {previewHome ? <slot name="home" /> : <section id="home" class="risk-hero split-hero">
-      <div class="risk-intro hero-copy">
-        <p class="section-label">{p.role}</p><h1>{p.name}</h1>
-        <p class="risk-line">{p.headline}</p><p class="copy">{p.intro}</p>
-        <a class="action" href={contact.links.length ? '#contact' : '#about'}>{contact.links.length ? copy.viewContact : copy.about}</a>
-      </div>
-      {p.portrait && <figure class="hero-media">
-        <img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" />
-        <figcaption>{p.location}</figcaption>
-      </figure>}
-    </section>}
+    {previewHome ? <slot name="home" /> : p.portrait ? (
+      <section id="home" aria-labelledby="portfolio-home-title">
+        <HomeHero language={language} />
+      </section>
+    ) : (
+      <section id="home" class="risk-hero split-hero">
+        <div class="risk-intro hero-copy">
+          <p class="section-label">{p.role}</p><h1>{p.name}</h1>
+          <p class="risk-line">{p.headline}</p><p class="copy">{p.intro}</p>
+          <a class="action" href={contact.links.length ? '#contact' : '#about'}>{contact.links.length ? copy.viewContact : copy.about}</a>
+        </div>
+              </section>
+    )}
     <div class="risk-about">
       <section id="about" class="wrap" aria-labelledby="about-title">
         <p class="section-label">{copy.about} <span aria-hidden="true">/</span> {p.location}</p>

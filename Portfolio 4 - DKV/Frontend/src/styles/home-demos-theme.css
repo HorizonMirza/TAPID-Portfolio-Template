@@ -1,4 +1,4 @@
-:where(.home-demos[data-theme="dkv"]) .home-demo-stage {
+.home-demo-stage:where([data-theme="dkv"]) {
   --demo-weight: 820;
   --demo-tracking: -.074em;
   --demo-line: .86;

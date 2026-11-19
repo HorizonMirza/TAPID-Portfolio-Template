@@ -1,4 +1,4 @@
-:where(.home-demos[data-theme="general"]) .home-demo-stage {
+.home-demo-stage:where([data-theme="general"]) {
   --demo-title-font: var(--serif);
   --demo-weight: 590;
   --demo-tracking: -.06em;

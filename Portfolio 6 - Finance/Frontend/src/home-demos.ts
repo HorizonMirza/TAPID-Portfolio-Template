@@ -92,3 +92,5 @@ export const homeDemos = [
     }
   }
 ];
+
+export const selectedHome = homeDemos.find((demo) => demo.id === "03") ?? homeDemos[0];

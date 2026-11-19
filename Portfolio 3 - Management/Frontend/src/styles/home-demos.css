@@ -168,6 +168,9 @@
 }
 .home-demo-stage[data-art="bleed"] .home-demo-portrait { margin: var(--bleed-margin, 0); }
 
+@media (min-width: 49.01rem) {
+  .home-demo-stage:not([data-demo-stage]) { min-height: var(--hero-height); }
+}
 @media (max-width: 70rem) {
   .home-demo-options { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
