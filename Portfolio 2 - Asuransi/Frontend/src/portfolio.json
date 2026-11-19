@@ -30,13 +30,9 @@
       "specialization": { "id": "Analisis Polis dan Klaim", "en": "Policy and Claims Analysis" },
       "gpa": { "value": 3.54, "scale": 4 }
     },
-    "headline": {
-      "id": "Dokumen yang bisa dibaca bersama.",
-      "en": "Documents everyone can work from."
-    },
     "description": {
-      "id": "Saya menyiapkan ringkasan yang menjelaskan cakupan, pengecualian, dan pertanyaan yang masih terbuka. Tujuannya agar tim operasional dan pengambil keputusan bisa membahas dokumen yang sama.",
-      "en": "I prepare summaries that explain coverage, exclusions, and outstanding questions so operations teams and decision-makers can discuss the same document."
+      "id": "Saya mahasiswa S1 Manajemen Risiko di Universitas Bina Nusantara. Dalam proyek akademik, saya membandingkan polis asuransi, mendokumentasikan risiko, dan menyusun ringkasan klaim. Saya tertarik menyajikan cakupan dan pengecualian polis dengan bahasa yang mudah dipahami.",
+      "en": "I'm a Risk Management undergraduate at BINUS University. My academic projects have focused on comparing insurance policies, documenting risks, and preparing claim summaries. I'm interested in making policy coverage and exclusions easier to understand."
     }
   },
   "projects": [

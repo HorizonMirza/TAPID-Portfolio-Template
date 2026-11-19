@@ -94,15 +94,8 @@
   background-size: 2.15rem 2.15rem;
 }
 .about-intro { grid-area: intro; min-width: 0; }
-.about-kicker {
-  margin-block-end: .7rem;
-  color: var(--about-accent);
-  font: 750 .87rem/1.3 var(--about-label-font);
-  letter-spacing: .065em;
-  text-transform: uppercase;
-}
 .about-heading h2 {
-  font: var(--about-title-weight, 750) clamp(2.4rem, 5.2vw, 5.2rem)/var(--about-title-line, .98) var(--about-title-font);
+  font: var(--about-title-weight, 750) clamp(2rem, 3.7vw, 3.65rem)/var(--about-title-line, .98) var(--about-title-font);
   letter-spacing: -.055em;
   overflow-wrap: anywhere;
 }
@@ -218,7 +211,7 @@
   background: var(--button);
   color: var(--button-ink);
 }
-.about-stage[data-layout="split"] :is(.about-summary, .about-kicker) { color: inherit; }
+.about-stage[data-layout="split"] .about-summary { color: inherit; }
 .about-stage[data-layout="split"] .about-fact { --fact-border: 0; border-block-end: 1px solid var(--about-accent); }
 
 .about-stage[data-layout="feature"] { --stage-columns: minmax(0, 1fr) minmax(0, 1fr); --stage-align: end; }

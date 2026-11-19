@@ -30,13 +30,9 @@
       "specialization": { "id": "Riset Kualitatif dan Komunikasi Program", "en": "Qualitative Research and Program Communication" },
       "gpa": { "value": 3.62, "scale": 4 }
     },
-    "headline": {
-      "id": "Catatan yang bisa ditindaklanjuti.",
-      "en": "Notes people can act on."
-    },
     "description": {
-      "id": "Saya menyukai pekerjaan yang menghubungkan percakapan dengan keputusan. Saya mendokumentasikan pertanyaan, mengelompokkan temuan, dan menyiapkan ringkasan yang bisa dipakai tim untuk menentukan langkah berikutnya.",
-      "en": "I like work that connects conversations with decisions. I document questions, group findings, and prepare summaries a team can use to decide what comes next."
+      "id": "Saya mahasiswa S1 Ilmu Komunikasi di Universitas Bina Nusantara. Dalam proyek akademik, saya melakukan wawancara, mengolah temuan riset kualitatif, dan menyusun materi komunikasi program. Saya senang merangkum temuan dengan bahasa yang membantu tim menentukan langkah berikutnya.",
+      "en": "I'm a Communication Studies undergraduate at BINUS University. My academic projects have involved interviews, qualitative research, and program communication. I enjoy turning findings into clear summaries that help teams decide what to do next."
     }
   },
   "projects": [

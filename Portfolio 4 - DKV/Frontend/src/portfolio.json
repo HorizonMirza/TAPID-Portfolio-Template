@@ -30,13 +30,9 @@
       "specialization": { "id": "Identitas Visual dan Tipografi", "en": "Visual Identity and Typography" },
       "gpa": { "value": 3.79, "scale": 4 }
     },
-    "headline": {
-      "id": "Bentuk dimulai dari meja kerja.",
-      "en": "Form begins at the worktable."
-    },
     "description": {
-      "id": "Saya membuat sketsa dan uji cetak kecil untuk melihat bagaimana bentuk dibaca ketika ukuran dan material berubah. Eksperimen itu menjadi dasar untuk sistem visual proyek.",
-      "en": "I use sketches and small print tests to see how a form reads as scale and material change. Those experiments inform the visual system for each project."
+      "id": "Saya mahasiswa S1 Desain Komunikasi Visual di Universitas Bina Nusantara dengan pengalaman proyek akademik dalam identitas visual, tipografi, dan desain cetak. Saya tertarik mengeksplorasi bagaimana pilihan huruf dan warna bisa membuat informasi lebih mudah dibaca.",
+      "en": "I'm a Visual Communication Design undergraduate at BINUS University with academic project experience in visual identity, typography, and print design. I'm interested in how type and color can make information easier to read."
     }
   },
   "projects": [

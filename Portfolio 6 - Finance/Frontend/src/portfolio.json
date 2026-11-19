@@ -21,10 +21,9 @@
       "specialization": { "id": "Perencanaan Keuangan dan Pemodelan", "en": "Financial Planning and Modeling" },
       "gpa": { "value": 3.73, "scale": 4 }
     },
-    "headline": { "id": "Laporan yang bisa ditelusuri.", "en": "Reports with a clear audit trail." },
     "description": {
-      "id": "Saya mulai dari pertanyaan yang perlu dijawab tim. Setelah mencocokkan sumber data, saya menuliskan asumsi dan menyusun ringkasan yang memudahkan pembaca menghubungkan angka dengan perubahan operasional.",
-      "en": "I start with the question a team needs to answer. After reconciling data sources, I document the assumptions and summarize how operational changes relate to the numbers."
+      "id": "Saya mahasiswa S1 Keuangan di Universitas Bina Nusantara dengan pengalaman proyek akademik dalam analisis anggaran, perkiraan arus kas, dan pemodelan keuangan. Saya tertarik menggunakan data keuangan untuk menjelaskan perubahan kinerja dan membantu tim menyusun rencana.",
+      "en": "I'm a Finance undergraduate at BINUS University with academic project experience in budget analysis, cash flow forecasting, and financial modeling. I'm interested in using financial data to explain changes in performance and help teams plan."
     }
   },
   "projects": [

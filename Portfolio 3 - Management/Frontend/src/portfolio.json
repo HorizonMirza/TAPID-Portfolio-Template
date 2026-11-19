@@ -30,13 +30,9 @@
       "specialization": { "id": "Operasional dan Manajemen Proyek", "en": "Operations and Project Management" },
       "gpa": { "value": 3.71, "scale": 4 }
     },
-    "headline": {
-      "id": "Rencana yang bisa dipakai tim setiap minggu.",
-      "en": "Plans the team can use every week."
-    },
     "description": {
-      "id": "Saya memulai dengan hasil yang ingin dicapai dan siapa yang bisa memutuskan. Dari situ saya membuat rencana singkat, meninjau hambatan bersama tim, dan mencatat keputusan secara terbuka.",
-      "en": "I start with the intended outcome and who can make decisions. Then I draft a short plan, review blockers with the team, and keep a shared record of decisions."
+      "id": "Saya mahasiswa S1 Manajemen di Universitas Bina Nusantara. Proyek akademik saya mencakup perencanaan operasional, koordinasi tugas, dan perbaikan proses kerja. Saya tertarik membantu tim memperjelas tanggung jawab dan memantau kemajuan proyek.",
+      "en": "I'm a Management undergraduate at BINUS University. I've worked on academic projects in operations planning, task coordination, and process improvement. I'm interested in making responsibilities and progress easier for teams to track."
     }
   },
   "projects": [

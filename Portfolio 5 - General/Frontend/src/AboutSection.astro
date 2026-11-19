@@ -5,7 +5,7 @@ import './styles/about-demos.css';
 
 interface Props { language: Language }
 const { language } = Astro.props;
-const { about, p, copy } = localize(language);
+const { about, copy } = localize(language);
 const preview = Astro.slots.has('picker');
 const english = language === 'en';
 const format = new Intl.NumberFormat(english ? 'en-US' : 'id-ID', {
@@ -31,8 +31,7 @@ const facts = [
        data-layout={selectedAbout.layout}>
     <div class="about-intro">
       <div class="about-heading">
-        <p class="about-kicker">{copy.about} · {p.name}</p>
-        <h2 id="about-title">{about.headline}</h2>
+        <h2 id="about-title">{copy.about}</h2>
       </div>
       <p class="about-summary">{about.description}</p>
     </div>

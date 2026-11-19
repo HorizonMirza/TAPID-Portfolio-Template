@@ -30,13 +30,9 @@
       "specialization": { "id": "Rekayasa Web dan Sistem Data", "en": "Web Engineering and Data Systems" },
       "gpa": { "value": 3.68, "scale": 4 }
     },
-    "headline": {
-      "id": "Dari alur pengguna ke komponen.",
-      "en": "From user workflows to components."
-    },
     "description": {
-      "id": "Saya memetakan tugas yang paling sering dikerjakan, membuat prototipe, lalu menguji navigasi keyboard dan keterbacaan. Setelah rilis, saya mendokumentasikan komponen supaya tim bisa mengembangkannya.",
-      "en": "I map the tasks people do most often, prototype the flow, and test keyboard navigation and readability. After release, I document components so the team can keep building on them."
+      "id": "Saya mahasiswa S1 Informatika di Universitas Bina Nusantara dengan pengalaman proyek akademik dalam analisis data, pengelolaan basis data, dan pengembangan perangkat lunak. Saya tertarik menggunakan teknologi untuk menyelesaikan masalah praktis, memperbaiki alur kerja, dan membuat solusi digital yang berguna.",
+      "en": "I'm a Computer Science undergraduate at BINUS University with academic project experience in data analytics, database management, and software development. I'm interested in using technology to solve practical problems, improve workflows, and create useful digital solutions."
     }
   },
   "projects": [

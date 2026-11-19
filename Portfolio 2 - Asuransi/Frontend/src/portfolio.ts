@@ -23,7 +23,6 @@ export const portfolio = z.object({
     cvUrl: cvURL.nullish(),
   }),
   about: z.object({
-    headline: localized,
     description: localized,
     education: z.object({
       university: text.optional(),
@@ -95,7 +94,6 @@ export function localize(language: Language) {
     cvUrl: pr.cvUrl,
   };
   const about = {
-    headline: portfolio.about.headline[language],
     description: portfolio.about.description[language],
     education: portfolio.about.education,
   };
