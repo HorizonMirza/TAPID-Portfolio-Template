@@ -1,11 +1,4 @@
 @media (prefers-reduced-motion: no-preference) {
-  [data-language-transition="out"] :is(main, footer, .language .control-label) {
-    animation: tapid-language-out .16s ease-in both;
-  }
-  [data-language-transition="in"] :is(main, footer, .language .control-label) {
-    animation: tapid-language-in .32s cubic-bezier(.22,.7,.24,1) backwards;
-  }
-
   ::view-transition-group(root) { animation-duration: .36s; }
   ::view-transition { pointer-events: none; }
 
@@ -14,10 +7,15 @@
   }
 }
 
-@keyframes tapid-language-out {
-  to { opacity: .28; transform: translateY(-.35rem); }
-}
-
-@keyframes tapid-language-in {
-  from { opacity: .28; transform: translateY(.5rem); }
+[data-language-error] {
+  position: fixed;
+  z-index: 12;
+  inset: auto var(--page-gutter) 1rem auto;
+  max-inline-size: calc(100% - var(--page-gutter) * 2);
+  padding: .65rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: .35rem;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 .35rem 1.1rem #0002;
 }

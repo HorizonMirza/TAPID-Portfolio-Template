@@ -36,13 +36,6 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
         const key = 'tapid-color-mode';
         const preference = window.matchMedia('(prefers-color-scheme: dark)');
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        const languageKey = 'tapid-language-transition';
-        try {
-          if (sessionStorage.getItem(languageKey) === location.pathname) {
-            sessionStorage.removeItem(languageKey);
-            root.dataset.languageTransition = 'in';
-          }
-        } catch {}
         let chosen;
         try { chosen = localStorage.getItem(key); } catch {}
         const apply = (mode) => {
@@ -57,7 +50,11 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
           ? chosen
           : root.dataset.defaultMode === 'system' ? (preference.matches ? 'dark' : 'light') : root.dataset.defaultMode;
         apply(getMode());
-        document.addEventListener('DOMContentLoaded', () => {
+        let pageController;
+        function initializePage() {
+          pageController?.abort();
+          pageController = new AbortController();
+          const { signal } = pageController;
           apply(getMode());
           const topbar = document.querySelector('.tapbar');
           if (topbar) {
@@ -117,24 +114,32 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
                   if (!navigationTimer) updateSection();
                 });
               }
-            }, { passive: true });
-            window.addEventListener('resize', updateTopbarHeight);
+            }, { passive: true, signal });
+            window.addEventListener('resize', updateTopbarHeight, { signal });
             window.addEventListener('hashchange', () => {
               if (!selectSection(location.hash)) {
                 window.clearTimeout(navigationTimer);
                 navigationTimer = undefined;
                 updateSection();
               }
-            });
+            }, { signal });
             document.addEventListener('click', (event) => {
               if (event.defaultPrevented || event.button !== 0 || event.metaKey ||
                   event.ctrlKey || event.shiftKey || event.altKey) return;
               const link = event.target.closest?.('a[href^="#"]');
               if (link) selectSection(link.hash);
-            });
+            }, { signal });
             selectSection(location.hash);
             updateTopbarHeight();
-            if ('ResizeObserver' in window) new ResizeObserver(updateTopbarHeight).observe(topbar);
+            if ('ResizeObserver' in window) {
+              const observer = new ResizeObserver(updateTopbarHeight);
+              observer.observe(topbar);
+              signal.addEventListener('abort', () => observer.disconnect(), { once: true });
+            }
+            signal.addEventListener('abort', () => {
+              window.clearTimeout(navigationTimer);
+              window.cancelAnimationFrame(scrollFrame);
+            }, { once: true });
           }
           document.querySelector('[data-mode-toggle]')?.addEventListener('click', () => {
             chosen = getMode() === 'dark' ? 'light' : 'dark';
@@ -145,27 +150,173 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               root.classList.toggle('mode-color-fade', !reducedMotion.matches);
               apply(chosen);
             }
-          });
-          const languageLink = document.querySelector('.tapbar a.language');
-          languageLink?.addEventListener('click', (event) => {
-            if (reducedMotion.matches || event.defaultPrevented || event.button !== 0 ||
-                event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-            event.preventDefault();
-            if (root.dataset.languageTransition === 'out') return;
-            root.dataset.languageTransition = 'out';
-
-            window.setTimeout(() => {
-              const target = new URL(languageLink.href);
-              try { sessionStorage.setItem(languageKey, target.pathname); } catch {}
-              location.assign(target.href);
-            }, 160);
-          });
+          }, { signal });
           document.querySelectorAll('[data-mobile-nav] a').forEach((link) => {
-            link.addEventListener('click', () => link.closest('details')?.removeAttribute('open'));
+            link.addEventListener('click', () => link.closest('details')?.removeAttribute('open'), { signal });
           });
+        }
+
+        const languageLink = () => document.querySelector('.tapbar a.language');
+        const sections = () => [...document.querySelectorAll('.tapbar-desktop a[href^="#"]')];
+        const activeHash = () => sections().find((link) => link.getAttribute('aria-current') === 'location')?.hash;
+        const sectionFor = (hash) => hash && document.getElementById(hash.slice(1));
+        const barBottom = () => document.querySelector('.tapbar')?.getBoundingClientRect().bottom ?? 0;
+        const pages = new Map();
+        let offlinePage;
+        let initialLanguage;
+        let pending;
+
+        function readPage(source) {
+          return {
+            title: source.title,
+            description: source.querySelector('meta[name="description"]')?.content,
+            body: source.body.cloneNode(true),
+          };
+        }
+
+        function showLanguageError() {
+          const previous = document.querySelector('[data-language-error]');
+          if (previous) previous.remove();
+          const notice = document.createElement('p');
+          notice.dataset.languageError = '';
+          notice.setAttribute('role', 'status');
+          notice.textContent = root.lang === 'id' ? 'Bahasa gagal dimuat. Coba lagi.' : 'Language could not load. Try again.';
+          document.body.append(notice);
+        }
+
+        async function readLanguage(target, language, signal) {
+          if (pages.has(language)) return pages.get(language);
+
+          let html;
+          if (offlinePage?.language === language) {
+            html = offlinePage.html;
+          } else {
+            const response = await fetch(target, { mode: 'same-origin', signal });
+            if (!response.ok) throw new Error('Could not load language');
+            html = await response.text();
+          }
+          const source = new DOMParser().parseFromString(html, 'text/html');
+          if (source.documentElement.lang !== language || !source.querySelector('.tapbar') || !source.querySelector('#main')) {
+            throw new Error('Unexpected language page');
+          }
+          const page = readPage(source);
+          pages.set(language, page);
+          return page;
+        }
+
+        function rememberReadingPosition() {
+          const hash = activeHash() || location.hash;
+          const section = sectionFor(hash);
+          return {
+            hash,
+            offset: section ? barBottom() - section.getBoundingClientRect().top : 0,
+            y: window.scrollY,
+          };
+        }
+
+        function keepReadingPosition(position) {
+          const section = sectionFor(position.hash);
+          if (!section) {
+            window.scrollTo({ top: position.y, behavior: 'instant' });
+            return;
+          }
+          const box = section.getBoundingClientRect();
+          const offset = Math.min(position.offset, Math.max(0, box.height - 24));
+          window.scrollTo({ top: window.scrollY + box.top - barBottom() + offset, behavior: 'instant' });
+        }
+
+        async function changeLanguage(target, language, fromHistory = false) {
+          if (language === root.lang || target.origin !== location.origin) return;
+          pending?.abort();
+          const controller = new AbortController();
+          pending = controller;
+
+          try {
+            const linkFocused = document.activeElement === languageLink();
+            const page = await readLanguage(target, language, controller.signal);
+            if (controller.signal.aborted) return;
+            const position = fromHistory
+              ? { hash: target.hash || (document.querySelector('[data-about-demos]') ? '#about' : '#home'), offset: 0, y: 0 }
+              : rememberReadingPosition();
+            const address = offlinePage ? new URL(location.href) : new URL(target);
+            if (offlinePage) {
+              address.search = target.search;
+              address.searchParams.set('lang', language);
+            }
+            if (!fromHistory) address.hash = position.hash === '#home' && position.y === 0 && !location.hash ? '' : position.hash;
+
+            const update = () => {
+              if (controller.signal.aborted) return;
+              const body = page.body.cloneNode(true);
+              body.querySelectorAll('script').forEach((script) => script.remove());
+              if (!fromHistory) history.replaceState(history.state, '', address.href);
+              root.lang = language;
+              document.title = page.title;
+              const description = document.querySelector('meta[name="description"]');
+              if (description && page.description) description.content = page.description;
+              document.body.replaceWith(body);
+              initializePage();
+              document.dispatchEvent(new Event('tapid:language-change'));
+              keepReadingPosition(position);
+              if (linkFocused) languageLink()?.focus({ preventScroll: true });
+            };
+
+            if (!reducedMotion.matches && document.startViewTransition) {
+              await document.startViewTransition(update).finished;
+            } else {
+              update();
+              if (!reducedMotion.matches) {
+                document.querySelector('#main')?.animate([{ opacity: .5 }, { opacity: 1 }], 230);
+              }
+            }
+          } catch {
+            if (!controller.signal.aborted) showLanguageError();
+          } finally {
+            if (pending === controller) pending = undefined;
+          }
+        }
+
+        function languageFromAddress() {
+          const url = new URL(location.href);
+          if (offlinePage) {
+            const language = url.searchParams.get('lang') || initialLanguage;
+            return language === 'id' || language === 'en' ? language : initialLanguage;
+          }
+          return [...document.querySelectorAll('link[rel="alternate"][hreflang]')]
+            .find((link) => new URL(link.href).pathname === url.pathname)?.hreflang;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+          initialLanguage = root.lang;
+          pages.set(initialLanguage, readPage(document));
+          const source = document.getElementById('offline-portfolio-language');
+          if (source) {
+            offlinePage = JSON.parse(source.textContent);
+            const mode = new URLSearchParams(location.search).get('mode');
+            if (mode === 'light' || mode === 'dark') chosen = mode;
+          }
+          initializePage();
+          const language = languageFromAddress();
+          if (language && language !== initialLanguage) {
+            void changeLanguage(new URL(location.href), language, true);
+          }
+        }, { once: true });
+
+        document.addEventListener('click', (event) => {
+          const link = event.target.closest?.('.tapbar a.language');
+          if (!link || event.defaultPrevented || event.button !== 0 ||
+              event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          const target = new URL(link.href);
+          if (target.origin !== location.origin) return;
+          event.preventDefault();
+          if (!pending) void changeLanguage(target, link.hreflang);
         });
-        window.addEventListener('pageshow', (event) => {
-          if (event.persisted) delete root.dataset.languageTransition;
+
+        window.addEventListener('popstate', () => {
+          const language = languageFromAddress();
+          if (!language) return;
+          if (language === root.lang) pending?.abort();
+          else void changeLanguage(new URL(location.href), language, true);
         });
         preference.addEventListener('change', () => apply(getMode()));
       })();
