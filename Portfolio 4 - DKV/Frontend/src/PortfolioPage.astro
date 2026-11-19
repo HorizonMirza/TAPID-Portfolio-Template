@@ -2,6 +2,7 @@
 import Frame from './Frame.astro';
 import TopBar from './TopBar.astro';
 import HomeHero from './HomeHero.astro';
+import CvLink from './CvLink.astro';
 import { localize, type Language } from './portfolio';
 interface Props { language: Language }
 const { language } = Astro.props;
@@ -29,6 +30,7 @@ const heroImage = projects.find((project) => project.image)?.image;
         <div class="studio-split split-hero">
           <div class="studio-intro hero-copy">
             <p class="studio-line">{p.headline}</p><p>{p.intro}</p>
+            <CvLink href={p.cvUrl} demo={demo} />
           </div>
           {heroImage ? <figure class="studio-portrait hero-media"><img class="profile-image" src={heroImage.src} alt={heroImage.alt} fetchpriority="high" /></figure> :
             <div class="paper-fold hero-media" aria-hidden="true"><span></span></div>}

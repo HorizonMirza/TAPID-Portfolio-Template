@@ -5,6 +5,7 @@ const text = z.string().trim().min(1);
 const localized = z.object({ id: text, en: text });
 const hex = z.string().regex(/^#[0-9a-f]{6}$/i, 'Gunakan warna HEX enam digit, misalnya #6D28D9');
 const webURL = z.url({ protocol: /^https$/ });
+const cvURL = z.url({ protocol: /^https$/, hostname: /^(drive|docs)\.google\.com$/ });
 const image = z.object({
   src: z.union([webURL, z.string().regex(/^\/(?!\/)[a-zA-Z0-9_./%\-]+$/)]),
   alt: localized,
@@ -19,6 +20,7 @@ export const portfolio = z.object({
     headline: localized,
     introduction: localized,
     portrait: image.optional(),
+    cvUrl: cvURL.nullish(),
   }),
   about: z.object({ headline: localized, description: localized }),
   projects: z.array(z.object({
@@ -80,6 +82,7 @@ export function localize(language: Language) {
     headline: pr.headline[language],
     intro: pr.introduction[language],
     portrait: getImage(pr.portrait),
+    cvUrl: pr.cvUrl,
   };
   const about = { headline: portfolio.about.headline[language], description: portfolio.about.description[language] };
   const projects = portfolio.projects.map((project) => ({

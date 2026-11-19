@@ -2,6 +2,7 @@
 import Frame from './Frame.astro';
 import TopBar from './TopBar.astro';
 import HomeHero from './HomeHero.astro';
+import CvLink from './CvLink.astro';
 import { localize, type Language } from './portfolio';
 interface Props { language: Language }
 const { language } = Astro.props;
@@ -24,6 +25,7 @@ const { copy, p, about, projects, skills, experience, contact, demo } = localize
             <h1>{p.name}</h1>
             <p class="tagline">{p.headline}</p>
             <p class="intro">{p.intro}</p>
+            <CvLink href={p.cvUrl} demo={demo} />
           </div>
           <figure class="terminal" aria-hidden="true">
             <figcaption><span class="lights"><i></i><i></i><i></i></span> portfolio.json</figcaption>

@@ -1,0 +1,36 @@
+---
+interface Props {
+  href?: string | null;
+  demo: boolean;
+}
+
+const { href, demo } = Astro.props;
+---
+{href ? (
+  <a class="home-cv" href={href} target="_blank" rel="noopener noreferrer">Open CV</a>
+) : demo && (
+  <button class="home-cv" type="button" disabled>Open CV</button>
+)}
+
+<style>
+  .home-cv {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 2.75rem;
+    margin-block-start: 1.1rem;
+    padding: .48rem .85rem;
+    border: 1px solid currentColor;
+    border-radius: .35rem;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: 750;
+    text-decoration: none;
+  }
+  a.home-cv:hover {
+    background: color-mix(in srgb, currentColor 12%, transparent);
+    text-decoration: underline;
+  }
+  a.home-cv:focus-visible { outline-color: currentColor; }
+  button.home-cv:disabled { opacity: .64; cursor: default; }
+</style>
