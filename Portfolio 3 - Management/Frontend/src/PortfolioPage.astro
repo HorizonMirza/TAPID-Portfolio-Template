@@ -8,49 +8,47 @@ const { copy, p, about, projects, skills, experience, contact, demo } = localize
 ---
 <Frame language={language} skip={copy.skip}>
   <TopBar language={language} />
-  <div class="operations wrap">
-    <main id="main" tabindex="-1">
-      <section id="home" class="ops-hero">
-        <div class="ops-statement">
-          <p class="section-label">{p.role}</p><h1>{p.name}</h1><p class="ops-line">{p.headline}</p>
-          <p class="ops-intro">{p.intro}</p>
-          <a class="action" href={projects.length ? '#projects' : '#about'}>{projects.length ? copy.viewProjects : copy.about}</a>
-        </div>
-        {p.portrait ? <figure class="ops-portrait">
-          <img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" />
-          <figcaption>{p.location}</figcaption>
-        </figure> :
-          <div class="ops-graphic" aria-hidden="true"><i></i><i></i><i></i></div>}
-      </section>
-      <section id="about" class="ops-about" aria-labelledby="about-title">
-        <div><p class="section-label">{copy.about}</p><p class="location">{p.location}</p></div>
-        <div><h2 id="about-title">{about.headline}</h2><p class="copy">{about.description}</p></div>
-      </section>
-      {projects.length > 0 && <section id="projects" class="ops-projects" aria-labelledby="work-title">
-        <h2 id="work-title">{copy.projects}</h2>
-        <div class="project-board">
-          {projects.map((project) => <article>
-            <p class="section-label">{project.category}</p>
-            {project.image && <img class="project-image" src={project.image.src} alt={project.image.alt} loading="lazy" />}
-            <h3>{project.title}</h3><p class="copy">{project.description}</p>
-            {project.href && <a class="project-link" href={project.href} aria-label={`${copy.viewProject}: ${project.title}`}>{copy.viewProject}</a>}
-          </article>)}
-        </div>
-      </section>}
-      {skills.length > 0 && <section id="skills" class="ops-skills" aria-labelledby="skills-title">
-        <h2 id="skills-title">{copy.skills}</h2><ul>{skills.map((skill) => <li>{skill}</li>)}</ul>
-      </section>}
-      {experience.length > 0 && <section id="experience" class="ops-experience" aria-labelledby="experience-title">
-        <h2 id="experience-title">{copy.experience}</h2>
-        <ol>{experience.map((job) => <li><p class="section-label">{job.period}</p><h3>{job.title}<small>{job.organization}</small></h3><p class="copy">{job.description}</p></li>)}</ol>
-      </section>}
-    </main>
-    <footer class="ops-footer">
-      {contact.links.length > 0 && <section id="contact" aria-labelledby="contact-title">
-        <div><p class="section-label">{copy.contact}</p><h2 id="contact-title">{contact.headline}</h2><p>{contact.description}</p></div>
-        <div class="contact-links">{contact.links.map(({ href, label }) => <a href={href}>{label}</a>)}</div>
-      </section>}
-      <div class="ops-footer-note"><p>{demo ? copy.demo : p.name}</p><a href="#home">{copy.top}</a></div>
-    </footer>
-  </div>
+  <main id="main" tabindex="-1">
+    <section id="home" class="ops-hero split-hero">
+      <div class="ops-statement hero-copy">
+        <p class="section-label">{p.role}</p><h1>{p.name}</h1><p class="ops-line">{p.headline}</p>
+        <p class="ops-intro">{p.intro}</p>
+        <a class="action" href={projects.length ? '#projects' : '#about'}>{projects.length ? copy.viewProjects : copy.about}</a>
+      </div>
+      {p.portrait ? <figure class="ops-portrait hero-media">
+        <img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" />
+        <figcaption>{p.location}</figcaption>
+      </figure> :
+        <div class="ops-graphic" aria-hidden="true"><i></i><i></i><i></i></div>}
+    </section>
+    <section id="about" class="wrap ops-about" aria-labelledby="about-title">
+      <div><p class="section-label">{copy.about}</p><p class="location">{p.location}</p></div>
+      <div><h2 id="about-title">{about.headline}</h2><p class="copy">{about.description}</p></div>
+    </section>
+    {projects.length > 0 && <section id="projects" class="wrap ops-projects" aria-labelledby="work-title">
+      <h2 id="work-title">{copy.projects}</h2>
+      <div class="project-board">
+        {projects.map((project) => <article>
+          <p class="section-label">{project.category}</p>
+          {project.image && <img class="project-image" src={project.image.src} alt={project.image.alt} loading="lazy" />}
+          <h3>{project.title}</h3><p class="copy">{project.description}</p>
+          {project.href && <a class="project-link" href={project.href} aria-label={`${copy.viewProject}: ${project.title}`}>{copy.viewProject}</a>}
+        </article>)}
+      </div>
+    </section>}
+    {skills.length > 0 && <section id="skills" class="wrap ops-skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">{copy.skills}</h2><ul>{skills.map((skill) => <li>{skill}</li>)}</ul>
+    </section>}
+    {experience.length > 0 && <section id="experience" class="wrap ops-experience" aria-labelledby="experience-title">
+      <h2 id="experience-title">{copy.experience}</h2>
+      <ol>{experience.map((job) => <li><p class="section-label">{job.period}</p><h3>{job.title}<small>{job.organization}</small></h3><p class="copy">{job.description}</p></li>)}</ol>
+    </section>}
+  </main>
+  <footer class="ops-footer">
+    {contact.links.length > 0 && <section id="contact" class="wrap" aria-labelledby="contact-title">
+      <div><p class="section-label">{copy.contact}</p><h2 id="contact-title">{contact.headline}</h2><p>{contact.description}</p></div>
+      <div class="contact-links">{contact.links.map(({ href, label }) => <a href={href}>{label}</a>)}</div>
+    </section>}
+    <div class="wrap ops-footer-note"><p>{demo ? copy.demo : p.name}</p><a href="#home">{copy.top}</a></div>
+  </footer>
 </Frame>

@@ -10,15 +10,15 @@ const heroImage = p.portrait ?? projects.find((project) => project.image)?.image
 <Frame language={language} skip={copy.skip}>
   <TopBar language={language} />
   <main id="main" tabindex="-1">
-    <section id="home" class="wrap studio-hero">
-      <div class="studio-title"><h1>{p.name}</h1><p>{p.location}</p></div>
-      <div class="studio-split">
-        <div class="studio-intro">
+    <section id="home" class="studio-hero">
+      <div class="wrap studio-title"><h1>{p.name}</h1><p>{p.location}</p></div>
+      <div class="studio-split split-hero">
+        <div class="studio-intro hero-copy">
           <p class="studio-line">{p.headline}</p><p>{p.intro}</p>
           <a class="action" href={projects.length ? '#projects' : '#about'}>{projects.length ? copy.viewProjects : copy.about}</a>
         </div>
-        {heroImage ? <figure class="studio-portrait"><img class="profile-image" src={heroImage.src} alt={heroImage.alt} fetchpriority="high" /></figure> :
-          <div class="paper-fold" aria-hidden="true"><span></span></div>}
+        {heroImage ? <figure class="studio-portrait hero-media"><img class="profile-image" src={heroImage.src} alt={heroImage.alt} fetchpriority="high" /></figure> :
+          <div class="paper-fold hero-media" aria-hidden="true"><span></span></div>}
       </div>
     </section>
     {projects.length > 0 && <section id="projects" class="wrap studio-work" aria-labelledby="work-title">
@@ -27,7 +27,7 @@ const heroImage = p.portrait ?? projects.find((project) => project.image)?.image
         {projects.map((project) => <article>
           {project.image ? <img class="project-image" src={project.image.src} alt={project.image.alt} loading="lazy" /> :
             <div class="poster" aria-hidden="true"><i></i><span>{project.title}</span></div>}
-          <div class="caption"><h3>{project.title}</h3><p>{project.category}</p></div>
+          <div class="caption"><h3>{project.title}</h3><p class="section-label">{project.category}</p></div>
           <p class="copy">{project.description}</p>
           {project.href && <a class="project-link" href={project.href} aria-label={`${copy.viewProject}: ${project.title}`}>{copy.viewProject}</a>}
         </article>)}

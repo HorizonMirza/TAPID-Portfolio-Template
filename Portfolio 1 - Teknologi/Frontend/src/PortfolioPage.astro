@@ -11,16 +11,16 @@ const workLink = projects.length ? '#projects' : '#about';
   <TopBar language={language} />
   <main id="main" tabindex="-1">
     <section id="home" class="tech-hero">
-      <div class="wrap hero-grid">
-        <div>
+      <div class="hero-grid split-hero">
+        <div class="hero-copy">
           <p class="eyebrow">{p.role}</p>
           <h1>{p.name}</h1>
           <p class="tagline">{p.headline}</p>
           <p class="intro">{p.intro}</p>
           <a class="action" href={workLink}>{projects.length ? copy.viewProjects : copy.about}</a>
         </div>
-        {p.portrait ? <figure class="tech-portrait">
-          <div class="tech-photo"><img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" /></div>
+        {p.portrait ? <figure class="tech-portrait hero-media">
+          <img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" />
           <figcaption><span>{p.role}</span><span>{p.location}</span></figcaption>
         </figure> :
           <figure class="terminal" aria-hidden="true">

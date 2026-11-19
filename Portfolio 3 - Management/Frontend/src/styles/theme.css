@@ -1,24 +1,16 @@
-:root {
-  --body: 'Manrope', sans-serif; --control-radius: 0;
-  --bg: #fbf9ee; --ink: #28241a; --muted: #5d5440; --surface: #fffdf4; --subtle: #f1ead5; --line: #c8be99;
-  --yellow: var(--custom-light, #f5cb37); --yellow-ink: var(--custom-ink-light, #241d02); --focus: #765700;
-}
-:root[data-mode="dark"] {
-  --bg: #242116; --ink: #fff6dc; --muted: #d0c5a6; --surface: #332d1b; --subtle: #3a321b; --line: #695e37;
-  --yellow: var(--custom-dark, #f6d357); --yellow-ink: var(--custom-ink-dark, #241d02); --focus: #f6d357;
-}
-.ops-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(1.15rem, 4.25vw, 3.6rem); align-items: center; padding: clamp(1.55rem, 5vw, 4.3rem); background: var(--yellow); color: var(--yellow-ink); }
-.ops-hero h1 { font-size: clamp(3rem, 6.3vw, 6.45rem); font-weight: 800; letter-spacing: -.095em; line-height: .95; margin: .65rem 0 .85rem; }
-.ops-line { font-size: clamp(1.35rem, 3vw, 2.65rem); font-weight: 800; line-height: 1.12; letter-spacing: -.06em; }
-.ops-intro { max-width: 33rem; margin-top: .7rem; }
+:root { --body: 'Manrope', sans-serif; --control-radius: 0; }
+.ops-hero { --hero-left: 1.08fr; --hero-right: .92fr; background: var(--surface); border-block-end: 1px solid var(--line); }
+.ops-hero h1 { font-size: clamp(3rem, 6.3vw, 7.45rem); font-weight: 800; letter-spacing: -.09em; line-height: .95; margin: .65rem 0 .85rem; }
+.ops-line { font-size: clamp(1.35rem, 3vw, 2.55rem); font-weight: 800; line-height: 1.12; letter-spacing: -.055em; }
+.ops-intro { margin-top: .85rem; color: var(--muted); }
 .ops-hero .action { border: 2px solid currentColor; margin-top: 1.15rem; }
-.ops-portrait { background: var(--yellow-ink); color: var(--yellow); padding: 2px; box-shadow: .68rem .68rem 0 color-mix(in srgb, var(--yellow-ink) 21%, transparent); }
-.ops-portrait .profile-image { aspect-ratio: 4 / 3; height: auto; object-position: 49% 44%; }
-.ops-portrait figcaption { padding: .45rem .67rem; letter-spacing: .04em; font-weight: 750; font-size: .86rem; }
-.ops-graphic { display: grid; justify-items: center; align-items: center; min-height: 13rem; aspect-ratio: 1.15; }
+.ops-portrait .profile-image { object-position: 49% 42%; }
+.ops-portrait figcaption { letter-spacing: .04em; font-weight: 750; }
+.ops-graphic { display: grid; align-self: center; justify-self: center; justify-items: center; align-items: center; width: min(75%, 29rem); min-height: 13rem; aspect-ratio: 1.15; }
 .ops-graphic i { grid-area: 1 / 1; width: 60%; height: 58%; border: 2px solid currentColor; transform: translate(-18%, 19%); }
-.ops-graphic i:nth-child(2) { transform: translate(-1%, 2%); background: var(--yellow); }
-.ops-graphic i:nth-child(3) { transform: translate(16%, -15%); background: var(--yellow-ink); }
+.ops-graphic i:nth-child(2) { transform: translate(-1%, 2%); background: var(--subtle); }
+.ops-graphic i:nth-child(3) { transform: translate(16%, -15%); background: var(--ink); }
+
 .ops-about { display: grid; grid-template-columns: 1fr 2.1fr; gap: 1.5rem; border-bottom: 1px solid var(--line); padding-block: 2.8rem; }
 .location { margin-top: .4rem; color: var(--muted); }
 h2 { font-size: clamp(1.95rem, 4.3vw, 3.6rem); font-weight: 800; letter-spacing: -.07em; }
@@ -26,10 +18,10 @@ h2 { font-size: clamp(1.95rem, 4.3vw, 3.6rem); font-weight: 800; letter-spacing:
 .ops-projects { padding-block: 3rem 2.75rem; }
 .project-board { display: flex; gap: .65rem; flex-wrap: wrap; margin-top: 1rem; }
 .project-board article { flex: 1 1 15.5rem; padding: 1.1rem; border: 1px solid var(--line); background: var(--surface); }
-.project-board article:nth-child(3n + 1) { border-top: .35rem solid var(--yellow); }
+.project-board article:nth-child(3n + 1) { border-top: .3rem solid var(--detail-accent); }
 .project-board h3 { font-size: 1.5rem; margin: .55rem 0 .4rem; }
 .project-board .project-image { margin-top: .5rem; }
-.ops-skills { background: var(--subtle); padding: 1.25rem; display: grid; grid-template-columns: .7fr 1.4fr; gap: 1rem; align-items: center; }
+.ops-skills { background: var(--subtle); padding-block: 1.5rem; display: grid; grid-template-columns: .7fr 1.4fr; gap: 1rem; align-items: center; }
 .ops-skills ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
 .ops-skills li { padding: .45rem .6rem; border-bottom: 1px solid var(--line); font-weight: 650; }
 .ops-experience { padding-block: 3rem; }
@@ -37,11 +29,12 @@ h2 { font-size: clamp(1.95rem, 4.3vw, 3.6rem); font-weight: 800; letter-spacing:
 .ops-experience li { display: grid; grid-template-columns: minmax(0,.6fr) minmax(0,1.1fr) minmax(0,1.35fr); align-items: start; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
 .ops-experience h3 small { display: block; font-size: .85rem; font-weight: 650; margin-top: .35rem; }
 .ops-footer { border-top: 2px solid var(--ink); }
-.ops-footer section { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.15rem; padding: 1.5rem 0; }
+.ops-footer section { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.15rem; padding-block: 1.5rem; }
 .ops-footer h2 { margin: .35rem 0; }
-.ops-footer .contact-links a { background: var(--yellow); color: var(--yellow-ink); padding-inline: .8rem; text-decoration-thickness: 1px; }
-.ops-footer-note { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: space-between; border-top: 1px solid var(--line); padding: .85rem 0; }
+.ops-footer .contact-links a { background: var(--button); color: var(--button-ink); padding-inline: .8rem; text-decoration-thickness: 1px; }
+.ops-footer-note { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: space-between; border-top: 1px solid var(--line); padding-block: .85rem; }
 @media (max-width: 42rem) {
-  .ops-hero, .ops-about, .ops-skills, .ops-experience li { grid-template-columns: 1fr; }
-  .ops-graphic { width: min(100%, 17rem); min-height: 8rem; } .ops-experience li { gap: .45rem; }
+  .ops-about, .ops-skills, .ops-experience li { grid-template-columns: 1fr; }
+  .ops-graphic { width: min(100%, 17rem); min-height: 8rem; margin-bottom: 1rem; }
+  .ops-experience li { gap: .45rem; }
 }

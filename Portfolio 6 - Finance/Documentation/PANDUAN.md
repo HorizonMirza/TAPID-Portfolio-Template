@@ -3,7 +3,7 @@
 1. Salin folder tema ini ke repositori khusus pelanggan.
 2. Isi `Frontend/src/portfolio.json` dari jawaban Google Form. Isi teks `id` dan `en`. Gunakan array kosong untuk proyek, keahlian, pengalaman, atau kontak yang belum tersedia.
 3. Unggah gambar yang disetujui ke `Frontend/public/media/` dan pakai path seperti `/media/foto.webp`. Isi deskripsi gambar dalam kedua bahasa. URL HTTPS untuk aset eksternal juga didukung.
-4. Pakai `settings.accent.light` dan `settings.accent.dark` untuk mengganti warna aksen, misalnya `#6D28D9` dan `#C4B5FD`. Uji ulang keterbacaan pada kedua mode. Nilai `settings.defaultMode` dapat berupa `light`, `dark`, atau `system`.
+4. Pakai `settings.accent.light` dan `settings.accent.dark` untuk menentukan aksen pada bagian Proyek, misalnya `#6D28D9` dan `#C4B5FD`. Uji ulang keterbacaan pada kedua mode. Nilai `settings.defaultMode` dapat berupa `light`, `dark`, atau `system`.
 5. Jalankan `npm ci`, `npm run check`, dan `npm run build` di `Frontend`.
 
 ## Deployment Vercel
