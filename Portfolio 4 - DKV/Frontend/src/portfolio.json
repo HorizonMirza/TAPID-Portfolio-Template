@@ -142,7 +142,7 @@
   },
   "settings": {
     "demo": true,
-    "topBar": 1,
+    "topBar": 9,
     "defaultMode": "system"
   }
 }

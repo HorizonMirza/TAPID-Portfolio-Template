@@ -135,7 +135,7 @@
   },
   "settings": {
     "demo": true,
-    "topBar": 1,
+    "topBar": 2,
     "defaultMode": "system"
   }
 }
