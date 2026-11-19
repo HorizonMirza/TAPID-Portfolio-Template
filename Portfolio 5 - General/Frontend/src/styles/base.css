@@ -47,10 +47,6 @@ ol, ul { list-style: none; margin: 0; padding: 0; }
 .contact-links { display: flex; flex-wrap: wrap; gap: .55rem; }
 .contact-links a { display: inline-flex; min-height: 2.75rem; align-items: center; padding: .4rem .7rem; font-weight: 650; }
 .footer-note { color: var(--muted); font-size: .9rem; }
-@media (max-width: 50rem) {
-  .wide-nav { display: none !important; }
-  .mobile-nav { display: block; }
-}
 @media (max-width: 29rem) {
   .wrap { width: calc(100% - 2rem); }
 }

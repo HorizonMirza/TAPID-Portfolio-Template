@@ -1,0 +1,69 @@
+---
+import { portfolio, type Language } from './portfolio';
+import './styles/base.css';
+import './styles/font.css';
+import './styles/theme.css';
+
+interface Props { language: Language; skip: string }
+const { language, skip } = Astro.props;
+const { profile, settings } = portfolio;
+const pageTitle = `${profile.name} | ${profile.role[language]}`;
+const contrastText = (hex: string) => {
+  const channels = [1, 3, 5].map((offset) => parseInt(hex.slice(offset, offset + 2), 16) / 255);
+  const linear = channels.map((value) => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4);
+  const luminance = .2126 * linear[0] + .7152 * linear[1] + .0722 * linear[2];
+  return luminance > .179 ? '#000000' : '#FFFFFF';
+};
+const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =>
+  `--custom-${mode}:${color};--custom-ink-${mode}:${contrastText(color)}`
+).join(';');
+---
+<!doctype html>
+<html lang={language} data-default-mode={settings.defaultMode} style={customColors || undefined}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content={profile.introduction[language]} />
+    <meta name="color-scheme" content="light dark" />
+    <title>{pageTitle}</title>
+    <link rel="alternate" href="/" hreflang="id" />
+    <link rel="alternate" href="/en/" hreflang="en" />
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const key = 'tapid-color-mode';
+        const preference = window.matchMedia('(prefers-color-scheme: dark)');
+        let chosen;
+        try { chosen = localStorage.getItem(key); } catch {}
+        const apply = (mode) => {
+          root.dataset.mode = mode;
+          const button = document.querySelector('[data-mode-toggle]');
+          if (!button) return;
+          const dark = mode === 'dark';
+          button.setAttribute('aria-pressed', String(dark));
+          button.title = dark ? button.dataset.switchLight : button.dataset.switchDark;
+        };
+        const getMode = () => ['dark', 'light'].includes(chosen)
+          ? chosen
+          : root.dataset.defaultMode === 'system' ? (preference.matches ? 'dark' : 'light') : root.dataset.defaultMode;
+        apply(getMode());
+        document.addEventListener('DOMContentLoaded', () => {
+          apply(getMode());
+          document.querySelector('[data-mode-toggle]')?.addEventListener('click', () => {
+            chosen = root.dataset.mode === 'dark' ? 'light' : 'dark';
+            try { localStorage.setItem(key, chosen); } catch {}
+            apply(chosen);
+          });
+          document.querySelectorAll('[data-mobile-nav] a').forEach((link) => {
+            link.addEventListener('click', () => link.closest('details')?.removeAttribute('open'));
+          });
+        });
+        preference.addEventListener('change', () => apply(getMode()));
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{skip}</a>
+    <slot />
+  </body>
+</html>

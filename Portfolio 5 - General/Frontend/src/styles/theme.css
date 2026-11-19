@@ -8,12 +8,6 @@
   --emphasis: var(--custom-dark, #ededed); --emphasis-ink: var(--custom-ink-dark, #111); --focus: #fff;
 }
 .folio { width: min(100% - 3rem, 63rem); }
-.folio-nav, .folio-nav > div { display: flex; gap: .5rem; align-items: center; }
-.folio-nav { min-height: 4.5rem; justify-content: space-between; }
-.folio-nav .brand { font-family: var(--serif); font-size: 1.15rem; font-weight: 650; text-decoration: none; }
-.folio-index { display: flex; justify-content: center; flex-wrap: wrap; gap: .25rem 1.85rem; border-block: 1px solid var(--line); min-height: 2.9rem; align-items: center; }
-.folio-index a { font-size: .9rem; text-decoration: none; }
-.folio-index a:hover { text-decoration: underline; }
 .folio-hero { display: grid; grid-template-columns: minmax(0,.83fr) minmax(0,1.17fr); grid-template-areas: 'portrait intro'; align-items: center; gap: clamp(1.6rem, 5.7vw, 4.9rem); padding-block: 2.6rem 3.45rem; }
 .folio-intro { grid-area: intro; }
 .folio-hero:not(:has(figure)) { grid-template-columns: 1fr; }
@@ -46,7 +40,6 @@ h3 { font-size: clamp(1.35rem, 2.4vw, 2rem); }
 .folio-footer .contact-links { margin-block: .8rem 1.65rem; justify-content: center; }
 .folio-footer .contact-links a { background: var(--emphasis); color: var(--emphasis-ink); padding-inline: .8rem; }
 .folio-colophon { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .8rem; border-top: 1px solid var(--line); padding-block: .8rem; }
-@media (max-width: 50rem) { .folio-nav { border-bottom: 1px solid var(--line); } }
 @media (max-width: 40rem) {
   .folio-hero, .reading, .folio-projects ol, .folio-experience li { grid-template-columns: 1fr; }
   .folio-hero { grid-template-areas: 'intro' 'portrait'; }

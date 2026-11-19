@@ -1,0 +1,55 @@
+---
+import Frame from './Frame.astro';
+import TopBar from './TopBar.astro';
+import { localize, type Language } from './portfolio';
+interface Props { language: Language }
+const { language } = Astro.props;
+const { copy, p, about, projects, skills, experience, contact, demo } = localize(language);
+---
+<Frame language={language} skip={copy.skip}>
+  <TopBar language={language} />
+  <main id="main" tabindex="-1">
+    <section id="home" class="wrap finance-hero">
+      <div class="finance-deck">
+        <p class="section-label">{p.role}</p><h1>{p.name}</h1>
+        <p class="finance-line">{p.headline}</p><p class="finance-intro">{p.intro}</p>
+        <a class="action" href={projects.length ? '#projects' : '#about'}>{projects.length ? copy.viewProjects : copy.about}</a>
+      </div>
+      {p.portrait && <figure class="finance-photo">
+        <img class="profile-image" src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" />
+        <figcaption>{p.location}</figcaption>
+      </figure>}
+    </section>
+    <section id="about" class="wrap finance-about" aria-labelledby="about-title">
+      <div><p class="section-label">{copy.about}</p><h2 id="about-title">{about.headline}</h2></div>
+      <p class="copy">{about.description}</p>
+    </section>
+    {projects.length > 0 && <section id="projects" class="finance-work" aria-labelledby="work-title">
+      <div class="wrap">
+        <h2 id="work-title">{copy.projects}</h2>
+        <div class="finance-ledger">{projects.map((project) => <article>
+          <p class="section-label">{project.category}</p>
+          <div><h3>{project.title}</h3><p class="copy">{project.description}</p>
+            {project.href && <a class="project-link" href={project.href} aria-label={`${copy.viewProject}: ${project.title}`}>{copy.viewProject}</a>}</div>
+          {project.image && <img class="project-image" src={project.image.src} alt={project.image.alt} loading="lazy" />}
+        </article>)}</div>
+      </div>
+    </section>}
+    <div class="wrap finance-record">
+      {experience.length > 0 && <section id="experience" aria-labelledby="experience-title">
+        <h2 id="experience-title">{copy.experience}</h2>
+        <ol>{experience.map((job) => <li><span class="section-label">{job.period}</span><h3>{job.title}</h3><strong>{job.organization}</strong><p class="copy">{job.description}</p></li>)}</ol>
+      </section>}
+      {skills.length > 0 && <section id="skills" class="finance-skills" aria-labelledby="skills-title">
+        <h2 id="skills-title">{copy.skills}</h2><ul>{skills.map((skill) => <li>{skill}</li>)}</ul>
+      </section>}
+    </div>
+  </main>
+  <footer class="finance-footer">
+    {contact.links.length > 0 && <section id="contact" class="wrap" aria-labelledby="contact-title">
+      <div><p class="section-label">{copy.contact}</p><h2 id="contact-title">{contact.headline}</h2><p>{contact.description}</p></div>
+      <div class="contact-links">{contact.links.map(({ href, label }) => <a href={href}>{label}</a>)}</div>
+    </section>}
+    <div class="wrap finance-footnote"><p>{demo ? copy.demo : p.name}</p><a href="#home">{copy.top}</a></div>
+  </footer>
+</Frame>

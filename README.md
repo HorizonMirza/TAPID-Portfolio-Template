@@ -1,6 +1,6 @@
 # TAP.ID Portfolio Template
 
-Lima template Astro untuk paket **NFC + Linktree + Website Portofolio** TAP.ID. Setiap demo menampilkan foto profil di Beranda, tiga contoh proyek, serta bagian Tentang, Keahlian, Pengalaman, dan Kontak. Pilihan bahasa tersedia di `/` (Bahasa Indonesia) dan `/en/` (English). Mode terang dan gelap dapat diganti lewat tombol di navigasi.
+Enam template Astro untuk paket **NFC + Linktree + Website Portofolio** TAP.ID. Setiap demo menampilkan foto profil di Beranda, tiga contoh proyek, serta bagian Tentang, Keahlian, Pengalaman, dan Kontak. Pilihan bahasa tersedia di `/` (Bahasa Indonesia) dan `/en/` (English). Mode terang dan gelap dapat diganti lewat tombol di navigasi.
 
 | Template | Warna bawaan | Desain |
 | --- | --- | --- |
@@ -9,6 +9,7 @@ Lima template Astro untuk paket **NFC + Linktree + Website Portofolio** TAP.ID. 
 | [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | Manrope, foto profesional berbingkai, papan proyek, dan tabel riwayat |
 | [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | Bricolage Grotesque, masthead ekspresif, potret studio cetak, dan galeri poster |
 | [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | Playfair Display, potret monokrom, dan tata letak editorial |
+| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu tua | Newsreader, potret profesional, dan susunan proyek bergaya buku besar |
 
 ## Jalankan satu template
 
@@ -20,6 +21,10 @@ npm run dev
 ```
 
 Gunakan `npm run check` untuk pengecekan TypeScript dan `npm run build` untuk membuat situs statis. Untuk Vercel, pilih preset **Astro** dan atur **Root Directory** ke folder `Frontend` dalam tema yang dipilih.
+
+## Demo top bar
+
+Tersedia 60 demo top bar, 10 per tema, dengan tata letak, gaya, dan transisi berbeda. Di profil demo, buka **Coba 10 top bar** dan klik salah satu pilihan. URL seperti `?topbar=4` langsung membuka pilihan tersebut. Untuk menerapkan top bar ke profil pelanggan, isi `settings.topBar` dengan angka 1 sampai 10 di `Frontend/src/portfolio.json`.
 
 ## Dari Google Form ke website
 

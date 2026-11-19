@@ -1,19 +1,14 @@
 ---
-import Controls from './Controls.astro';
 import Frame from './Frame.astro';
-import MobileNav from './MobileNav.astro';
+import TopBar from './TopBar.astro';
 import { localize, type Language } from './portfolio';
 interface Props { language: Language }
 const { language } = Astro.props;
-const { copy, p, about, projects, skills, experience, contact, nav, demo } = localize(language);
+const { copy, p, about, projects, skills, experience, contact, demo } = localize(language);
 ---
 <Frame language={language} skip={copy.skip}>
+  <TopBar language={language} />
   <div class="folio wrap">
-    <header class="folio-nav">
-      <a class="brand" href="#home">{p.name}</a>
-      <div><MobileNav label={copy.navigation} menu={copy.menu} links={nav} /><Controls language={language} /></div>
-    </header>
-    <nav class="wide-nav folio-index" aria-label={copy.navigation}>{nav.map((item) => <a href={item.href}>{item.name}</a>)}</nav>
     <main id="main" tabindex="-1">
       <section id="home" class="folio-hero">
         <div class="folio-intro">

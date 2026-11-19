@@ -1,22 +1,14 @@
 ---
-import Controls from './Controls.astro';
 import Frame from './Frame.astro';
-import MobileNav from './MobileNav.astro';
+import TopBar from './TopBar.astro';
 import { localize, type Language } from './portfolio';
 interface Props { language: Language }
 const { language } = Astro.props;
-const { copy, p, about, projects, skills, experience, contact, nav, demo } = localize(language);
+const { copy, p, about, projects, skills, experience, contact, demo } = localize(language);
 const heroImage = p.portrait ?? projects.find((project) => project.image)?.image;
 ---
 <Frame language={language} skip={copy.skip}>
-  <header class="studio-header wrap">
-    <div class="studio-masthead">
-      <a class="brand" href="#home">{p.initials}<sup>✳</sup></a>
-      <p>{p.role}</p>
-      <div class="studio-tools"><MobileNav label={copy.navigation} menu={copy.menu} links={nav} /><Controls language={language} /></div>
-    </div>
-    <nav class="studio-menu wide-nav" aria-label={copy.navigation}>{nav.map((item) => <a href={item.href}>{item.name}</a>)}</nav>
-  </header>
+  <TopBar language={language} />
   <main id="main" tabindex="-1">
     <section id="home" class="wrap studio-hero">
       <div class="studio-title"><h1>{p.name}</h1><p>{p.location}</p></div>

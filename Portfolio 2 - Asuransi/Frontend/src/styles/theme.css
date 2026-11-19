@@ -9,14 +9,6 @@
   --green: var(--custom-dark, #a4d7a9); --green-ink: var(--custom-ink-dark, #10241d);
   --deep: #214d3d; --focus: #a4d7a9;
 }
-.insurance-nav, .insurance-nav-links, .insurance-nav .brand, .insurance-nav .wide-nav { display: flex; align-items: center; }
-.insurance-nav { min-height: 5.85rem; justify-content: space-between; gap: 1rem; }
-.brand { gap: .55rem; font-weight: 750; text-decoration: none; }
-.brand span { display: grid; width: 2.35rem; height: 2.35rem; place-items: center; border: 1px solid var(--line); border-radius: 50%; font-size: .84rem; }
-.insurance-nav-links { gap: 1rem; }
-.insurance-nav .wide-nav { gap: clamp(.65rem, 1.7vw, 1.5rem); }
-.wide-nav a { font-size: .94rem; font-weight: 650; text-decoration: none; }
-.wide-nav a:hover { text-decoration: underline; }
 .risk-hero { display: grid; grid-template-columns: minmax(0, 1.03fr) minmax(0, 1fr); align-items: stretch; gap: .65rem; padding-bottom: 2.5rem; }
 .risk-hero:not(:has(figure)) { grid-template-columns: 1fr; }
 .risk-hero figure { display: grid; min-height: 26rem; border-radius: .4rem 2rem 2rem .4rem; overflow: hidden; }
@@ -56,9 +48,6 @@ h2 { font-size: clamp(1.95rem, 3.55vw, 3.2rem); letter-spacing: -.06em; }
 .risk-footer .contact-links { margin-top: 1rem; }
 .risk-footer .contact-links a { border: 1px solid #b9d5c6; border-radius: 2rem; padding-inline: .9rem; }
 .risk-footer-bottom { display: flex; gap: .9rem; flex-wrap: wrap; justify-content: space-between; border-top: 1px solid #789b8d; padding: .85rem 0; }
-@media (max-width: 61rem) {
-  .insurance-nav .wide-nav { display: none !important; } .insurance-nav .mobile-nav { display: block; }
-}
 @media (max-width: 45rem) {
   .risk-hero { grid-template-columns: 1fr; gap: 0; }
   .risk-hero figure { min-height: 0; aspect-ratio: 4 / 3; border-radius: 0 0 1.25rem 1.25rem; }
@@ -66,4 +55,4 @@ h2 { font-size: clamp(1.95rem, 3.55vw, 3.2rem); letter-spacing: -.06em; }
   .dossier article, .risk-skills, .risk-career ol { grid-template-columns: 1fr; }
   .dossier .project-image { grid-column: 1; }
 }
-@media (max-width: 25rem) { .brand span { display: none; } .insurance-nav-links { gap: .4rem; } .risk-skills ul { grid-template-columns: 1fr; } }
+@media (max-width: 25rem) { .risk-skills ul { grid-template-columns: 1fr; } }

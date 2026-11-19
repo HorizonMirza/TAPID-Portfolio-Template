@@ -8,7 +8,7 @@
 
 ## Deployment Vercel
 
-Impor repositori ke Vercel. Pilih preset **Astro** dan atur **Root Directory** ke `Frontend` bila repositori berisi satu salinan folder tema. Untuk mengimpor langsung dari repo lima tema, pilih `Portfolio …/Frontend` sesuai tema. Gunakan Node.js yang memenuhi batas di `package.json`, misalnya Node.js 24. Gunakan perintah build `npm run build` dan direktori output `dist`.
+Impor repositori ke Vercel. Pilih preset **Astro** dan atur **Root Directory** ke `Frontend` bila repositori berisi satu salinan folder tema. Untuk mengimpor langsung dari repo enam tema, pilih `Portfolio …/Frontend` sesuai tema. Gunakan Node.js yang memenuhi batas di `package.json`, misalnya Node.js 24. Gunakan perintah build `npm run build` dan direktori output `dist`.
 
 Periksa `/` (Bahasa Indonesia), `/en/` (English), tombol mode terang/gelap, tampilan ponsel, dan tautan kontak. Tambahkan URL website ke akun Linktree pelanggan sesuai persetujuannya.
 
@@ -20,3 +20,7 @@ Periksa `/` (Bahasa Indonesia), `/en/` (English), tombol mode terang/gelap, tamp
 4. Periksa website setelah deployment sukses. Perbarui tautan secara terpisah di akun Linktree jika ingin perubahan yang sama tampil di sana.
 
 Dokumentasi resmi [Astro di Vercel](https://docs.astro.build/en/guides/deploy/vercel/) dan [Edit file di GitHub](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files).
+
+## Memilih desain top bar
+
+Pada profil demo, buka **Coba 10 top bar** lalu tekan satu pilihan untuk melihat desain dan animasinya. Setiap pilihan dapat dibuka langsung dengan parameter URL, misalnya `?topbar=4`. Untuk menjadikan pilihan itu sebagai tampilan awal, isi `settings.topBar` dengan angka 1 sampai 10 di `Frontend/src/portfolio.json`. Kontrol pemilihan demo tampil saat `settings.demo` aktif.

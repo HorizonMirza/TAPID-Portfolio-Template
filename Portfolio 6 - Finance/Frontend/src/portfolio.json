@@ -1,0 +1,81 @@
+{
+  "profile": {
+    "name": "Rania Hartono",
+    "location": "Jakarta, Indonesia",
+    "role": { "id": "Analis Perencanaan Keuangan", "en": "Financial Planning Analyst" },
+    "headline": { "id": "Angka yang menjelaskan keputusan.", "en": "Numbers that clarify decisions." },
+    "introduction": {
+      "id": "Saya membantu tim menelusuri selisih anggaran, menyusun perkiraan arus kas, dan menjelaskan asumsi di balik laporan.",
+      "en": "I help teams trace budget variances, forecast cash flow, and explain the assumptions behind their reports."
+    },
+    "portrait": {
+      "src": "/media/home-portrait.webp",
+      "alt": { "id": "Rania mengenakan blazer ungu tua di meja kerja", "en": "Rania in a deep plum blazer at her work table" }
+    }
+  },
+  "about": {
+    "headline": { "id": "Laporan yang bisa ditelusuri.", "en": "Reports with a clear audit trail." },
+    "description": {
+      "id": "Saya mulai dari pertanyaan yang perlu dijawab tim. Setelah mencocokkan sumber data, saya menuliskan asumsi dan menyusun ringkasan yang memudahkan pembaca menghubungkan angka dengan perubahan operasional.",
+      "en": "I start with the question a team needs to answer. After reconciling data sources, I document the assumptions and summarize how operational changes relate to the numbers."
+    }
+  },
+  "projects": [
+    {
+      "title": "Budget Bridge",
+      "category": { "id": "Analisis anggaran", "en": "Budget analysis" },
+      "description": {
+        "id": "Contoh laporan yang mengelompokkan selisih anggaran berdasarkan volume, biaya satuan, dan perubahan jadwal.",
+        "en": "A sample report grouping budget variances by volume, unit cost, and timing."
+      }
+    },
+    {
+      "title": "Cash Flow Map",
+      "category": { "id": "Perkiraan arus kas", "en": "Cash flow forecasting" },
+      "description": {
+        "id": "Model fiktif yang membandingkan skenario penerimaan dan pengeluaran mingguan dengan asumsi yang terdokumentasi.",
+        "en": "A fictional model comparing weekly receipts and payments across scenarios with documented assumptions."
+      }
+    },
+    {
+      "title": "Monthly Close Pack",
+      "category": { "id": "Pelaporan manajemen", "en": "Management reporting" },
+      "description": {
+        "id": "Contoh paket penutupan bulanan berisi daftar rekonsiliasi, ringkasan perubahan, dan pertanyaan yang masih terbuka.",
+        "en": "A sample monthly close pack with a reconciliation checklist, summary of changes, and outstanding questions."
+      }
+    }
+  ],
+  "skills": [
+    { "id": "Pemodelan keuangan", "en": "Financial modeling" },
+    { "id": "Analisis varians", "en": "Variance analysis" },
+    { "id": "Rekonsiliasi data", "en": "Data reconciliation" },
+    { "id": "Pelaporan manajemen", "en": "Management reporting" }
+  ],
+  "experience": [
+    {
+      "title": { "id": "Analis Perencanaan Keuangan", "en": "Financial Planning Analyst" },
+      "organization": "Neraca Karya",
+      "period": { "id": "2025–sekarang", "en": "2025–present" },
+      "description": {
+        "id": "Menyiapkan tinjauan anggaran dan menyusun ringkasan perubahan operasional untuk rapat bulanan.",
+        "en": "Prepared budget reviews and summarized operational changes for monthly meetings."
+      }
+    },
+    {
+      "title": { "id": "Asisten Pelaporan", "en": "Reporting Assistant" },
+      "organization": "Studio Tilik Data",
+      "period": { "id": "2024–2025", "en": "2024–2025" },
+      "description": {
+        "id": "Mencocokkan data transaksi dan mendokumentasikan aturan rekonsiliasi untuk pelaporan internal.",
+        "en": "Reconciled transaction data and documented reconciliation rules for internal reporting."
+      }
+    }
+  ],
+  "contact": {
+    "headline": { "id": "Mari bahas laporan Anda.", "en": "Let’s talk about your reporting." },
+    "description": { "id": "Saya terbuka untuk kolaborasi analisis anggaran dan pelaporan manajemen.", "en": "I’m open to budget analysis and management reporting projects." },
+    "links": [{ "label": "rania.hartono@example.com", "href": "mailto:rania.hartono@example.com" }]
+  },
+  "settings": { "demo": true, "topBar": 1, "defaultMode": "system" }
+}

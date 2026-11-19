@@ -1,0 +1,15 @@
+---
+import { localize, type Language } from './portfolio';
+interface Props { language: Language }
+const { language } = Astro.props;
+const { copy } = localize(language);
+const alternate = language === 'id' ? 'en' : 'id';
+---
+<div class="controls" role="group" aria-label={copy.preferences}>
+  <a class="language" href={alternate === 'en' ? '/en/' : '/'} lang={alternate} hreflang={alternate}
+     aria-label={alternate === 'en' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia'}>{alternate.toUpperCase()}</a>
+  <button class="mode" type="button" data-mode-toggle aria-label={copy.dark} aria-pressed="false"
+          title={copy.lightToDark} data-switch-dark={copy.lightToDark} data-switch-light={copy.darkToLight}>
+    <span class="moon" aria-hidden="true">☾</span><span class="sun" aria-hidden="true">☼</span>
+  </button>
+</div>
