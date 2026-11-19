@@ -16,7 +16,7 @@
   --columns: minmax(0, 1.09fr) minmax(0, 1fr);
   --main-areas: "content .";
   --spotlight-photo-width: 72%;
-  --shade: #3b1718;
+  --shade: color-mix(in srgb, var(--button) 37%, #270e11);
   --shade-solid: 30%;
   --shade-clear: 75%;
   --title-measure: 10ch;

@@ -1,15 +1,15 @@
 :root {
   --body: 'Bricolage Grotesque', sans-serif; --control-radius: 0;
-  --bg: #f8eee7; --ink: #291714; --muted: #644742; --surface: #fff6ed; --subtle: #f0dbd0; --line: #a9897c;
-  --red: var(--custom-light, #ab281d); --red-ink: var(--custom-ink-light, #fff9f2);
-  --heavy: #341b18; --focus: #941b19;
+  --bg: #fff2ed; --ink: #291714; --muted: #644742; --surface: #fff8f4; --subtle: #ffe0da; --line: #bb8e83;
+  --red: var(--custom-light, #ff5148); --red-ink: var(--custom-ink-light, #240907);
+  --focus: #b3221b;
   --button: var(--red); --button-ink: var(--red-ink); --detail-accent: var(--red);
   --inverse: var(--red); --inverse-ink: var(--red-ink); --inverse-line: color-mix(in srgb, var(--red-ink) 40%, var(--red));
 }
 :root[data-mode="dark"] {
   --bg: #271817; --ink: #fae9dd; --muted: #dcc0b5; --surface: #382321; --subtle: #452b28; --line: #8c635b;
-  --red: var(--custom-dark, #ff7a6b); --red-ink: var(--custom-ink-dark, #2c1210);
-  --heavy: #321715; --focus: #ff8d82;
+  --red: var(--custom-dark, #ff9185); --red-ink: var(--custom-ink-dark, #240907);
+  --focus: #ff9185;
   --button: var(--red); --button-ink: var(--red-ink); --detail-accent: var(--red);
   --inverse: var(--red); --inverse-ink: var(--red-ink); --inverse-line: color-mix(in srgb, var(--red-ink) 40%, var(--red));
 }

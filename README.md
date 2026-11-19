@@ -15,7 +15,7 @@ Setiap tema juga punya 10 rancangan Tentang di `/demo-tentang/` dan `/en/demo-te
 | [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | 03 · Team Lead | 06 · Yellow Statement | 02 · Ops Inline |
 | [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | 01 · Poster Cover | 10 · Catalogue Index | 09 · Letterpress |
 | [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | 01 · Classic Editorial | 10 · Academic Record | 04 · Soft Capsule |
-| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu tua | 03 · Analyst at Desk | 10 · Editorial Center | 09 · Review Note |
+| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu elektrik | 03 · Analyst at Desk | 10 · Editorial Center | 09 · Review Note |
 
 ## Jalankan satu template
 

@@ -200,9 +200,17 @@
   --fact-border: 0;
   --fact-radius: 0;
 }
+.about-stage[data-layout="ledger"] .about-summary { max-inline-size: none; }
 .about-stage[data-layout="ledger"] .about-facts { border-block-start: 2px solid var(--about-accent); }
 .about-stage[data-layout="ledger"] .about-fact { grid-template-columns: minmax(0, .64fr) minmax(0, 1.36fr); align-items: center; border-block-end: 1px solid var(--line); }
 .about-stage[data-layout="ledger"] .about-fact:nth-child(even) { --fact-bg: var(--about-tint); }
+
+@media (min-width: 95rem) {
+  .about-stage[data-layout="ledger"] .about-summary {
+    font-size: clamp(.875rem, .89vw, 1.06rem);
+    letter-spacing: -.025em;
+  }
+}
 
 .about-stage[data-layout="split"] { --stage-columns: minmax(0, 1.1fr) minmax(0, .9fr); --fact-bg: transparent; }
 .about-stage[data-layout="split"] .about-intro {

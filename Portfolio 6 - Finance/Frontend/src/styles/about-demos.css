@@ -175,6 +175,9 @@
 }
 .about-stage[data-layout="center"] .about-summary { margin-inline: auto; }
 .about-stage[data-layout="center"] .about-facts { width: min(64rem, 100%); }
+.about-section[data-theme="finance"] .about-stage[data-layout="center"] .about-fact {
+  border-block-start: 3px solid var(--button);
+}
 
 .about-stage[data-layout="gpa"] {
   --stage-columns: minmax(0, .82fr) minmax(0, 1.18fr);

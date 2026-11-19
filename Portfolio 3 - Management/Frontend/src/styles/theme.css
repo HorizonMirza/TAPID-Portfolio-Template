@@ -1,12 +1,12 @@
 :root {
   --body: 'Manrope', sans-serif; --control-radius: 0;
-  --bg: #fbf9ee; --ink: #28241a; --muted: #5d5440; --surface: #fffdf4; --subtle: #f1ead5; --line: #c8be99;
-  --yellow: var(--custom-light, #f5cb37); --yellow-ink: var(--custom-ink-light, #241d02); --focus: #765700;
+  --bg: #fffdf0; --ink: #241b00; --muted: #5b4d26; --surface: #fffef8; --subtle: #fff3ae; --line: #d2c58a;
+  --yellow: var(--custom-light, #ffdf24); --yellow-ink: var(--custom-ink-light, #241b00); --focus: #725600;
   --button: var(--yellow); --button-ink: var(--yellow-ink); --detail-accent: var(--yellow);
 }
 :root[data-mode="dark"] {
-  --bg: #242116; --ink: #fff6dc; --muted: #d0c5a6; --surface: #332d1b; --subtle: #3a321b; --line: #695e37;
-  --yellow: var(--custom-dark, #f6d357); --yellow-ink: var(--custom-ink-dark, #241d02); --focus: #f6d357;
+  --bg: #211c0d; --ink: #fff8da; --muted: #e0d1a1; --surface: #312810; --subtle: #403513; --line: #756434;
+  --yellow: var(--custom-dark, #ffe55c); --yellow-ink: var(--custom-ink-dark, #241b00); --focus: #ffe55c;
   --button: var(--yellow); --button-ink: var(--yellow-ink); --detail-accent: var(--yellow);
 }
 .ops-hero { --hero-left: 1.08fr; --hero-right: .92fr; background: var(--button); color: var(--button-ink); border-block-end: 1px solid var(--line); }

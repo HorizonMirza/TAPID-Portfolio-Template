@@ -41,6 +41,7 @@ const heroImage = projects.find((project) => project.image)?.image;
         </div>
       </section>
     )}
+    {!previewAbout && <AboutSection language={language} />}
     {projects.length > 0 && <section id="projects" class="wrap studio-work" aria-labelledby="work-title">
       <h2 id="work-title">{copy.projects}</h2>
       <div class="gallery">
@@ -53,7 +54,6 @@ const heroImage = projects.find((project) => project.image)?.image;
         </article>)}
       </div>
     </section>}
-    {!previewAbout && <AboutSection language={language} />}
     <div class="wrap studio-details">
       {skills.length > 0 && <section id="skills" aria-labelledby="skills-title"><h2 id="skills-title">{copy.skills}</h2>
         <ul>{skills.map((skill) => <li>{skill}</li>)}</ul></section>}

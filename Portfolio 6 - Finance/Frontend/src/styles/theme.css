@@ -1,17 +1,17 @@
 :root {
   --body: system-ui, sans-serif; --finance-serif: 'Newsreader', Georgia, serif; --control-radius: .35rem;
-  --bg: #f5f1f8; --ink: #231831; --muted: #574766; --surface: #fffaff; --subtle: #eadff1; --line: #cdbed9;
-  --plum: var(--custom-light, #58347d); --plum-ink: var(--custom-ink-light, #fff); --focus: #674085;
-  --plum-shade: color-mix(in srgb, var(--plum) 31%, #18101f); --hero-ink: #fff8ff;
+  --reference-purple: #bd48f9;
+  --bg: #faf3ff; --ink: #23112f; --muted: #634774; --surface: #fffbff; --subtle: #f3e0ff; --line: #d6b7e6;
+  --plum: var(--custom-light, var(--reference-purple)); --plum-ink: var(--custom-ink-light, #16091c); --focus: #7e1bb1;
+  --plum-shade: color-mix(in srgb, var(--plum) 12%, #0d0712); --hero-ink: #fff8ff;
   --button: var(--plum); --button-ink: var(--plum-ink); --detail-accent: var(--plum);
-  --inverse: var(--plum-shade); --inverse-ink: var(--hero-ink); --inverse-muted: #e6d6f0;
+  --inverse: var(--plum-shade); --inverse-ink: var(--hero-ink); --inverse-muted: #eed5fc;
 }
 :root[data-mode="dark"] {
-  --bg: #1e1727; --ink: #fbf2ff; --muted: #cdbed8; --surface: #2d2336; --subtle: #342642; --line: #695776;
-  --plum: var(--custom-dark, #c6a9e9); --plum-ink: var(--custom-ink-dark, #251733); --focus: #dec4fc;
-  --plum-shade: color-mix(in srgb, var(--plum) 15%, #18101f);
+  --bg: #0e0813; --ink: #fff6ff; --muted: #d8bde7; --surface: #1b1023; --subtle: #2f1641; --line: #68427a;
+  --plum: var(--custom-dark, var(--reference-purple)); --plum-ink: var(--custom-ink-dark, #16091c); --focus: #e1a4ff;
+  --plum-shade: color-mix(in srgb, var(--plum) 6%, #0d0712);
   --button: var(--plum); --button-ink: var(--plum-ink); --detail-accent: var(--plum);
-  --inverse: var(--plum-shade); --inverse-ink: var(--hero-ink); --inverse-muted: #e6d6f0;
 }
 .finance-hero { --hero-left: 1.05fr; --hero-right: .95fr; color: var(--inverse-ink); background: var(--inverse); }
 .finance-hero h1 { font: 500 clamp(3.25rem, 7.25vw, 8.25rem)/.89 var(--finance-serif); letter-spacing: -.055em; margin-block: .75rem .85rem; }

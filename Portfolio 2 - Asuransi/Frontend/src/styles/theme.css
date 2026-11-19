@@ -1,17 +1,16 @@
 :root {
   --body: 'DM Sans', sans-serif; --control-radius: 1.2rem;
-  --bg: #f7f8f1; --ink: #1a3327; --muted: #4b6053; --surface: #fff; --subtle: #e6ede1; --line: #c3d0c3;
-  --green: var(--custom-light, #206148); --green-ink: var(--custom-ink-light, #fff);
-  --deep: #163e31; --focus: #206148;
+  --bg: #effcf6; --ink: #10382c; --muted: #3e6456; --surface: #fff; --subtle: #cef8e5; --line: #9ed4bd;
+  --green: var(--custom-light, #57dca5); --green-ink: var(--custom-ink-light, #09241b);
+  --deep: #064c39; --focus: #007554;
   --button: var(--green); --button-ink: var(--green-ink); --detail-accent: var(--green);
-  --inverse: var(--deep); --inverse-muted: #b9d5c6; --inverse-line: #789b8d;
+  --inverse: var(--deep); --inverse-muted: #c2eada; --inverse-line: #7eb9a5;
 }
 :root[data-mode="dark"] {
-  --bg: #10241d; --ink: #e9f4e9; --muted: #b8cbba; --surface: #1b352b; --subtle: #203e32; --line: #416253;
-  --green: var(--custom-dark, #a4d7a9); --green-ink: var(--custom-ink-dark, #10241d);
-  --deep: #214d3d; --focus: #a4d7a9;
+  --bg: #09241b; --ink: #effff8; --muted: #add4c4; --surface: #10372a; --subtle: #144434; --line: #3a7560;
+  --green: var(--custom-dark, #83f2c6); --green-ink: var(--custom-ink-dark, #09241b);
+  --deep: #125540; --focus: #83f2c6;
   --button: var(--green); --button-ink: var(--green-ink); --detail-accent: var(--green);
-  --inverse: var(--deep); --inverse-muted: #b9d5c6; --inverse-line: #789b8d;
 }
 .risk-hero { --hero-left: .96fr; --hero-right: 1.04fr; background: var(--surface); }
 .risk-intro { display: flex; align-self: stretch; flex-direction: column; justify-content: center; background: var(--subtle); }
