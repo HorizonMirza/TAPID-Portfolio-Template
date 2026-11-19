@@ -55,6 +55,10 @@
   text-decoration: none;
   transition: background-color .19s, color .19s;
 }
+.tapbar nav a[aria-current="location"] {
+  text-decoration: underline .14em var(--focus);
+  text-underline-offset: .38em;
+}
 .tapbar-tools {
   grid-area: tools;
   position: relative;
@@ -83,10 +87,10 @@
   content: ''; position: absolute; inset: auto .5rem .37rem; height: .1rem;
   background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .22s ease;
 }
-.tapbar[data-links="underline"] .tapbar-desktop a:is(:hover, :focus-visible)::after { transform: scaleX(1); }
+.tapbar[data-links="underline"] .tapbar-desktop a:not([aria-current="location"]):is(:hover, :focus-visible)::after { transform: scaleX(1); }
 .tapbar[data-links="pill"] .tapbar-desktop a { border-radius: 99rem; }
 .tapbar[data-links="pill"] .tapbar-desktop a:is(:hover, :focus-visible) { background: color-mix(in srgb, currentColor 13%, transparent); }
-.tapbar[data-links="solid"] .tapbar-desktop a:is(:hover, :focus-visible) { background: var(--ink); color: var(--surface); }
+.tapbar[data-links="solid"] .tapbar-desktop a:is(:hover, :focus-visible) { background: var(--ink); color: var(--surface); text-decoration-color: currentColor; }
 
 @media (max-width: 53rem) {
   .tapbar .tapbar-inner {

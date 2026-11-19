@@ -1,18 +1,12 @@
 .controls {
-  --control-surface: #fff;
-  --control-ink: #1b1b1b;
-  --control-line: #c4c4c4;
-  --control-hover: #ececec;
+  --control-surface: color-mix(in srgb, var(--button) 18%, var(--surface));
+  --control-ink: var(--ink);
+  --control-line: color-mix(in srgb, var(--focus) 62%, var(--line));
+  --control-hover: color-mix(in srgb, var(--button) 28%, var(--surface));
   display: flex;
   align-items: center;
   flex-shrink: 0;
   gap: .42rem;
-}
-:where([data-mode="dark"]) .controls {
-  --control-surface: #212121;
-  --control-ink: #f5f5f5;
-  --control-line: #626262;
-  --control-hover: #353535;
 }
 .controls .control {
   position: relative;
@@ -31,8 +25,8 @@
   text-decoration: none;
   transition: background-color .22s ease, border-color .22s ease, color .22s ease;
 }
-.controls .control:hover { border-color: var(--control-ink); background: var(--control-hover); }
-.controls .control:focus-visible { outline: 2px solid var(--control-ink); outline-offset: 3px; }
+.controls .control:hover { border-color: var(--focus); background: var(--control-hover); }
+.controls .control:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 .controls .control-label { transition: transform .22s ease; }
 .controls .language:is(:hover, :focus-visible) .control-label { transform: translateY(-1px); }
 .controls .language:active .control-label { transform: scale(.88); }
