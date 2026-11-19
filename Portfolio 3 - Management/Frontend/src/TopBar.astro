@@ -1,32 +1,23 @@
 ---
 import Controls from './Controls.astro';
 import MobileNav from './MobileNav.astro';
-import { localize, portfolio, type Language } from './portfolio';
-import { topBars, theme } from './topbars';
+import { localize, type Language } from './portfolio';
 import './styles/topbar.css';
 
 interface Props { language: Language }
 const { language } = Astro.props;
-const { copy, p, nav, demo } = localize(language);
-const initial = topBars[portfolio.settings.topBar - 1];
-const firstHalf = nav.slice(0, Math.ceil(nav.length / 2));
-const secondHalf = nav.slice(firstHalf.length);
-const label = language === 'id' ? {
-  choose: 'Coba 10 top bar', group: 'Pilihan desain top bar', selected: 'Aktif',
-} : {
-  choose: 'Try 10 top bars', group: 'Top bar designs', selected: 'Active',
-};
+const { copy, p, nav } = localize(language);
+const topBar = {"layout": "balanced", "skin": "line", "mark": "stamp", "links": "solid", "motion": "stretch", "symbol": "▰"};
 ---
-<header class:list={['tapbar', `tapbar-${theme}`]} data-tapbar data-layout={initial.layout}
-        data-skin={initial.skin} data-mark={initial.mark} data-links={initial.links}>
-  <div class="tapbar-inner">
+<header class="tapbar tapbar-management" data-layout={topBar.layout} data-skin={topBar.skin}
+        data-mark={topBar.mark} data-links={topBar.links}>
+  <div class="tapbar-inner" data-motion={topBar.motion}>
     <a class="tapbar-brand" href="#home">
-      <span class="tapbar-symbol" aria-hidden="true" data-tapbar-symbol>{initial.symbol || p.initials}</span>
-      <span class="tapbar-wordmark"><strong>{p.name}</strong><small>{p.role}</small></span>
+      <span class="tapbar-symbol" aria-hidden="true">{topBar.symbol || p.initials}</span>
+      <strong>{p.name}</strong>
     </a>
     <nav class="tapbar-desktop" aria-label={copy.navigation}>
-      <div class="tapbar-link-set">{firstHalf.map((item) => <a href={item.href}>{item.name}</a>)}</div>
-      <div class="tapbar-link-set">{secondHalf.map((item) => <a href={item.href}>{item.name}</a>)}</div>
+      {nav.map((item) => <a href={item.href}>{item.name}</a>)}
     </nav>
     <div class="tapbar-tools">
       <MobileNav label={copy.navigation} menu={copy.menu} links={nav} />
@@ -34,80 +25,3 @@ const label = language === 'id' ? {
     </div>
   </div>
 </header>
-
-{demo && <details class:list={['tapbar-gallery', `tapbar-${theme}`]} data-tapbar-gallery hidden>
-  <summary>
-    <span class="tapbar-gallery-label">{label.choose}</span>
-    <span class="tapbar-current" aria-live="polite"><span>{label.selected}</span> <strong data-tapbar-current>{initial.name}</strong></span>
-  </summary>
-  <div class="tapbar-options" role="group" aria-label={label.group}>
-    {topBars.map((option, index) => <button type="button" class="tapbar-option" aria-pressed={option === initial}
-      data-tapbar-option={index + 1} data-layout={option.layout} data-skin={option.skin}
-      data-mark={option.mark} data-links={option.links} data-motion={option.motion}
-      data-symbol={option.symbol || p.initials} data-name={option.name}>
-      <span class="tapbar-thumbnail" aria-hidden="true"><i></i><span><i></i><i></i><i></i></span><b></b></span>
-      <span class="tapbar-option-caption"><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><strong>{option.name}</strong></span>
-    </button>)}
-  </div>
-</details>}
-
-<script is:inline>
-  (() => {
-    const bar = document.querySelector('[data-tapbar]');
-    const gallery = document.querySelector('[data-tapbar-gallery]');
-    if (!bar || !gallery) return;
-
-    const rail = bar.querySelector('.tapbar-inner');
-    const current = gallery.querySelector('[data-tapbar-current]');
-    const symbol = bar.querySelector('[data-tapbar-symbol]');
-    const language = bar.querySelector('a.language');
-    const options = [...gallery.querySelectorAll('[data-tapbar-option]')];
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const effects = {
-      glide: [{ transform: 'translateX(-16px)', opacity: .6 }, { transform: 'translateX(0)', opacity: 1 }],
-      rise: [{ transform: 'translateY(14px)', opacity: .55 }, { transform: 'translateY(0)', opacity: 1 }],
-      drop: [{ transform: 'translateY(-14px)', opacity: .55 }, { transform: 'translateY(0)', opacity: 1 }],
-      focus: [{ filter: 'blur(5px)', opacity: .6 }, { filter: 'blur(0)', opacity: 1 }],
-      snap: [{ transform: 'scale(.94)', opacity: .65 }, { transform: 'scale(1.015)', offset: .76 }, { transform: 'scale(1)', opacity: 1 }],
-      stretch: [{ transform: 'scaleX(.91)', opacity: .55 }, { transform: 'scaleX(1)', opacity: 1 }],
-      reveal: [{ clipPath: 'inset(0 90% 0 0 round 8px)' }, { clipPath: 'inset(0 0 0 0 round 0px)' }],
-      unfold: [{ clipPath: 'inset(0 0 85% 0)' }, { clipPath: 'inset(0 0 0 0)' }],
-      tilt: [{ transform: 'perspective(440px) rotateX(-15deg) translateY(-4px)', opacity: .6 }, { transform: 'none', opacity: 1 }],
-      drift: [{ transform: 'translateX(14px)', opacity: .58 }, { transform: 'translateX(0)', opacity: 1 }],
-    };
-    let transition;
-
-    const show = (option, play) => {
-      for (const attribute of ['layout', 'skin', 'mark', 'links']) bar.dataset[attribute] = option.dataset[attribute];
-      if (symbol) symbol.textContent = option.dataset.symbol;
-      if (current) current.textContent = option.dataset.name;
-      for (const choice of options) choice.setAttribute('aria-pressed', String(choice === option));
-
-      const id = option.dataset.tapbarOption;
-      if (language) {
-        const target = new URL(language.href);
-        target.searchParams.set('topbar', id);
-        language.href = target.href;
-      }
-      if (!play) return;
-      const address = new URL(window.location.href);
-      address.searchParams.set('topbar', id);
-      try { history.replaceState(null, '', address.href); } catch {}
-      bar.querySelector('details[data-mobile-nav]')?.removeAttribute('open');
-      if (bar.getBoundingClientRect().bottom < 35) bar.scrollIntoView({ behavior: 'instant', block: 'start' });
-      transition?.cancel();
-      if (!preference.matches && rail?.animate) {
-        transition = rail.animate(effects[option.dataset.motion], { duration: 420, easing: 'cubic-bezier(.22,.72,.22,1)' });
-      }
-    };
-
-    gallery.hidden = false;
-    const requested = new URLSearchParams(window.location.search).get('topbar');
-    const option = options.find((item) => item.dataset.tapbarOption === requested);
-    if (option) {
-      show(option, false);
-      gallery.open = true;
-    }
-    for (const choice of options) choice.addEventListener('click', () => show(choice, true));
-  })();
-</script>

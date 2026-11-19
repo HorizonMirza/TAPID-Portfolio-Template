@@ -10,6 +10,6 @@ Isi website berasal dari satu file, `Frontend/src/portfolio.json`. Contoh di fil
 | `skills` | Daftar kemampuan dalam Bahasa Indonesia dan Inggris |
 | `experience` | Peran, organisasi, periode, serta deskripsi |
 | `contact` | Pengantar dan tautan yang boleh tampil |
-| `settings` | Mode awal, aksen warna opsional, dan pilihan top bar 1–10 |
+| `settings` | Mode awal dan aksen warna opsional |
 
 Simpan jawaban mentah Google Form dan kontak koordinasi di akun TAP.ID. Email admin, data pemesanan, dan kontak privat berada di luar file publik.

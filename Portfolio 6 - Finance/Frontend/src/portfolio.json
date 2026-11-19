@@ -77,5 +77,5 @@
     "description": { "id": "Saya terbuka untuk kolaborasi analisis anggaran dan pelaporan manajemen.", "en": "I’m open to budget analysis and management reporting projects." },
     "links": [{ "label": "rania.hartono@example.com", "href": "mailto:rania.hartono@example.com" }]
   },
-  "settings": { "demo": true, "topBar": 9, "defaultMode": "system" }
+  "settings": { "demo": true, "defaultMode": "system" }
 }

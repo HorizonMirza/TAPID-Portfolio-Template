@@ -20,7 +20,3 @@ Periksa `/` (Bahasa Indonesia), `/en/` (English), tombol mode terang/gelap, tamp
 4. Periksa website setelah deployment sukses. Perbarui tautan secara terpisah di akun Linktree jika ingin perubahan yang sama tampil di sana.
 
 Dokumentasi resmi [Astro di Vercel](https://docs.astro.build/en/guides/deploy/vercel/) dan [Edit file di GitHub](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files).
-
-## Memilih desain top bar
-
-Pada profil demo, buka **Coba 10 top bar** lalu tekan satu pilihan untuk melihat desain dan animasinya. Setiap pilihan dapat dibuka langsung dengan parameter URL, misalnya `?topbar=4`. Untuk menjadikan pilihan itu sebagai tampilan awal, isi `settings.topBar` dengan angka 1 sampai 10 di `Frontend/src/portfolio.json`. Kontrol pemilihan demo tampil saat `settings.demo` aktif.

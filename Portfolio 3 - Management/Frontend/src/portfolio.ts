@@ -42,7 +42,6 @@ export const portfolio = z.object({
   }),
   settings: z.object({
     demo: z.boolean().default(false),
-    topBar: z.number().int().min(1).max(10).default(1),
     defaultMode: z.enum(['light', 'dark', 'system']).default('system'),
     accent: z.object({ light: hex.optional(), dark: hex.optional() }).optional(),
   }),
