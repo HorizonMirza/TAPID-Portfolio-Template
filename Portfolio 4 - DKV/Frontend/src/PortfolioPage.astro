@@ -19,7 +19,13 @@ const heroImage = projects.find((project) => project.image)?.image;
       </section>
     ) : (
       <section id="home" class="studio-hero">
-        <div class="wrap studio-title"><h1>{p.name}</h1><p>{p.location}</p></div>
+        <div class="wrap studio-title">
+          <div>
+            <p class="home-demo-role">{p.role}</p>
+            <h1>{p.name}</h1>
+          </div>
+          <p>{p.location}</p>
+        </div>
         <div class="studio-split split-hero">
           <div class="studio-intro hero-copy">
             <p class="studio-line">{p.headline}</p><p>{p.intro}</p>

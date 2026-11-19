@@ -6,6 +6,11 @@
   --stage-surface: var(--surface);
 }
 
+.home-demo-stage:is([data-design="01"], [data-design="06"]) {
+  --role-surface: var(--button-ink);
+  --role-ink: var(--button);
+}
+
 .home-demo-stage[data-design="01"] {
   --areas: "title ." "copy .";
   --columns: minmax(0, 1.09fr) minmax(0, 1fr);

@@ -31,6 +31,8 @@
   --headline-size: clamp(1.1rem, 2vw, 2.25rem);
   --stage-surface: var(--button);
   --stage-ink: var(--button-ink);
+  --role-surface: var(--button-ink);
+  --role-ink: var(--button);
   --stage-muted: var(--button-ink);
   --stage-rule: var(--button-ink);
   --portrait-size: 30rem;

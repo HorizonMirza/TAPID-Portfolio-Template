@@ -16,7 +16,7 @@
 .studio-hero { display: grid; grid-template-rows: auto 1fr; min-block-size: var(--hero-height); background: var(--surface); }
 .studio-title { display: flex; gap: .8rem 1.5rem; justify-content: space-between; align-items: end; flex-wrap: wrap; padding-block: clamp(.9rem, 3vh, 2.4rem); }
 .studio-title h1 { font-size: clamp(3.5rem, 8.5vw, 10rem); font-weight: 800; line-height: .9; letter-spacing: -.085em; }
-.studio-title p { font-weight: 650; }
+.studio-title > p { font-weight: 650; }
 .studio-split { --hero-left: .86fr; --hero-right: 1.14fr; min-block-size: 0; background: var(--inverse); color: var(--inverse-ink); border-block-start: 1px solid var(--inverse-line); }
 .studio-intro { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: .85rem; }
 .studio-line { font-size: clamp(1.75rem, 4.05vw, 4.25rem); line-height: .98; letter-spacing: -.065em; font-weight: 800; }

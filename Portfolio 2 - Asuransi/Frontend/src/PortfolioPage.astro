@@ -19,7 +19,7 @@ const { copy, p, about, projects, skills, experience, contact, demo } = localize
     ) : (
       <section id="home" class="risk-hero split-hero">
         <div class="risk-intro hero-copy">
-          <p class="section-label">{p.role}</p><h1>{p.name}</h1>
+          <p class="home-demo-role">{p.role}</p><h1>{p.name}</h1>
           <p class="risk-line">{p.headline}</p><p class="copy">{p.intro}</p>
           <a class="action" href={contact.links.length ? '#contact' : '#about'}>{contact.links.length ? copy.viewContact : copy.about}</a>
         </div>
