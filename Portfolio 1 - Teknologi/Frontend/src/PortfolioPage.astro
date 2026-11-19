@@ -8,7 +8,6 @@ const { language } = Astro.props;
 const previewHome = Astro.slots.has('home');
 const languageHref = previewHome ? (language === 'id' ? '/en/demo-beranda/' : '/demo-beranda/') : undefined;
 const { copy, p, about, projects, skills, experience, contact, demo } = localize(language);
-const workLink = projects.length ? '#projects' : '#about';
 ---
 <Frame language={language} skip={copy.skip} previewHome={previewHome}>
   <TopBar language={language} languageHref={languageHref} />
@@ -25,7 +24,6 @@ const workLink = projects.length ? '#projects' : '#about';
             <h1>{p.name}</h1>
             <p class="tagline">{p.headline}</p>
             <p class="intro">{p.intro}</p>
-            <a class="action" href={workLink}>{projects.length ? copy.viewProjects : copy.about}</a>
           </div>
           <figure class="terminal" aria-hidden="true">
             <figcaption><span class="lights"><i></i><i></i><i></i></span> portfolio.json</figcaption>

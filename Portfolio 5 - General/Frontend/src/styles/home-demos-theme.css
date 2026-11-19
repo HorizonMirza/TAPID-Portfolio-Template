@@ -4,13 +4,14 @@
   --demo-tracking: -.06em;
   --demo-line: .94;
   --portrait-filter: grayscale(1);
-  --demo-button-radius: 0;
 }
 
 .home-demo-stage[data-design="01"] {
   --areas: "photo title" "photo copy";
   --columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
   --mobile-areas: "photo" "title" "copy";
+  --main-areas: "photo content";
+  --subject: center top;
   --portrait-size: 31rem;
   --portrait-border: .45rem solid var(--surface);
 }
@@ -104,4 +105,11 @@
   --subject: center 22%;
   --portrait-shape: 7rem 7rem 0 0;
   --demo-card-radius: 0;
+}
+
+@media (min-width: 49.01rem) {
+  .home-demo-stage[data-design="01"] {
+    --photo-width: 95%;
+    --photo-justify: end;
+  }
 }

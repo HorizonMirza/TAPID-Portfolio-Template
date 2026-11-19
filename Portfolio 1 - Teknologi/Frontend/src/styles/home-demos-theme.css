@@ -1,6 +1,5 @@
 .home-demo-stage:where([data-theme="teknologi"]) {
   --demo-label-font: var(--mono);
-  --demo-button-radius: .35rem;
   --stage-surface: var(--surface);
   background-image: linear-gradient(90deg, color-mix(in srgb, var(--focus) 10%, transparent) 1px, transparent 1px),
     linear-gradient(color-mix(in srgb, var(--focus) 10%, transparent) 1px, transparent 1px);
@@ -23,7 +22,6 @@
   --stage-ink: var(--inverse-ink);
   --stage-muted: var(--inverse-muted);
   --stage-rule: var(--inverse-line);
-  --stage-accent: #fff;
   --title-size: clamp(4rem, 8vw, 9rem);
   --portrait-size: 17rem;
 }
@@ -40,8 +38,14 @@
 .home-demo-stage[data-design="04"] {
   --areas: "title ." "copy .";
   --columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  --main-areas: "content .";
+  --copy-width: 100%;
+  --headline-size: clamp(1.1rem, 2vw, 2.25rem);
+  --spotlight-photo-width: 70%;
   --shade: #101b31;
-  --subject: 57% 39%;
+  --shade-solid: 32%;
+  --shade-clear: 73%;
+  --subject: 44% top;
   --title-measure: 10ch;
   --mobile-areas: "title" "photo" "copy";
 }
@@ -108,4 +112,11 @@
   --demo-tracking: -.075em;
   --subject: 55% 40%;
   --detail-align: stretch;
+}
+
+@media (min-width: 49.01rem) {
+  .home-demo-stage[data-design="04"]:lang(id) {
+    --columns: minmax(0, 1.14fr) minmax(0, .86fr);
+    --headline-size: clamp(1rem, 1.8vw, 2.06rem);
+  }
 }

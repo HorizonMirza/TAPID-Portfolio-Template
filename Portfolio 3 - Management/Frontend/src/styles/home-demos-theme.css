@@ -26,13 +26,13 @@
   --areas: "photo title" "photo copy";
   --columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
   --mobile-areas: "photo" "title" "copy";
-  --action-surface: var(--button-ink);
-  --action-ink: var(--button);
+  --main-areas: "photo content";
+  --copy-width: 100%;
+  --headline-size: clamp(1.1rem, 2vw, 2.25rem);
   --stage-surface: var(--button);
   --stage-ink: var(--button-ink);
   --stage-muted: var(--button-ink);
   --stage-rule: var(--button-ink);
-  --stage-accent: var(--button-ink);
   --portrait-size: 30rem;
 }
 .home-demo-stage[data-design="04"] {

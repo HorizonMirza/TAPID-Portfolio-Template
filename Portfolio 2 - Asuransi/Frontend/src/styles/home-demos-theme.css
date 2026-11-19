@@ -1,6 +1,5 @@
 .home-demo-stage:where([data-theme="asuransi"]) {
   --demo-weight: 730;
-  --demo-button-radius: 99rem;
   --portrait-shape: 1.8rem;
   --stage-surface: var(--bg);
 }
@@ -36,8 +35,10 @@
 }
 .home-demo-stage[data-design="04"] {
   --areas: "title photo" "copy photo";
-  --columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  --columns: minmax(0, 1fr) minmax(0, 1fr);
   --mobile-areas: "title" "photo" "copy";
+  --copy-width: 100%;
+  --headline-size: clamp(1rem, 1.75vw, 2.04rem);
   --stage-surface: var(--subtle);
   --portrait-border: .6rem solid var(--surface);
   --portrait-shape: 2.7rem .45rem 2.7rem .45rem;
@@ -72,7 +73,6 @@
   --stage-ink: var(--inverse-ink);
   --stage-muted: var(--inverse-muted);
   --stage-rule: var(--inverse-line);
-  --stage-accent: #fff;
   --detail-align: start;
   --portrait-size: 30rem;
   --portrait-shape: 1.25rem 5rem 1.25rem 1.25rem;
@@ -112,4 +112,11 @@
   --portrait-shape: 5rem 5rem .7rem .7rem;
   --title-size: clamp(3.1rem, 5.3vw, 6.5rem);
   --detail-align: center;
+}
+
+@media (min-width: 49.01rem) {
+  .home-demo-stage[data-design="04"]:lang(id) {
+    --columns: minmax(0, 1.06fr) minmax(0, .94fr);
+    --headline-size: clamp(.94rem, 1.65vw, 1.94rem);
+  }
 }
