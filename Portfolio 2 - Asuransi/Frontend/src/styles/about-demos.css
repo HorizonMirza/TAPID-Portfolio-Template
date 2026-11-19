@@ -5,12 +5,11 @@
   --about-accent: var(--focus);
   --about-tint: color-mix(in srgb, var(--button) 12%, var(--surface));
   --about-strong: color-mix(in srgb, var(--button) 20%, var(--surface));
-  background: var(--bg);
-}
-.about-demos {
   display: flex;
   flex-direction: column;
-  min-height: var(--hero-height);
+  min-block-size: var(--hero-height);
+  scroll-margin-block-start: -.65rem;
+  background: var(--bg);
 }
 .about-section[data-theme="teknologi"] {
   --about-label-font: var(--mono);
@@ -93,6 +92,7 @@
   background-image: var(--about-pattern, none);
   background-size: 2.15rem 2.15rem;
 }
+.about-section:not(.about-demos) .about-stage { align-content: center; }
 .about-intro { grid-area: intro; min-width: 0; }
 .about-heading h2 {
   font: var(--about-title-weight, 750) clamp(2rem, 3.7vw, 3.65rem)/var(--about-title-line, .98) var(--about-title-font);
@@ -265,6 +265,7 @@
   .about-stage[data-layout="strip"] .about-fact { border: 1px solid var(--line); }
 }
 @media (max-width: 34rem) {
+  .about-section:not(.about-demos) .about-stage { padding-block: 1.65rem; }
   .about-choice { justify-content: center; align-content: center; padding: .3rem; }
   .about-choice-name { display: none; }
   .about-stage .about-facts { grid-template-columns: minmax(0, 1fr); }
