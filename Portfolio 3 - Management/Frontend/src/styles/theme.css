@@ -1,15 +1,26 @@
-:root { --body: 'Manrope', sans-serif; --control-radius: 0; }
-.ops-hero { --hero-left: 1.08fr; --hero-right: .92fr; background: var(--surface); border-block-end: 1px solid var(--line); }
+:root {
+  --body: 'Manrope', sans-serif; --control-radius: 0;
+  --bg: #fbf9ee; --ink: #28241a; --muted: #5d5440; --surface: #fffdf4; --subtle: #f1ead5; --line: #c8be99;
+  --yellow: var(--custom-light, #f5cb37); --yellow-ink: var(--custom-ink-light, #241d02); --focus: #765700;
+  --button: var(--yellow); --button-ink: var(--yellow-ink); --detail-accent: var(--yellow);
+}
+:root[data-mode="dark"] {
+  --bg: #242116; --ink: #fff6dc; --muted: #d0c5a6; --surface: #332d1b; --subtle: #3a321b; --line: #695e37;
+  --yellow: var(--custom-dark, #f6d357); --yellow-ink: var(--custom-ink-dark, #241d02); --focus: #f6d357;
+  --button: var(--yellow); --button-ink: var(--yellow-ink); --detail-accent: var(--yellow);
+}
+.ops-hero { --hero-left: 1.08fr; --hero-right: .92fr; background: var(--button); color: var(--button-ink); border-block-end: 1px solid var(--line); }
 .ops-hero h1 { font-size: clamp(3rem, 6.3vw, 7.45rem); font-weight: 800; letter-spacing: -.09em; line-height: .95; margin: .65rem 0 .85rem; }
 .ops-line { font-size: clamp(1.35rem, 3vw, 2.55rem); font-weight: 800; line-height: 1.12; letter-spacing: -.055em; }
-.ops-intro { margin-top: .85rem; color: var(--muted); }
+.ops-intro { margin-top: .85rem; }
 .ops-hero .action { border: 2px solid currentColor; margin-top: 1.15rem; }
+.ops-hero .action:focus-visible { outline-color: var(--button-ink); }
 .ops-portrait .profile-image { object-position: 49% 42%; }
-.ops-portrait figcaption { letter-spacing: .04em; font-weight: 750; }
+.ops-portrait figcaption { letter-spacing: .04em; font-weight: 750; background: var(--button-ink); color: var(--button); }
 .ops-graphic { display: grid; align-self: center; justify-self: center; justify-items: center; align-items: center; width: min(75%, 29rem); min-height: 13rem; aspect-ratio: 1.15; }
 .ops-graphic i { grid-area: 1 / 1; width: 60%; height: 58%; border: 2px solid currentColor; transform: translate(-18%, 19%); }
 .ops-graphic i:nth-child(2) { transform: translate(-1%, 2%); background: var(--subtle); }
-.ops-graphic i:nth-child(3) { transform: translate(16%, -15%); background: var(--ink); }
+.ops-graphic i:nth-child(3) { transform: translate(16%, -15%); background: var(--button-ink); }
 
 .ops-about { display: grid; grid-template-columns: 1fr 2.1fr; gap: 1.5rem; border-bottom: 1px solid var(--line); padding-block: 2.8rem; }
 .location { margin-top: .4rem; color: var(--muted); }

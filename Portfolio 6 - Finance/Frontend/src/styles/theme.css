@@ -1,12 +1,27 @@
-:root { --body: system-ui, sans-serif; --finance-serif: 'Newsreader', Georgia, serif; --control-radius: .35rem; }
+:root {
+  --body: system-ui, sans-serif; --finance-serif: 'Newsreader', Georgia, serif; --control-radius: .35rem;
+  --bg: #f5f1f8; --ink: #231831; --muted: #574766; --surface: #fffaff; --subtle: #eadff1; --line: #cdbed9;
+  --plum: var(--custom-light, #58347d); --plum-ink: var(--custom-ink-light, #fff); --focus: #674085;
+  --plum-shade: color-mix(in srgb, var(--plum) 31%, #18101f); --hero-ink: #fff8ff;
+  --button: var(--plum); --button-ink: var(--plum-ink); --detail-accent: var(--plum);
+  --inverse: var(--plum-shade); --inverse-ink: var(--hero-ink); --inverse-muted: #e6d6f0;
+}
+:root[data-mode="dark"] {
+  --bg: #1e1727; --ink: #fbf2ff; --muted: #cdbed8; --surface: #2d2336; --subtle: #342642; --line: #695776;
+  --plum: var(--custom-dark, #c6a9e9); --plum-ink: var(--custom-ink-dark, #251733); --focus: #dec4fc;
+  --plum-shade: color-mix(in srgb, var(--plum) 15%, #18101f);
+  --button: var(--plum); --button-ink: var(--plum-ink); --detail-accent: var(--plum);
+  --inverse: var(--plum-shade); --inverse-ink: var(--hero-ink); --inverse-muted: #e6d6f0;
+}
 .finance-hero { --hero-left: 1.05fr; --hero-right: .95fr; color: var(--inverse-ink); background: var(--inverse); }
 .finance-hero h1 { font: 500 clamp(3.25rem, 7.25vw, 8.25rem)/.89 var(--finance-serif); letter-spacing: -.055em; margin-block: .75rem .85rem; }
 .finance-deck .section-label, .finance-intro { color: var(--inverse-muted); }
 .finance-line { font-size: clamp(1.35rem, 2.4vw, 2rem); line-height: 1.19; font-weight: 650; }
 .finance-intro { margin-top: .85rem; }
-.finance-hero .action { margin-top: 1.17rem; background: var(--inverse-ink); color: var(--inverse); border-radius: .25rem; }
+.finance-hero .action { margin-top: 1.17rem; background: var(--button); color: var(--button-ink); border: 1px solid #ffffff50; border-radius: .25rem; }
 .finance-hero .action:focus-visible { outline-color: var(--inverse-ink); }
 .finance-photo img { object-position: center 39%; }
+.finance-photo figcaption { background: var(--plum-shade); }
 
 .finance-about { display: grid; grid-template-columns: minmax(0,.95fr) minmax(0,1.05fr); align-items: center; gap: 2rem; padding-block: 3rem; }
 .finance-about h2 { margin-top: .42rem; }

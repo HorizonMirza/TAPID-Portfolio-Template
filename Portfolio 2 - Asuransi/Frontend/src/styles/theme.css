@@ -1,11 +1,25 @@
-:root { --body: 'DM Sans', sans-serif; --control-radius: 1.2rem; }
+:root {
+  --body: 'DM Sans', sans-serif; --control-radius: 1.2rem;
+  --bg: #f7f8f1; --ink: #1a3327; --muted: #4b6053; --surface: #fff; --subtle: #e6ede1; --line: #c3d0c3;
+  --green: var(--custom-light, #206148); --green-ink: var(--custom-ink-light, #fff);
+  --deep: #163e31; --focus: #206148;
+  --button: var(--green); --button-ink: var(--green-ink); --detail-accent: var(--green);
+  --inverse: var(--deep); --inverse-muted: #b9d5c6; --inverse-line: #789b8d;
+}
+:root[data-mode="dark"] {
+  --bg: #10241d; --ink: #e9f4e9; --muted: #b8cbba; --surface: #1b352b; --subtle: #203e32; --line: #416253;
+  --green: var(--custom-dark, #a4d7a9); --green-ink: var(--custom-ink-dark, #10241d);
+  --deep: #214d3d; --focus: #a4d7a9;
+  --button: var(--green); --button-ink: var(--green-ink); --detail-accent: var(--green);
+  --inverse: var(--deep); --inverse-muted: #b9d5c6; --inverse-line: #789b8d;
+}
 .risk-hero { --hero-left: .96fr; --hero-right: 1.04fr; background: var(--surface); }
 .risk-intro { display: flex; align-self: stretch; flex-direction: column; justify-content: center; background: var(--subtle); }
 .risk-intro h1 { font-size: clamp(2.85rem, 6.15vw, 7.2rem); line-height: .98; letter-spacing: -.075em; margin: .62rem 0 .92rem; }
 .risk-line { font-size: clamp(1.25rem, 2.1vw, 1.95rem); line-height: 1.18; font-weight: 650; margin-bottom: .75rem; }
 .risk-intro .action { align-self: start; border-radius: 2rem; background: var(--button); color: var(--button-ink); margin-top: 1.3rem; }
 .risk-hero .profile-image { object-position: 53% 41%; }
-.risk-hero figcaption { border-radius: 1rem; }
+.risk-hero figcaption { border-radius: 1rem; background: var(--deep); }
 
 .risk-about { background: var(--surface); border-block: 1px solid var(--line); }
 .risk-about section { padding-block: 3.8rem; text-align: center; }

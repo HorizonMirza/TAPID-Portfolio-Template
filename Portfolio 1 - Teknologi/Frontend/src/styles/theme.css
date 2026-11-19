@@ -1,9 +1,28 @@
-:root { --body: 'Space Grotesk', sans-serif; --mono: 'SFMono-Regular', Consolas, monospace; }
+:root {
+  --body: 'Space Grotesk', sans-serif;
+  --mono: 'SFMono-Regular', Consolas, monospace;
+  --bg: #f5f7ff; --ink: #101c37; --muted: #465473; --surface: #fff; --subtle: #e9efff; --line: #c6d2ea;
+  --blue: var(--custom-light, #2859e8); --blue-ink: var(--custom-ink-light, #fff);
+  --hero: color-mix(in srgb, var(--blue) 24%, #080d19); --hero-ink: #f9faff; --focus: #326af5;
+  --hero-detail: color-mix(in srgb, var(--blue) 23%, #fff);
+  --terminal-bg: color-mix(in srgb, var(--blue) 13%, #090d16);
+  --terminal-bar: color-mix(in srgb, var(--blue) 22%, #10131e);
+  --button: var(--blue); --button-ink: var(--blue-ink); --detail-accent: var(--blue);
+  --inverse: var(--hero); --inverse-ink: var(--hero-ink); --inverse-muted: var(--hero-detail); --inverse-line: var(--blue);
+}
+:root[data-mode="dark"] {
+  --bg: #0b1429; --ink: #edf2ff; --muted: #aebbd8; --surface: #14223e; --subtle: #192b4e; --line: #33496e;
+  --blue: var(--custom-dark, #90b3ff); --blue-ink: var(--custom-ink-dark, #0b1429);
+  --hero: color-mix(in srgb, var(--blue) 16%, #080d19); --focus: #9bbcff;
+  --button: var(--blue); --button-ink: var(--blue-ink); --detail-accent: var(--blue);
+  --inverse: var(--hero); --inverse-ink: var(--hero-ink); --inverse-muted: var(--hero-detail); --inverse-line: var(--blue);
+}
 .tech-hero {
   color: var(--inverse-ink);
   background-color: var(--inverse);
-  background-image: linear-gradient(#ffffff12 1px, transparent 1px), linear-gradient(90deg, #ffffff12 1px, transparent 1px);
-  background-size: 2.15rem 2.15rem;
+  background-image: radial-gradient(ellipse at 75% 38%, color-mix(in srgb, var(--blue) 25%, transparent), transparent 57%),
+    linear-gradient(#ffffff17 1px, transparent 1px), linear-gradient(90deg, #ffffff17 1px, transparent 1px);
+  background-size: auto, 2.15rem 2.15rem, 2.15rem 2.15rem;
   border-block-end: 1px solid var(--inverse-line);
 }
 .hero-grid { --hero-left: 1.03fr; --hero-right: .97fr; }
@@ -12,13 +31,13 @@
 .hero-grid h1 { font-size: clamp(3rem, 6.55vw, 7.35rem); line-height: .96; letter-spacing: -.075em; margin-top: .52rem; }
 .tagline { font-size: clamp(1.35rem, 2.4vw, 2.3rem); line-height: 1.2; margin-top: .9rem; }
 .intro { margin-top: 1rem; }
-.hero-grid .action { background: var(--inverse-ink); color: var(--inverse); border-radius: .35rem; margin-top: 1.3rem; }
+.hero-grid .action { background: var(--button); color: var(--button-ink); border-radius: .35rem; margin-top: 1.3rem; }
 .hero-grid .action:focus-visible { outline-color: var(--inverse-ink); }
 .tech-portrait { border-inline-start: 1px solid var(--inverse-line); }
 .tech-portrait img { object-position: center 40%; }
-.tech-portrait figcaption { display: flex; flex-wrap: wrap; gap: .25rem .8rem; font-family: var(--mono); }
-.terminal { align-self: center; margin-inline-end: var(--page-gutter); color: var(--inverse-ink); background: #181818; border: 1px solid var(--inverse-line); border-radius: .65rem; font: .9rem/1.65 var(--mono); overflow: hidden; }
-.terminal figcaption, .terminal-footer { display: flex; align-items: center; gap: .7rem; padding: .7rem 1.05rem; background: #333; color: var(--inverse-muted); }
+.tech-portrait figcaption { display: flex; flex-wrap: wrap; gap: .25rem .8rem; font-family: var(--mono); background: var(--terminal-bg); color: var(--hero-detail); }
+.terminal { align-self: center; margin-inline-end: var(--page-gutter); color: var(--inverse-ink); background: var(--terminal-bg); border: 1px solid var(--inverse-line); border-radius: .65rem; font: .9rem/1.65 var(--mono); overflow: hidden; }
+.terminal figcaption, .terminal-footer { display: flex; align-items: center; gap: .7rem; padding: .7rem 1.05rem; background: var(--terminal-bar); color: var(--inverse-muted); }
 .lights { display: flex; gap: .25rem; }
 .lights i { width: .43rem; height: .43rem; background: var(--inverse-muted); border-radius: 50%; }
 .lights i:nth-child(2) { opacity: .7; }

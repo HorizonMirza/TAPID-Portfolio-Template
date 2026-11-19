@@ -94,7 +94,7 @@
 .tapbar[data-skin="tint"] .tapbar-inner { background: var(--subtle); }
 .tapbar[data-skin="float"] .tapbar-desktop { background: var(--bg); }
 .tapbar[data-skin="glass"] .tapbar-inner {
-  background: linear-gradient(110deg, var(--surface) 32%, color-mix(in srgb, var(--ink) 9%, var(--surface)));
+  background: linear-gradient(110deg, var(--surface) 32%, color-mix(in srgb, var(--button) 13%, var(--surface)));
 }
 .tapbar[data-mark="circle"] .tapbar-symbol { border-radius: 50%; }
 .tapbar[data-mark="outline"] .tapbar-symbol { border-color: var(--ink); background: transparent; color: var(--ink); border-radius: 0; }

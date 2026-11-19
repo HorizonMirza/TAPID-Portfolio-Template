@@ -1,4 +1,18 @@
-:root { --body: 'Bricolage Grotesque', sans-serif; --control-radius: 0; }
+:root {
+  --body: 'Bricolage Grotesque', sans-serif; --control-radius: 0;
+  --bg: #f8eee7; --ink: #291714; --muted: #644742; --surface: #fff6ed; --subtle: #f0dbd0; --line: #a9897c;
+  --red: var(--custom-light, #ab281d); --red-ink: var(--custom-ink-light, #fff9f2);
+  --heavy: #341b18; --focus: #941b19;
+  --button: var(--red); --button-ink: var(--red-ink); --detail-accent: var(--red);
+  --inverse: var(--red); --inverse-ink: var(--red-ink); --inverse-line: color-mix(in srgb, var(--red-ink) 40%, var(--red));
+}
+:root[data-mode="dark"] {
+  --bg: #271817; --ink: #fae9dd; --muted: #dcc0b5; --surface: #382321; --subtle: #452b28; --line: #8c635b;
+  --red: var(--custom-dark, #ff7a6b); --red-ink: var(--custom-ink-dark, #2c1210);
+  --heavy: #321715; --focus: #ff8d82;
+  --button: var(--red); --button-ink: var(--red-ink); --detail-accent: var(--red);
+  --inverse: var(--red); --inverse-ink: var(--red-ink); --inverse-line: color-mix(in srgb, var(--red-ink) 40%, var(--red));
+}
 .studio-hero { display: grid; grid-template-rows: auto 1fr; min-block-size: var(--hero-height); background: var(--surface); }
 .studio-title { display: flex; gap: .8rem 1.5rem; justify-content: space-between; align-items: end; flex-wrap: wrap; padding-block: clamp(.9rem, 3vh, 2.4rem); }
 .studio-title h1 { font-size: clamp(3.5rem, 8.5vw, 10rem); font-weight: 800; line-height: .9; letter-spacing: -.085em; }
@@ -10,8 +24,8 @@
 .studio-intro .action:focus-visible { outline-color: var(--inverse-ink); }
 .studio-portrait { border-inline-start: 1px solid var(--inverse-line); }
 .studio-portrait img { object-position: center 35%; }
-.paper-fold { background: #333; display: grid; place-items: center; }
-.paper-fold span { width: 65%; height: 75%; background: linear-gradient(140deg, #eee 40%, #191919 41% 60%, #a5a5a5 61%); clip-path: polygon(0% 0%, 66% 37%, 100% 0%, 74% 77%, 52% 100%, 51% 61%); }
+.paper-fold { background: color-mix(in srgb, var(--red) 65%, #1b1211); display: grid; place-items: center; }
+.paper-fold span { width: 65%; height: 75%; background: linear-gradient(140deg, #fbe6d9 40%, #241818 41% 60%, #e8b9a7 61%); clip-path: polygon(0% 0%, 66% 37%, 100% 0%, 74% 77%, 52% 100%, 51% 61%); }
 @media (max-width: 49rem) {
   .studio-hero { min-block-size: 0; }
   .studio-portrait { border-inline-start: 0; border-block-start: 1px solid var(--inverse-line); }
