@@ -24,6 +24,12 @@
     }
   },
   "about": {
+    "education": {
+      "university": "Institut Teknologi Cakrawala",
+      "major": { "id": "Informatika", "en": "Computer Science" },
+      "specialization": { "id": "Rekayasa Web dan Sistem Data", "en": "Web Engineering and Data Systems" },
+      "gpa": { "value": 3.68, "scale": 4 }
+    },
     "headline": {
       "id": "Dari alur pengguna ke komponen.",
       "en": "From user workflows to components."

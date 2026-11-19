@@ -24,6 +24,12 @@
     }
   },
   "about": {
+    "education": {
+      "university": "Universitas Cipta Mandiri",
+      "major": { "id": "Manajemen", "en": "Management" },
+      "specialization": { "id": "Operasional dan Manajemen Proyek", "en": "Operations and Project Management" },
+      "gpa": { "value": 3.71, "scale": 4 }
+    },
     "headline": {
       "id": "Rencana yang bisa dipakai tim setiap minggu.",
       "en": "Plans the team can use every week."

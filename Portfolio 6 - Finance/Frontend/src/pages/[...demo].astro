@@ -1,18 +1,27 @@
 ---
 import PortfolioPage from '../PortfolioPage.astro';
 import HomeDemos from '../HomeDemos.astro';
+import AboutDemos from '../AboutDemos.astro';
 import { portfolio, type Language } from '../portfolio';
 
 export function getStaticPaths() {
   return portfolio.settings.demo ? [
-    { params: { demo: 'demo-beranda' }, props: { language: 'id' as const } },
-    { params: { demo: 'en/demo-beranda' }, props: { language: 'en' as const } },
+    { params: { demo: 'demo-beranda' }, props: { language: 'id' as const, section: 'home' as const } },
+    { params: { demo: 'en/demo-beranda' }, props: { language: 'en' as const, section: 'home' as const } },
+    { params: { demo: 'demo-tentang' }, props: { language: 'id' as const, section: 'about' as const } },
+    { params: { demo: 'en/demo-tentang' }, props: { language: 'en' as const, section: 'about' as const } },
   ] : [];
 }
 
-interface Props { language: Language }
-const { language } = Astro.props;
+interface Props { language: Language; section: 'home' | 'about' }
+const { language, section } = Astro.props;
 ---
-<PortfolioPage language={language}>
-  <HomeDemos slot="home" language={language} />
-</PortfolioPage>
+{section === 'about' ? (
+  <PortfolioPage language={language}>
+    <AboutDemos slot="about-preview" language={language} />
+  </PortfolioPage>
+) : (
+  <PortfolioPage language={language}>
+    <HomeDemos slot="home" language={language} />
+  </PortfolioPage>
+)}

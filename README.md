@@ -6,6 +6,8 @@ Keenam top bar menampilkan nama profil, menu di tengah pada desktop, dan tombol 
 
 Setiap portofolio demo punya 10 rancangan Beranda bernomor 01–10. Buka `/demo-beranda/` pada tema yang sedang dijalankan atau `/en/demo-beranda/` untuk versi Inggris. Pilihan dapat dibuka kembali lewat URL seperti `/demo-beranda/?pilihan=04`.
 
+Setiap tema juga punya 10 rancangan Tentang di `/demo-tentang/` dan `/en/demo-tentang/`. Ringkasan diambil dari `about.description`. Data akademik opsional ada di `about.education` dan mencakup `university`, `major`, `specialization`, serta `gpa` dengan `value` dan `scale`. Data akademik pada demo bersifat fiktif.
+
 | Template | Warna bawaan | Beranda utama | Top bar |
 | --- | --- | --- | --- |
 | [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 01 · Command Rail |

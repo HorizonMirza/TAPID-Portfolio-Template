@@ -15,6 +15,12 @@
     }
   },
   "about": {
+    "education": {
+      "university": "Institut Bisnis Arunika",
+      "major": { "id": "Keuangan", "en": "Finance" },
+      "specialization": { "id": "Perencanaan Keuangan dan Pemodelan", "en": "Financial Planning and Modeling" },
+      "gpa": { "value": 3.73, "scale": 4 }
+    },
     "headline": { "id": "Laporan yang bisa ditelusuri.", "en": "Reports with a clear audit trail." },
     "description": {
       "id": "Saya mulai dari pertanyaan yang perlu dijawab tim. Setelah mencocokkan sumber data, saya menuliskan asumsi dan menyusun ringkasan yang memudahkan pembaca menghubungkan angka dengan perubahan operasional.",

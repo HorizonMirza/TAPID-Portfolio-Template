@@ -22,7 +22,17 @@ export const portfolio = z.object({
     portrait: image.optional(),
     cvUrl: cvURL.nullish(),
   }),
-  about: z.object({ headline: localized, description: localized }),
+  about: z.object({
+    headline: localized,
+    description: localized,
+    education: z.object({
+      university: text.optional(),
+      major: localized.optional(),
+      specialization: localized.optional(),
+      gpa: z.object({ value: z.number().nonnegative(), scale: z.number().positive() })
+        .refine(({ value, scale }) => value <= scale, 'GPA melebihi skala').optional(),
+    }).optional(),
+  }),
   projects: z.array(z.object({
     title: text,
     category: localized,
@@ -84,7 +94,11 @@ export function localize(language: Language) {
     portrait: getImage(pr.portrait),
     cvUrl: pr.cvUrl,
   };
-  const about = { headline: portfolio.about.headline[language], description: portfolio.about.description[language] };
+  const about = {
+    headline: portfolio.about.headline[language],
+    description: portfolio.about.description[language],
+    education: portfolio.about.education,
+  };
   const projects = portfolio.projects.map((project) => ({
     title: project.title,
     category: project.category[language],

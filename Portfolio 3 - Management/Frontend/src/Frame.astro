@@ -5,9 +5,8 @@ import './styles/font.css';
 import './styles/theme.css';
 import './styles/motion.css';
 
-interface Props { language: Language; skip: string; previewHome?: boolean }
-const { language, skip, previewHome = false } = Astro.props;
-const path = previewHome ? 'demo-beranda/' : '';
+interface Props { language: Language; skip: string; previewPath?: string }
+const { language, skip, previewPath: path = '' } = Astro.props;
 const { profile, settings } = portfolio;
 const pageTitle = `${profile.name} | ${profile.role[language]}`;
 const contrastText = (hex: string) => {
@@ -27,7 +26,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content={profile.introduction[language]} />
     <meta name="color-scheme" content="light dark" />
-    {previewHome && <meta name="robots" content="noindex" />}
+    {path && <meta name="robots" content="noindex" />}
     <title>{pageTitle}</title>
     <link rel="alternate" href={`/${path}`} hreflang="id" />
     <link rel="alternate" href={`/en/${path}`} hreflang="en" />

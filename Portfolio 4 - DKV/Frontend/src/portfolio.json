@@ -24,6 +24,12 @@
     }
   },
   "about": {
+    "education": {
+      "university": "Institut Seni Rupa Garis",
+      "major": { "id": "Desain Komunikasi Visual", "en": "Visual Communication Design" },
+      "specialization": { "id": "Identitas Visual dan Tipografi", "en": "Visual Identity and Typography" },
+      "gpa": { "value": 3.79, "scale": 4 }
+    },
     "headline": {
       "id": "Bentuk dimulai dari meja kerja.",
       "en": "Form begins at the worktable."

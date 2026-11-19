@@ -24,6 +24,12 @@
     }
   },
   "about": {
+    "education": {
+      "university": "Universitas Nusa Pratama",
+      "major": { "id": "Manajemen Risiko", "en": "Risk Management" },
+      "specialization": { "id": "Analisis Polis dan Klaim", "en": "Policy and Claims Analysis" },
+      "gpa": { "value": 3.54, "scale": 4 }
+    },
     "headline": {
       "id": "Dokumen yang bisa dibaca bersama.",
       "en": "Documents everyone can work from."

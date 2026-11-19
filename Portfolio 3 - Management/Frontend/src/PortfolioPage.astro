@@ -7,12 +7,15 @@ import { localize, type Language } from './portfolio';
 interface Props { language: Language }
 const { language } = Astro.props;
 const previewHome = Astro.slots.has('home');
-const languageHref = previewHome ? (language === 'id' ? '/en/demo-beranda/' : '/demo-beranda/') : undefined;
+const previewAbout = Astro.slots.has('about-preview');
+const previewPath = previewAbout ? 'demo-tentang/' : previewHome ? 'demo-beranda/' : undefined;
+const languageHref = previewPath ? `${language === 'id' ? '/en/' : '/'}${previewPath}` : undefined;
 const { copy, p, about, projects, skills, experience, contact, demo } = localize(language);
 ---
-<Frame language={language} skip={copy.skip} previewHome={previewHome}>
+<Frame language={language} skip={copy.skip} previewPath={previewPath}>
   <TopBar language={language} languageHref={languageHref} />
   <main id="main" tabindex="-1">
+    {previewAbout && <slot name="about-preview" />}
     {previewHome ? <slot name="home" /> : p.portrait ? (
       <section id="home" aria-labelledby="portfolio-home-title">
         <HomeHero language={language} />
@@ -27,10 +30,12 @@ const { copy, p, about, projects, skills, experience, contact, demo } = localize
         <div class="ops-graphic" aria-hidden="true"><i></i><i></i><i></i></div>
       </section>
     )}
-    <section id="about" class="wrap ops-about" aria-labelledby="about-title">
-      <div><p class="section-label">{copy.about}</p><p class="location">{p.location}</p></div>
-      <div><h2 id="about-title">{about.headline}</h2><p class="copy">{about.description}</p></div>
-    </section>
+    {!previewAbout && (
+      <section id="about" class="wrap ops-about" aria-labelledby="about-title">
+        <div><p class="section-label">{copy.about}</p><p class="location">{p.location}</p></div>
+        <div><h2 id="about-title">{about.headline}</h2><p class="copy">{about.description}</p></div>
+      </section>
+    )}
     {projects.length > 0 && <section id="projects" class="wrap ops-projects" aria-labelledby="work-title">
       <h2 id="work-title">{copy.projects}</h2>
       <div class="project-board">

@@ -5,7 +5,7 @@ Isi website berasal dari satu file, `Frontend/src/portfolio.json`. Contoh di fil
 | Kelompok data | Isi |
 | --- | --- |
 | `profile` | Nama, profesi, ringkasan, lokasi, foto opsional, dan `cvUrl` untuk tautan CV |
-| `about` | Judul dan deskripsi profil |
+| `about` | Judul, ringkasan diri, serta data akademik opsional di `education` |
 | `projects` | Nama, kategori, deskripsi, serta gambar dan tautan opsional |
 | `skills` | Daftar kemampuan dalam Bahasa Indonesia dan Inggris |
 | `experience` | Peran, organisasi, periode, serta deskripsi |

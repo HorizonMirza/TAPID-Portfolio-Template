@@ -24,6 +24,12 @@
     }
   },
   "about": {
+    "education": {
+      "university": "Universitas Lentera Kota",
+      "major": { "id": "Ilmu Komunikasi", "en": "Communication Studies" },
+      "specialization": { "id": "Riset Kualitatif dan Komunikasi Program", "en": "Qualitative Research and Program Communication" },
+      "gpa": { "value": 3.62, "scale": 4 }
+    },
     "headline": {
       "id": "Catatan yang bisa ditindaklanjuti.",
       "en": "Notes people can act on."
