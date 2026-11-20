@@ -161,6 +161,30 @@
     {
       "id": "Pengujian antarmuka",
       "en": "UI testing"
+    },
+    {
+      "id": "CSS responsif",
+      "en": "Responsive CSS"
+    },
+    {
+      "id": "Integrasi API",
+      "en": "API integration"
+    },
+    {
+      "id": "Performa web",
+      "en": "Web performance"
+    },
+    {
+      "id": "Git dan kontrol versi",
+      "en": "Git and version control"
+    },
+    {
+      "id": "Sistem desain",
+      "en": "Design systems"
+    },
+    {
+      "id": "Debugging browser",
+      "en": "Browser debugging"
     }
   ],
   "experience": [

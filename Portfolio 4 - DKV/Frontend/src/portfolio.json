@@ -161,6 +161,30 @@
     {
       "id": "Persiapan cetak",
       "en": "Print production"
+    },
+    {
+      "id": "Tata letak editorial",
+      "en": "Editorial layout"
+    },
+    {
+      "id": "Teori warna",
+      "en": "Colour theory"
+    },
+    {
+      "id": "Ilustrasi digital",
+      "en": "Digital illustration"
+    },
+    {
+      "id": "Desain kemasan",
+      "en": "Packaging design"
+    },
+    {
+      "id": "Sistem penunjuk arah",
+      "en": "Wayfinding design"
+    },
+    {
+      "id": "Prototipe visual",
+      "en": "Visual prototyping"
     }
   ],
   "experience": [

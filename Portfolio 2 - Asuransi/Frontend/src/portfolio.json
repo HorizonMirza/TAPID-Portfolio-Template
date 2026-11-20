@@ -161,6 +161,30 @@
     {
       "id": "Wawancara klien",
       "en": "Client interviews"
+    },
+    {
+      "id": "Pemeriksaan lokasi",
+      "en": "Site inspections"
+    },
+    {
+      "id": "Pencatatan insiden",
+      "en": "Incident reporting"
+    },
+    {
+      "id": "Perbandingan cakupan",
+      "en": "Coverage comparison"
+    },
+    {
+      "id": "Pelaporan risiko",
+      "en": "Risk reporting"
+    },
+    {
+      "id": "Administrasi polis",
+      "en": "Policy administration"
+    },
+    {
+      "id": "Verifikasi dokumen",
+      "en": "Document verification"
     }
   ],
   "experience": [

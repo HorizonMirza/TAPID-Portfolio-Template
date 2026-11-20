@@ -161,6 +161,30 @@
     {
       "id": "Perbaikan proses",
       "en": "Process improvement"
+    },
+    {
+      "id": "Pembagian tanggung jawab",
+      "en": "Responsibility mapping"
+    },
+    {
+      "id": "Prioritas pekerjaan",
+      "en": "Work prioritisation"
+    },
+    {
+      "id": "Pencatatan risiko proyek",
+      "en": "Project risk tracking"
+    },
+    {
+      "id": "Pelacakan KPI",
+      "en": "KPI tracking"
+    },
+    {
+      "id": "Penyusunan SOP",
+      "en": "SOP development"
+    },
+    {
+      "id": "Manajemen perubahan",
+      "en": "Change management"
     }
   ],
   "experience": [

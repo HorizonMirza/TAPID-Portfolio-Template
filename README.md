@@ -10,6 +10,8 @@ Setiap tema juga punya 10 rancangan Tentang di `/demo-tentang/` dan `/en/demo-te
 
 Untuk mencoba 10 rancangan Proyek, buka `/demo-proyek/` atau `/en/demo-proyek/`. Pilihan dapat dibagikan lewat URL seperti `/demo-proyek/?pilihan=04`. Isi proyek mengikuti `projects` di file data tema.
 
+Setiap tema menampilkan 10 contoh keahlian. Buka `/demo-keahlian/` atau `/en/demo-keahlian/` untuk membandingkan 15 rancangan. Tautan seperti `/demo-keahlian/?pilihan=07` langsung membuka rancangan yang dipilih.
+
 | Template | Warna bawaan | Beranda utama | Tentang utama | Proyek utama | Top bar |
 | --- | --- | --- | --- | --- | --- |
 | [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 06 · Developer Panel | 05 · Studi Kasus | 01 · Command Rail |

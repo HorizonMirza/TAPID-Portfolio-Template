@@ -137,10 +137,46 @@
     }
   ],
   "skills": [
-    { "id": "Pemodelan keuangan", "en": "Financial modeling" },
-    { "id": "Analisis varians", "en": "Variance analysis" },
-    { "id": "Rekonsiliasi data", "en": "Data reconciliation" },
-    { "id": "Pelaporan manajemen", "en": "Management reporting" }
+    {
+      "id": "Pemodelan keuangan",
+      "en": "Financial modeling"
+    },
+    {
+      "id": "Analisis varians",
+      "en": "Variance analysis"
+    },
+    {
+      "id": "Rekonsiliasi data",
+      "en": "Data reconciliation"
+    },
+    {
+      "id": "Pelaporan manajemen",
+      "en": "Management reporting"
+    },
+    {
+      "id": "Proyeksi arus kas",
+      "en": "Cash flow forecasting"
+    },
+    {
+      "id": "Penyusunan anggaran",
+      "en": "Budgeting"
+    },
+    {
+      "id": "Analisis umur piutang",
+      "en": "Receivables aging"
+    },
+    {
+      "id": "Perencanaan skenario",
+      "en": "Scenario planning"
+    },
+    {
+      "id": "Otomasi spreadsheet",
+      "en": "Spreadsheet automation"
+    },
+    {
+      "id": "Analisis margin kotor",
+      "en": "Gross margin analysis"
+    }
   ],
   "experience": [
     {

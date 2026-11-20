@@ -11,7 +11,8 @@ const { language } = Astro.props;
 const previewHome = Astro.slots.has('home');
 const previewAbout = Astro.slots.has('about-preview');
 const previewProjects = Astro.slots.has('projects-preview');
-const previewPath = previewProjects ? 'demo-proyek/' : previewAbout ? 'demo-tentang/' : previewHome ? 'demo-beranda/' : undefined;
+const previewSkills = Astro.slots.has('skills-preview');
+const previewPath = previewSkills ? 'demo-keahlian/' : previewProjects ? 'demo-proyek/' : previewAbout ? 'demo-tentang/' : previewHome ? 'demo-beranda/' : undefined;
 const languageHref = previewPath ? `${language === 'id' ? '/en/' : '/'}${previewPath}` : undefined;
 const { copy, p, projects, skills, experience, contact, demo } = localize(language);
 const heroImage = projects.find((project) => project.image)?.image;
@@ -19,6 +20,7 @@ const heroImage = projects.find((project) => project.image)?.image;
 <Frame language={language} skip={copy.skip} previewPath={previewPath}>
   <TopBar language={language} languageHref={languageHref} />
   <main id="main" tabindex="-1">
+    {previewSkills && <slot name="skills-preview" />}
     {previewProjects && <slot name="projects-preview" />}
     {previewAbout && <slot name="about-preview" />}
     {previewHome ? <slot name="home" /> : p.portrait ? (
@@ -46,8 +48,8 @@ const heroImage = projects.find((project) => project.image)?.image;
     )}
     {!previewAbout && <AboutSection language={language} />}
     {!previewProjects && projects.length > 0 && <ProjectSection language={language} />}
-    {(skills.length > 0 || experience.length > 0) && <div class="wrap portfolio-details studio-details">
-      {skills.length > 0 && <section id="skills" aria-labelledby="skills-title"><h2 id="skills-title">{copy.skills}</h2>
+    {((!previewSkills && skills.length > 0) || experience.length > 0) && <div class="wrap portfolio-details studio-details">
+      {!previewSkills && skills.length > 0 && <section id="skills" aria-labelledby="skills-title"><h2 id="skills-title">{copy.skills}</h2>
         <ul>{skills.map((skill) => <li>{skill}</li>)}</ul></section>}
       {experience.length > 0 && <section id="experience" aria-labelledby="experience-title"><h2 id="experience-title">{copy.experience}</h2>
         <ol>{experience.map((job) => <li><div><h3>{job.title}</h3><p>{job.organization}</p></div><p class="section-label">{job.period}</p><p class="copy">{job.description}</p></li>)}</ol>

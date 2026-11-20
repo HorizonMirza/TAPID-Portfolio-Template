@@ -161,6 +161,30 @@
     {
       "id": "Koordinasi program",
       "en": "Program coordination"
+    },
+    {
+      "id": "Pemantauan program",
+      "en": "Program monitoring"
+    },
+    {
+      "id": "Dokumentasi kegiatan",
+      "en": "Activity documentation"
+    },
+    {
+      "id": "Moderasi diskusi",
+      "en": "Discussion moderation"
+    },
+    {
+      "id": "Perencanaan acara",
+      "en": "Event planning"
+    },
+    {
+      "id": "Koordinasi relawan",
+      "en": "Volunteer coordination"
+    },
+    {
+      "id": "Perancangan survei",
+      "en": "Survey design"
     }
   ],
   "experience": [
