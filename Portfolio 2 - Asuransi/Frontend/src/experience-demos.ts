@@ -10,7 +10,7 @@ const layoutLabels = {
   folio: { id: 'Halaman Editorial', en: 'Editorial Spread' },
   dossier: { id: 'Berkas Jabatan', en: 'Role Dossier' },
   compact: { id: 'Daftar Ringkas', en: 'Compact List' },
-  compare: { id: 'Bandingkan Peran', en: 'Compare Roles' },
+  compare: { id: 'Banding Peran', en: 'Compare Roles' },
   tabs: { id: 'Tab Jabatan', en: 'Role Tabs' },
   accordion: { id: 'Akordeon', en: 'Accordion' },
   pager: { id: 'Galeri Jabatan', en: 'Role Gallery' },
@@ -23,3 +23,30 @@ export const experienceOptions = order.map((layout, index) => ({
   name: layoutLabels[layout],
   layout,
 }));
+
+export const experienceExamples = [
+  {
+    "title": {
+      "id": "Asisten Dokumentasi Klaim",
+      "en": "Claims Documentation Assistant"
+    },
+    "organization": "Temu Klaim Studio",
+    "period": "2022–2023",
+    "description": {
+      "id": "Menyusun daftar bukti untuk berkas klaim simulasi dan menandai dokumen yang perlu dikonfirmasi sebelum ditinjau.",
+      "en": "Compiled evidence lists for sample claims and flagged documents that needed confirmation before review."
+    }
+  },
+  {
+    "title": {
+      "id": "Magang Penilaian Risiko",
+      "en": "Risk Assessment Intern"
+    },
+    "organization": "Arsip Risiko Lab",
+    "period": "2021–2022",
+    "description": {
+      "id": "Merangkum temuan dari latihan pemeriksaan lokasi dan mencatat kontrol yang perlu diperiksa kembali.",
+      "en": "Summarised findings from site-inspection exercises and recorded which controls needed a follow-up."
+    }
+  }
+];

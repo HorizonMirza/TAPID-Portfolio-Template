@@ -10,7 +10,7 @@ const layoutLabels = {
   folio: { id: 'Halaman Editorial', en: 'Editorial Spread' },
   dossier: { id: 'Berkas Jabatan', en: 'Role Dossier' },
   compact: { id: 'Daftar Ringkas', en: 'Compact List' },
-  compare: { id: 'Bandingkan Peran', en: 'Compare Roles' },
+  compare: { id: 'Banding Peran', en: 'Compare Roles' },
   tabs: { id: 'Tab Jabatan', en: 'Role Tabs' },
   accordion: { id: 'Akordeon', en: 'Accordion' },
   pager: { id: 'Galeri Jabatan', en: 'Role Gallery' },
@@ -23,3 +23,30 @@ export const experienceOptions = order.map((layout, index) => ({
   name: layoutLabels[layout],
   layout,
 }));
+
+export const experienceExamples = [
+  {
+    "title": {
+      "id": "Fasilitator Kegiatan Baca",
+      "en": "Reading Session Facilitator"
+    },
+    "organization": "Kolektif Rak Terbuka",
+    "period": "2023",
+    "description": {
+      "id": "Menyiapkan bahan bacaan dan memandu diskusi kelompok kecil. Catatan kegiatan dipakai untuk menyiapkan pertemuan berikutnya.",
+      "en": "Prepared reading material and ran small-group discussions. Session notes informed the next meeting."
+    }
+  },
+  {
+    "title": {
+      "id": "Relawan Dokumentasi Program",
+      "en": "Programme Documentation Volunteer"
+    },
+    "organization": "Ruang Kumpul Sore",
+    "period": "2022",
+    "description": {
+      "id": "Mencatat agenda dan merangkum masukan peserta untuk dibagikan ke relawan setelah kegiatan.",
+      "en": "Recorded the agenda and summarised participant feedback for volunteers after each activity."
+    }
+  }
+];

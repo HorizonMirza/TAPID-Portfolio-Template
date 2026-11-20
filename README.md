@@ -12,7 +12,7 @@ Untuk mencoba 10 rancangan Proyek, buka `/demo-proyek/` atau `/en/demo-proyek/`.
 
 Setiap tema menampilkan 10 contoh keahlian. Buka `/demo-keahlian/` atau `/en/demo-keahlian/` untuk membandingkan 15 rancangan. Tautan seperti `/demo-keahlian/?pilihan=07` langsung membuka rancangan yang dipilih.
 
-Buka `/demo-pengalaman/` atau `/en/demo-pengalaman/` untuk mencoba 15 rancangan Pengalaman. Isinya mengikuti `experience` di file data tema. Tambahkan `?pilihan=07` untuk membuka langsung rancangan bernomor 07.
+Buka `/demo-pengalaman/` atau `/en/demo-pengalaman/` untuk mencoba 15 rancangan dengan empat contoh pengalaman per tema. Galeri memakai riwayat dari `experience` di file data tema dan dua entri tambahan khusus demo. Tambahkan `?pilihan=07` untuk membuka langsung rancangan bernomor 07.
 
 | Template | Warna bawaan | Beranda utama | Tentang utama | Proyek utama | Keahlian utama | Top bar |
 | --- | --- | --- | --- | --- | --- | --- |

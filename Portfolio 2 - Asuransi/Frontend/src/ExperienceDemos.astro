@@ -1,11 +1,20 @@
 ---
 import { localize, type Language } from './portfolio';
-import { experienceOptions } from './experience-demos';
+import { experienceExamples, experienceOptions } from './experience-demos';
 import './styles/experience-demos.css';
 
 interface Props { language: Language }
 const { language } = Astro.props;
-const { experience, copy } = localize(language);
+const { experience: portfolioExperience, copy } = localize(language);
+const experience = [
+  ...portfolioExperience,
+  ...experienceExamples.map((role) => ({
+    title: role.title[language],
+    organization: role.organization,
+    period: role.period,
+    description: role.description[language],
+  })),
+];
 const english = language === 'en';
 const first = experienceOptions[0];
 ---

@@ -10,7 +10,7 @@ const layoutLabels = {
   folio: { id: 'Halaman Editorial', en: 'Editorial Spread' },
   dossier: { id: 'Berkas Jabatan', en: 'Role Dossier' },
   compact: { id: 'Daftar Ringkas', en: 'Compact List' },
-  compare: { id: 'Bandingkan Peran', en: 'Compare Roles' },
+  compare: { id: 'Banding Peran', en: 'Compare Roles' },
   tabs: { id: 'Tab Jabatan', en: 'Role Tabs' },
   accordion: { id: 'Akordeon', en: 'Accordion' },
   pager: { id: 'Galeri Jabatan', en: 'Role Gallery' },
@@ -23,3 +23,30 @@ export const experienceOptions = order.map((layout, index) => ({
   name: layoutLabels[layout],
   layout,
 }));
+
+export const experienceExamples = [
+  {
+    "title": {
+      "id": "Magang Perencanaan Anggaran",
+      "en": "Budget Planning Intern"
+    },
+    "organization": "Ruang Rencana Analitik",
+    "period": "2023",
+    "description": {
+      "id": "Memeriksa asumsi pada model anggaran dan menyiapkan perbandingan realisasi dengan rencana per kategori biaya.",
+      "en": "Checked budget assumptions and prepared actual-versus-plan comparisons by cost category."
+    }
+  },
+  {
+    "title": {
+      "id": "Asisten Administrasi Keuangan",
+      "en": "Finance Administration Assistant"
+    },
+    "organization": "Kolektif Pencatatan Usaha",
+    "period": "2022",
+    "description": {
+      "id": "Mencocokkan faktur dengan catatan pembayaran dan merangkum transaksi yang masih memerlukan konfirmasi.",
+      "en": "Matched invoices to payment records and summarised transactions that still needed confirmation."
+    }
+  }
+];
