@@ -24,29 +24,4 @@ export const experienceOptions = order.map((layout, index) => ({
   layout,
 }));
 
-export const experienceExamples = [
-  {
-    "title": {
-      "id": "Asisten Operasional",
-      "en": "Operations Assistant"
-    },
-    "organization": "Ruang Kerja Arus",
-    "period": "2022–2023",
-    "description": {
-      "id": "Memperbarui papan tugas, mencatat ketergantungan yang belum selesai, dan menyiapkan ringkasan untuk rapat mingguan.",
-      "en": "Updated the task board, recorded outstanding dependencies, and prepared summaries for weekly meetings."
-    }
-  },
-  {
-    "title": {
-      "id": "Koordinator Logistik Acara",
-      "en": "Event Logistics Coordinator"
-    },
-    "organization": "Kolektif Agenda Kampus",
-    "period": "2021–2022",
-    "description": {
-      "id": "Menyusun jadwal persiapan acara, membagi tugas relawan, dan mencatat kebutuhan perlengkapan per sesi.",
-      "en": "Planned event setup, allocated volunteer tasks, and recorded equipment requirements for each session."
-    }
-  }
-];
+export const selectedExperienceLayout: Layout = 'accordion';

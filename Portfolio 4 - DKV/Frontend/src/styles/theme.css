@@ -36,9 +36,6 @@ h2 { font-size: clamp(2.1rem, 4.7vw, 4.5rem); font-weight: 800; letter-spacing: 
 .studio-about .wrap { display: grid; grid-template-columns: minmax(0,.65fr) minmax(0,2fr); align-items: center; gap: 1.5rem; padding-block: 2.9rem; }
 .studio-about h2 { margin: .4rem 0 .65rem; }
 .studio-mark { font-size: clamp(4rem, 12vw, 11rem); line-height: 1; justify-self: center; }
-.studio-details ol { margin-top: .9rem; }
-.studio-details ol li { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: .35rem .75rem; border-top: 1px solid var(--line); padding-block: .65rem; }
-.studio-details li .copy { grid-column: 1 / -1; }
 .studio-footer h2 { margin-block: .35rem; }
 .studio-footer .contact-links { margin-top: .9rem; }
 .studio-footer .contact-links a { background: var(--button); color: var(--button-ink); }

@@ -24,29 +24,4 @@ export const experienceOptions = order.map((layout, index) => ({
   layout,
 }));
 
-export const experienceExamples = [
-  {
-    "title": {
-      "id": "Asisten Dokumentasi Klaim",
-      "en": "Claims Documentation Assistant"
-    },
-    "organization": "Temu Klaim Studio",
-    "period": "2022–2023",
-    "description": {
-      "id": "Menyusun daftar bukti untuk berkas klaim simulasi dan menandai dokumen yang perlu dikonfirmasi sebelum ditinjau.",
-      "en": "Compiled evidence lists for sample claims and flagged documents that needed confirmation before review."
-    }
-  },
-  {
-    "title": {
-      "id": "Magang Penilaian Risiko",
-      "en": "Risk Assessment Intern"
-    },
-    "organization": "Arsip Risiko Lab",
-    "period": "2021–2022",
-    "description": {
-      "id": "Merangkum temuan dari latihan pemeriksaan lokasi dan mencatat kontrol yang perlu diperiksa kembali.",
-      "en": "Summarised findings from site-inspection exercises and recorded which controls needed a follow-up."
-    }
-  }
-];
+export const selectedExperienceLayout: Layout = 'feature';

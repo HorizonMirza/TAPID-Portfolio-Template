@@ -24,29 +24,4 @@ export const experienceOptions = order.map((layout, index) => ({
   layout,
 }));
 
-export const experienceExamples = [
-  {
-    "title": {
-      "id": "Asisten Lab Web",
-      "en": "Web Lab Assistant"
-    },
-    "organization": "Ruang Praktik Kode",
-    "period": "2023",
-    "description": {
-      "id": "Mendampingi praktikum HTML dan CSS serta merangkum kesalahan yang paling sering muncul pada tugas responsif.",
-      "en": "Supported HTML and CSS lab sessions and documented recurring issues in responsive-layout assignments."
-    }
-  },
-  {
-    "title": {
-      "id": "Pengembang Situs Relawan",
-      "en": "Volunteer Web Developer"
-    },
-    "organization": "Komunitas Peta Belajar",
-    "period": "2022",
-    "description": {
-      "id": "Membuat halaman jadwal kegiatan dan menyiapkan pola konten yang bisa diperbarui oleh pengelola komunitas.",
-      "en": "Built an event schedule page and set up a content structure that community organisers could maintain."
-    }
-  }
-];
+export const selectedExperienceLayout: Layout = 'timeline';

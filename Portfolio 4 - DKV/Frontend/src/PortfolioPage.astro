@@ -5,6 +5,7 @@ import HomeHero from './HomeHero.astro';
 import AboutSection from './AboutSection.astro';
 import ProjectSection from './ProjectSection.astro';
 import SkillSection from './SkillSection.astro';
+import ExperienceSection from './ExperienceSection.astro';
 import CvLink from './CvLink.astro';
 import { localize, type Language } from './portfolio';
 interface Props { language: Language }
@@ -52,9 +53,7 @@ const heroImage = projects.find((project) => project.image)?.image;
     {!previewAbout && <AboutSection language={language} />}
     {!previewProjects && projects.length > 0 && <ProjectSection language={language} />}
     {!previewSkills && skills.length > 0 && <SkillSection language={language} />}
-    {!previewExperience && experience.length > 0 && <section id="experience" class="wrap studio-details" aria-labelledby="experience-title"><h2 id="experience-title">{copy.experience}</h2>
-      <ol>{experience.map((job) => <li><div><h3>{job.title}</h3><p>{job.organization}</p></div><p class="section-label">{job.period}</p><p class="copy">{job.description}</p></li>)}</ol>
-    </section>}
+    {!previewExperience && experience.length > 0 && <ExperienceSection language={language} />}
   </main>
   <footer class="studio-footer wrap">
     {contact.links.length > 0 && <section id="contact" aria-labelledby="contact-title">

@@ -12,16 +12,16 @@ Untuk mencoba 10 rancangan Proyek, buka `/demo-proyek/` atau `/en/demo-proyek/`.
 
 Setiap tema menampilkan 10 contoh keahlian. Buka `/demo-keahlian/` atau `/en/demo-keahlian/` untuk membandingkan 15 rancangan. Tautan seperti `/demo-keahlian/?pilihan=07` langsung membuka rancangan yang dipilih.
 
-Buka `/demo-pengalaman/` atau `/en/demo-pengalaman/` untuk mencoba 15 rancangan dengan empat contoh pengalaman per tema. Galeri memakai riwayat dari `experience` di file data tema dan dua entri tambahan khusus demo. Tambahkan `?pilihan=07` untuk membuka langsung rancangan bernomor 07.
+Buka `/demo-pengalaman/` atau `/en/demo-pengalaman/` untuk mencoba 15 rancangan dengan empat contoh pengalaman per tema. Halaman utama dan galeri mengambil keempat contoh pengalaman dari `experience` di file data tema. Tambahkan `?pilihan=07` untuk membuka langsung rancangan bernomor 07.
 
-| Template | Warna bawaan | Beranda utama | Tentang utama | Proyek utama | Keahlian utama | Top bar |
-| --- | --- | --- | --- | --- | --- | --- |
-| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 06 · Developer Panel | 05 · Studi Kasus | 01 · Kartu | 01 · Command Rail |
-| [Portfolio 2 - Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau | 04 · Green Frame | 09 · Academic Highlight | 05 · Galeri Kartu | 14 · Jalur | 05 · Advisor Capsule |
-| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | 03 · Team Lead | 06 · Yellow Statement | 01 · Linimasa | 09 · Mozaik | 02 · Ops Inline |
-| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | 01 · Poster Cover | 10 · Catalogue Index | 08 · Tab Proyek | 08 · Baris Warna | 09 · Letterpress |
-| [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | 01 · Classic Editorial | 10 · Academic Record | 05 · Linimasa | 02 · Indeks | 04 · Soft Capsule |
-| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu elektrik | 03 · Analyst at Desk | 10 · Editorial Center | 04 · Galeri Kartu | 10 · Jalur | 09 · Review Note |
+| Template | Warna bawaan | Beranda utama | Tentang utama | Proyek utama | Keahlian utama | Pengalaman utama | Top bar |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 06 · Developer Panel | 05 · Studi Kasus | 01 · Kartu | 02 · Linimasa | 01 · Command Rail |
+| [Portfolio 2 - Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau | 04 · Green Frame | 09 · Academic Highlight | 05 · Galeri Kartu | 14 · Jalur | 10 · Sorotan | 05 · Advisor Capsule |
+| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | 03 · Team Lead | 06 · Yellow Statement | 01 · Linimasa | 09 · Mozaik | 11 · Akordeon | 02 · Ops Inline |
+| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | 01 · Poster Cover | 10 · Catalogue Index | 08 · Tab Proyek | 08 · Baris Warna | 05 · Organisasi Utama | 09 · Letterpress |
+| [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | 01 · Classic Editorial | 10 · Academic Record | 05 · Linimasa | 02 · Indeks | 01 · Judul Samping | 04 · Soft Capsule |
+| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu elektrik | 03 · Analyst at Desk | 10 · Editorial Center | 04 · Galeri Kartu | 10 · Jalur | 01 · Banding Peran | 09 · Review Note |
 
 ## Jalankan satu template
 

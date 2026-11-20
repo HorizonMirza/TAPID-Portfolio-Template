@@ -4,7 +4,7 @@ import HomeDemos from '../HomeDemos.astro';
 import AboutDemos from '../AboutDemos.astro';
 import ProjectSection from '../ProjectSection.astro';
 import SkillSection from '../SkillSection.astro';
-import ExperienceDemos from '../ExperienceDemos.astro';
+import ExperienceSection from '../ExperienceSection.astro';
 import { portfolio, type Language } from '../portfolio';
 
 export function getStaticPaths() {
@@ -27,7 +27,7 @@ const { language, section } = Astro.props;
 ---
 {section === 'experience' ? (
   <PortfolioPage language={language}>
-    <ExperienceDemos slot="experience-preview" language={language} />
+    <ExperienceSection slot="experience-preview" language={language} preview />
   </PortfolioPage>
 ) : section === 'skills' ? (
   <PortfolioPage language={language}>

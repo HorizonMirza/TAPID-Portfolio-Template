@@ -217,6 +217,36 @@
         "id": "Membuat ulang panduan penggunaan internal dan menulis pengujian untuk alur pencarian.",
         "en": "Rebuilt an internal user guide and wrote tests for the search flow."
       }
+    },
+    {
+      "title": {
+        "id": "Asisten Lab Web",
+        "en": "Web Lab Assistant"
+      },
+      "organization": "Ruang Praktik Kode",
+      "period": {
+        "id": "2023",
+        "en": "2023"
+      },
+      "description": {
+        "id": "Mendampingi praktikum HTML dan CSS serta merangkum kesalahan yang paling sering muncul pada tugas responsif.",
+        "en": "Supported HTML and CSS lab sessions and documented recurring issues in responsive-layout assignments."
+      }
+    },
+    {
+      "title": {
+        "id": "Pengembang Situs Relawan",
+        "en": "Volunteer Web Developer"
+      },
+      "organization": "Komunitas Peta Belajar",
+      "period": {
+        "id": "2022",
+        "en": "2022"
+      },
+      "description": {
+        "id": "Membuat halaman jadwal kegiatan dan menyiapkan pola konten yang bisa diperbarui oleh pengelola komunitas.",
+        "en": "Built an event schedule page and set up a content structure that community organisers could maintain."
+      }
     }
   ],
   "contact": {

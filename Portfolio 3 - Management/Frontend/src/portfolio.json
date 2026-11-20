@@ -217,6 +217,36 @@
         "id": "Menjaga jadwal program, mencatat keputusan, dan mengoordinasikan kebutuhan mitra.",
         "en": "Maintained program schedules, documented decisions, and coordinated partner requirements."
       }
+    },
+    {
+      "title": {
+        "id": "Asisten Operasional",
+        "en": "Operations Assistant"
+      },
+      "organization": "Ruang Kerja Arus",
+      "period": {
+        "id": "2022–2023",
+        "en": "2022–2023"
+      },
+      "description": {
+        "id": "Memperbarui papan tugas, mencatat ketergantungan yang belum selesai, dan menyiapkan ringkasan untuk rapat mingguan.",
+        "en": "Updated the task board, recorded outstanding dependencies, and prepared summaries for weekly meetings."
+      }
+    },
+    {
+      "title": {
+        "id": "Koordinator Logistik Acara",
+        "en": "Event Logistics Coordinator"
+      },
+      "organization": "Kolektif Agenda Kampus",
+      "period": {
+        "id": "2021–2022",
+        "en": "2021–2022"
+      },
+      "description": {
+        "id": "Menyusun jadwal persiapan acara, membagi tugas relawan, dan mencatat kebutuhan perlengkapan per sesi.",
+        "en": "Planned event setup, allocated volunteer tasks, and recorded equipment requirements for each session."
+      }
     }
   ],
   "contact": {

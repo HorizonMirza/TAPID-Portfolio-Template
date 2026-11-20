@@ -9,6 +9,10 @@
   border-block-end: 1px solid var(--line);
 }
 #experience.experience-demos { padding-block: 0; border-block-start: 0; scroll-margin-block-start: 0; }
+#experience.experience-demos:not([data-experience-demos]) {
+  border-block-start: var(--record-start-border, 1px solid var(--line));
+  border-block-end: 0;
+}
 .experience-demos [hidden] { display: none !important; }
 
 .experience-picker { padding-block: .8rem .9rem; border-block-end: 1px solid var(--line); background: var(--surface); }
@@ -62,7 +66,7 @@
   gap: .75rem;
   margin-block-end: clamp(1rem, 2.5vw, 1.9rem);
 }
-.experience-demos #experience-preview-title { font: 730 var(--section-heading-size)/1.06 var(--record-type); letter-spacing: -.045em; }
+.experience-demos :is(#experience-preview-title, #experience-title) { font: 730 var(--section-heading-size)/1.06 var(--record-type); letter-spacing: -.045em; }
 .experience-content, .experience-records, .experience-entry { min-inline-size: 0; }
 .experience-records { display: grid; gap: var(--record-gap); }
 .experience-entry {
@@ -281,7 +285,7 @@
 }
 
 .experience-demos { --record-type: var(--finance-serif); --record-radius: .24rem .85rem .24rem .24rem; }
-.experience-demos #experience-preview-title, .experience-entry h3 { font-weight: 650; }
+.experience-demos :is(#experience-preview-title, #experience-title), .experience-entry h3 { font-weight: 650; }
 .experience-stage-heading { border-block-end: 1px solid var(--line); padding-block-end: .6rem; }
 .experience-period { font-feature-settings: "tnum"; }
 [data-layout="compare"] .experience-entry h3 { border-block-start: 3px solid var(--button); }

@@ -41,16 +41,9 @@
 h2 { font-size: clamp(1.95rem, 3.55vw, 3.2rem); letter-spacing: -.06em; }
 .risk-about h2 { margin: .55rem 0 .6rem; }
 .risk-about .section-label span { padding-inline: .3rem; }
-.risk-career ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
-.risk-career li { border: 1px solid var(--line); border-radius: .95rem; padding: 1.15rem; }
-.risk-career h3 { margin-top: .5rem; }
-.risk-career .role { margin-block: .25rem; font-weight: 650; }
 .risk-footer { background: var(--inverse); color: #fff; }
 .risk-footer h2 { margin: .5rem 0; }
 .risk-footer .contact-links { margin-top: 1rem; }
 .risk-footer .contact-links a { border: 1px solid var(--inverse-muted); border-radius: 2rem; padding-inline: .9rem; }
 .risk-footer a:focus-visible { outline-color: var(--inverse-ink); }
 .risk-footer-bottom { display: flex; gap: .9rem; flex-wrap: wrap; justify-content: space-between; border-top: 1px solid var(--inverse-line); padding: .85rem 0; }
-@media (max-width: 45rem) {
-  .risk-career ol { grid-template-columns: 1fr; }
-}

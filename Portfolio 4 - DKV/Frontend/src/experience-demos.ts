@@ -24,29 +24,4 @@ export const experienceOptions = order.map((layout, index) => ({
   layout,
 }));
 
-export const experienceExamples = [
-  {
-    "title": {
-      "id": "Desainer Publikasi",
-      "en": "Publication Designer"
-    },
-    "organization": "Kolektif Halaman",
-    "period": "2023",
-    "description": {
-      "id": "Menyusun grid editorial dan menguji skala tipografi pada sampul serta halaman isi zine edisi percobaan.",
-      "en": "Designed an editorial grid and tested type sizes across the cover and inside pages of a trial zine."
-    }
-  },
-  {
-    "title": {
-      "id": "Asisten Identitas Acara",
-      "en": "Event Identity Assistant"
-    },
-    "organization": "Ruang Reka Pamer",
-    "period": "2022",
-    "description": {
-      "id": "Mengadaptasi elemen visual acara ke kartu peserta, papan arah, dan template unggahan dengan ukuran berbeda.",
-      "en": "Adapted an event identity for participant cards, wayfinding signs, and social templates in different sizes."
-    }
-  }
-];
+export const selectedExperienceLayout: Layout = 'organization';

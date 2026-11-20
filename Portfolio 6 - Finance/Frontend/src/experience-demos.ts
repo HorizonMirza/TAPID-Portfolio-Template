@@ -24,29 +24,4 @@ export const experienceOptions = order.map((layout, index) => ({
   layout,
 }));
 
-export const experienceExamples = [
-  {
-    "title": {
-      "id": "Magang Perencanaan Anggaran",
-      "en": "Budget Planning Intern"
-    },
-    "organization": "Ruang Rencana Analitik",
-    "period": "2023",
-    "description": {
-      "id": "Memeriksa asumsi pada model anggaran dan menyiapkan perbandingan realisasi dengan rencana per kategori biaya.",
-      "en": "Checked budget assumptions and prepared actual-versus-plan comparisons by cost category."
-    }
-  },
-  {
-    "title": {
-      "id": "Asisten Administrasi Keuangan",
-      "en": "Finance Administration Assistant"
-    },
-    "organization": "Kolektif Pencatatan Usaha",
-    "period": "2022",
-    "description": {
-      "id": "Mencocokkan faktur dengan catatan pembayaran dan merangkum transaksi yang masih memerlukan konfirmasi.",
-      "en": "Matched invoices to payment records and summarised transactions that still needed confirmation."
-    }
-  }
-];
+export const selectedExperienceLayout: Layout = 'compare';

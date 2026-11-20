@@ -196,6 +196,36 @@
         "id": "Mencocokkan data transaksi dan mendokumentasikan aturan rekonsiliasi untuk pelaporan internal.",
         "en": "Reconciled transaction data and documented reconciliation rules for internal reporting."
       }
+    },
+    {
+      "title": {
+        "id": "Magang Perencanaan Anggaran",
+        "en": "Budget Planning Intern"
+      },
+      "organization": "Ruang Rencana Analitik",
+      "period": {
+        "id": "2023",
+        "en": "2023"
+      },
+      "description": {
+        "id": "Memeriksa asumsi pada model anggaran dan menyiapkan perbandingan realisasi dengan rencana per kategori biaya.",
+        "en": "Checked budget assumptions and prepared actual-versus-plan comparisons by cost category."
+      }
+    },
+    {
+      "title": {
+        "id": "Asisten Administrasi Keuangan",
+        "en": "Finance Administration Assistant"
+      },
+      "organization": "Kolektif Pencatatan Usaha",
+      "period": {
+        "id": "2022",
+        "en": "2022"
+      },
+      "description": {
+        "id": "Mencocokkan faktur dengan catatan pembayaran dan merangkum transaksi yang masih memerlukan konfirmasi.",
+        "en": "Matched invoices to payment records and summarised transactions that still needed confirmation."
+      }
     }
   ],
   "contact": {
