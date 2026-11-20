@@ -1,0 +1,83 @@
+.project-image-open {
+  display: block;
+  position: relative;
+}
+
+.project-preview-art .project-image-open { height: 100%; }
+.project-image-open:focus-visible { outline-offset: -4px; }
+
+.project-image-open > span {
+  position: absolute;
+  z-index: 2;
+  inset: auto .65rem .65rem auto;
+  display: flex;
+  align-items: center;
+  min-height: 2rem;
+  max-width: calc(100% - 1.3rem);
+  padding: .3rem .55rem;
+  border: 1px solid var(--line);
+  border-radius: .3rem;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: .78rem;
+  font-weight: 730;
+}
+
+.project-image-open:hover > span,
+.project-image-open:focus-visible > span { text-decoration: underline; }
+
+.project-image-dialog {
+  position: fixed;
+  inset: 0;
+  width: min(72rem, calc(100% - 1.25rem));
+  max-width: none;
+  max-height: calc(100dvh - 1.25rem);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: .6rem;
+  color: var(--ink);
+  background: var(--surface);
+}
+
+.project-image-dialog::backdrop { background: rgb(6 12 24 / 82%); }
+:root:has(.project-image-dialog[open]) { overflow: hidden; }
+
+.project-image-panel > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  padding: .7rem clamp(.75rem, 2vw, 1.3rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.project-image-panel h2 {
+  font: 750 clamp(1.1rem, 2.3vw, 1.65rem)/1.2 var(--project-display);
+  overflow-wrap: anywhere;
+}
+
+.project-image-panel button {
+  min-height: 2.75rem;
+  padding: .35rem .65rem;
+  white-space: nowrap;
+  border: 1px solid var(--line);
+  border-radius: .3rem;
+  background: var(--surface);
+  color: var(--ink);
+  font: 700 .87rem/1.25 var(--body);
+  cursor: pointer;
+}
+
+.project-image-panel button:hover { border-color: var(--focus); }
+
+.project-image-panel > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100dvh - 6rem);
+  object-fit: contain;
+  background: var(--subtle);
+}
+
+.project-image-panel > p { padding: 1rem 1.3rem; }

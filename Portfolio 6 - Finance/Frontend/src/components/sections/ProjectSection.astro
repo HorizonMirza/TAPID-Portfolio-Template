@@ -2,6 +2,7 @@
 import { localize, type Language } from '../../portfolio';
 import { projectLayouts, projectTheme, selectedProjectLayout } from '../../demos/project-demos';
 import '../../styles/project-demos.css';
+import '../../styles/project-image.css';
 
 interface Props { language: Language; preview?: boolean }
 const { language, preview = false } = Astro.props;
@@ -15,6 +16,8 @@ const canUseTabs = preview || layout === 'tabs';
 const canUseAccordion = preview || layout === 'accordion';
 const picker = english ? 'Project layout demos' : 'Demo tata letak Proyek';
 const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
+const enlarge = english ? 'Enlarge image' : 'Perbesar gambar';
+const close = english ? 'Close' : 'Tutup';
 ---
 <section id="projects" class="project-previews" data-project-section data-project-demos={preview ? '' : undefined}
          data-theme={projectTheme} aria-labelledby={titleId}>
@@ -57,7 +60,13 @@ const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
           <li id={`project-preview-item-${index}`} data-project-card>
             <article class="project-preview-card">
               {project.image
-                ? <figure class="project-preview-art" data-loading-media><img src={project.image.src} alt={project.image.alt} loading="lazy" /></figure>
+                ? <figure class="project-preview-art" data-loading-media>
+                    <a class="project-image-open" href={project.image.src} data-project-image={project.title}
+                       aria-label={`${enlarge}: ${project.title}`}>
+                      <img src={project.image.src} alt={project.image.alt} loading="lazy" />
+                      <span aria-hidden="true">{enlarge} ↗</span>
+                    </a>
+                  </figure>
                 : <div class="project-preview-art project-preview-graphic" data-graphic={index % 3} aria-hidden="true">
                     <span></span><span></span><span></span>
                   </div>}
@@ -80,7 +89,11 @@ const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
             </summary>
             <div class="project-preview-detail">
               {project.image && <figure class="project-detail-media" data-loading-media>
-                <img src={project.image.src} alt={project.image.alt} loading="lazy" />
+                <a class="project-image-open" href={project.image.src} data-project-image={project.title}
+                   aria-label={`${enlarge}: ${project.title}`}>
+                  <img src={project.image.src} alt={project.image.alt} loading="lazy" />
+                  <span aria-hidden="true">{enlarge} ↗</span>
+                </a>
               </figure>}
               <p class="project-preview-description">{project.description}</p>
               {project.href && <a class="project-link" href={project.href} aria-label={`${copy.viewProject}: ${project.title}`}>{copy.viewProject}</a>}
@@ -91,7 +104,54 @@ const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
     </div>
     {!projects.length && <p>{english ? 'No projects yet.' : 'Belum ada proyek.'}</p>}
   </div>
+  {projects.some(({ image }) => image) && <dialog class="project-image-dialog" data-project-image-dialog
+          aria-labelledby="project-image-heading">
+    <div class="project-image-panel">
+      <header>
+        <h2 id="project-image-heading" data-project-image-heading></h2>
+        <form method="dialog"><button type="submit" autofocus>{close} <span aria-hidden="true">×</span></button></form>
+      </header>
+      <img data-project-image-full alt="" />
+      <p data-project-image-error role="status" hidden>
+        {english ? 'The image could not be loaded.' : 'Gambar tidak berhasil dimuat.'}
+      </p>
+    </div>
+  </dialog>}
 </section>
+
+<script is:inline>
+  document.addEventListener('click', (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    const link = event.target.closest?.('a[data-project-image]');
+    if (!link) return;
+    const dialog = link.closest('[data-project-section]')?.querySelector('[data-project-image-dialog]');
+    if (!dialog || typeof dialog.showModal !== 'function' || dialog.open) return;
+
+    event.preventDefault();
+    const image = dialog.querySelector('[data-project-image-full]');
+    const message = dialog.querySelector('[data-project-image-error]');
+    const events = new AbortController();
+    const { signal } = events;
+    dialog.querySelector('[data-project-image-heading]').textContent = link.dataset.projectImage;
+    image.alt = link.querySelector('img').alt;
+    image.hidden = false;
+    message.hidden = true;
+    image.addEventListener('error', () => {
+      image.hidden = true;
+      message.hidden = false;
+    }, { once: true, signal });
+    dialog.addEventListener('click', (click) => {
+      if (click.target === dialog) dialog.close();
+    }, { signal });
+    dialog.addEventListener('close', () => {
+      events.abort();
+      image.removeAttribute('src');
+      if (link.isConnected) link.focus({ preventScroll: true });
+    }, { once: true });
+    dialog.showModal();
+    image.src = link.href;
+  });
+</script>
 
 {(canUseRail || canUseTabs) && <script is:inline>
   (() => {
