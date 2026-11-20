@@ -1,0 +1,172 @@
+@font-face { font-family: technology; src: url(teknologi/theme.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: insurance; src: url(asuransi/theme.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: management; src: url(management/theme.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: dkv; src: url(dkv/theme.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: general; src: url(general/theme.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: finance; src: url(finance/theme.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+.teknologi { --accent: #2859e8; --wash: #f5f7ff; --ink: #101c37; --midnight: #0b1429; --glow: #90b3ff; --on-accent: white; --display: technology, sans-serif; --radius: .45rem; }
+.asuransi { --accent: #32a85a; --wash: #f1faf3; --ink: #13251a; --midnight: #13271c; --glow: #8ee6a6; --on-accent: #0a1b0f; --display: insurance, sans-serif; --radius: 1.35rem; }
+.management { --accent: #ffdf24; --wash: #fffdf0; --ink: #241b00; --midnight: #231c0c; --glow: #ffe55c; --on-accent: #241b00; --display: management, sans-serif; --radius: 0rem; }
+.dkv { --accent: #ff5148; --wash: #fff2ed; --ink: #291714; --midnight: #281514; --glow: #ff8277; --on-accent: #240907; --display: dkv, sans-serif; --radius: 0rem; }
+.general { --accent: #111; --wash: #fff; --ink: #111; --midnight: #090909; --glow: #eee; --on-accent: white; --display: general, Georgia, serif; --radius: 0rem; }
+.finance { --accent: #bd48f9; --wash: #faf3ff; --ink: #23112f; --midnight: #170d20; --glow: #d889ff; --on-accent: #16091c; --display: finance, Georgia, serif; --radius: .35rem; }
+
+.gallery { font: 1rem/1.5 system-ui, sans-serif; background: #f6f0e7; color: #3f281f; }
+.gallery-bar { border-bottom: 1px solid #d7c5b3; padding: 1rem max(1.1rem, calc((100vw - 77rem) / 2)); display: flex; justify-content: space-between; gap: 1rem; align-items: center; background: #fbf8f3; }
+.gallery-bar span { font-weight: 850; letter-spacing: .12em; }
+.gallery-bar a { text-underline-offset: .2em; }
+.catalog { max-width: 80rem; margin: auto; padding: clamp(1rem, 4vw, 2.5rem) 1.5rem 4rem; }
+.intro { padding-block: 1.8rem 1.4rem; }
+.intro h1 { font-size: clamp(2.4rem, 6vw, 4.9rem); font-weight: 760; letter-spacing: -.065em; line-height: 1; margin: 0 0 1rem; }
+.intro p { margin: 0 0 1.4rem; }
+.themes { display: flex; flex-wrap: wrap; gap: .5rem; }
+.themes a { border: 1px solid #c9b5a2; background: #fffcf8; text-decoration: none; padding: .42rem .72rem; border-radius: 2rem; }
+.themes a:hover { border-color: #3f281f; }
+.themes a::before { content: ""; display: inline-block; width: .56rem; height: .56rem; margin-inline-end: .42rem; border-radius: 50%; background: var(--accent); }
+.group { margin-top: 2.5rem; scroll-margin-top: 1rem; }
+.group h2 { font-size: 1.45rem; line-height: 1.3; margin: 0 0 .85rem; padding-bottom: .65rem; border-bottom: 2px solid var(--accent); }
+.group ol { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(13.5rem, 100%), 1fr)); gap: .75rem; }
+.group li { min-width: 0; }
+.card { display: block; background: #fffcf9; border: 1px solid #d7c5b3; border-radius: .65rem; overflow: hidden; text-decoration: none; transition: border-color .18s ease, transform .18s ease; }
+.card:hover { border-color: #8b5a3c; transform: translateY(-2px); }
+.card img { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; background: var(--wash); }
+.card > span { display: flex; align-items: baseline; gap: .5rem; padding: .65rem .7rem; font-size: .92rem; }
+.card b { color: #76513d; font: 700 .78rem/1 ui-monospace, monospace; }
+
+.preview { --page: var(--wash); --text: var(--ink); --signal: var(--accent); --button-text: var(--on-accent); --line: color-mix(in srgb, var(--text) 22%, var(--page)); --tint: color-mix(in srgb, var(--signal) 12%, var(--page)); --panel: color-mix(in srgb, var(--tint) 35%, var(--page)); color: var(--text); background: var(--page); font: 1rem/1.55 system-ui, sans-serif; }
+[data-mode="dark"] .preview { color-scheme: dark; --page: var(--midnight); --text: var(--wash); --signal: var(--glow); --button-text: var(--midnight); }
+.toolbar { position: sticky; top: 0; z-index: 1; min-height: 3.75rem; display: flex; justify-content: space-between; align-items: center; gap: .7rem; padding: .55rem clamp(.75rem, 4vw, 2.2rem); border-bottom: 1px solid var(--line); background: var(--page); }
+.toolbar a { text-decoration: none; }
+.toolbar a:hover { text-decoration: underline; }
+.caption { text-align: center; font-size: .88rem; }
+.tools { display: flex; gap: .3rem; }
+.tools a, .tools button { display: inline-grid; min-width: 2.15rem; min-height: 2.15rem; place-items: center; font: inherit; font-size: .86rem; color: inherit; background: var(--tint); border: 1px solid var(--line); padding: .25rem .55rem; border-radius: .3rem; cursor: pointer; }
+.back { white-space: nowrap; font-size: .86rem; }
+
+.stage { display: grid; place-items: center; min-height: max(30rem, calc(100svh - 3.75rem)); padding: clamp(1rem, 4vw, 3.5rem); overflow-x: clip; }
+.layout { width: min(100%, 65rem); min-width: 0; display: grid; align-items: center; gap: 1.5rem; }
+.visual { position: relative; display: grid; min-width: 0; min-height: 12rem; place-items: center; isolation: isolate; color: var(--text); container-type: inline-size; }
+.art { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.digits { display: flex; width: 100%; justify-content: center; align-items: center; font: 760 min(17rem, var(--figure-size, 38cqi))/.82 var(--display); letter-spacing: -.055em; padding-inline-end: .055em; font-variant-numeric: lining-nums tabular-nums; }
+.message { min-width: 0; }
+.message h1 { font: 700 clamp(1.7rem, 4.3vw, 3.25rem)/1.08 var(--display); letter-spacing: -.04em; margin: 0 0 .65rem; text-wrap: balance; }
+.message p { margin: 0 0 1.15rem; color: inherit; opacity: .82; }
+.return { display: inline-flex; gap: .6rem; align-items: center; justify-content: center; padding: .68rem .95rem; border-radius: var(--radius); background: var(--signal); color: var(--button-text); font-size: .88rem; font-weight: 700; text-decoration: none; }
+.return:hover { text-decoration: underline; }
+.return:focus-visible { outline-color: var(--text); }
+
+/* 01. Oversized type above the navigation. */
+[data-design=center] .stage { background: radial-gradient(ellipse at center, var(--tint), transparent 68%); }
+[data-design=center] .layout { max-width: 46rem; gap: .9rem; text-align: center; }
+[data-design=center] .visual { min-height: clamp(9rem, 27vw, 16rem); }
+[data-design=center] .art { inset: 10% 10%; border-block: 1px solid var(--line); }
+[data-design=center] .digits span:nth-child(2) { color: color-mix(in srgb, var(--signal) 76%, var(--text)); }
+
+/* 02. An asymmetric color panel beside the message. */
+[data-design=split] .layout { grid-template-columns: 1.2fr 1fr; gap: 0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+[data-design=split] .visual { background: var(--signal); color: var(--button-text); align-self: stretch; min-height: clamp(12rem, 34vw, 28rem); }
+[data-design=split] .message { padding: clamp(1.1rem, 5vw, 3rem); }
+
+/* 03. A page framed like an editorial spread. */
+[data-design=frame] .layout { grid-template-columns: 1fr 1fr; max-width: 54rem; padding: clamp(1.15rem, 5vw, 3.7rem); border: 1px solid var(--text); outline: 1px solid var(--line); outline-offset: .42rem; }
+[data-design=frame] .visual { order: 2; min-height: 0; border-inline-start: 1px solid var(--line); padding-inline-start: 1rem; }
+[data-design=frame] .message h1 { letter-spacing: -.055em; }
+[data-design=frame] .return { border: 1px solid var(--text); background: transparent; color: inherit; }
+
+/* 04. A broken line follows the middle digit. */
+[data-design=route] .stage { background-image: radial-gradient(var(--line) .7px, transparent .8px); background-size: 16px 16px; }
+[data-design=route] .layout { max-width: 50rem; text-align: center; gap: 0; }
+[data-design=route] .visual { min-height: clamp(11rem, 27vw, 18rem); }
+[data-design=route] .art { inset: 48% 0 auto; height: 3rem; border: 0 dashed var(--text); border-inline: 1px dashed; background: linear-gradient(var(--text), var(--text)) left top / 35% 1px no-repeat, linear-gradient(var(--text), var(--text)) right bottom / 35% 1px no-repeat; }
+[data-design=route] .digits span { background: var(--page); }
+[data-design=route] .digits span:nth-child(2) { transform: translateY(.1em); border-bottom: .025em solid var(--signal); }
+[data-design=route] .message { padding: 1rem .5rem; background: var(--page); }
+
+/* 05. Three tiles sit over a horizontal information row. */
+[data-design=columns] .layout { max-width: 52rem; gap: 1.15rem; }
+[data-design=columns] .visual { min-height: 0; }
+[data-design=columns] .digits { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.3rem, 2vw, 1rem); padding: 0; }
+[data-design=columns] .digits span { display: grid; place-items: center; aspect-ratio: 1.06; background: var(--tint); border: 1px solid var(--line); border-radius: var(--radius); }
+[data-design=columns] .digits span:nth-child(2) { background: var(--signal); color: var(--button-text); }
+[data-design=columns] .message { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; column-gap: 1rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+[data-design=columns] .message h1 { font-size: clamp(1.5rem, 3.8vw, 2.3rem); }
+[data-design=columns] .message p { margin: 0; }
+[data-design=columns] .return { justify-self: start; margin-top: .55rem; }
+
+/* 06. A two-part ticket with a perforated seam. */
+[data-design=ticket] .stage { background-color: var(--tint); }
+[data-design=ticket] .layout { grid-template-columns: .84fr 1fr; gap: 0; max-width: 51rem; border: 1px solid var(--line); background: var(--page); border-radius: 1rem; }
+[data-design=ticket] .visual { align-self: stretch; min-height: clamp(12rem, 24vw, 17rem); border-inline-end: 2px dashed var(--line); }
+[data-design=ticket] .visual::before, [data-design=ticket] .visual::after { content: ""; position: absolute; right: -.75rem; width: 1.4rem; height: 1.4rem; background: var(--tint); border-radius: 50%; }
+[data-design=ticket] .visual::before { top: -.7rem; }
+[data-design=ticket] .visual::after { bottom: -.7rem; }
+[data-design=ticket] .message { padding: clamp(1.6rem, 4vw, 3rem); }
+
+/* 07. An inverted poster with the message in its footer. */
+[data-design=poster] .layout { max-width: 46rem; gap: .3rem; padding: clamp(1.2rem, 4vw, 2.2rem); background: var(--midnight); color: var(--wash); border-bottom: .55rem solid var(--accent); }
+[data-design=poster] .visual { min-height: clamp(9rem, 24vw, 17rem); color: var(--wash); }
+[data-design=poster] .digits { justify-content: flex-start; }
+[data-design=poster] .digits span:last-child { color: var(--glow); }
+[data-design=poster] .message { border-top: 1px solid color-mix(in srgb, var(--wash) 45%, var(--midnight)); padding-top: 1rem; }
+[data-design=poster] .return { background: var(--wash); color: var(--ink); }
+[data-design=poster] .return:focus-visible { outline-color: var(--wash); }
+
+/* 08. A browser-like frame and a centered recovery link. */
+[data-design=window] .stage { background: var(--tint); }
+[data-design=window] .layout { max-width: 47rem; padding: 2rem clamp(1rem, 4vw, 2.75rem); position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 1rem; background: var(--page); text-align: center; gap: .4rem; }
+[data-design=window] .layout::before { content: "●  ●  ●"; position: absolute; top: 0; inset-inline: 0; text-align: start; background: var(--panel); border-bottom: 1px solid var(--line); color: var(--text); padding: .42rem 1rem; font-size: .55rem; letter-spacing: .32em; }
+[data-design=window] .visual { min-height: clamp(9rem, 24vw, 15rem); }
+
+/* 09. A diagonal band bridges the number and message. */
+[data-design=stripe] .stage { background: linear-gradient(152deg, var(--page) 35%, var(--tint) 35%, var(--tint) 65%, var(--page) 65%); }
+[data-design=stripe] .layout { grid-template-columns: 1fr 1fr; gap: clamp(1rem, 4vw, 3rem); }
+[data-design=stripe] .art { inset: 4% 0; background: var(--signal); transform: skewY(-8deg); }
+[data-design=stripe] .digits { color: var(--button-text); }
+[data-design=stripe] .message { padding: 1.25rem; background: var(--page); border-inline-start: 3px solid var(--signal); }
+
+/* 10. Concentric rings surround an off-center focal point. */
+[data-design=orbital] .layout { max-width: 55rem; grid-template-columns: 1fr 1.12fr; gap: clamp(1rem, 5vw, 4rem); }
+[data-design=orbital] .visual { order: 2; min-height: 0; aspect-ratio: 1.16; }
+[data-design=orbital] .art { border: 1px solid var(--line); inset: 7% 5%; border-radius: 50%; transform: rotate(-22deg); }
+[data-design=orbital] .art::before, [data-design=orbital] .art::after { content: ""; position: absolute; inset: 11% 8%; border: 1px solid var(--line); border-radius: 50%; }
+[data-design=orbital] .art::after { inset: 24% 18%; background: var(--tint); }
+[data-design=orbital] .digits span:nth-child(2) { color: color-mix(in srgb, var(--signal) 78%, var(--text)); }
+
+/* Scale the numerals to the available space, including within narrow panels. */
+[data-design=center] { --figure-size: 42cqi; }
+[data-design=split] { --figure-size: 46cqi; }
+[data-design=frame] { --figure-size: 48cqi; }
+[data-design=route] { --figure-size: 39cqi; }
+[data-design=columns] { --figure-size: 26cqi; }
+[data-design=ticket] { --figure-size: 42cqi; }
+[data-design=poster] { --figure-size: 42cqi; }
+[data-design=window] { --figure-size: 38cqi; }
+[data-design=stripe] { --figure-size: 45cqi; }
+[data-design=orbital] { --figure-size: 43cqi; }
+
+@media (max-width: 37rem) {
+  .toolbar { gap: .35rem; }
+  .caption > span { display: none; }
+  .tools a, .tools button { padding-inline: .4rem; }
+  .stage { min-height: calc(100svh - 3.75rem); }
+  [data-design=split] .layout, [data-design=frame] .layout, [data-design=ticket] .layout, [data-design=stripe] .layout, [data-design=orbital] .layout { grid-template-columns: 1fr; }
+  [data-design=frame] .visual, [data-design=orbital] .visual { order: 0; }
+  [data-design=frame] .visual { border-inline-start: 0; border-bottom: 1px solid var(--line); padding: .5rem 0 1rem; }
+  [data-design=ticket] .visual { min-height: 9rem; border-inline-end: 0; border-bottom: 2px dashed var(--line); }
+  [data-design=ticket] .visual::before, [data-design=ticket] .visual::after { top: auto; bottom: -.75rem; }
+  [data-design=ticket] .visual::before { left: -.7rem; }
+  [data-design=ticket] .visual::after { right: -.7rem; }
+  [data-design=columns] .message { grid-template-columns: 1fr; }
+  [data-design=columns] .return { margin-top: .9rem; }
+  [data-design=orbital] .visual { justify-self: center; width: min(100%, 17rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+}

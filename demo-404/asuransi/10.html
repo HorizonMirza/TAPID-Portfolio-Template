@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>404 · Asuransi 10 · Orbit</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="preview asuransi" data-design="orbital">
+<header class="toolbar">
+  <a class="back" href="../index.html#asuransi">← Galeri</a>
+  <span class="caption"><strong>Asuransi · 10</strong><span> / Orbit</span></span>
+  <nav class="tools" aria-label="Pilihan demo">
+    <a href="09.html" aria-label="Desain sebelumnya">←</a>
+    <a href="01.html" aria-label="Desain berikutnya">→</a>
+    <button type="button" id="mode" aria-pressed="false">Gelap</button>
+  </nav>
+</header>
+<main class="stage">
+  <article class="layout">
+    <div class="visual" aria-hidden="true">
+      <div class="art"></div>
+      <div class="digits"><span>4</span><span>0</span><span>4</span></div>
+    </div>
+    <div class="message">
+      <h1>Halaman tidak ditemukan</h1>
+      <p>Halaman ini mungkin telah dipindah atau alamatnya keliru.</p>
+      <a class="return" href="https://horizonmirza.github.io/TAPID-Portfolio-Template/">Lihat semua portofolio <span aria-hidden="true">↗</span></a>
+    </div>
+  </article>
+</main>
+<script>
+const modeToggle = document.querySelector("#mode");
+const modePreference = new URLSearchParams(location.search).get("mode");
+let dark = modePreference === "dark" ||
+  (modePreference !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+
+function setMode() {
+  document.documentElement.dataset.mode = dark ? "dark" : "light";
+  modeToggle.textContent = dark ? "Terang" : "Gelap";
+  modeToggle.setAttribute("aria-pressed", String(dark));
+
+  for (const link of document.querySelectorAll(".tools a")) {
+    const url = new URL(link.href);
+    url.searchParams.set("mode", dark ? "dark" : "light");
+    link.href = url.href;
+  }
+}
+
+modeToggle.addEventListener("click", () => {
+  dark = !dark;
+  setMode();
+});
+setMode();
+</script>
+</body>
+</html>
