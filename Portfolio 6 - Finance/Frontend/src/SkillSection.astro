@@ -1,13 +1,15 @@
 ---
 import { localize, type Language } from './portfolio';
-import { skillGroups, skillOptions, skillTheme } from './skill-demos';
+import { selectedSkillLayout, skillGroups, skillOptions, skillTheme } from './skill-demos';
 import './styles/skill-demos.css';
 
-interface Props { language: Language }
-const { language } = Astro.props;
+interface Props { language: Language; preview?: boolean }
+const { language, preview = false } = Astro.props;
 const { skills, copy } = localize(language);
 const english = language === 'en';
 const first = skillOptions[0];
+const layout = preview ? first.layout : selectedSkillLayout;
+const titleId = preview ? 'skill-preview-title' : 'skills-title';
 const classified = new Set(skillGroups.flatMap((group) => group.indexes));
 const groups = skillGroups.map((group) => ({
   title: group.name[language],
@@ -17,8 +19,8 @@ const others = skills.filter((_, index) => !classified.has(index));
 if (others.length) groups.push({ title: english ? 'Other skills' : 'Keahlian lain', skills: others });
 const pickerTitle = english ? 'Skill layout demos' : 'Demo tata letak Keahlian';
 ---
-<section id="skills" class="skill-previews" data-skill-demos data-theme={skillTheme} aria-labelledby="skill-preview-title">
-  <div class="skill-picker wrap">
+<section id="skills" class="skill-previews" data-skill-demos={preview ? '' : undefined} data-theme={skillTheme} aria-labelledby={titleId}>
+  {preview && <div class="skill-picker wrap">
     <div class="skill-picker-head">
       <h2 id="skill-picker-title">{pickerTitle}</h2>
       <a href={english ? '/en/#skills' : '/#skills'}>{english ? 'Back to portfolio' : 'Kembali ke portofolio'}</a>
@@ -32,22 +34,22 @@ const pickerTitle = english ? 'Skill layout demos' : 'Demo tata letak Keahlian';
       ))}
     </div>
     <p class="skill-selection" aria-live="polite">{first.name[language]}</p>
-  </div>
+  </div>}
 
-  <div id="skill-preview-stage" class="skill-stage wrap" data-layout={first.layout}>
+  <div id="skill-preview-stage" class="skill-stage wrap" data-layout={layout}>
     <header class="skill-stage-head">
-      <h2 id="skill-preview-title">{copy.skills}</h2>
-      <div class="skill-scroll-buttons" role="group" aria-label={english ? 'Scroll skill groups' : 'Geser kelompok keahlian'} hidden>
+      <h2 id={titleId}>{copy.skills}</h2>
+      {preview && <div class="skill-scroll-buttons" role="group" aria-label={english ? 'Scroll skill groups' : 'Geser kelompok keahlian'} hidden>
         <button type="button" data-skill-scroll="-1" aria-controls="skill-group-list" aria-label={english ? 'Previous group' : 'Kelompok sebelumnya'}>←</button>
         <button type="button" data-skill-scroll="1" aria-controls="skill-group-list" aria-label={english ? 'Next group' : 'Kelompok berikutnya'}>→</button>
-      </div>
+      </div>}
     </header>
 
     <div class="skill-content">
       <ul class="skill-list" data-skill-flat>
         {skills.map((skill) => <li>{skill}</li>)}
       </ul>
-      <div class="skill-group-view" data-skill-group-view hidden>
+      {preview && <div class="skill-group-view" data-skill-group-view hidden>
         <div class="skill-tabs" role="group" aria-label={english ? 'Choose a skill group' : 'Pilih kelompok keahlian'} hidden>
           {groups.map((group, index) => (
             <button type="button" data-skill-tab={index} aria-controls={'skill-group-' + index} aria-pressed={index === 0}>
@@ -63,21 +65,21 @@ const pickerTitle = english ? 'Skill layout demos' : 'Demo tata letak Keahlian';
             </section>
           ))}
         </div>
-      </div>
-      <div class="skill-accordion" hidden>
+      </div>}
+      {preview && <div class="skill-accordion" hidden>
         {groups.map((group, index) => (
           <details name="skill-demo-group" open={index === 0}>
             <summary>{group.title}</summary>
             <ul>{group.skills.map((skill) => <li>{skill}</li>)}</ul>
           </details>
         ))}
-      </div>
+      </div>}
       {!skills.length && <p>{english ? 'No skills yet.' : 'Belum ada keahlian.'}</p>}
     </div>
   </div>
 </section>
 
-<script is:inline>
+{preview && <script is:inline>
   (() => {
     let controller;
     let activeGroup = 0;
@@ -181,4 +183,4 @@ const pickerTitle = english ? 'Skill layout demos' : 'Demo tata letak Keahlian';
     initializeSkills();
     document.addEventListener('tapid:language-change', initializeSkills);
   })();
-</script>
+</script>}

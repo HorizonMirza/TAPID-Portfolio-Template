@@ -60,3 +60,5 @@ export const skillGroups = [
     ]
   }
 ];
+
+export const selectedSkillLayout: Layout = 'mosaic';

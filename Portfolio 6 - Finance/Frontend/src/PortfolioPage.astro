@@ -4,6 +4,7 @@ import TopBar from './TopBar.astro';
 import HomeHero from './HomeHero.astro';
 import AboutSection from './AboutSection.astro';
 import ProjectSection from './ProjectSection.astro';
+import SkillSection from './SkillSection.astro';
 import CvLink from './CvLink.astro';
 import { localize, type Language } from './portfolio';
 interface Props { language: Language }
@@ -37,15 +38,11 @@ const { copy, p, projects, skills, experience, contact, demo } = localize(langua
     )}
     {!previewAbout && <AboutSection language={language} />}
     {!previewProjects && projects.length > 0 && <ProjectSection language={language} />}
-    {((!previewSkills && skills.length > 0) || experience.length > 0) && <div class="wrap portfolio-details finance-record">
-      {!previewSkills && skills.length > 0 && <section id="skills" class="finance-skills" aria-labelledby="skills-title">
-        <h2 id="skills-title">{copy.skills}</h2><ul>{skills.map((skill) => <li>{skill}</li>)}</ul>
-      </section>}
-      {experience.length > 0 && <section id="experience" aria-labelledby="experience-title">
-        <h2 id="experience-title">{copy.experience}</h2>
-        <ol>{experience.map((job) => <li><span class="section-label">{job.period}</span><h3>{job.title}</h3><strong>{job.organization}</strong><p class="copy">{job.description}</p></li>)}</ol>
-      </section>}
-    </div>}
+    {!previewSkills && skills.length > 0 && <SkillSection language={language} />}
+    {experience.length > 0 && <section id="experience" class="wrap finance-record" aria-labelledby="experience-title">
+      <h2 id="experience-title">{copy.experience}</h2>
+      <ol>{experience.map((job) => <li><span class="section-label">{job.period}</span><h3>{job.title}</h3><strong>{job.organization}</strong><p class="copy">{job.description}</p></li>)}</ol>
+    </section>}
   </main>
   <footer class="finance-footer">
     {contact.links.length > 0 && <section id="contact" class="wrap" aria-labelledby="contact-title">

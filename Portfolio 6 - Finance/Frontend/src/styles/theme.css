@@ -28,18 +28,11 @@
 h2, h3 { font-family: var(--finance-serif); font-weight: 580; letter-spacing: -.037em; }
 h2 { font-size: clamp(2.15rem, 4.25vw, 4rem); }
 h3 { font-size: clamp(1.4rem, 2.45vw, 2.3rem); }
-.finance-record { display: grid; grid-template-columns: minmax(0,1.45fr) minmax(0,.75fr); gap: clamp(1.65rem, 3.5vw, 3.25rem); }
-.finance-record:has(> #skills + #experience) { grid-template-areas: "experience skills"; }
-.finance-record:has(> #skills + #experience) > #experience { grid-area: experience; }
-.finance-record:has(> #skills + #experience) > #skills { grid-area: skills; }
 .finance-record ol { margin-top: .7rem; }
 .finance-record ol li { border-left: 2px solid var(--line); padding: .25rem 0 .85rem .78rem; }
 .finance-record li h3 { margin-top: .32rem; }
 .finance-record li strong { font-size: .91rem; }
 .finance-record li .copy { margin-top: .25rem; }
-.finance-skills { background: var(--surface); border: 1px solid var(--line); padding: 1.25rem; align-self: start; }
-.finance-skills ul { margin-top: .55rem; }
-.finance-skills li { border-top: 1px solid var(--line); padding-block: .55rem; font-weight: 650; }
 .finance-footer { color: var(--inverse-ink); background: var(--inverse); }
 .finance-footer section, .finance-footnote { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }
 .finance-footer h2 { margin-block: .44rem; }
@@ -47,6 +40,5 @@ h3 { font-size: clamp(1.4rem, 2.45vw, 2.3rem); }
 .finance-footer a:focus-visible { outline-color: var(--inverse-ink); }
 .finance-footnote { border-top: 1px solid #ffffff6b; color: var(--inverse-muted); padding-block: .8rem; }
 @media (max-width: 43rem) {
-  .finance-about, .finance-record { grid-template-columns: 1fr; }
-  .finance-record:has(> #skills + #experience) { grid-template-areas: "skills" "experience"; }
+  .finance-about { grid-template-columns: 1fr; }
 }

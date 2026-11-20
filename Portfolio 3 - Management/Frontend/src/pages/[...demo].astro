@@ -3,7 +3,7 @@ import PortfolioPage from '../PortfolioPage.astro';
 import HomeDemos from '../HomeDemos.astro';
 import AboutDemos from '../AboutDemos.astro';
 import ProjectSection from '../ProjectSection.astro';
-import SkillDemos from '../SkillDemos.astro';
+import SkillSection from '../SkillSection.astro';
 import { portfolio, type Language } from '../portfolio';
 
 export function getStaticPaths() {
@@ -24,7 +24,7 @@ const { language, section } = Astro.props;
 ---
 {section === 'skills' ? (
   <PortfolioPage language={language}>
-    <SkillDemos slot="skills-preview" language={language} />
+    <SkillSection slot="skills-preview" language={language} preview />
   </PortfolioPage>
 ) : section === 'projects' ? (
   <PortfolioPage language={language}>

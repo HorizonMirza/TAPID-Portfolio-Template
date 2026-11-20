@@ -33,12 +33,10 @@ ol, ul { list-style: none; margin: 0; padding: 0; }
 .skip-link:focus { transform: none; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
 :is(#skills, #experience, #contact) { scroll-margin-block-start: .65rem; }
-:is(main > #skills, main > #experience, .portfolio-details) {
+main > #experience {
   border-block-start: 1px solid var(--line);
   padding-block: var(--section-space);
 }
-.portfolio-details > section { min-inline-size: 0; }
-.portfolio-details:has(> section:only-child) { grid-template-columns: minmax(0, 1fr); }
 :is(#skills, #experience, #contact) h2 { font-size: var(--section-heading-size); }
 :is(#skills, #experience, #contact) :is(p, li) { overflow-wrap: anywhere; }
 body > footer { border-block-start: 1px solid var(--line); }

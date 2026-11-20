@@ -26,9 +26,6 @@
 .location { margin-top: .4rem; color: var(--muted); }
 h2 { font-size: clamp(1.95rem, 4.3vw, 3.6rem); font-weight: 800; letter-spacing: -.07em; }
 .ops-about h2 { margin-bottom: .55rem; }
-.ops-skills { background: var(--subtle); display: grid; grid-template-columns: .7fr 1.4fr; gap: 1rem; align-items: center; }
-.ops-skills ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
-.ops-skills li { padding: .45rem .6rem; border-bottom: 1px solid var(--line); font-weight: 650; }
 .ops-experience ol { margin-top: .9rem; }
 .ops-experience li { display: grid; grid-template-columns: minmax(0,.6fr) minmax(0,1.1fr) minmax(0,1.35fr); align-items: start; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
 .ops-experience h3 small { display: block; font-size: .85rem; font-weight: 650; margin-top: .35rem; }
@@ -37,7 +34,7 @@ h2 { font-size: clamp(1.95rem, 4.3vw, 3.6rem); font-weight: 800; letter-spacing:
 .ops-footer .contact-links a { background: var(--button); color: var(--button-ink); padding-inline: .8rem; text-decoration-thickness: 1px; }
 .ops-footer-note { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: space-between; border-top: 1px solid var(--line); padding-block: .85rem; }
 @media (max-width: 42rem) {
-  .ops-about, .ops-skills, .ops-experience li { grid-template-columns: 1fr; }
+  .ops-about, .ops-experience li { grid-template-columns: 1fr; }
   .ops-graphic { width: min(100%, 17rem); min-height: 8rem; margin-bottom: 1rem; }
   .ops-experience li { gap: .45rem; }
 }
