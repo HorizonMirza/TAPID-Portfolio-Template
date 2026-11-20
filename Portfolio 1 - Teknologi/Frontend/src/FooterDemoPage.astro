@@ -16,9 +16,10 @@ const theme = 'teknologi';
 const path = english ? '/en/' : '/';
 const languageHref = english ? '/demo-footer/' : '/en/demo-footer/';
 const handle = p.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+const whatsapp = contact.channels.find(({ kind }) => kind === 'whatsapp');
 const email = contact.links.find(({ href }) => href.startsWith('mailto:'));
 const channels: FooterChannel[] = [
-  { kind: 'whatsapp', label: 'WhatsApp', detail: '+62 8xx xxxx xxxx', href: 'https://www.whatsapp.com/', enabled: true },
+  { kind: 'whatsapp', label: 'WhatsApp', detail: whatsapp?.detail, href: whatsapp?.href ?? 'https://www.whatsapp.com/', enabled: true },
   { kind: 'email', label: 'Email', detail: email?.label ?? 'halo@example.com', href: email?.href ?? 'mailto:halo@example.com', enabled: true },
   { kind: 'linkedin', label: 'LinkedIn', detail: p.name, href: 'https://www.linkedin.com/', enabled: true },
   { kind: 'github', label: 'GitHub', detail: handle, href: 'https://github.com/', enabled: true },
