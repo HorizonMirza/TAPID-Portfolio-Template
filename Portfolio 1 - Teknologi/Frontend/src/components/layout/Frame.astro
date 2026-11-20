@@ -9,6 +9,21 @@ interface Props { language: Language; skip: string; previewPath?: string }
 const { language, skip, previewPath: path = '' } = Astro.props;
 const { profile, settings } = portfolio;
 const pageTitle = `${profile.name} | ${profile.role[language]}`;
+const productionHost = import.meta.env.VERCEL_PROJECT_PRODUCTION_URL;
+const siteAddress = import.meta.env.TAPID_SITE_URL || (productionHost && `https://${productionHost}`);
+const site = siteAddress ? new URL(siteAddress) : undefined;
+if (site && (site.protocol !== 'https:' || site.username || site.password || site.search || site.hash)) {
+  throw new Error('TAPID_SITE_URL must be a public HTTPS base URL.');
+}
+if (site && !site.pathname.endsWith('/')) site.pathname += '/';
+const localizedPath = (locale: Language) => (locale === 'en' ? 'en/' : '') + path;
+const alternateHref = (locale: Language) => site
+  ? new URL(localizedPath(locale), site).href
+  : '/' + localizedPath(locale);
+const canonical = site && alternateHref(language);
+const socialImage = site && profile.portrait
+  ? new URL(profile.portrait.src.startsWith('/') ? profile.portrait.src.slice(1) : profile.portrait.src, site).href
+  : undefined;
 const contrastText = (hex: string) => {
   const channels = [1, 3, 5].map((offset) => parseInt(hex.slice(offset, offset + 2), 16) / 255);
   const linear = channels.map((value) => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4);
@@ -28,8 +43,20 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
     <meta name="color-scheme" content="light dark" />
     {path && <meta name="robots" content="noindex" />}
     <title>{pageTitle}</title>
-    <link rel="alternate" href={`/${path}`} hreflang="id" />
-    <link rel="alternate" href={`/en/${path}`} hreflang="en" />
+    <link rel="alternate" href={alternateHref('id')} hreflang="id" />
+    <link rel="alternate" href={alternateHref('en')} hreflang="en" />
+    {site && !path && <>
+      <link rel="canonical" href={canonical} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={canonical} />
+      <meta property="og:title" content={pageTitle} />
+      <meta property="og:description" content={profile.introduction[language]} />
+      <meta property="og:locale" content={language === 'id' ? 'id_ID' : 'en_US'} />
+      {socialImage && <>
+        <meta property="og:image" content={socialImage} />
+        <meta property="og:image:alt" content={profile.portrait?.alt[language]} />
+      </>}
+    </>}
     <script is:inline>
       (() => {
         const root = document.documentElement;
@@ -190,7 +217,12 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
         function readPage(source) {
           return {
             title: source.title,
-            description: source.querySelector('meta[name="description"]')?.content,
+            metadata: new Map([...source.head.querySelectorAll(
+              'meta[name="description"], meta[property^="og:"], link[rel="canonical"]'
+            )].map((element) => [
+              element.getAttribute('name') || element.getAttribute('property') || element.rel,
+              element.getAttribute('content') ?? element.getAttribute('href'),
+            ])),
             body: source.body.cloneNode(true),
           };
         }
@@ -276,8 +308,13 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               if (!fromHistory) history.replaceState(history.state, '', address.href);
               root.lang = language;
               document.title = page.title;
-              const description = document.querySelector('meta[name="description"]');
-              if (description && page.description) description.content = page.description;
+              for (const element of document.head.querySelectorAll(
+                'meta[name="description"], meta[property^="og:"], link[rel="canonical"]'
+              )) {
+                const name = element.getAttribute('name') || element.getAttribute('property') || element.rel;
+                const value = page.metadata.get(name);
+                if (value != null) element.setAttribute(element.tagName === 'LINK' ? 'href' : 'content', value);
+              }
               const detailsState = new Map([...document.querySelectorAll('details[data-language-details]')]
                 .map((panel) => [panel.dataset.languageDetails, panel.open]));
               for (const panel of body.querySelectorAll('details[data-language-details]')) {

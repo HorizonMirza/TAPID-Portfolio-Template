@@ -15,6 +15,7 @@ export interface FooterChannel {
   detail?: string;
   href: string;
   enabled?: boolean;
+  sample?: boolean;
 }
 
 const platformLabels = {
@@ -53,11 +54,11 @@ export function footerChannels(
       ? address.pathname
       : formattedPhone ?? (label !== link.label ? link.label : undefined));
 
-    return { kind, label, detail, href: link.href };
+    return { kind, label, detail, href: link.href, sample: link.sample };
   });
   const resumeUrl = cvUrl ?? (demo ? 'https://drive.google.com/' : undefined);
   if (showResume && resumeUrl) {
-    channels.push({ kind: 'resume', label: 'Resume CV', detail: 'Google Drive', href: resumeUrl });
+    channels.push({ kind: 'resume', label: 'Resume CV', detail: 'Google Drive', href: resumeUrl, sample: !cvUrl });
   }
   return channels;
 }

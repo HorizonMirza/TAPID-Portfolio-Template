@@ -20,7 +20,7 @@ const project = projects[0];
     <div class="home-demo-copy">
       <p class="home-demo-headline">{p.headline}</p>
       <p class="home-demo-intro">{p.intro}</p>
-      <CvLink href={p.cvUrl} demo={demo} />
+      <CvLink href={p.cvUrl} demo={demo} language={language} />
     </div>
   </div>
   {p.portrait && <figure class="home-demo-portrait" data-loading-media>

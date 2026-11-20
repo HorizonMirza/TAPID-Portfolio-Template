@@ -32,10 +32,14 @@ const logos = {
         <h2 id="contact-footer-title">{english ? 'Get in touch' : 'Hubungi saya'}</h2>
       </div>
       <ul class="footer-channels">
-        {channels.map(({ kind, label, detail, href, enabled = true }) => (
+        {channels.map(({ kind, label, detail, href, enabled = true, sample }) => {
+          const example = Boolean(sample || preview);
+          const Card = example ? 'div' : 'a';
+          const external = !example && href.startsWith('https:');
+          return (
           <li data-footer-channel={kind} hidden={!enabled}>
-            <a class="footer-channel" href={href} target={href.startsWith('https:') ? '_blank' : undefined}
-               rel={href.startsWith('https:') ? 'noopener noreferrer' : undefined}>
+            <Card class="footer-channel" data-sample={example ? '' : undefined} href={example ? undefined : href}
+                  target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
               <span class="footer-channel-icon" aria-hidden="true">
                 {kind === 'email' || kind === 'website' ? (
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
@@ -52,13 +56,14 @@ const logos = {
                 )}
               </span>
               <span class="footer-channel-copy">
-                <strong>{label}</strong>
+                <strong>{label}{example && <small class="footer-sample"> · {english ? 'Example' : 'Contoh'}</small>}</strong>
                 {detail && <span>{detail}</span>}
               </span>
-              <span class="footer-channel-arrow" aria-hidden="true">↗</span>
-            </a>
+              {!example && <span class="footer-channel-arrow" aria-hidden="true">↗</span>}
+            </Card>
           </li>
-        ))}
+          );
+        })}
       </ul>
     </>}
     {preview && <p class="footer-empty" data-footer-empty hidden={channels.some(({ enabled = true }) => enabled)}>

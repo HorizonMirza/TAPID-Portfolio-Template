@@ -38,7 +38,7 @@ const { copy, p, projects, skills, experience, contact, demo } = localize(langua
         <div class="risk-intro hero-copy">
           <p class="home-demo-role">{p.role}</p><h1>{p.name}</h1>
           <p class="risk-line">{p.headline}</p><p class="copy">{p.intro}</p>
-          <CvLink href={p.cvUrl} demo={demo} />
+          <CvLink href={p.cvUrl} demo={demo} language={language} />
           <a class="action" href={contact.channels.length ? '#contact' : '#about'}>{contact.channels.length ? copy.viewContact : copy.about}</a>
         </div>
       </section>

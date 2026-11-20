@@ -41,7 +41,7 @@ const { copy, p, projects, skills, experience, contact, demo } = localize(langua
             <h1>{p.name}</h1>
             <p class="tagline">{p.headline}</p>
             <p class="intro">{p.intro}</p>
-            <CvLink href={p.cvUrl} demo={demo} />
+            <CvLink href={p.cvUrl} demo={demo} language={language} />
           </div>
           <figure class="terminal" aria-hidden="true">
             <figcaption><span class="lights"><i></i><i></i><i></i></span> portfolio.json</figcaption>

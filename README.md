@@ -2,6 +2,8 @@
 
 Six responsive Astro templates for TAP.ID’s NFC + Linktree + portfolio package. Each supports Indonesian and English, light and dark modes, and a single file for client content.
 
+[Open the live portfolio gallery](https://horizonmirza.github.io/TAPID-Portfolio-Template/)
+
 ## Portfolio templates
 
 | [Technology](Portfolio%201%20-%20Teknologi/README.md) | [Insurance](Portfolio%202%20-%20Asuransi/README.md) |
@@ -33,9 +35,14 @@ Open the address printed by Astro. The Indonesian site is at `/` and the English
 
 1. Copy the chosen theme and edit `Frontend/src/portfolio.json` with the public content approved by the client. Set `settings.demo` to `false`.
 2. Deploy with the **Astro** preset in Vercel. Set **Root Directory** to the theme’s `Frontend` folder and **Output Directory** to `dist`.
-3. Check both languages and all public contact links. Add the published site to the client’s Linktree.
+3. Set `TAPID_SITE_URL` to the public HTTPS URL if the client uses a preferred domain. Vercel's production URL is used by default when system environment variables are enabled.
+4. Check both languages, the custom 404 page, and all public contact links. Add the published site to the client’s Linktree.
 
 Each template links to its setup guide, data reference, and build instructions.
+
+## Publishing the public gallery
+
+GitHub Actions checks and builds all six demos on pushes to `main`, then publishes the verified output to GitHub Pages. Pull requests run the same checks and build. The public gallery retains the original theme URLs and the 404 design archive.
 
 ## Design demos
 

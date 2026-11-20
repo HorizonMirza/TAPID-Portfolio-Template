@@ -2,14 +2,15 @@
 interface Props {
   href?: string | null;
   demo: boolean;
+  language: 'id' | 'en';
 }
 
-const { href, demo } = Astro.props;
+const { href, demo, language } = Astro.props;
 ---
 {href ? (
   <a class="home-cv" href={href} target="_blank" rel="noopener noreferrer">Resume CV</a>
 ) : demo && (
-  <button class="home-cv" type="button" disabled>Resume CV</button>
+  <button class="home-cv" type="button" disabled>Resume CV · {language === 'en' ? 'Example' : 'Contoh'}</button>
 )}
 
 <style>

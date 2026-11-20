@@ -1,0 +1,94 @@
+---
+import { portfolio } from '../portfolio';
+import '../styles/base.css';
+import '../styles/font.css';
+import '../styles/theme.css';
+
+const { profile, settings } = portfolio;
+---
+<!doctype html>
+<html lang="id" data-default-mode={settings.defaultMode}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="robots" content="noindex" />
+    <title>404 · Halaman tidak ditemukan</title>
+    <script is:inline>
+      const root = document.documentElement;
+      let mode = root.dataset.defaultMode;
+      try { mode = localStorage.getItem('tapid-color-mode') || mode; } catch {}
+      const preference = matchMedia('(prefers-color-scheme: dark)');
+      const applyMode = () => {
+        root.dataset.mode = ['light', 'dark'].includes(mode) ? mode : preference.matches ? 'dark' : 'light';
+      };
+      applyMode();
+      preference.addEventListener('change', applyMode);
+      document.addEventListener('DOMContentLoaded', () => {
+        const english = document.querySelector('.not-found-en a');
+        if (location.pathname.startsWith(new URL(english.href).pathname)) {
+          root.lang = 'en';
+          document.title = '404 · Page not found';
+        }
+      }, { once: true });
+    </script>
+  </head>
+  <body>
+    <main class="not-found">
+      <div>
+        <div class="not-found-code" aria-hidden="true">4<span>0</span>4</div>
+        <div class="not-found-id">
+          <h1>Halaman tidak ditemukan</h1>
+          <p>Halaman ini mungkin telah dipindah atau alamatnya keliru.</p>
+          <a href="/" aria-label={`Kembali ke portofolio ${profile.name}`}>Kembali ke portofolio <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="not-found-en">
+          <h1>Page not found</h1>
+          <p>This page may have moved, or the address may be incorrect.</p>
+          <a href="/en/" aria-label={`Return to ${profile.name}'s portfolio`}>Return to portfolio <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
+
+<style>
+  .not-found {
+    display: grid;
+    place-items: center;
+    min-block-size: 100svh;
+    padding: clamp(1rem, 4vw, 3.5rem);
+    text-align: center;
+    background: radial-gradient(ellipse at center, color-mix(in srgb, var(--button) 12%, var(--bg)), var(--bg) 68%);
+    --not-found-display: var(--finance-serif, var(--serif, var(--body)));
+  }
+  .not-found-code {
+    margin-block-end: clamp(1rem, 3vw, 2rem);
+    font: 760 clamp(6rem, 29vw, 17rem)/.85 var(--not-found-display);
+    letter-spacing: -.015em;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .not-found-code span { color: color-mix(in srgb, var(--button) 76%, var(--ink)); }
+  h1 {
+    font: 700 clamp(1.75rem, 4.3vw, 3.25rem)/1.08 var(--not-found-display);
+    letter-spacing: -.04em;
+    margin: 0 0 .65rem;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1.15rem; }
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .68rem .95rem;
+    border-radius: var(--control-radius, .45rem);
+    color: var(--button-ink);
+    background: var(--button);
+    font-size: .9rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  a:hover { text-decoration: underline; }
+  :global(html[lang="id"]) .not-found-en,
+  :global(html[lang="en"]) .not-found-id { display: none; }
+</style>

@@ -17,7 +17,7 @@ Copy the chosen theme to the client’s repository. Edit `Frontend/src/portfolio
 
 Provide `id` and `en` for bilingual text. Use empty arrays for sections without content. Keep the private coordination email, raw form responses, and other private contacts in TAP.ID’s account.
 
-Store approved images in `Frontend/public/media/` and use paths such as `/media/photo.webp`. HTTPS image URLs are also supported. Supply alternative text in both languages.
+Store approved images in `Frontend/public/media/` and use paths such as `/media/photo.webp`. The build checks that each local portrait and project image exists. HTTPS image URLs are also supported. Check external images from a browser and supply alternative text in both languages.
 
 List each approved footer channel in display order. Set `detail` for a formatted WhatsApp number or account name when needed. To show Resume CV only on Home, set `contact.showResume` to `false`. [Data reference and examples](../Database/README.md)
 
@@ -31,14 +31,14 @@ npm run check
 npm run build
 ```
 
-In Vercel, use the **Astro** preset, the build command `npm run build`, and the output directory `dist`.
+In Vercel, use the **Astro** preset, the build command `npm run build`, and the output directory `dist`. Set `TAPID_SITE_URL` to the preferred public HTTPS address for canonical URLs, language links, and social previews. If unset, the build uses the production domain supplied by Vercel when system environment variables are enabled. The profile portrait supplies the social preview image when present.
 
 | Repository contents | Vercel root directory |
 | --- | --- |
 | One theme copied to the root | `Frontend` |
 | All six themes | The selected theme’s `Frontend` folder |
 
-Open `/` and `/en/` after deployment. Check the portraits, responsive layout, light and dark modes, and the destination of each public link. Add the verified site URL to the client’s Linktree. [Astro on Vercel](https://docs.astro.build/en/guides/deploy/vercel/)
+Open `/`, `/en/`, and an address that does not exist after deployment. Check the portraits, responsive layout, light and dark modes, and the custom 404 recovery link. Open the CV from a signed-out browser and check WhatsApp and Linktree on a phone. Add the verified site URL to the client’s Linktree. [Astro on Vercel](https://docs.astro.build/en/guides/deploy/vercel/)
 
 ## 3. Hand over the site
 
