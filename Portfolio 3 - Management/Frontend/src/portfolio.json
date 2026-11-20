@@ -89,6 +89,60 @@
           "en": "Service handover Kanban board with three stages and six tasks."
         }
       }
+    },
+    {
+      "title": "Papan Prioritas Sprint",
+      "category": {
+        "id": "Pengelolaan prioritas",
+        "en": "Priority management"
+      },
+      "description": {
+        "id": "Papan prioritas mingguan yang menyandingkan kebutuhan, pemilik, dan keputusan tindak lanjut. Tim bisa melihat pekerjaan yang perlu dibuka, ditunda, atau diserahkan ke peninjauan.",
+        "en": "A weekly priority board combining requests, owners, and decisions. The team can see which work should start, wait, or move into review."
+      },
+      "image": {
+        "src": "/media/papan-prioritas-sprint.webp",
+        "alt": {
+          "id": "Papan Prioritas Sprint menampilkan pemilik tugas dan keputusan minggu berjalan.",
+          "en": "Sprint priority board showing task owners and decisions for the week."
+        }
+      }
+    },
+    {
+      "title": "Peta Alur Pesanan",
+      "category": {
+        "id": "Pemetaan proses",
+        "en": "Process mapping"
+      },
+      "description": {
+        "id": "Peta proses yang mengikuti pesanan dari kanal masuk sampai konfirmasi pengiriman. Tiap tahap mendokumentasikan pelaksana, keluaran, dan kondisi saat pesanan perlu diperiksa ulang.",
+        "en": "A process map tracing orders from intake through shipping confirmation. Each stage records its owner, output, and what should trigger another check."
+      },
+      "image": {
+        "src": "/media/peta-alur-pesanan.webp",
+        "alt": {
+          "id": "Peta Alur Pesanan dengan tahap, pelaksana, dan keluaran yang diharapkan.",
+          "en": "Order process map with each stage, owner, and expected result."
+        }
+      }
+    },
+    {
+      "title": "Rencana Orientasi Tim",
+      "category": {
+        "id": "Orientasi operasional",
+        "en": "Team onboarding"
+      },
+      "description": {
+        "id": "Rencana orientasi lima hari yang mencakup akses kerja, observasi, dan simulasi tugas. Indikator selesai membantu pendamping menilai kesiapan anggota tim baru.",
+        "en": "A five-day onboarding plan covering workspace access, observation, and a practice task. Completion criteria help mentors assess readiness."
+      },
+      "image": {
+        "src": "/media/rencana-orientasi.webp",
+        "alt": {
+          "id": "Rencana orientasi lima hari dengan sesi dan indikator selesai.",
+          "en": "Five-day onboarding plan with sessions and completion criteria."
+        }
+      }
     }
   ],
   "skills": [

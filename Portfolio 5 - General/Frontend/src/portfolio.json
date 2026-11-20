@@ -89,6 +89,60 @@
           "en": "A three-event reading room calendar with dates, times, and short instructions."
         }
       }
+    },
+    {
+      "title": "Wawancara Warga",
+      "category": {
+        "id": "Panduan wawancara",
+        "en": "Interview guide"
+      },
+      "description": {
+        "id": "Panduan wawancara semi-terstruktur untuk memahami kebiasaan penggunaan ruang komunitas. Daftar pertanyaan mengalir dari pengalaman sehari-hari ke hambatan dan usulan.",
+        "en": "A semi-structured interview guide for understanding how community spaces are used. Prompts move from daily experience to barriers and suggestions."
+      },
+      "image": {
+        "src": "/media/wawancara-warga.webp",
+        "alt": {
+          "id": "Panduan wawancara dengan tahapan pembuka, pengalaman, dan pertanyaan penutup.",
+          "en": "Interview guide with opening, experience, and closing prompts."
+        }
+      }
+    },
+    {
+      "title": "Peta Akses Komunitas",
+      "category": {
+        "id": "Riset aksesibilitas",
+        "en": "Accessibility research"
+      },
+      "description": {
+        "id": "Lembar observasi yang mencatat petunjuk, jalur masuk, tempat duduk, dan akses informasi pada ruang komunitas simulasi. Catatan membantu memprioritaskan perbaikan sederhana.",
+        "en": "An observation sheet for signage, entry paths, seating, and information access in a simulated community space. The notes help prioritise simple fixes."
+      },
+      "image": {
+        "src": "/media/peta-akses-komunitas.webp",
+        "alt": {
+          "id": "Lembar observasi akses komunitas dengan temuan dan usulan tindak lanjut.",
+          "en": "Community accessibility observation sheet with findings and suggested follow-ups."
+        }
+      }
+    },
+    {
+      "title": "Buletin Tetangga",
+      "category": {
+        "id": "Publikasi komunitas",
+        "en": "Community publication"
+      },
+      "description": {
+        "id": "Konsep buletin satu halaman untuk kabar kegiatan. Edisi contoh membagi isi menjadi informasi utama, agenda minggu depan, dan ajakan mengirim kabar.",
+        "en": "A one-page neighbourhood newsletter concept. The sample issue groups content into a lead story, the coming week’s agenda, and an invitation to contribute."
+      },
+      "image": {
+        "src": "/media/buletin-tetangga.webp",
+        "alt": {
+          "id": "Mockup Buletin Tetangga dengan kabar utama dan kolom agenda.",
+          "en": "Buletin Tetangga mockup with a lead story and an agenda column."
+        }
+      }
     }
   ],
   "skills": [

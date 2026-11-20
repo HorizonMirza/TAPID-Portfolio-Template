@@ -89,6 +89,60 @@
           "en": "Kota Setelah Hujan cover and opening page with a street illustration."
         }
       }
+    },
+    {
+      "title": "Nada Jalanan",
+      "category": {
+        "id": "Poster acara musik",
+        "en": "Music event poster"
+      },
+      "description": {
+        "id": "Poster untuk acara musik fiktif. Garis konsentris terinspirasi piringan hitam, sementara tipografi rapat memberi kontras yang kuat pada poster utama dan lembar program.",
+        "en": "A poster for a fictional music event. Concentric lines evoke vinyl records, and tight typography gives the main poster and programme a strong contrast."
+      },
+      "image": {
+        "src": "/media/nada-jalanan.webp",
+        "alt": {
+          "id": "Poster Nada Jalanan berdampingan dengan lembar program acara.",
+          "en": "Nada Jalanan music poster beside an event programme."
+        }
+      }
+    },
+    {
+      "title": "Ramu Rasa",
+      "category": {
+        "id": "Identitas kemasan",
+        "en": "Packaging identity"
+      },
+      "description": {
+        "id": "Eksplorasi kemasan minuman rempah fiktif. Nama besar, bidang garis, dan palet hangat membangun identitas yang bisa dipakai pada label utama dan kartu bahan.",
+        "en": "A packaging study for a fictional spice drink. The bold wordmark, striped field, and warm palette carry across the front label and ingredient card."
+      },
+      "image": {
+        "src": "/media/ramu-rasa.webp",
+        "alt": {
+          "id": "Desain label Ramu Rasa warna jingga dan panel informasi produk warna merah tua.",
+          "en": "Orange Ramu Rasa label with a deep red product information panel."
+        }
+      }
+    },
+    {
+      "title": "Arah Festival",
+      "category": {
+        "id": "Sistem penunjuk arah",
+        "en": "Wayfinding system"
+      },
+      "description": {
+        "id": "Sistem penunjuk arah untuk festival fiktif. Warna, ukuran label, dan orientasi panah dibuat konsisten untuk menandai panggung, ruang lokakarya, dan pintu masuk.",
+        "en": "A wayfinding system for a fictional festival. Consistent colour, label size, and arrow direction distinguish the stage, workshop, and entrance."
+      },
+      "image": {
+        "src": "/media/arah-festival.webp",
+        "alt": {
+          "id": "Papan Arah Festival dengan tiga rambu berwarna dan tanda panah.",
+          "en": "Arah Festival board with three coloured direction signs."
+        }
+      }
     }
   ],
   "skills": [

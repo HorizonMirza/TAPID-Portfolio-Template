@@ -80,6 +80,60 @@
           "en": "Month-end close pack with a status summary and four reconciliation rows."
         }
       }
+    },
+    {
+      "title": "Invoice Aging",
+      "category": {
+        "id": "Analisis piutang",
+        "en": "Receivables analysis"
+      },
+      "description": {
+        "id": "Dashboard umur piutang yang mengelompokkan tagihan menurut keterlambatan. Ringkasan dan daftar prioritas membantu tim menentukan tagihan mana yang perlu ditindaklanjuti lebih dulu.",
+        "en": "An aging dashboard that groups invoices by how far they are overdue. Its totals and priority list help teams decide which receivables to follow up first."
+      },
+      "image": {
+        "src": "/media/invoice-aging.webp",
+        "alt": {
+          "id": "Dashboard Invoice Aging dengan kelompok keterlambatan dan saldo piutang simulasi.",
+          "en": "Invoice Aging dashboard with overdue bands and simulated receivable balances."
+        }
+      }
+    },
+    {
+      "title": "Margin Lens",
+      "category": {
+        "id": "Analisis profitabilitas",
+        "en": "Profitability analysis"
+      },
+      "description": {
+        "id": "Model perbandingan margin kotor untuk tiga kategori produk fiktif. Tabel memperlihatkan pendapatan, biaya, dan margin agar perubahan pada tiap kategori dapat ditelusuri.",
+        "en": "A gross-margin comparison model for three fictional product categories. The table shows revenue, costs, and margins so changes can be traced to each category."
+      },
+      "image": {
+        "src": "/media/margin-lens.webp",
+        "alt": {
+          "id": "Dashboard Margin Lens dengan tabel pendapatan, biaya, dan margin per kategori.",
+          "en": "Margin Lens dashboard with revenue, costs, and margin by category."
+        }
+      }
+    },
+    {
+      "title": "Forecast Skenario",
+      "category": {
+        "id": "Perencanaan skenario",
+        "en": "Scenario planning"
+      },
+      "description": {
+        "id": "Model proyeksi yang membandingkan skenario konservatif, dasar, dan optimistis dengan asumsi pertumbuhan yang berbeda. Tabel menunjukkan dampaknya terhadap pendapatan dan laba kotor.",
+        "en": "A forecast model comparing conservative, base, and optimistic cases with different growth assumptions. The table shows their effects on revenue and gross profit."
+      },
+      "image": {
+        "src": "/media/forecast-skenario.webp",
+        "alt": {
+          "id": "Forecast Skenario menunjukkan tiga asumsi pertumbuhan dan hasil proyeksinya.",
+          "en": "Forecast Skenario showing three growth assumptions and their projected results."
+        }
+      }
     }
   ],
   "skills": [

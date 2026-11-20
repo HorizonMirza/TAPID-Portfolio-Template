@@ -89,6 +89,60 @@
           "en": "Claims file tracker with a status summary and four supporting documents."
         }
       }
+    },
+    {
+      "title": "Log Insiden Toko",
+      "category": {
+        "id": "Pencatatan insiden",
+        "en": "Incident reporting"
+      },
+      "description": {
+        "id": "Formulir dan contoh register insiden untuk toko simulasi. Register menyimpan lokasi, dampak, dan tindak lanjut agar catatan dapat disiapkan sebelum peninjauan.",
+        "en": "An incident form and sample register for a simulated shop. The register captures location, impact, and follow-up so records are ready for review."
+      },
+      "image": {
+        "src": "/media/log-insiden-toko.webp",
+        "alt": {
+          "id": "Lembar pencatatan insiden toko dengan jenis insiden dan tindak lanjut.",
+          "en": "Retail incident log with incident types and follow-up actions."
+        }
+      }
+    },
+    {
+      "title": "Kalender Perpanjangan",
+      "category": {
+        "id": "Administrasi polis",
+        "en": "Policy administration"
+      },
+      "description": {
+        "id": "Kalender kerja untuk meninjau tiga polis fiktif sebelum jatuh tempo. Daftar membedakan yang siap ditinjau dari yang masih menunggu konfirmasi perubahan aset.",
+        "en": "A work calendar for reviewing three fictional policies before they expire. It separates reviews that are ready from those still waiting on changes to insured assets."
+      },
+      "image": {
+        "src": "/media/kalender-perpanjangan.webp",
+        "alt": {
+          "id": "Kalender Perpanjangan berisi tenggat dan status tinjauan polis.",
+          "en": "Renewal calendar with illustrative policy deadlines and review statuses."
+        }
+      }
+    },
+    {
+      "title": "Cek Lokasi",
+      "category": {
+        "id": "Pemeriksaan risiko",
+        "en": "Risk inspection"
+      },
+      "description": {
+        "id": "Daftar periksa lokasi untuk simulasi survei properti sederhana. Setiap baris menghubungkan temuan di lapangan dengan bukti yang dicatat dan pemeriksaan lanjutan.",
+        "en": "A site checklist for a simple simulated property survey. Each row ties an observation to the evidence recorded and the next follow-up."
+      },
+      "image": {
+        "src": "/media/cek-lokasi.webp",
+        "alt": {
+          "id": "Daftar periksa lokasi mencakup akses darurat, instalasi listrik, dan penyimpanan.",
+          "en": "Location checklist covering emergency access, electrical equipment, and storage."
+        }
+      }
     }
   ],
   "skills": [

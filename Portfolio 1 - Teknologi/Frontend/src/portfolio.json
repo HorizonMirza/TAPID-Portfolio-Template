@@ -89,6 +89,60 @@
           "en": "Tiket Kampus catalogue with a student showcase banner and three event cards."
         }
       }
+    },
+    {
+      "title": "Jejak Aset",
+      "category": {
+        "id": "Aplikasi inventaris",
+        "en": "Inventory application"
+      },
+      "description": {
+        "id": "Prototipe inventaris perangkat yang mencatat ruang, penanggung jawab, dan status peminjaman. Daftar pengecualian memisahkan barang yang terlambat dikembalikan dari barang yang perlu diperiksa.",
+        "en": "An equipment inventory prototype that tracks location, owner, and loan status. The exception list separates overdue returns from equipment that needs inspection."
+      },
+      "image": {
+        "src": "/media/jejak-aset.webp",
+        "alt": {
+          "id": "Dashboard Jejak Aset dengan jumlah perangkat dan tabel kondisi aset.",
+          "en": "Jejak Aset dashboard showing equipment totals and an asset status table."
+        }
+      }
+    },
+    {
+      "title": "Katalog Baca",
+      "category": {
+        "id": "Pencarian dan penyaringan",
+        "en": "Search and filtering"
+      },
+      "description": {
+        "id": "Prototipe katalog perpustakaan yang menampilkan ketersediaan hasil pencarian bersama rak dan jenis koleksi. Ringkasan membantu pengunjung memilih buku yang bisa dipinjam saat itu juga.",
+        "en": "A library catalogue prototype that lists availability alongside shelf location and collection type. The search summary helps readers find books they can borrow immediately."
+      },
+      "image": {
+        "src": "/media/katalog-baca.webp",
+        "alt": {
+          "id": "Katalog Baca menampilkan hasil pencarian, lokasi rak, dan status pinjam.",
+          "en": "Katalog Baca showing search results, shelf locations, and availability."
+        }
+      }
+    },
+    {
+      "title": "Monitor Layanan",
+      "category": {
+        "id": "Observabilitas frontend",
+        "en": "Frontend observability"
+      },
+      "description": {
+        "id": "Dashboard status yang membandingkan waktu respons dan tingkat galat di tiga layanan internal. Panel insiden mencatat bagian yang terdampak dan langkah pemulihan yang sedang berjalan.",
+        "en": "An operations dashboard comparing response times and error rates across three internal services. The incident panel records what is affected and which recovery step is underway."
+      },
+      "image": {
+        "src": "/media/monitor-layanan.webp",
+        "alt": {
+          "id": "Monitor Layanan dengan metrik respons dan status tiga layanan internal.",
+          "en": "Monitor Layanan showing response metrics and the status of three internal services."
+        }
+      }
     }
   ],
   "skills": [
