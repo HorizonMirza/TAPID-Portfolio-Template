@@ -57,7 +57,7 @@ const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
           <li id={`project-preview-item-${index}`} data-project-card>
             <article class="project-preview-card">
               {project.image
-                ? <figure class="project-preview-art"><img src={project.image.src} alt={project.image.alt} loading="lazy" /></figure>
+                ? <figure class="project-preview-art" data-loading-media><img src={project.image.src} alt={project.image.alt} loading="lazy" /></figure>
                 : <div class="project-preview-art project-preview-graphic" data-graphic={index % 3} aria-hidden="true">
                     <span></span><span></span><span></span>
                   </div>}
@@ -79,7 +79,9 @@ const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
               <span class="project-preview-detail-title">{project.title}</span>
             </summary>
             <div class="project-preview-detail">
-              {project.image && <img src={project.image.src} alt={project.image.alt} loading="lazy" />}
+              {project.image && <figure class="project-detail-media" data-loading-media>
+                <img src={project.image.src} alt={project.image.alt} loading="lazy" />
+              </figure>}
               <p class="project-preview-description">{project.description}</p>
               {project.href && <a class="project-link" href={project.href} aria-label={`${copy.viewProject}: ${project.title}`}>{copy.viewProject}</a>}
             </div>

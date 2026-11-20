@@ -1,3 +1,88 @@
+/* Keep the loading placeholder within the image's reserved space. */
+.project-detail-media {
+  position: relative;
+  margin: 0 0 .75rem;
+}
+
+.project-preview-detail .project-detail-media img { display: block; margin: 0; }
+.project-detail-media[data-skeleton] { min-block-size: clamp(9rem, 22vw, 17rem); }
+
+[data-loading-media][data-skeleton]::after,
+.controls .language[aria-busy="true"]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+[data-loading-media][data-skeleton]::after {
+  z-index: 1;
+  background: color-mix(in srgb, var(--surface) 83%, var(--button));
+}
+
+.controls .language[aria-busy="true"] { cursor: progress; }
+.controls .language[aria-busy="true"]::after {
+  z-index: -1;
+  background: var(--control-hover);
+}
+
+.controls .control:focus-visible,
+:is(.home-cv[href], .project-link, .mobile-nav > summary):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.project-preview-card:focus-within, .footer-channel:focus-visible {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--focus) 65%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :is(.project-preview-card, .footer-channel, .experience-entry, .about-fact, .skill-list > li):hover {
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--focus) 60%, transparent);
+  }
+}
+
+@keyframes tapid-shimmer {
+  from { background-position: 140% 0; }
+  to { background-position: -60% 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :is([data-loading-media][data-skeleton], .controls .language[aria-busy="true"])::after {
+    background-image: linear-gradient(105deg, transparent 32%, color-mix(in srgb, var(--ink) 17%, transparent) 50%, transparent 68%);
+    background-size: 250% 100%;
+    background-position: 140% 0;
+    animation: tapid-shimmer 1.25s .12s ease-in-out infinite;
+  }
+
+  :is(button, .home-cv[href], .project-link, .mobile-nav > summary):not(:disabled),
+  .controls .control {
+    transition: translate .2s ease, scale .16s ease, background-color .2s ease, border-color .2s ease, color .2s ease;
+  }
+
+  :is(button, .home-cv[href], .project-link, .mobile-nav > summary, .footer-channel):not(:disabled):active,
+  .controls .control:active {
+    translate: 0 1px;
+    scale: .97;
+  }
+
+  :is(.project-preview-card, .footer-channel, .experience-entry, .about-fact, .skill-list > li) {
+    transition: translate .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    :is(button, .home-cv[href], .project-link, .mobile-nav > summary):not(:disabled):hover:not(:active),
+    .controls .control:hover:not(:active) {
+      translate: 0 -2px;
+    }
+
+    :is(.project-preview-card, .footer-channel):hover:not(:active) {
+      translate: 0 -3px;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   ::view-transition-group(root) { animation-duration: .36s; }
   ::view-transition { pointer-events: none; }

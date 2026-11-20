@@ -23,7 +23,7 @@ const project = projects[0];
       <CvLink href={p.cvUrl} demo={demo} />
     </div>
   </div>
-  {p.portrait && <figure class="home-demo-portrait">
+  {p.portrait && <figure class="home-demo-portrait" data-loading-media>
     <img src={p.portrait.src} alt={p.portrait.alt} fetchpriority="high" />
   </figure>}
   {preview && <div class="home-demo-detail">

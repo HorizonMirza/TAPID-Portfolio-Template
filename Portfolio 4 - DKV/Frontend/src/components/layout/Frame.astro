@@ -56,6 +56,14 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
           pageController = new AbortController();
           const { signal } = pageController;
           apply(getMode());
+          for (const media of document.querySelectorAll('[data-loading-media]')) {
+            const image = media.querySelector('img');
+            if (!image || image.complete) continue;
+            const finish = () => media.removeAttribute('data-skeleton');
+            image.addEventListener('load', finish, { once: true, signal });
+            image.addEventListener('error', finish, { once: true, signal });
+            media.setAttribute('data-skeleton', '');
+          }
           const topbar = document.querySelector('.tapbar');
           if (topbar) {
             const links = [...topbar.querySelectorAll('nav a[href^="#"]')];
@@ -243,9 +251,11 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
           pending?.abort();
           const controller = new AbortController();
           pending = controller;
+          const link = languageLink();
+          link?.setAttribute('aria-busy', 'true');
 
           try {
-            const linkFocused = document.activeElement === languageLink();
+            const linkFocused = document.activeElement === link;
             const page = await readLanguage(target, language, controller.signal);
             if (controller.signal.aborted) return;
             const firstSection = document.querySelector('#main > section')?.id || 'home';
@@ -293,7 +303,10 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
           } catch {
             if (!controller.signal.aborted) showLanguageError();
           } finally {
-            if (pending === controller) pending = undefined;
+            if (pending === controller) {
+              pending = undefined;
+              link?.removeAttribute('aria-busy');
+            }
           }
         }
 
