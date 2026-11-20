@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Buka enam demo website portofolio TAP.ID.">
+<title>Portofolio TAP.ID</title>
+<style>
+:root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+body { margin: 0; color: #1b2533; background: #f2f5f8; }
+main { width: min(70rem, calc(100% - 2rem)); margin: 3rem auto; }
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.06; margin: 0; letter-spacing: -.045em; }
+p { margin: .7rem 0 1.8rem; color: #526170; }
+ul { padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr)); gap: 1rem; }
+a { display: grid; overflow: hidden; border: 1px solid #cbd5df; border-radius: .75rem; background: #fff; color: inherit; text-decoration: none; }
+a:hover strong, a:focus-visible strong { text-decoration: underline; }
+a:focus-visible { outline: 3px solid #1675b8; outline-offset: 3px; }
+img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 33%; }
+.card { display: grid; gap: .32rem; padding: .85rem 1rem 1rem; }
+strong { font-size: 1.15rem; }
+small { color: #526170; }
+@media (prefers-color-scheme: dark) {
+  body { color: #eef2f8; background: #141b24; }
+  a { border-color: #455466; background: #202b38; }
+  p, small { color: #b8c5d6; }
+}
+</style>
+</head>
+<body><main>
+<h1>Portofolio TAP.ID</h1>
+<p>Pilih salah satu dari enam website demo.</p>
+<ul>
+<li><a href="teknologi/"><img src="teknologi/media/home-portrait.webp" alt="" width="640" height="360"><span class="card"><strong>Teknologi</strong><span>Arga Pradana</span><small>Frontend Engineer</small></span></a></li>
+<li><a href="asuransi/"><img src="asuransi/media/home-portrait.webp" alt="" width="640" height="360"><span class="card"><strong>Asuransi</strong><span>Alya Wicaksana</span><small>Analis Risiko &amp; Polis</small></span></a></li>
+<li><a href="management/"><img src="management/media/home-portrait.webp" alt="" width="640" height="360"><span class="card"><strong>Management</strong><span>Bima Santosa</span><small>Manajer Proyek &amp; Operasional</small></span></a></li>
+<li><a href="dkv/"><img src="dkv/media/home-portrait.webp" alt="" width="640" height="360"><span class="card"><strong>DKV</strong><span>Keira Maheswari</span><small>Desainer Komunikasi Visual</small></span></a></li>
+<li><a href="general/"><img src="general/media/home-portrait.webp" alt="" width="640" height="360"><span class="card"><strong>General</strong><span>Kirana Dewi</span><small>Peneliti &amp; Koordinator Program</small></span></a></li>
+<li><a href="finance/"><img src="finance/media/home-portrait.webp" alt="" width="640" height="360"><span class="card"><strong>Finance</strong><span>Rania Hartono</span><small>Analis Perencanaan Keuangan</small></span></a></li>
+</ul>
+</main></body>
+</html>

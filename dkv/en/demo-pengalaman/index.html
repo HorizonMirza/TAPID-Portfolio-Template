@@ -1,0 +1,509 @@
+<!DOCTYPE html><html lang="en" data-default-mode="system"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="I work with type, color, and print to make identities, posters, and publications with a distinct point of view."><meta name="color-scheme" content="light dark"><meta name="robots" content="noindex"><title>Keira Maheswari | Visual Communication Designer</title><link rel="alternate" href="/TAPID-Portfolio-Template/dkv/demo-pengalaman/" hreflang="id"><link rel="alternate" href="/TAPID-Portfolio-Template/dkv/en/demo-pengalaman/" hreflang="en"><script>
+      (() => {
+        const root = document.documentElement;
+        const key = 'tapid-color-mode';
+        const preference = window.matchMedia('(prefers-color-scheme: dark)');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let chosen;
+        try { chosen = localStorage.getItem(key); } catch {}
+        const apply = (mode) => {
+          root.dataset.mode = mode;
+          const button = document.querySelector('[data-mode-toggle]');
+          if (!button) return;
+          const dark = mode === 'dark';
+          button.setAttribute('aria-pressed', String(dark));
+          button.title = dark ? button.dataset.switchLight : button.dataset.switchDark;
+        };
+        const getMode = () => ['dark', 'light'].includes(chosen)
+          ? chosen
+          : root.dataset.defaultMode === 'system' ? (preference.matches ? 'dark' : 'light') : root.dataset.defaultMode;
+        apply(getMode());
+        let pageController;
+        function initializePage() {
+          pageController?.abort();
+          pageController = new AbortController();
+          const { signal } = pageController;
+          apply(getMode());
+          const topbar = document.querySelector('.tapbar');
+          if (topbar) {
+            const links = [...topbar.querySelectorAll('nav a[href^="#"]')];
+            const sections = new Map();
+            for (const link of links) {
+              const section = document.getElementById(link.hash.slice(1));
+              if (section) sections.set(link.hash, section);
+            }
+
+            let activeSection;
+            let navigationTimer;
+            let scrollFrame;
+            const markSection = (hash) => {
+              if (hash === activeSection) return;
+              activeSection = hash;
+              for (const link of links) {
+                if (link.hash === hash) link.setAttribute('aria-current', 'location');
+                else link.removeAttribute('aria-current');
+              }
+            };
+            const updateSection = () => {
+              const readingLine = topbar.offsetHeight + 24;
+              const atBottom = window.scrollY > 0 && window.scrollY + root.clientHeight >= root.scrollHeight - 2;
+              let current = '#home';
+              let currentTop = -Infinity;
+              for (const [hash, section] of sections) {
+                const top = section.getBoundingClientRect().top;
+                if ((atBottom || top <= readingLine) && (top > currentTop || (top === currentTop && hash === activeSection))) {
+                  current = hash;
+                  currentTop = top;
+                }
+              }
+              markSection(current);
+            };
+            // Keep the chosen label while scrolling to its anchor. If the user
+            // scrolls elsewhere before it settles, mark the section now in view.
+            const holdSection = () => {
+              window.clearTimeout(navigationTimer);
+              navigationTimer = window.setTimeout(() => {
+                navigationTimer = undefined;
+                const target = sections.get(activeSection);
+                if (!target) {
+                  updateSection();
+                  return;
+                }
+                const startInset = parseFloat(getComputedStyle(root).scrollPaddingBlockStart) || 0;
+                const targetMargin = parseFloat(getComputedStyle(target).scrollMarginBlockStart) || 0;
+                const targetPosition = window.scrollY + target.getBoundingClientRect().top - startInset - targetMargin;
+                const expectedScroll = Math.max(0, Math.min(targetPosition, root.scrollHeight - root.clientHeight));
+                if (Math.abs(window.scrollY - expectedScroll) > 3) updateSection();
+              }, 140);
+            };
+            const selectSection = (hash) => {
+              if (!sections.has(hash)) return false;
+              markSection(hash);
+              holdSection();
+              return true;
+            };
+            const updateTopbarHeight = () => {
+              root.style.setProperty('--topbar-height', `${Math.ceil(topbar.getBoundingClientRect().height)}px`);
+              if (!navigationTimer) updateSection();
+            };
+            window.addEventListener('scroll', () => {
+              if (navigationTimer) {
+                holdSection();
+              } else if (!scrollFrame) {
+                scrollFrame = window.requestAnimationFrame(() => {
+                  scrollFrame = undefined;
+                  if (!navigationTimer) updateSection();
+                });
+              }
+            }, { passive: true, signal });
+            window.addEventListener('resize', updateTopbarHeight, { signal });
+            window.addEventListener('hashchange', () => {
+              if (!selectSection(location.hash)) {
+                window.clearTimeout(navigationTimer);
+                navigationTimer = undefined;
+                updateSection();
+              }
+            }, { signal });
+            document.addEventListener('click', (event) => {
+              if (event.defaultPrevented || event.button !== 0 || event.metaKey ||
+                  event.ctrlKey || event.shiftKey || event.altKey) return;
+              const link = event.target.closest?.('a[href^="#"]');
+              if (link) selectSection(link.hash);
+            }, { signal });
+            selectSection(location.hash);
+            updateTopbarHeight();
+            if ('ResizeObserver' in window) {
+              const observer = new ResizeObserver(updateTopbarHeight);
+              observer.observe(topbar);
+              signal.addEventListener('abort', () => observer.disconnect(), { once: true });
+            }
+            signal.addEventListener('abort', () => {
+              window.clearTimeout(navigationTimer);
+              window.cancelAnimationFrame(scrollFrame);
+            }, { once: true });
+          }
+          document.querySelector('[data-mode-toggle]')?.addEventListener('click', () => {
+            chosen = getMode() === 'dark' ? 'light' : 'dark';
+            try { localStorage.setItem(key, chosen); } catch {}
+            if (!reducedMotion.matches && document.startViewTransition) {
+              document.startViewTransition(() => apply(getMode()));
+            } else {
+              root.classList.toggle('mode-color-fade', !reducedMotion.matches);
+              apply(chosen);
+            }
+          }, { signal });
+          document.querySelectorAll('[data-mobile-nav] a').forEach((link) => {
+            link.addEventListener('click', () => link.closest('details')?.removeAttribute('open'), { signal });
+          });
+        }
+
+        const languageLink = () => document.querySelector('.tapbar a.language');
+        const sections = () => [...document.querySelectorAll('.tapbar-desktop a[href^="#"]')];
+        const activeHash = () => sections().find((link) => link.getAttribute('aria-current') === 'location')?.hash;
+        const sectionFor = (hash) => hash && document.getElementById(hash.slice(1));
+        const barBottom = () => document.querySelector('.tapbar')?.getBoundingClientRect().bottom ?? 0;
+        const pages = new Map();
+        let offlinePage;
+        let initialLanguage;
+        let pending;
+
+        function readPage(source) {
+          return {
+            title: source.title,
+            description: source.querySelector('meta[name="description"]')?.content,
+            body: source.body.cloneNode(true),
+          };
+        }
+
+        function showLanguageError() {
+          const previous = document.querySelector('[data-language-error]');
+          if (previous) previous.remove();
+          const notice = document.createElement('p');
+          notice.dataset.languageError = '';
+          notice.setAttribute('role', 'status');
+          notice.textContent = root.lang === 'id' ? 'Bahasa gagal dimuat. Coba lagi.' : 'Language could not load. Try again.';
+          document.body.append(notice);
+        }
+
+        async function readLanguage(target, language, signal) {
+          if (pages.has(language)) return pages.get(language);
+
+          let html;
+          if (offlinePage?.language === language) {
+            html = offlinePage.html;
+          } else {
+            const response = await fetch(target, { mode: 'same-origin', signal });
+            if (!response.ok) throw new Error('Could not load language');
+            html = await response.text();
+          }
+          const source = new DOMParser().parseFromString(html, 'text/html');
+          if (source.documentElement.lang !== language || !source.querySelector('.tapbar') || !source.querySelector('#main')) {
+            throw new Error('Unexpected language page');
+          }
+          const page = readPage(source);
+          pages.set(language, page);
+          return page;
+        }
+
+        function rememberReadingPosition() {
+          const hash = activeHash() || location.hash;
+          const section = sectionFor(hash);
+          return {
+            hash,
+            offset: section ? barBottom() - section.getBoundingClientRect().top : 0,
+            y: window.scrollY,
+          };
+        }
+
+        function keepReadingPosition(position) {
+          const section = sectionFor(position.hash);
+          if (!section) {
+            window.scrollTo({ top: position.y, behavior: 'instant' });
+            return;
+          }
+          const box = section.getBoundingClientRect();
+          const offset = Math.min(position.offset, Math.max(0, box.height - 24));
+          window.scrollTo({ top: window.scrollY + box.top - barBottom() + offset, behavior: 'instant' });
+        }
+
+        async function changeLanguage(target, language, fromHistory = false) {
+          if (language === root.lang || target.origin !== location.origin) return;
+          pending?.abort();
+          const controller = new AbortController();
+          pending = controller;
+
+          try {
+            const linkFocused = document.activeElement === languageLink();
+            const page = await readLanguage(target, language, controller.signal);
+            if (controller.signal.aborted) return;
+            const firstSection = document.querySelector('#main > section')?.id || 'home';
+            const position = fromHistory
+              ? { hash: target.hash || '#' + firstSection, offset: 0, y: 0 }
+              : rememberReadingPosition();
+            const address = offlinePage ? new URL(location.href) : new URL(target);
+            if (offlinePage) {
+              address.search = target.search;
+              address.searchParams.set('lang', language);
+            }
+            if (!fromHistory) address.hash = position.hash === '#home' && position.y === 0 && !location.hash ? '' : position.hash;
+
+            const update = () => {
+              if (controller.signal.aborted) return;
+              const body = page.body.cloneNode(true);
+              body.querySelectorAll('script').forEach((script) => script.remove());
+              if (!fromHistory) history.replaceState(history.state, '', address.href);
+              root.lang = language;
+              document.title = page.title;
+              const description = document.querySelector('meta[name="description"]');
+              if (description && page.description) description.content = page.description;
+              const detailsState = new Map([...document.querySelectorAll('details[data-language-details]')]
+                .map((panel) => [panel.dataset.languageDetails, panel.open]));
+              for (const panel of body.querySelectorAll('details[data-language-details]')) {
+                if (detailsState.has(panel.dataset.languageDetails)) {
+                  panel.open = detailsState.get(panel.dataset.languageDetails);
+                }
+              }
+              document.body.replaceWith(body);
+              initializePage();
+              document.dispatchEvent(new Event('tapid:language-change'));
+              keepReadingPosition(position);
+              if (linkFocused) languageLink()?.focus({ preventScroll: true });
+            };
+
+            if (!reducedMotion.matches && document.startViewTransition) {
+              await document.startViewTransition(update).finished;
+            } else {
+              update();
+              if (!reducedMotion.matches) {
+                document.querySelector('#main')?.animate([{ opacity: .5 }, { opacity: 1 }], 230);
+              }
+            }
+          } catch {
+            if (!controller.signal.aborted) showLanguageError();
+          } finally {
+            if (pending === controller) pending = undefined;
+          }
+        }
+
+        function languageFromAddress() {
+          const url = new URL(location.href);
+          if (offlinePage) {
+            const language = url.searchParams.get('lang') || initialLanguage;
+            return language === 'id' || language === 'en' ? language : initialLanguage;
+          }
+          return [...document.querySelectorAll('link[rel="alternate"][hreflang]')]
+            .find((link) => new URL(link.href).pathname === url.pathname)?.hreflang;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+          initialLanguage = root.lang;
+          pages.set(initialLanguage, readPage(document));
+          const source = document.getElementById('offline-portfolio-language');
+          if (source) {
+            offlinePage = JSON.parse(source.textContent);
+            const mode = new URLSearchParams(location.search).get('mode');
+            if (mode === 'light' || mode === 'dark') chosen = mode;
+          }
+          initializePage();
+          const language = languageFromAddress();
+          if (language && language !== initialLanguage) {
+            void changeLanguage(new URL(location.href), language, true);
+          }
+        }, { once: true });
+
+        document.addEventListener('click', (event) => {
+          const link = event.target.closest?.('.tapbar a.language');
+          if (!link || event.defaultPrevented || event.button !== 0 ||
+              event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          const target = new URL(link.href);
+          if (target.origin !== location.origin) return;
+          event.preventDefault();
+          if (!pending) void changeLanguage(target, link.hreflang);
+        });
+
+        window.addEventListener('popstate', () => {
+          const language = languageFromAddress();
+          if (!language) return;
+          if (language === root.lang) pending?.abort();
+          else void changeLanguage(new URL(location.href), language, true);
+        });
+        preference.addEventListener('change', () => apply(getMode()));
+      })();
+    </script><link rel="stylesheet" href="/TAPID-Portfolio-Template/dkv/_astro/PortfolioPage.DHBXndDA.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="tapbar tapbar-dkv" data-skin="tint" data-links="solid"><div class="tapbar-inner" data-motion="stretch"><a class="tapbar-brand" href="#home"><strong>Keira Maheswari</strong></a><nav class="tapbar-desktop" aria-label="Main navigation"><a href="#home">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav><div class="tapbar-tools"><details class="mobile-nav" data-mobile-nav><summary>Menu</summary><nav aria-label="Main navigation"><a href="#home">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav></details><div class="controls" role="group" aria-label="Display preferences"><a class="control language" href="/TAPID-Portfolio-Template/dkv/demo-pengalaman/" lang="id" hreflang="id" aria-label="Ganti ke Bahasa Indonesia"><span class="control-label">ID</span></a><button class="control mode" type="button" data-mode-toggle aria-label="Dark mode" aria-pressed="false" title="Switch to dark mode" data-switch-dark="Switch to dark mode" data-switch-light="Switch to light mode"><svg class="control-glyph control-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"></path></svg><span class="control-glyph control-sun" aria-hidden="true"></span></button></div></div></div></header><main id="main" tabindex="-1"><section id="experience" class="experience-demos" data-experience-demos aria-labelledby="experience-preview-title"><div class="experience-picker wrap"><div class="experience-picker-heading"><h2 id="experience-picker-title">Experience layout demos</h2><a href="/TAPID-Portfolio-Template/dkv/en/#experience">Back to portfolio</a></div><div class="experience-choices" role="group" aria-labelledby="experience-picker-title"><button type="button" data-experience-choice="01" data-layout="folio" aria-pressed="true" aria-controls="experience-preview" aria-label="01 Editorial Spread"><span>01</span><strong>Editorial Spread</strong></button><button type="button" data-experience-choice="02" data-layout="feature" aria-pressed="false" aria-controls="experience-preview" aria-label="02 Spotlight"><span>02</span><strong>Spotlight</strong></button><button type="button" data-experience-choice="03" data-layout="spread" aria-pressed="false" aria-controls="experience-preview" aria-label="03 Two Columns"><span>03</span><strong>Two Columns</strong></button><button type="button" data-experience-choice="04" data-layout="bands" aria-pressed="false" aria-controls="experience-preview" aria-label="04 Colour Bands"><span>04</span><strong>Colour Bands</strong></button><button type="button" data-experience-choice="05" data-layout="organization" aria-pressed="false" aria-controls="experience-preview" aria-label="05 Organisation First"><span>05</span><strong>Organisation First</strong></button><button type="button" data-experience-choice="06" data-layout="dossier" aria-pressed="false" aria-controls="experience-preview" aria-label="06 Role Dossier"><span>06</span><strong>Role Dossier</strong></button><button type="button" data-experience-choice="07" data-layout="margin" aria-pressed="false" aria-controls="experience-preview" aria-label="07 Side Heading"><span>07</span><strong>Side Heading</strong></button><button type="button" data-experience-choice="08" data-layout="ledger" aria-pressed="false" aria-controls="experience-preview" aria-label="08 Register"><span>08</span><strong>Register</strong></button><button type="button" data-experience-choice="09" data-layout="compare" aria-pressed="false" aria-controls="experience-preview" aria-label="09 Compare Roles"><span>09</span><strong>Compare Roles</strong></button><button type="button" data-experience-choice="10" data-layout="timeline" aria-pressed="false" aria-controls="experience-preview" aria-label="10 Timeline"><span>10</span><strong>Timeline</strong></button><button type="button" data-experience-choice="11" data-layout="resume" aria-pressed="false" aria-controls="experience-preview" aria-label="11 Résumé"><span>11</span><strong>Résumé</strong></button><button type="button" data-experience-choice="12" data-layout="tabs" aria-pressed="false" aria-controls="experience-preview" aria-label="12 Role Tabs"><span>12</span><strong>Role Tabs</strong></button><button type="button" data-experience-choice="13" data-layout="compact" aria-pressed="false" aria-controls="experience-preview" aria-label="13 Compact List"><span>13</span><strong>Compact List</strong></button><button type="button" data-experience-choice="14" data-layout="pager" aria-pressed="false" aria-controls="experience-preview" aria-label="14 Role Gallery"><span>14</span><strong>Role Gallery</strong></button><button type="button" data-experience-choice="15" data-layout="accordion" aria-pressed="false" aria-controls="experience-preview" aria-label="15 Accordion"><span>15</span><strong>Accordion</strong></button></div><p class="experience-selection" aria-live="polite">Editorial Spread</p></div><div id="experience-preview" class="experience-stage wrap" data-layout="folio"><header class="experience-stage-heading"><h2 id="experience-preview-title">Experience</h2><div class="experience-pager" role="group" aria-label="Browse roles" hidden><button type="button" data-experience-step="-1" aria-controls="experience-records" aria-label="Previous role">←</button><p class="experience-counter" aria-live="polite" aria-atomic="true"></p><button type="button" data-experience-step="1" aria-controls="experience-records" aria-label="Next role">→</button></div></header><div class="experience-content"><div class="experience-tabs" role="group" aria-label="Choose a role" hidden><button type="button" data-experience-tab="0" aria-controls="experience-role-0" aria-pressed="true">Studio Dua Warna<small>Visual Designer</small></button><button type="button" data-experience-tab="1" aria-controls="experience-role-1" aria-pressed="false">Ruang Tinta<small>Print Studio Assistant</small></button><button type="button" data-experience-tab="2" aria-controls="experience-role-2" aria-pressed="false">Kolektif Halaman<small>Publication Designer</small></button><button type="button" data-experience-tab="3" aria-controls="experience-role-3" aria-pressed="false">Ruang Reka Pamer<small>Event Identity Assistant</small></button></div><ol class="experience-records" id="experience-records"><li class="experience-entry" id="experience-role-0"><p class="experience-period">2025–present</p><h3>Visual Designer</h3><p class="experience-org">Studio Dua Warna</p><p class="experience-description">Designed posters, event identities, and publications for exhibition and workshop concepts.</p></li><li class="experience-entry" id="experience-role-1"><p class="experience-period">2024</p><h3>Print Studio Assistant</h3><p class="experience-org">Ruang Tinta</p><p class="experience-description">Prepared print files, checked color separation, and documented material tests.</p></li><li class="experience-entry" id="experience-role-2"><p class="experience-period">2023</p><h3>Publication Designer</h3><p class="experience-org">Kolektif Halaman</p><p class="experience-description">Designed an editorial grid and tested type sizes across the cover and inside pages of a trial zine.</p></li><li class="experience-entry" id="experience-role-3"><p class="experience-period">2022</p><h3>Event Identity Assistant</h3><p class="experience-org">Ruang Reka Pamer</p><p class="experience-description">Adapted an event identity for participant cards, wayfinding signs, and social templates in different sizes.</p></li></ol><div class="experience-accordion" hidden><details name="experience-roles" data-language-details="experience-0" open><summary><span class="experience-period">2025–present</span><strong>Visual Designer</strong></summary><div class="experience-accordion-content"><p class="experience-org">Studio Dua Warna</p><p class="experience-description">Designed posters, event identities, and publications for exhibition and workshop concepts.</p></div></details><details name="experience-roles" data-language-details="experience-1"><summary><span class="experience-period">2024</span><strong>Print Studio Assistant</strong></summary><div class="experience-accordion-content"><p class="experience-org">Ruang Tinta</p><p class="experience-description">Prepared print files, checked color separation, and documented material tests.</p></div></details><details name="experience-roles" data-language-details="experience-2"><summary><span class="experience-period">2023</span><strong>Publication Designer</strong></summary><div class="experience-accordion-content"><p class="experience-org">Kolektif Halaman</p><p class="experience-description">Designed an editorial grid and tested type sizes across the cover and inside pages of a trial zine.</p></div></details><details name="experience-roles" data-language-details="experience-3"><summary><span class="experience-period">2022</span><strong>Event Identity Assistant</strong></summary><div class="experience-accordion-content"><p class="experience-org">Ruang Reka Pamer</p><p class="experience-description">Adapted an event identity for participant cards, wayfinding signs, and social templates in different sizes.</p></div></details></div></div></div></section><script>
+  (() => {
+    let controller;
+    let position = 0;
+    function initializeExperience() {
+      controller?.abort();
+      controller = new AbortController();
+      const { signal } = controller;
+      const root = document.querySelector('[data-experience-demos]');
+      if (!root) return;
+
+      const stage = root.querySelector('.experience-stage');
+      const content = root.querySelector('.experience-content');
+      const buttons = [...root.querySelectorAll('[data-experience-choice]')];
+      const selection = root.querySelector('.experience-selection');
+      const records = root.querySelector('.experience-records');
+      const entries = [...records.children];
+      const tabs = root.querySelector('.experience-tabs');
+      const tabButtons = [...tabs.children];
+      const accordion = root.querySelector('.experience-accordion');
+      const pager = root.querySelector('.experience-pager');
+      const [previous, next] = pager.querySelectorAll('button');
+      const counter = root.querySelector('.experience-counter');
+      const languageLink = document.querySelector('.tapbar a.language');
+      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+      let animation;
+
+      function showRole(index) {
+        position = Math.max(0, Math.min(index, entries.length - 1));
+        const isSingle = stage.dataset.layout === 'tabs' || stage.dataset.layout === 'pager';
+        entries.forEach((entry, number) => { entry.hidden = isSingle && number !== position; });
+        tabButtons.forEach((button, number) => button.setAttribute('aria-pressed', String(number === position)));
+        counter.textContent = (position + 1) + ' / ' + entries.length;
+        previous.disabled = position === 0;
+        next.disabled = position + 1 >= entries.length;
+      }
+
+      function showLayout(choice, animate) {
+        const layout = choice.dataset.layout;
+        stage.dataset.layout = layout;
+        buttons.forEach((button) => button.setAttribute('aria-pressed', String(button === choice)));
+        selection.textContent = choice.querySelector('strong').textContent;
+        accordion.hidden = layout !== 'accordion';
+        records.hidden = !accordion.hidden;
+        tabs.hidden = layout !== 'tabs' || entries.length < 2;
+        pager.hidden = layout !== 'pager' || entries.length < 2;
+        showRole(animate ? 0 : position);
+
+        if (languageLink) {
+          const url = new URL(languageLink.href);
+          url.searchParams.set('pilihan', choice.dataset.experienceChoice);
+          languageLink.href = url.href;
+        }
+        animation?.cancel();
+        if (animate && !reducedMotion.matches && content.animate) {
+          animation = content.animate(
+            [{ opacity: .5, transform: 'translateY(4px)' }, { opacity: 1, transform: 'none' }],
+            { duration: 180, easing: 'ease-out' },
+          );
+        }
+      }
+
+      function selectFromAddress() {
+        const id = new URLSearchParams(location.search).get('pilihan');
+        showLayout(buttons.find((button) => button.dataset.experienceChoice === id) ?? buttons[0], false);
+      }
+
+      for (const button of buttons) {
+        button.addEventListener('click', () => {
+          if (button.getAttribute('aria-pressed') === 'true') return;
+          const url = new URL(location.href);
+          url.searchParams.set('pilihan', button.dataset.experienceChoice);
+          try { history.replaceState(history.state, '', url.href); } catch {}
+          showLayout(button, true);
+        }, { signal });
+      }
+      for (const button of tabButtons) {
+        button.addEventListener('click', () => showRole(Number(button.dataset.experienceTab)), { signal });
+      }
+      for (const button of [previous, next]) {
+        button.addEventListener('click', () => {
+          showRole(position + Number(button.dataset.experienceStep));
+          if (button.disabled) (button === previous ? next : previous).focus({ preventScroll: true });
+        }, { signal });
+      }
+      window.addEventListener('popstate', selectFromAddress, { signal });
+      selectFromAddress();
+    }
+    initializeExperience();
+    document.addEventListener('tapid:language-change', initializeExperience);
+  })();
+</script><section id="home" aria-labelledby="portfolio-home-title"><div class="home-demo-stage" data-theme="dkv" data-design="01" data-art="spotlight"><div class="home-demo-content"><div class="home-demo-title"><p class="home-demo-role">Visual Communication Designer</p><h1 id="portfolio-home-title">Keira Maheswari</h1></div><div class="home-demo-copy"><p class="home-demo-headline">I give visible form to ideas.</p><p class="home-demo-intro">I work with type, color, and print to make identities, posters, and publications with a distinct point of view.</p><button class="home-cv" type="button" disabled data-astro-cid-gyq7ecgn>Resume CV</button></div></div><figure class="home-demo-portrait"><img src="/TAPID-Portfolio-Template/dkv/media/home-portrait.webp" alt="Keira wearing glasses in a red print studio" fetchpriority="high"></figure></div></section><section id="about" class="about-section" data-theme="dkv" aria-labelledby="about-title"><div class="about-stage" data-layout="ledger"><div class="about-intro"><div class="about-heading"><h2 id="about-title">About</h2></div><p class="about-summary">I&#39;m a Visual Communication Design undergraduate at BINUS University with academic project experience in visual identity, typography, and print design. I&#39;m interested in how type and color can make information easier to read.</p></div><dl class="about-facts"><div class="about-fact" data-fact="university"><dt>University</dt><dd>Universitas Bina Nusantara</dd></div><div class="about-fact" data-fact="major"><dt>Major</dt><dd>Visual Communication Design</dd></div><div class="about-fact" data-fact="specialization"><dt>Specialization</dt><dd>Visual Identity and Typography</dd></div><div class="about-fact" data-fact="gpa"><dt>GPA</dt><dd>3.79 / 4.00</dd></div></dl></div></section><section id="projects" class="project-previews" data-project-section data-theme="dkv" aria-labelledby="work-title"><div id="project-preview-stage" class="project-preview-stage wrap" data-layout="tabs"><header class="project-preview-title"><h2 id="work-title">Projects</h2></header><div class="project-preview-showcase"><div class="project-preview-tabs" role="group" aria-label="Choose a project" hidden><button type="button" data-project-tab="0" aria-pressed="true" aria-controls="project-preview-item-0">Lipat / Lepas</button><button type="button" data-project-tab="1" aria-pressed="false" aria-controls="project-preview-item-1">Cetak Pasar</button><button type="button" data-project-tab="2" aria-pressed="false" aria-controls="project-preview-item-2">Kota Setelah Hujan</button><button type="button" data-project-tab="3" aria-pressed="false" aria-controls="project-preview-item-3">Nada Jalanan</button><button type="button" data-project-tab="4" aria-pressed="false" aria-controls="project-preview-item-4">Ramu Rasa</button><button type="button" data-project-tab="5" aria-pressed="false" aria-controls="project-preview-item-5">Arah Festival</button></div><ol class="project-preview-items" id="project-preview-items"><li id="project-preview-item-0" data-project-card><article class="project-preview-card"><figure class="project-preview-art"><img src="/TAPID-Portfolio-Template/dkv/media/bentuk-bebas.webp" alt="A bird-like paper sculpture against red with a diagonal shadow." loading="lazy"></figure><div class="project-preview-copy"><p class="project-preview-category">Poster study</p><h3>Lipat / Lepas</h3><p class="project-preview-description">A poster study that uses a folded paper sculpture as the focal point. Side lighting casts a diagonal shadow across the red field to explore eye movement and the balance of negative space.</p></div></article></li><li id="project-preview-item-1" data-project-card><article class="project-preview-card"><figure class="project-preview-art"><img src="/TAPID-Portfolio-Template/dkv/media/cetak-pasar.webp" alt="Cetak Pasar poster alongside a sample admission ticket and participant card." loading="lazy"></figure><div class="project-preview-copy"><p class="project-preview-category">Visual identity</p><h3>Cetak Pasar</h3><p class="project-preview-description">A visual identity for a fictional independent print fair. Red, cream, and black contrast and a circular stamp motif carry across the main poster, admission ticket, and participant card.</p></div></article></li><li id="project-preview-item-2" data-project-card><article class="project-preview-card"><figure class="project-preview-art"><img src="/TAPID-Portfolio-Template/dkv/media/kota-setelah-hujan.webp" alt="Kota Setelah Hujan cover and opening page with a street illustration." loading="lazy"></figure><div class="project-preview-copy"><p class="project-preview-category">Editorial design</p><h3>Kota Setelah Hujan</h3><p class="project-preview-description">A cover and opening spread for a visual essay about the city after rain. A serif title, street illustration, and short columns set the pace between imagery and narrative.</p></div></article></li><li id="project-preview-item-3" data-project-card><article class="project-preview-card"><figure class="project-preview-art"><img src="/TAPID-Portfolio-Template/dkv/media/nada-jalanan.webp" alt="Nada Jalanan music poster beside an event programme." loading="lazy"></figure><div class="project-preview-copy"><p class="project-preview-category">Music event poster</p><h3>Nada Jalanan</h3><p class="project-preview-description">A poster for a fictional music event. Concentric lines evoke vinyl records, and tight typography gives the main poster and programme a strong contrast.</p></div></article></li><li id="project-preview-item-4" data-project-card><article class="project-preview-card"><figure class="project-preview-art"><img src="/TAPID-Portfolio-Template/dkv/media/ramu-rasa.webp" alt="Orange Ramu Rasa label with a deep red product information panel." loading="lazy"></figure><div class="project-preview-copy"><p class="project-preview-category">Packaging identity</p><h3>Ramu Rasa</h3><p class="project-preview-description">A packaging study for a fictional spice drink. The bold wordmark, striped field, and warm palette carry across the front label and ingredient card.</p></div></article></li><li id="project-preview-item-5" data-project-card><article class="project-preview-card"><figure class="project-preview-art"><img src="/TAPID-Portfolio-Template/dkv/media/arah-festival.webp" alt="Arah Festival board with three coloured direction signs." loading="lazy"></figure><div class="project-preview-copy"><p class="project-preview-category">Wayfinding system</p><h3>Arah Festival</h3><p class="project-preview-description">A wayfinding system for a fictional festival. Consistent colour, label size, and arrow direction distinguish the stage, workshop, and entrance.</p></div></article></li></ol></div></div></section><script>
+  (() => {
+    let controller;
+    let activeTab = 0;
+
+    function initializeProjects() {
+      controller?.abort();
+      controller = new AbortController();
+      const { signal } = controller;
+      const root = document.querySelector('[data-project-section]');
+      if (!root) return;
+
+      const choices = [...root.querySelectorAll('[data-project-choice]')];
+      const selection = root.querySelector('.project-preview-selection');
+      const stage = root.querySelector('#project-preview-stage');
+      const showcase = root.querySelector('.project-preview-showcase');
+      const list = root.querySelector('#project-preview-items');
+      const cards = [...list.children];
+      const tabs = root.querySelector('.project-preview-tabs');
+      const tabButtons = tabs ? [...tabs.querySelectorAll('button')] : [];
+      const accordion = root.querySelector('.project-preview-accordion');
+      const railControls = root.querySelector('.project-preview-rail-controls');
+      const railButtons = railControls ? [...railControls.querySelectorAll('button')] : [];
+      const [previous, next] = railButtons;
+      const languageLink = document.querySelector('.tapbar a.language');
+      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+      let animation;
+
+      function updateRailControls() {
+        previous.disabled = list.scrollLeft < 2;
+        next.disabled = list.scrollLeft + list.clientWidth >= list.scrollWidth - 2;
+      }
+
+      function showProject(index) {
+        activeTab = index;
+        const isTabbed = stage.dataset.layout === 'tabs';
+        cards.forEach((card, position) => { card.hidden = isTabbed && position !== index; });
+        tabButtons.forEach((button, position) => button.setAttribute('aria-pressed', String(position === index)));
+      }
+
+      function showLayout(layout) {
+        stage.dataset.layout = layout;
+        if (accordion) accordion.hidden = layout !== 'accordion';
+        list.hidden = layout === 'accordion';
+        if (tabs) tabs.hidden = layout !== 'tabs' || cards.length < 2;
+        showProject(activeTab);
+        if (railControls) {
+          railControls.hidden = layout !== 'rail' || cards.length < 2;
+          if (!railControls.hidden) {
+            list.scrollLeft = 0;
+            updateRailControls();
+          }
+        }
+      }
+
+      function selectChoice(choice, animate) {
+        choices.forEach((button) => button.setAttribute('aria-pressed', String(button === choice)));
+        selection.textContent = choice.querySelector('strong').textContent;
+        if (animate) activeTab = 0;
+        showLayout(choice.dataset.layout);
+        if (languageLink) {
+          const url = new URL(languageLink.href);
+          url.searchParams.set('pilihan', choice.dataset.projectChoice);
+          languageLink.href = url.href;
+        }
+        animation?.cancel();
+        if (animate && !reducedMotion.matches) {
+          animation = showcase.animate(
+            [{ opacity: .45, transform: 'translateY(5px)' }, { opacity: 1, transform: 'none' }],
+            { duration: 220, easing: 'ease-out' },
+          );
+        }
+      }
+
+      function selectFromAddress() {
+        const id = new URLSearchParams(location.search).get('pilihan');
+        selectChoice(choices.find((choice) => choice.dataset.projectChoice === id) ?? choices[0], false);
+      }
+
+      choices.forEach((choice) => choice.addEventListener('click', () => {
+        if (choice.getAttribute('aria-pressed') === 'true') return;
+        const url = new URL(location.href);
+        url.searchParams.set('pilihan', choice.dataset.projectChoice);
+        try { history.replaceState(history.state, '', url.href); } catch {}
+        selectChoice(choice, true);
+      }, { signal }));
+      tabButtons.forEach((button) => button.addEventListener('click', () => showProject(Number(button.dataset.projectTab)), { signal }));
+      railButtons.forEach((button) => button.addEventListener('click', () => {
+        const step = cards[0].offsetWidth + parseFloat(getComputedStyle(list).columnGap);
+        list.scrollBy({ left: step * Number(button.dataset.projectScroll), behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+      }, { signal }));
+      if (railControls) {
+        list.addEventListener('scroll', updateRailControls, { passive: true, signal });
+        window.addEventListener('resize', updateRailControls, { signal });
+      }
+      if (choices.length) {
+        window.addEventListener('popstate', selectFromAddress, { signal });
+        selectFromAddress();
+      } else {
+        showLayout(stage.dataset.layout);
+      }
+    }
+
+    initializeProjects();
+    document.addEventListener('tapid:language-change', initializeProjects);
+  })();
+</script><section id="skills" class="skill-previews" data-theme="dkv" aria-labelledby="skills-title"><div id="skill-preview-stage" class="skill-stage wrap" data-layout="bands"><header class="skill-stage-head"><h2 id="skills-title">Skills</h2></header><div class="skill-content"><ul class="skill-list" data-skill-flat><li>Typography</li><li>Art direction</li><li>Identity systems</li><li>Print production</li><li>Editorial layout</li><li>Colour theory</li><li>Digital illustration</li><li>Packaging design</li><li>Wayfinding design</li><li>Visual prototyping</li></ul></div></div></section></main><footer id="contact" class="contact-footer" data-theme="dkv" data-footer-layout="cards" aria-labelledby="contact-footer-title"><div class="contact-footer-inner"><div class="contact-footer-heading"><h2 id="contact-footer-title">Get in touch</h2></div><ul class="footer-channels"><li data-footer-channel="whatsapp"><a class="footer-channel" href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer"><span class="footer-channel-icon" aria-hidden="true"><img src="/TAPID-Portfolio-Template/dkv/brands/whatsapp.svg" alt="" width="24" height="24" decoding="async"></span><span class="footer-channel-copy"><strong>WhatsApp</strong><span>+62 812 0000 0000</span></span><span class="footer-channel-arrow" aria-hidden="true">↗</span></a></li><li data-footer-channel="email"><a class="footer-channel" href="mailto:keira.maheswari@example.com"><span class="footer-channel-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z M3 7l9 6 9-6"></path></svg></span><span class="footer-channel-copy"><strong>Email</strong><span>keira.maheswari@example.com</span></span><span class="footer-channel-arrow" aria-hidden="true">↗</span></a></li><li data-footer-channel="linkedin"><a class="footer-channel" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"><span class="footer-channel-icon" aria-hidden="true"><img src="/TAPID-Portfolio-Template/dkv/brands/linkedin.png" alt="" width="24" height="24" decoding="async"></span><span class="footer-channel-copy"><strong>LinkedIn</strong><span>Keira Maheswari</span></span><span class="footer-channel-arrow" aria-hidden="true">↗</span></a></li><li data-footer-channel="github"><a class="footer-channel" href="https://github.com/" target="_blank" rel="noopener noreferrer"><span class="footer-channel-icon" aria-hidden="true"><img class="footer-logo-on-light" src="/TAPID-Portfolio-Template/dkv/brands/github.svg" alt="" width="24" height="24" decoding="async"><img class="footer-logo-on-dark" src="/TAPID-Portfolio-Template/dkv/brands/github-dark.svg" alt="" width="24" height="24" decoding="async"></span><span class="footer-channel-copy"><strong>GitHub</strong><span>keiramaheswari</span></span><span class="footer-channel-arrow" aria-hidden="true">↗</span></a></li><li data-footer-channel="instagram"><a class="footer-channel" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><span class="footer-channel-icon" aria-hidden="true"><img class="footer-logo-on-light" src="/TAPID-Portfolio-Template/dkv/brands/instagram.svg" alt="" width="24" height="24" decoding="async"><img class="footer-logo-on-dark" src="/TAPID-Portfolio-Template/dkv/brands/instagram-dark.svg" alt="" width="24" height="24" decoding="async"></span><span class="footer-channel-copy"><strong>Instagram</strong><span>@keiramaheswari</span></span><span class="footer-channel-arrow" aria-hidden="true">↗</span></a></li><li data-footer-channel="resume"><a class="footer-channel" href="https://drive.google.com/" target="_blank" rel="noopener noreferrer"><span class="footer-channel-icon" aria-hidden="true"><img src="/TAPID-Portfolio-Template/dkv/brands/drive.png" alt="" width="24" height="24" decoding="async"></span><span class="footer-channel-copy"><strong>Resume CV</strong><span>Google Drive</span></span><span class="footer-channel-arrow" aria-hidden="true">↗</span></a></li></ul><div class="contact-footer-signoff"><small>© 2026 Keira Maheswari</small><a href="#home">Back to top</a></div></div></footer></body></html>
