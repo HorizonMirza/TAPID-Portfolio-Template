@@ -1,5 +1,6 @@
 ---
 import PortfolioPage from '../PortfolioPage.astro';
+import FooterDemoPage from '../FooterDemoPage.astro';
 import HomeDemos from '../HomeDemos.astro';
 import AboutDemos from '../AboutDemos.astro';
 import ProjectSection from '../ProjectSection.astro';
@@ -19,13 +20,17 @@ export function getStaticPaths() {
     { params: { demo: 'en/demo-keahlian' }, props: { language: 'en' as const, section: 'skills' as const } },
     { params: { demo: 'demo-pengalaman' }, props: { language: 'id' as const, section: 'experience' as const } },
     { params: { demo: 'en/demo-pengalaman' }, props: { language: 'en' as const, section: 'experience' as const } },
+    { params: { demo: 'demo-footer' }, props: { language: 'id' as const, section: 'footer' as const } },
+    { params: { demo: 'en/demo-footer' }, props: { language: 'en' as const, section: 'footer' as const } },
   ] : [];
 }
 
-interface Props { language: Language; section: 'home' | 'about' | 'projects' | 'skills' | 'experience' }
+interface Props { language: Language; section: 'home' | 'about' | 'projects' | 'skills' | 'experience' | 'footer' }
 const { language, section } = Astro.props;
 ---
-{section === 'experience' ? (
+{section === 'footer' ? (
+  <FooterDemoPage language={language} />
+) : section === 'experience' ? (
   <PortfolioPage language={language}>
     <ExperienceSection slot="experience-preview" language={language} preview />
   </PortfolioPage>

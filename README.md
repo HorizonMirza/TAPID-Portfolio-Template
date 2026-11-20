@@ -14,6 +14,8 @@ Setiap tema menampilkan 10 contoh keahlian. Buka `/demo-keahlian/` atau `/en/dem
 
 Buka `/demo-pengalaman/` atau `/en/demo-pengalaman/` untuk mencoba 15 rancangan dengan empat contoh pengalaman per tema. Halaman utama dan galeri mengambil keempat contoh pengalaman dari `experience` di file data tema. Tambahkan `?pilihan=07` untuk membuka langsung rancangan bernomor 07.
 
+Buka `/demo-footer/` atau `/en/demo-footer/` untuk mencoba 10 rancangan footer per tema. Centang kanal kontak yang ingin ditampilkan. Pilihan desain dan kanal ikut tersimpan di URL. Contoh kontak menggunakan data demo. Minta pelanggan memilih kanal yang akan ditampilkan dan mengirimkan tautan yang boleh dipublikasikan.
+
 | Template | Warna bawaan | Beranda utama | Tentang utama | Proyek utama | Keahlian utama | Pengalaman utama | Top bar |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 06 · Developer Panel | 05 · Studi Kasus | 01 · Kartu | 02 · Linimasa | 01 · Command Rail |

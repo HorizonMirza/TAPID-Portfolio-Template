@@ -1,0 +1,48 @@
+---
+import { footerChannelIcons, type FooterChannel } from './footer-demos';
+import type { Language } from './portfolio';
+import './styles/footer-demos.css';
+
+interface Props {
+  language: Language;
+  name: string;
+  theme: string;
+  channels: FooterChannel[];
+  layout: string;
+}
+const { language, name, theme, channels, layout } = Astro.props;
+const english = language === 'en';
+const year = new Date().getUTCFullYear();
+---
+<footer id="contact" class="contact-footer" data-theme={theme} data-footer-layout={layout} aria-labelledby="contact-footer-title">
+  <div class="contact-footer-inner">
+    <div class="contact-footer-heading">
+      <h2 id="contact-footer-title">{english ? 'Get in touch' : 'Hubungi saya'}</h2>
+    </div>
+    <ul class="footer-channels">
+      {channels.map(({ kind, label, detail, href, enabled }) => (
+        <li data-footer-channel={kind} hidden={!enabled}>
+          <a class="footer-channel" href={href} target={href.startsWith('https:') ? '_blank' : undefined}
+             rel={href.startsWith('https:') ? 'noopener noreferrer' : undefined}>
+            <span class="footer-channel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+                <path d={footerChannelIcons[kind]} />
+              </svg>
+            </span>
+            <span class="footer-channel-copy">
+              <strong>{label}</strong>
+              <span>{detail}</span>
+            </span>
+            <span class="footer-channel-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="footer-empty" data-footer-empty hidden={channels.some(({ enabled }) => enabled)}>
+      {english ? 'Select a contact channel to preview it here.' : 'Centang kanal kontak untuk menampilkannya di sini.'}
+    </p>
+    <div class="contact-footer-signoff">
+      <small>© {year} {name}</small>
+    </div>
+  </div>
+</footer>

@@ -4,20 +4,24 @@ import MobileNav from './MobileNav.astro';
 import { localize, type Language } from './portfolio';
 import './styles/topbar.css';
 
-interface Props { language: Language; languageHref?: string }
-const { language, languageHref } = Astro.props;
+interface Props { language: Language; languageHref?: string; portfolioHref?: string }
+const { language, languageHref, portfolioHref } = Astro.props;
 const { copy, p, nav } = localize(language);
+const links = portfolioHref ? nav.map((item) => ({
+  ...item,
+  href: item.href === '#contact' ? item.href : portfolioHref + item.href,
+})) : nav;
 ---
 <header class="tapbar tapbar-teknologi" data-skin="glass" data-links="underline">
   <div class="tapbar-inner" data-motion="glide">
-    <a class="tapbar-brand" href="#home">
+    <a class="tapbar-brand" href={(portfolioHref ?? "") + "#home"}>
       <strong>{p.name}</strong>
     </a>
     <nav class="tapbar-desktop" aria-label={copy.navigation}>
-      {nav.map((item) => <a href={item.href}>{item.name}</a>)}
+      {links.map((item) => <a href={item.href}>{item.name}</a>)}
     </nav>
     <div class="tapbar-tools">
-      <MobileNav label={copy.navigation} menu={copy.menu} links={nav} />
+      <MobileNav label={copy.navigation} menu={copy.menu} links={links} />
       <Controls language={language} languageHref={languageHref} />
     </div>
   </div>
