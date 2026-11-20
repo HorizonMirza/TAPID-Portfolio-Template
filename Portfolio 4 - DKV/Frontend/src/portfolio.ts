@@ -48,8 +48,6 @@ export const portfolio = z.object({
     description: localized,
   })),
   contact: z.object({
-    headline: localized.optional(),
-    description: localized.optional(),
     showResume: z.boolean().default(true),
     links: z.array(z.object({
       label: text,
@@ -73,17 +71,17 @@ const labels = {
     home: 'Beranda', about: 'Tentang', projects: 'Proyek', skills: 'Keahlian',
     experience: 'Pengalaman', contact: 'Kontak', skip: 'Lewati ke isi',
     navigation: 'Navigasi utama', preferences: 'Preferensi tampilan',
-    light: 'Mode terang', dark: 'Mode gelap', lightToDark: 'Pilih mode gelap',
-    darkToLight: 'Pilih mode terang', menu: 'Menu', viewProjects: 'Lihat proyek',
-    viewProject: 'Buka proyek', viewContact: 'Hubungi saya',
+    dark: 'Mode gelap', lightToDark: 'Pilih mode gelap',
+    darkToLight: 'Pilih mode terang', menu: 'Menu',
+    viewProject: 'Buka proyek',
   },
   en: {
     home: 'Home', about: 'About', projects: 'Projects', skills: 'Skills',
     experience: 'Experience', contact: 'Contact', skip: 'Skip to content',
     navigation: 'Main navigation', preferences: 'Display preferences',
-    light: 'Light mode', dark: 'Dark mode', lightToDark: 'Switch to dark mode',
-    darkToLight: 'Switch to light mode', menu: 'Menu', viewProjects: 'View projects',
-    viewProject: 'Open project', viewContact: 'Get in touch',
+    dark: 'Dark mode', lightToDark: 'Switch to dark mode',
+    darkToLight: 'Switch to light mode', menu: 'Menu',
+    viewProject: 'Open project',
   },
 };
 

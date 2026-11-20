@@ -1,0 +1,51 @@
+---
+import Frame from './layout/Frame.astro';
+import TopBar from './layout/TopBar.astro';
+import HomeHero from './sections/HomeHero.astro';
+import AboutSection from './sections/AboutSection.astro';
+import ProjectSection from './sections/ProjectSection.astro';
+import SkillSection from './sections/SkillSection.astro';
+import ExperienceSection from './sections/ExperienceSection.astro';
+import CvLink from './sections/CvLink.astro';
+import HomeDemos from '../demos/HomeDemos.astro';
+import AboutDemos from '../demos/AboutDemos.astro';
+import { demoSlugs, type DemoSection } from '../demos/routes';
+import ContactFooter from './sections/ContactFooter.astro';
+import { selectedFooterLayout } from '../demos/footer-demos';
+import { localize, type Language } from '../portfolio';
+interface Props {
+  language: Language;
+  preview?: Exclude<DemoSection, 'footer'>;
+}
+const { language, preview } = Astro.props;
+const previewPath = preview ? demoSlugs[preview] + '/' : undefined;
+const languageHref = previewPath ? `${language === 'id' ? '/en/' : '/'}${previewPath}` : undefined;
+const { copy, p, projects, skills, experience, contact, demo } = localize(language);
+---
+<Frame language={language} skip={copy.skip} previewPath={previewPath}>
+  <TopBar language={language} languageHref={languageHref} />
+  <main id="main" tabindex="-1">
+    {preview === 'experience' && <ExperienceSection language={language} preview />}
+    {preview === 'skills' && <SkillSection language={language} preview />}
+    {preview === 'projects' && <ProjectSection language={language} preview />}
+    {preview === 'about' && <AboutDemos language={language} />}
+    {preview === 'home' ? <HomeDemos language={language} /> : p.portrait ? (
+      <section id="home" aria-labelledby="portfolio-home-title">
+        <HomeHero language={language} />
+      </section>
+    ) : (
+      <section id="home" class="finance-hero split-hero">
+        <div class="finance-deck hero-copy">
+          <p class="home-demo-role">{p.role}</p><h1>{p.name}</h1>
+          <p class="finance-line">{p.headline}</p><p class="finance-intro">{p.intro}</p>
+          <CvLink href={p.cvUrl} demo={demo} />
+        </div>
+      </section>
+    )}
+    {preview !== 'about' && <AboutSection language={language} />}
+    {preview !== 'projects' && projects.length > 0 && <ProjectSection language={language} />}
+    {preview !== 'skills' && skills.length > 0 && <SkillSection language={language} />}
+    {preview !== 'experience' && experience.length > 0 && <ExperienceSection language={language} />}
+  </main>
+  <ContactFooter language={language} name={p.name} theme="finance" channels={contact.channels} layout={selectedFooterLayout} />
+</Frame>

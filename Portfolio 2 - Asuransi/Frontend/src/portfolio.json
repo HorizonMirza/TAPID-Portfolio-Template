@@ -250,14 +250,6 @@
     }
   ],
   "contact": {
-    "headline": {
-      "id": "Ingin menata dokumen risiko?",
-      "en": "Need to organize your risk documentation?"
-    },
-    "description": {
-      "id": "Hubungi saya untuk membahas proyek analisis risiko atau dokumentasi polis.",
-      "en": "Get in touch about risk analysis or policy documentation projects."
-    },
     "links": [
       {
         "label": "WhatsApp",

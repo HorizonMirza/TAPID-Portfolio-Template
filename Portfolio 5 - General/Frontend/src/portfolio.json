@@ -250,14 +250,6 @@
     }
   ],
   "contact": {
-    "headline": {
-      "id": "Mari mulai percakapan.",
-      "en": "Let’s start a conversation."
-    },
-    "description": {
-      "id": "Hubungi saya untuk proyek riset, koordinasi program, atau penulisan.",
-      "en": "Get in touch about research, program coordination, or writing."
-    },
     "links": [
       {
         "label": "WhatsApp",

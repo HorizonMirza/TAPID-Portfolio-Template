@@ -250,14 +250,6 @@
     }
   ],
   "contact": {
-    "headline": {
-      "id": "Punya ide yang ingin dicetak?",
-      "en": "Have an idea you want to print?"
-    },
-    "description": {
-      "id": "Kirim brief singkat dan ceritakan medium yang ingin Anda pakai.",
-      "en": "Send a short brief and tell me what medium you have in mind."
-    },
     "links": [
       {
         "label": "WhatsApp",

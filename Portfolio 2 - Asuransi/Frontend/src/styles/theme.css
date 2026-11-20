@@ -10,7 +10,7 @@
   --green: var(--custom-light, var(--clover)); --green-ink: var(--custom-ink-light, #0c1910);
   --deep: color-mix(in srgb, var(--clover) 35%, #101f18);
   --focus: color-mix(in srgb, var(--clover) 37%, #16241b);
-  --button: var(--green); --button-ink: var(--green-ink); --detail-accent: var(--green);
+  --button: var(--green); --button-ink: var(--green-ink);
   --inverse: var(--deep);
   --inverse-muted: color-mix(in srgb, var(--clover) 22%, white);
   --inverse-line: color-mix(in srgb, var(--clover) 55%, white);
@@ -25,19 +25,12 @@
   --green: var(--custom-dark, color-mix(in srgb, var(--clover) 63%, white));
   --green-ink: var(--custom-ink-dark, #0c1910);
   --focus: var(--green);
-  --button: var(--green); --button-ink: var(--green-ink); --detail-accent: var(--green);
+  --button: var(--green); --button-ink: var(--green-ink);
 }
 .risk-hero { --hero-left: .96fr; --hero-right: 1.04fr; background: var(--surface); }
 .risk-intro { display: flex; align-self: stretch; flex-direction: column; justify-content: center; background: var(--subtle); }
 .risk-intro h1 { font-size: clamp(2.85rem, 6.15vw, 7.2rem); line-height: .98; letter-spacing: -.075em; margin: .62rem 0 .92rem; }
 .risk-line { font-size: clamp(1.25rem, 2.1vw, 1.95rem); line-height: 1.18; font-weight: 650; margin-bottom: .75rem; }
 .risk-intro .action { align-self: start; border-radius: 2rem; background: var(--button); color: var(--button-ink); margin-top: 1.3rem; }
-.risk-hero .profile-image { object-position: 53% 41%; }
 .risk-hero figcaption { border-radius: 1rem; background: var(--deep); }
-
-.risk-about { background: var(--surface); border-block: 1px solid var(--line); }
-.risk-about section { padding-block: 3.8rem; text-align: center; }
-.risk-about .copy { margin-inline: auto; }
 h2 { font-size: clamp(1.95rem, 3.55vw, 3.2rem); letter-spacing: -.06em; }
-.risk-about h2 { margin: .55rem 0 .6rem; }
-.risk-about .section-label span { padding-inline: .3rem; }

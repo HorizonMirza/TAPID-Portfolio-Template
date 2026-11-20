@@ -229,8 +229,6 @@
     }
   ],
   "contact": {
-    "headline": { "id": "Mari bahas laporan Anda.", "en": "Let’s talk about your reporting." },
-    "description": { "id": "Saya terbuka untuk kolaborasi analisis anggaran dan pelaporan manajemen.", "en": "I’m open to budget analysis and management reporting projects." },
     "links": [
       {
         "label": "WhatsApp",

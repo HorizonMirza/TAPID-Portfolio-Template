@@ -1,0 +1,350 @@
+---
+import { portfolio, type Language } from '../../portfolio';
+import '../../styles/base.css';
+import '../../styles/font.css';
+import '../../styles/theme.css';
+import '../../styles/motion.css';
+
+interface Props { language: Language; skip: string; previewPath?: string }
+const { language, skip, previewPath: path = '' } = Astro.props;
+const { profile, settings } = portfolio;
+const pageTitle = `${profile.name} | ${profile.role[language]}`;
+const contrastText = (hex: string) => {
+  const channels = [1, 3, 5].map((offset) => parseInt(hex.slice(offset, offset + 2), 16) / 255);
+  const linear = channels.map((value) => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4);
+  const luminance = .2126 * linear[0] + .7152 * linear[1] + .0722 * linear[2];
+  return luminance > .179 ? '#000000' : '#FFFFFF';
+};
+const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =>
+  `--custom-${mode}:${color};--custom-ink-${mode}:${contrastText(color)}`
+).join(';');
+---
+<!doctype html>
+<html lang={language} data-default-mode={settings.defaultMode} style={customColors || undefined}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content={profile.introduction[language]} />
+    <meta name="color-scheme" content="light dark" />
+    {path && <meta name="robots" content="noindex" />}
+    <title>{pageTitle}</title>
+    <link rel="alternate" href={`/${path}`} hreflang="id" />
+    <link rel="alternate" href={`/en/${path}`} hreflang="en" />
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const key = 'tapid-color-mode';
+        const preference = window.matchMedia('(prefers-color-scheme: dark)');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let chosen;
+        try { chosen = localStorage.getItem(key); } catch {}
+        const apply = (mode) => {
+          root.dataset.mode = mode;
+          const button = document.querySelector('[data-mode-toggle]');
+          if (!button) return;
+          const dark = mode === 'dark';
+          button.setAttribute('aria-pressed', String(dark));
+          button.title = dark ? button.dataset.switchLight : button.dataset.switchDark;
+        };
+        const getMode = () => ['dark', 'light'].includes(chosen)
+          ? chosen
+          : root.dataset.defaultMode === 'system' ? (preference.matches ? 'dark' : 'light') : root.dataset.defaultMode;
+        apply(getMode());
+        let pageController;
+        function initializePage() {
+          pageController?.abort();
+          pageController = new AbortController();
+          const { signal } = pageController;
+          apply(getMode());
+          const topbar = document.querySelector('.tapbar');
+          if (topbar) {
+            const links = [...topbar.querySelectorAll('nav a[href^="#"]')];
+            const sections = new Map();
+            for (const link of links) {
+              const section = document.getElementById(link.hash.slice(1));
+              if (section) sections.set(link.hash, section);
+            }
+
+            let activeSection;
+            let navigationTimer;
+            let scrollFrame;
+            const markSection = (hash) => {
+              if (hash === activeSection) return;
+              activeSection = hash;
+              for (const link of links) {
+                if (link.hash === hash) link.setAttribute('aria-current', 'location');
+                else link.removeAttribute('aria-current');
+              }
+            };
+            const updateSection = () => {
+              const readingLine = topbar.offsetHeight + 24;
+              const atBottom = window.scrollY > 0 && window.scrollY + root.clientHeight >= root.scrollHeight - 2;
+              let current = '#home';
+              let currentTop = -Infinity;
+              for (const [hash, section] of sections) {
+                const top = section.getBoundingClientRect().top;
+                if ((atBottom || top <= readingLine) && (top > currentTop || (top === currentTop && hash === activeSection))) {
+                  current = hash;
+                  currentTop = top;
+                }
+              }
+              markSection(current);
+            };
+            // Keep the chosen label while scrolling to its anchor. If the user
+            // scrolls elsewhere before it settles, mark the section now in view.
+            const holdSection = () => {
+              window.clearTimeout(navigationTimer);
+              navigationTimer = window.setTimeout(() => {
+                navigationTimer = undefined;
+                const target = sections.get(activeSection);
+                if (!target) {
+                  updateSection();
+                  return;
+                }
+                const startInset = parseFloat(getComputedStyle(root).scrollPaddingBlockStart) || 0;
+                const targetMargin = parseFloat(getComputedStyle(target).scrollMarginBlockStart) || 0;
+                const targetPosition = window.scrollY + target.getBoundingClientRect().top - startInset - targetMargin;
+                const expectedScroll = Math.max(0, Math.min(targetPosition, root.scrollHeight - root.clientHeight));
+                if (Math.abs(window.scrollY - expectedScroll) > 3) updateSection();
+              }, 140);
+            };
+            const selectSection = (hash) => {
+              if (!sections.has(hash)) return false;
+              markSection(hash);
+              holdSection();
+              return true;
+            };
+            const updateTopbarHeight = () => {
+              root.style.setProperty('--topbar-height', `${Math.ceil(topbar.getBoundingClientRect().height)}px`);
+              if (!navigationTimer) updateSection();
+            };
+            window.addEventListener('scroll', () => {
+              if (navigationTimer) {
+                holdSection();
+              } else if (!scrollFrame) {
+                scrollFrame = window.requestAnimationFrame(() => {
+                  scrollFrame = undefined;
+                  if (!navigationTimer) updateSection();
+                });
+              }
+            }, { passive: true, signal });
+            window.addEventListener('resize', updateTopbarHeight, { signal });
+            window.addEventListener('hashchange', () => {
+              if (!selectSection(location.hash)) {
+                window.clearTimeout(navigationTimer);
+                navigationTimer = undefined;
+                updateSection();
+              }
+            }, { signal });
+            document.addEventListener('click', (event) => {
+              if (event.defaultPrevented || event.button !== 0 || event.metaKey ||
+                  event.ctrlKey || event.shiftKey || event.altKey) return;
+              const link = event.target.closest?.('a[href^="#"]');
+              if (link) selectSection(link.hash);
+            }, { signal });
+            selectSection(location.hash);
+            updateTopbarHeight();
+            if ('ResizeObserver' in window) {
+              const observer = new ResizeObserver(updateTopbarHeight);
+              observer.observe(topbar);
+              signal.addEventListener('abort', () => observer.disconnect(), { once: true });
+            }
+            signal.addEventListener('abort', () => {
+              window.clearTimeout(navigationTimer);
+              window.cancelAnimationFrame(scrollFrame);
+            }, { once: true });
+          }
+          document.querySelector('[data-mode-toggle]')?.addEventListener('click', () => {
+            chosen = getMode() === 'dark' ? 'light' : 'dark';
+            try { localStorage.setItem(key, chosen); } catch {}
+            if (!reducedMotion.matches && document.startViewTransition) {
+              document.startViewTransition(() => apply(getMode()));
+            } else {
+              root.classList.toggle('mode-color-fade', !reducedMotion.matches);
+              apply(chosen);
+            }
+          }, { signal });
+          document.querySelectorAll('[data-mobile-nav] a').forEach((link) => {
+            link.addEventListener('click', () => link.closest('details')?.removeAttribute('open'), { signal });
+          });
+        }
+
+        const languageLink = () => document.querySelector('.tapbar a.language');
+        const sections = () => [...document.querySelectorAll('.tapbar-desktop a[href^="#"]')];
+        const activeHash = () => sections().find((link) => link.getAttribute('aria-current') === 'location')?.hash;
+        const sectionFor = (hash) => hash && document.getElementById(hash.slice(1));
+        const barBottom = () => document.querySelector('.tapbar')?.getBoundingClientRect().bottom ?? 0;
+        const pages = new Map();
+        let offlinePage;
+        let initialLanguage;
+        let pending;
+
+        function readPage(source) {
+          return {
+            title: source.title,
+            description: source.querySelector('meta[name="description"]')?.content,
+            body: source.body.cloneNode(true),
+          };
+        }
+
+        function showLanguageError() {
+          const previous = document.querySelector('[data-language-error]');
+          if (previous) previous.remove();
+          const notice = document.createElement('p');
+          notice.dataset.languageError = '';
+          notice.setAttribute('role', 'status');
+          notice.textContent = root.lang === 'id' ? 'Bahasa gagal dimuat. Coba lagi.' : 'Language could not load. Try again.';
+          document.body.append(notice);
+        }
+
+        async function readLanguage(target, language, signal) {
+          if (pages.has(language)) return pages.get(language);
+
+          let html;
+          if (offlinePage?.language === language) {
+            html = offlinePage.html;
+          } else {
+            const response = await fetch(target, { mode: 'same-origin', signal });
+            if (!response.ok) throw new Error('Could not load language');
+            html = await response.text();
+          }
+          const source = new DOMParser().parseFromString(html, 'text/html');
+          if (source.documentElement.lang !== language || !source.querySelector('.tapbar') || !source.querySelector('#main')) {
+            throw new Error('Unexpected language page');
+          }
+          const page = readPage(source);
+          pages.set(language, page);
+          return page;
+        }
+
+        function rememberReadingPosition() {
+          const hash = activeHash() || location.hash;
+          const section = sectionFor(hash);
+          return {
+            hash,
+            offset: section ? barBottom() - section.getBoundingClientRect().top : 0,
+            y: window.scrollY,
+          };
+        }
+
+        function keepReadingPosition(position) {
+          const section = sectionFor(position.hash);
+          if (!section) {
+            window.scrollTo({ top: position.y, behavior: 'instant' });
+            return;
+          }
+          const box = section.getBoundingClientRect();
+          const offset = Math.min(position.offset, Math.max(0, box.height - 24));
+          window.scrollTo({ top: window.scrollY + box.top - barBottom() + offset, behavior: 'instant' });
+        }
+
+        async function changeLanguage(target, language, fromHistory = false) {
+          if (language === root.lang || target.origin !== location.origin) return;
+          pending?.abort();
+          const controller = new AbortController();
+          pending = controller;
+
+          try {
+            const linkFocused = document.activeElement === languageLink();
+            const page = await readLanguage(target, language, controller.signal);
+            if (controller.signal.aborted) return;
+            const firstSection = document.querySelector('#main > section')?.id || 'home';
+            const position = fromHistory
+              ? { hash: target.hash || '#' + firstSection, offset: 0, y: 0 }
+              : rememberReadingPosition();
+            const address = offlinePage ? new URL(location.href) : new URL(target);
+            if (offlinePage) {
+              address.search = target.search;
+              address.searchParams.set('lang', language);
+            }
+            if (!fromHistory) address.hash = position.hash === '#home' && position.y === 0 && !location.hash ? '' : position.hash;
+
+            const update = () => {
+              if (controller.signal.aborted) return;
+              const body = page.body.cloneNode(true);
+              body.querySelectorAll('script').forEach((script) => script.remove());
+              if (!fromHistory) history.replaceState(history.state, '', address.href);
+              root.lang = language;
+              document.title = page.title;
+              const description = document.querySelector('meta[name="description"]');
+              if (description && page.description) description.content = page.description;
+              const detailsState = new Map([...document.querySelectorAll('details[data-language-details]')]
+                .map((panel) => [panel.dataset.languageDetails, panel.open]));
+              for (const panel of body.querySelectorAll('details[data-language-details]')) {
+                if (detailsState.has(panel.dataset.languageDetails)) {
+                  panel.open = detailsState.get(panel.dataset.languageDetails);
+                }
+              }
+              document.body.replaceWith(body);
+              initializePage();
+              document.dispatchEvent(new Event('tapid:language-change'));
+              keepReadingPosition(position);
+              if (linkFocused) languageLink()?.focus({ preventScroll: true });
+            };
+
+            if (!reducedMotion.matches && document.startViewTransition) {
+              await document.startViewTransition(update).finished;
+            } else {
+              update();
+              if (!reducedMotion.matches) {
+                document.querySelector('#main')?.animate([{ opacity: .5 }, { opacity: 1 }], 230);
+              }
+            }
+          } catch {
+            if (!controller.signal.aborted) showLanguageError();
+          } finally {
+            if (pending === controller) pending = undefined;
+          }
+        }
+
+        function languageFromAddress() {
+          const url = new URL(location.href);
+          if (offlinePage) {
+            const language = url.searchParams.get('lang') || initialLanguage;
+            return language === 'id' || language === 'en' ? language : initialLanguage;
+          }
+          return [...document.querySelectorAll('link[rel="alternate"][hreflang]')]
+            .find((link) => new URL(link.href).pathname === url.pathname)?.hreflang;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+          initialLanguage = root.lang;
+          pages.set(initialLanguage, readPage(document));
+          const source = document.getElementById('offline-portfolio-language');
+          if (source) {
+            offlinePage = JSON.parse(source.textContent);
+            const mode = new URLSearchParams(location.search).get('mode');
+            if (mode === 'light' || mode === 'dark') chosen = mode;
+          }
+          initializePage();
+          const language = languageFromAddress();
+          if (language && language !== initialLanguage) {
+            void changeLanguage(new URL(location.href), language, true);
+          }
+        }, { once: true });
+
+        document.addEventListener('click', (event) => {
+          const link = event.target.closest?.('.tapbar a.language');
+          if (!link || event.defaultPrevented || event.button !== 0 ||
+              event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          const target = new URL(link.href);
+          if (target.origin !== location.origin) return;
+          event.preventDefault();
+          if (!pending) void changeLanguage(target, link.hreflang);
+        });
+
+        window.addEventListener('popstate', () => {
+          const language = languageFromAddress();
+          if (!language) return;
+          if (language === root.lang) pending?.abort();
+          else void changeLanguage(new URL(location.href), language, true);
+        });
+        preference.addEventListener('change', () => apply(getMode()));
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{skip}</a>
+    <slot />
+  </body>
+</html>

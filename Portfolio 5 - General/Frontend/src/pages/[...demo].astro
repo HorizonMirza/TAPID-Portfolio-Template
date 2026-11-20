@@ -1,53 +1,25 @@
 ---
-import PortfolioPage from '../PortfolioPage.astro';
-import FooterDemoPage from '../FooterDemoPage.astro';
-import HomeDemos from '../HomeDemos.astro';
-import AboutDemos from '../AboutDemos.astro';
-import ProjectSection from '../ProjectSection.astro';
-import SkillSection from '../SkillSection.astro';
-import ExperienceSection from '../ExperienceSection.astro';
+import PortfolioPage from '../components/PortfolioPage.astro';
+import FooterDemoPage from '../demos/FooterDemoPage.astro';
+import { demoSlugs, type DemoSection } from '../demos/routes';
 import { portfolio, type Language } from '../portfolio';
 
 export function getStaticPaths() {
-  return portfolio.settings.demo ? [
-    { params: { demo: 'demo-beranda' }, props: { language: 'id' as const, section: 'home' as const } },
-    { params: { demo: 'en/demo-beranda' }, props: { language: 'en' as const, section: 'home' as const } },
-    { params: { demo: 'demo-tentang' }, props: { language: 'id' as const, section: 'about' as const } },
-    { params: { demo: 'en/demo-tentang' }, props: { language: 'en' as const, section: 'about' as const } },
-    { params: { demo: 'demo-proyek' }, props: { language: 'id' as const, section: 'projects' as const } },
-    { params: { demo: 'en/demo-proyek' }, props: { language: 'en' as const, section: 'projects' as const } },
-    { params: { demo: 'demo-keahlian' }, props: { language: 'id' as const, section: 'skills' as const } },
-    { params: { demo: 'en/demo-keahlian' }, props: { language: 'en' as const, section: 'skills' as const } },
-    { params: { demo: 'demo-pengalaman' }, props: { language: 'id' as const, section: 'experience' as const } },
-    { params: { demo: 'en/demo-pengalaman' }, props: { language: 'en' as const, section: 'experience' as const } },
-    { params: { demo: 'demo-footer' }, props: { language: 'id' as const, section: 'footer' as const } },
-    { params: { demo: 'en/demo-footer' }, props: { language: 'en' as const, section: 'footer' as const } },
-  ] : [];
+  if (!portfolio.settings.demo) return [];
+
+  const sections = Object.keys(demoSlugs) as DemoSection[];
+  return sections.flatMap((section) => (['id', 'en'] as const).map((language) => ({
+    params: { demo: (language === 'en' ? 'en/' : '') + demoSlugs[section] },
+    props: { language, section },
+  })));
 }
 
-interface Props { language: Language; section: 'home' | 'about' | 'projects' | 'skills' | 'experience' | 'footer' }
+interface Props {
+  language: Language;
+  section: DemoSection;
+}
 const { language, section } = Astro.props;
 ---
-{section === 'footer' ? (
-  <FooterDemoPage language={language} />
-) : section === 'experience' ? (
-  <PortfolioPage language={language}>
-    <ExperienceSection slot="experience-preview" language={language} preview />
-  </PortfolioPage>
-) : section === 'skills' ? (
-  <PortfolioPage language={language}>
-    <SkillSection slot="skills-preview" language={language} preview />
-  </PortfolioPage>
-) : section === 'projects' ? (
-  <PortfolioPage language={language}>
-    <ProjectSection slot="projects-preview" language={language} preview />
-  </PortfolioPage>
-) : section === 'about' ? (
-  <PortfolioPage language={language}>
-    <AboutDemos slot="about-preview" language={language} />
-  </PortfolioPage>
-) : (
-  <PortfolioPage language={language}>
-    <HomeDemos slot="home" language={language} />
-  </PortfolioPage>
-)}
+{section === 'footer'
+  ? <FooterDemoPage language={language} />
+  : <PortfolioPage language={language} preview={section} />}

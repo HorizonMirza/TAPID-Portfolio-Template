@@ -1,0 +1,22 @@
+---
+import { localize, type Language } from '../../portfolio';
+import '../../styles/controls.css';
+
+interface Props { language: Language; languageHref?: string }
+const { language, languageHref } = Astro.props;
+const { copy } = localize(language);
+const alternate = language === 'id' ? 'en' : 'id';
+---
+<div class="controls" role="group" aria-label={copy.preferences}>
+  <a class="control language" href={languageHref ?? (alternate === 'en' ? '/en/' : '/')} lang={alternate} hreflang={alternate}
+     aria-label={alternate === 'en' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia'}>
+    <span class="control-label">{alternate.toUpperCase()}</span>
+  </a>
+  <button class="control mode" type="button" data-mode-toggle aria-label={copy.dark} aria-pressed="false"
+          title={copy.lightToDark} data-switch-dark={copy.lightToDark} data-switch-light={copy.darkToLight}>
+    <svg class="control-glyph control-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"/>
+    </svg>
+    <span class="control-glyph control-sun" aria-hidden="true"></span>
+  </button>
+</div>

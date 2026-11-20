@@ -45,9 +45,13 @@ export function footerChannels(
     const detected = address.protocol === 'mailto:' ? 'email' : platform?.[1];
     const kind = link.kind ?? detected ?? 'website';
     const label = kind === 'website' ? link.label : platformLabels[kind];
+    const phone = kind === 'whatsapp' && platform?.[1] === 'whatsapp'
+      ? address.searchParams.get('phone') ?? (hostname === 'wa.me' ? address.pathname.split('/')[1] : undefined)
+      : undefined;
+    const formattedPhone = phone && /^\+?[1-9]\d{6,14}$/.test(phone) ? '+' + phone.replace(/^\+/, '') : undefined;
     const detail = link.detail ?? (address.protocol === 'mailto:'
       ? address.pathname
-      : label !== link.label ? link.label : undefined);
+      : formattedPhone ?? (label !== link.label ? link.label : undefined));
 
     return { kind, label, detail, href: link.href };
   });

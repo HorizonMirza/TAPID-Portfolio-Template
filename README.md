@@ -1,55 +1,75 @@
 # TAP.ID Portfolio Template
 
-Enam template Astro untuk paket **NFC + Linktree + Website Portofolio** TAP.ID. Setiap demo menampilkan foto profil di Beranda, enam contoh proyek, serta bagian Tentang, Keahlian, Pengalaman, dan Kontak. Setiap template memakai palet warnanya sendiri dengan top bar yang tetap terlihat saat halaman digulir. Pilihan bahasa tersedia di `/` (Bahasa Indonesia) dan `/en/` (English). Mode terang dan gelap dapat diganti lewat tombol di navigasi.
+Enam template Astro untuk paket **NFC + Linktree + Website Portofolio**. Setiap tema mencakup Beranda, Tentang, Proyek, Keahlian, Pengalaman, dan Kontak, dengan Bahasa Indonesia di `/` dan English di `/en/`. Pengunjung dapat memilih mode terang atau gelap dan berpindah bahasa tanpa memuat ulang halaman.
 
-Keenam top bar menampilkan nama profil, menu di tengah pada desktop, dan tombol bahasa serta mode dengan desain yang sama. Unduh dan buka [kontrol-topbar.html](kontrol-topbar.html) di browser untuk mencoba 10 pilihan desain dan animasi tombol.
+## Tema
 
-Setiap portofolio demo punya 10 rancangan Beranda bernomor 01–10. Buka `/demo-beranda/` pada tema yang sedang dijalankan atau `/en/demo-beranda/` untuk versi Inggris. Pilihan dapat dibuka kembali lewat URL seperti `/demo-beranda/?pilihan=04`.
+| Template | Warna bawaan |
+| --- | --- |
+| [01 · Teknologi](Portfolio%201%20-%20Teknologi/) | Biru |
+| [02 · Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau |
+| [03 · Management](Portfolio%203%20-%20Management/) | Kuning |
+| [04 · DKV](Portfolio%204%20-%20DKV/) | Merah |
+| [05 · General](Portfolio%205%20-%20General/) | Hitam putih |
+| [06 · Finance](Portfolio%206%20-%20Finance/) | Ungu elektrik |
 
-Setiap tema juga punya 10 rancangan Tentang di `/demo-tentang/` dan `/en/demo-tentang/`. Ringkasan diambil dari `about.description`. Data akademik opsional ada di `about.education` dan mencakup `university`, `major`, `specialization`, serta `gpa` dengan `value` dan `scale`. Demo menggunakan nama Universitas Bina Nusantara dengan contoh jurusan, spesialisasi, dan GPA yang fiktif.
+## Struktur tiap tema
 
-Untuk mencoba 10 rancangan Proyek, buka `/demo-proyek/` atau `/en/demo-proyek/`. Pilihan dapat dibagikan lewat URL seperti `/demo-proyek/?pilihan=04`. Isi proyek mengikuti `projects` di file data tema.
+| Lokasi | Isi |
+| --- | --- |
+| `Frontend/src/portfolio.json` | Satu file data pelanggan |
+| `Frontend/src/portfolio.ts` | Validasi data, terjemahan, dan penyusunan menu |
+| `Frontend/src/pages/` | Rute Astro untuk halaman utama dan galeri |
+| `Frontend/src/components/layout/` | Bingkai halaman, top bar, dan kontrol |
+| `Frontend/src/components/sections/` | Bagian portofolio dari Beranda sampai footer |
+| `Frontend/src/demos/` | Galeri dan pilihan tata letak |
+| `Frontend/src/styles/` | CSS dasar, tema, dan bagian halaman |
+| `Frontend/public/` | Gambar, font, dan logo yang disajikan sebagai aset statis |
+| `Documentation/PANDUAN.md` | Penyiapan situs dan deployment |
+| `Database/README.md` | Kontrak data |
+| `Backend/README.md` | Alur build statis |
 
-Setiap tema menampilkan 10 contoh keahlian. Buka `/demo-keahlian/` atau `/en/demo-keahlian/` untuk membandingkan 15 rancangan. Tautan seperti `/demo-keahlian/?pilihan=07` langsung membuka rancangan yang dipilih.
+## Jalankan dan periksa
 
-Buka `/demo-pengalaman/` atau `/en/demo-pengalaman/` untuk mencoba 15 rancangan dengan empat contoh pengalaman per tema. Halaman utama dan galeri mengambil keempat contoh pengalaman dari `experience` di file data tema. Tambahkan `?pilihan=07` untuk membuka langsung rancangan bernomor 07.
-
-Buka `/demo-footer/` atau `/en/demo-footer/` untuk mencoba 10 rancangan footer per tema. Centang kanal kontak yang ingin ditampilkan. Pilihan desain dan kanal ikut tersimpan di URL. Contoh kontak menggunakan data demo. Minta pelanggan memilih kanal yang akan ditampilkan dan mengirimkan tautan yang boleh dipublikasikan.
-
-| Template | Warna bawaan | Beranda utama | Tentang utama | Proyek utama | Keahlian utama | Pengalaman utama | Footer utama | Top bar |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 06 · Developer Panel | 05 · Studi Kasus | 01 · Kartu | 02 · Linimasa | 01 · Kartu Kontak | 01 · Command Rail |
-| [Portfolio 2 - Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau | 04 · Green Frame | 09 · Academic Highlight | 05 · Galeri Kartu | 14 · Jalur | 10 · Sorotan | 04 · Dua Kolom | 05 · Advisor Capsule |
-| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | 03 · Team Lead | 06 · Yellow Statement | 01 · Linimasa | 09 · Mozaik | 11 · Akordeon | 01 · Kartu Kontak | 02 · Ops Inline |
-| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | 01 · Poster Cover | 10 · Catalogue Index | 08 · Tab Proyek | 08 · Baris Warna | 05 · Organisasi Utama | 01 · Kartu Kontak | 09 · Letterpress |
-| [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | 01 · Classic Editorial | 10 · Academic Record | 05 · Linimasa | 02 · Indeks | 01 · Judul Samping | 01 · Kartu Kontak | 04 · Soft Capsule |
-| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu elektrik | 03 · Analyst at Desk | 10 · Editorial Center | 04 · Galeri Kartu | 10 · Jalur | 01 · Banding Peran | 01 · Kartu Kontak | 09 · Review Note |
-
-## Jalankan satu template
-
-Install Node.js 24 LTS. Buka `Frontend` dalam folder tema dan jalankan:
+Gunakan Node.js 24 LTS. Buka folder `Frontend` dari tema yang dipilih.
 
 ```sh
 npm ci
 npm run dev
+npm run check
+npm run build
 ```
 
-Gunakan `npm run check` untuk pengecekan TypeScript dan `npm run build` untuk membuat situs statis. Untuk Vercel, pilih preset **Astro** dan atur **Root Directory** ke folder `Frontend` dalam tema yang dipilih.
+Untuk Vercel, pilih preset **Astro** dan gunakan folder `Frontend` tema sebagai **Root Directory**. Tema dapat disalin ke repositori pelanggan dan dibangun secara mandiri.
 
-## Dari Google Form ke website
+## Dari Google Form ke portofolio
 
-1. Untuk kedua paket, siapkan Linktree menggunakan tautan yang pelanggan izinkan tampil. Simpan email koordinasi untuk komunikasi pesanan.
-2. Untuk paket website, gunakan pilihan tema di bagian **Data Website Portofolio**. Salin tema ke repo khusus pelanggan dan isi `Frontend/src/portfolio.json` dengan konten publiknya. Ubah `settings.demo` menjadi `false`.
-3. Gunakan `profile` untuk data Beranda, `about` untuk Tentang, `projects` untuk Proyek, `skills` untuk Keahlian, `experience` untuk Pengalaman, dan `contact.links` untuk kanal yang pelanggan pilih tampil di footer. Hapus entri bertanda `sample: true`, lalu isi tautan publik dari pelanggan. Isi pasangan `id` dan `en`; konfirmasikan terjemahan ke pelanggan bila form hanya diisi dalam satu bahasa.
-4. Untuk mengganti **aksen tema menjadi ungu**, isi `settings.accent.light` dengan `#6D28D9` dan `settings.accent.dark` dengan `#C4B5FD`. Pilihan mode awal ada di `settings.defaultMode`.
-5. Untuk menampilkan tombol **Resume CV**, isi `profile.cvUrl` dengan tautan HTTPS file CV dari Google Drive yang dapat dibuka oleh pengunjung. Gunakan `null` jika tautan belum tersedia. Tombol Beranda muncul sebagai pratinjau nonaktif pada profil demo. Untuk menyembunyikan kartu Resume CV dari footer, gunakan `contact.showResume: false`.
-6. Deploy repo pelanggan di Vercel dan tambahkan URL ke Linktree. Serahkan akses ke repo tersebut agar pelanggan bisa mengedit satu file data dan menyimpan perubahannya untuk deployment berikutnya.
+1. Siapkan Linktree dari tautan yang pelanggan izinkan untuk dipublikasikan. Simpan email koordinasi dan respons asli di akun TAP.ID.
+2. Untuk paket website, salin tema pilihan pelanggan. Isi `Frontend/src/portfolio.json` dan setel `settings.demo` ke `false`.
+3. Isi `profile` untuk Beranda, `about` untuk bio dan pendidikan opsional, lalu `projects`, `skills`, dan `experience`. Isi pasangan `id` dan `en` untuk teks bilingual. Gunakan daftar kosong jika bagian belum memiliki isi.
+4. Masukkan kanal footer pilihan pelanggan, sesuai urutan, ke `contact.links`. Pakai `detail` untuk nomor WhatsApp lengkap atau nama akun. Hapus entri contoh bertanda `sample: true`.
+5. Isi `profile.cvUrl` dengan tautan Google Drive untuk Resume CV. Setel `contact.showResume` ke `false` jika pelanggan hanya menginginkan tombol CV di Beranda.
+6. Atur `settings.defaultMode` dan, jika diperlukan, warna HEX di `settings.accent.light` dan `settings.accent.dark`.
+7. Deploy dan uji tautan website serta kontak publik sebelum menambahkan website ke Linktree pelanggan.
 
-Setiap tema menyertakan panduan pada `Documentation/PANDUAN.md`, dokumentasi backend pada `Backend/README.md`, dan kontrak data pada `Database/README.md`. Nama, pengalaman, dan proyek demo bersifat fiktif. Repo ini berisi template publik. Jawaban Google Form dan kontak pribadi dikelola dalam akun TAP.ID.
+## Galeri desain
+
+Galeri tersedia ketika `settings.demo` aktif. Tambahkan `/en` di depan rute untuk versi Inggris atau `?pilihan=04` untuk membuka desain 04. Galeri footer juga menyimpan pilihan kanal kontak di URL.
+
+| Bagian | Rute | Pilihan per tema |
+| --- | --- | ---: |
+| Beranda | `/demo-beranda/` | 10 |
+| Tentang | `/demo-tentang/` | 10 |
+| Proyek | `/demo-proyek/` | 10 |
+| Keahlian | `/demo-keahlian/` | 15 |
+| Pengalaman | `/demo-pengalaman/` | 15 |
+| Footer | `/demo-footer/` | 10 |
+
+[Galeri kontrol top bar](kontrol-topbar.html) memuat 10 variasi tombol. Nama, proyek, pengalaman, dan kontak demo bersifat fiktif. Potret demo dibuat dengan ImageGen.
 
 ## Sumber logo footer
 
-Aset lokal di `Frontend/public/brands` merujuk ke ikon dari masing-masing platform. Ikon GitHub dan Instagram memakai versi terang dan gelap yang disediakan mereknya.
+Logo disimpan di `Frontend/public/brands`. GitHub dan Instagram memakai versi aset yang sesuai dengan mode terang atau gelap.
 
 - [WhatsApp Brand Resource Center](https://www.meta.com/en-gb/brand/resources/whatsapp/whatsapp-brand/)
 - [Instagram Brand Resource Center](https://www.meta.com/en-gb/brand/resources/instagram/instagram-brand/)

@@ -250,14 +250,6 @@
     }
   ],
   "contact": {
-    "headline": {
-      "id": "Apa yang ingin Anda buat lebih mudah?",
-      "en": "What would you like to make easier?"
-    },
-    "description": {
-      "id": "Ceritakan aplikasi dan pekerjaan yang ingin Anda sederhanakan.",
-      "en": "Tell me about the app and workflow you want to simplify."
-    },
     "links": [
       {
         "label": "WhatsApp",

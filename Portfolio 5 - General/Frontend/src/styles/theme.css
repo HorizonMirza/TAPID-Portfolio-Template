@@ -2,12 +2,12 @@
   --body: system-ui, sans-serif; --serif: 'Playfair Display', Georgia, serif; --control-radius: 0;
   --bg: #fff; --ink: #000; --muted: #4a4a4a; --surface: #fff; --subtle: #f2f2f2; --line: #a6a6a6;
   --emphasis: var(--custom-light, #000); --emphasis-ink: var(--custom-ink-light, #fff); --focus: #000;
-  --button: var(--emphasis); --button-ink: var(--emphasis-ink); --detail-accent: var(--emphasis);
+  --button: var(--emphasis); --button-ink: var(--emphasis-ink);
 }
 :root[data-mode="dark"] {
   --bg: #000; --ink: #fff; --muted: #c9c9c9; --surface: #0d0d0d; --subtle: #171717; --line: #646464;
   --emphasis: var(--custom-dark, #fff); --emphasis-ink: var(--custom-ink-dark, #000); --focus: #fff;
-  --button: var(--emphasis); --button-ink: var(--emphasis-ink); --detail-accent: var(--emphasis);
+  --button: var(--emphasis); --button-ink: var(--emphasis-ink);
 }
 .folio-hero { --hero-left: .98fr; --hero-right: 1.02fr; grid-template-areas: 'portrait intro'; background: var(--surface); }
 .folio-intro { grid-area: intro; }
@@ -16,14 +16,9 @@
 .folio-hero h1 { font-size: clamp(3.4rem, 8vw, 9rem); line-height: .9; margin: .65rem 0 .9rem; }
 .folio-line { font-size: clamp(1.24rem, 2.65vw, 2.2rem); line-height: 1.25; font-weight: 600; margin-bottom: .58rem; }
 .folio-hero figure { grid-area: portrait; }
-.folio-hero .profile-image { object-position: center 35%; }
-.folio-hero .profile-image { filter: grayscale(1); }
 @media (max-width: 49rem) {
   .folio-hero { grid-template-areas: 'intro' 'portrait'; }
-  .folio-hero .profile-image { object-position: center 28%; }
 }
-
-.folio-action { display: inline-flex; align-items: center; min-height: 2.75rem; margin-top: .8rem; font-weight: 700; }
 .reading { display: grid; grid-template-columns: minmax(0,.6fr) minmax(0,1.6fr); gap: .8rem 1.6rem; }
 .reading .copy { max-width: 37rem; margin-top: .6rem; }
 h2 { font-size: clamp(1.95rem, 4.2vw, 3.5rem); }
