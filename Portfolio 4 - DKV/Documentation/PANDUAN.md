@@ -1,22 +1,50 @@
-# Penyiapan pelanggan
+# Panduan penyiapan situs pelanggan
 
-1. Salin folder tema ini ke repositori khusus pelanggan.
-2. Isi `Frontend/src/portfolio.json` dari jawaban Google Form. Isi teks `id` dan `en`. Gunakan array kosong untuk proyek, keahlian, pengalaman, atau kontak yang belum tersedia.
-3. Unggah gambar yang disetujui ke `Frontend/public/media/` dan pakai path seperti `/media/foto.webp`. Isi deskripsi gambar dalam kedua bahasa. URL HTTPS untuk aset eksternal juga didukung.
-4. Pakai `settings.accent.light` dan `settings.accent.dark` untuk mengganti warna aksen tema, misalnya `#6D28D9` dan `#C4B5FD`. Uji ulang keterbacaan pada kedua mode. Nilai `settings.defaultMode` dapat berupa `light`, `dark`, atau `system`.
-5. Jalankan `npm ci`, `npm run check`, dan `npm run build` di `Frontend`.
+Panduan ini dipakai tim TAP.ID saat memindahkan jawaban Google Form ke website dan saat menyerahkan pengelolaan website kepada pelanggan.
 
-## Deployment Vercel
+## 1. Siapkan data
 
-Impor repositori ke Vercel. Pilih preset **Astro** dan atur **Root Directory** ke `Frontend` bila repositori berisi satu salinan folder tema. Untuk mengimpor langsung dari repo enam tema, pilih `Portfolio …/Frontend` sesuai tema. Gunakan Node.js yang memenuhi batas di `package.json`, misalnya Node.js 24. Gunakan perintah build `npm run build` dan direktori output `dist`.
+Salin satu folder tema ke repositori pelanggan. Edit `Frontend/src/portfolio.json` dan setel `settings.demo` ke `false` agar galeri dan kontak contoh disembunyikan. Gunakan jawaban yang pelanggan izinkan untuk dipublikasikan. Bersihkan profil, proyek, keahlian, pengalaman, dan aset contoh dari salinan pelanggan.
 
-Periksa `/` (Bahasa Indonesia), `/en/` (English), tombol mode terang/gelap, tampilan ponsel, dan tautan kontak. Tambahkan URL website ke akun Linktree pelanggan sesuai persetujuannya.
+| Bagian Google Form | Data website |
+| --- | --- |
+| Beranda dan tautan foto profil | `profile.name`, `profile.role`, `profile.location`, `profile.headline`, `profile.introduction`, `profile.portrait` |
+| Tentang dan pendidikan | `about.description` dan `about.education` |
+| Proyek, keahlian, dan pengalaman | `projects`, `skills`, `experience` |
+| Tautan Resume CV | `profile.cvUrl` |
+| Pilihan kanal dan tautan footer | `contact.links` dan `contact.showResume` |
+| Warna aksen dan mode awal | `settings.accent` dan `settings.defaultMode` |
 
-## Cara pelanggan mengedit
+Isi varian `id` dan `en` untuk setiap teks bilingual. Gunakan daftar kosong untuk bagian yang belum berisi data. Simpan email koordinasi, respons asli, dan kontak privat di akun TAP.ID.
 
-1. Buka `Frontend/src/portfolio.json` di **repositori milik pelanggan** dan klik ikon pensil.
-2. Ganti nilai teks di dalam tanda kutip. Untuk email, ubah teks tampilan dan nilai `href` yang diawali `mailto:`. Ubah kedua versi bahasa untuk konten berbahasa.
-3. Simpan dengan **Commit changes**. Jika repositori memakai pull request, merge perubahan ke branch produksi. Vercel akan membangun ulang proyek yang terhubung.
-4. Periksa website setelah deployment sukses. Perbarui tautan secara terpisah di akun Linktree jika ingin perubahan yang sama tampil di sana.
+Simpan foto dan gambar proyek yang disetujui di `Frontend/public/media/`. Di JSON, gunakan jalur seperti `/media/foto.webp` atau URL HTTPS. Sertakan teks alternatif dalam kedua bahasa.
 
-Dokumentasi resmi [Astro di Vercel](https://docs.astro.build/en/guides/deploy/vercel/) dan [Edit file di GitHub](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files).
+Susun `contact.links` sesuai urutan kanal yang dipilih pelanggan. Isi `detail` dengan nomor WhatsApp lengkap atau nama akun bila diperlukan. Jika pelanggan ingin menampilkan CV di Beranda saja, gunakan `contact.showResume: false`. [Contoh dan aturan data](../Database/README.md)
+
+## 2. Cek dan deploy
+
+Jalankan perintah ini dari `Frontend` menggunakan Node.js 24 LTS.
+
+```sh
+npm ci
+npm run check
+npm run build
+```
+
+Impor repositori di Vercel. Pilih preset **Astro**, build command `npm run build`, dan output directory `dist`.
+
+| Isi repositori yang diimpor | Root Directory di Vercel |
+| --- | --- |
+| Isi satu folder tema di root repositori | `Frontend` |
+| Keenam folder tema TAP.ID | `Portfolio N - Nama Tema/Frontend` sesuai tema |
+
+Buka `/` dan `/en/` setelah deployment. Periksa foto, mode terang dan gelap, tampilan ponsel, serta tujuan tautan WhatsApp, email, Resume CV, dan Linktree. Tambahkan alamat website yang sudah dicek ke Linktree pelanggan. [Panduan Astro di Vercel](https://docs.astro.build/en/guides/deploy/vercel/)
+
+## 3. Serahkan pengelolaan
+
+1. Beri pelanggan akses ke repositori situsnya dan tunjukkan lokasi `Frontend/src/portfolio.json`.
+2. Saat mengedit profil atau kontak, perbarui tampilan dan tujuan tautannya. Untuk email, ubah juga alamat pada `mailto:`.
+3. Simpan dengan **Commit changes**. Jika tim memakai pull request, gabungkan perubahan ke branch produksi agar Vercel membangun ulang situs.
+4. Buka website setelah deployment dan cek perubahan. Jika tautan yang sama juga ditampilkan di Linktree, perbarui di akun Linktree.
+
+[Kembali ke README tema](../README.md) · [Cara mengedit file di GitHub](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files)

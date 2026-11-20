@@ -1,60 +1,55 @@
-# TAP.ID Portfolio Template
+# TAP.ID Portfolio Templates
 
-Enam template Astro untuk paket **NFC + Linktree + Website Portofolio**. Setiap tema mencakup Beranda, Tentang, Proyek, Keahlian, Pengalaman, dan Kontak, dengan Bahasa Indonesia di `/` dan English di `/en/`. Pengunjung dapat memilih mode terang atau gelap dan berpindah bahasa tanpa memuat ulang halaman.
+Enam template portofolio untuk paket **NFC + Linktree + Website Portofolio** TAP.ID. Setiap tema punya desain tersendiri, tampilan responsif, Bahasa Indonesia dan English, serta mode terang dan gelap.
 
-## Tema
+[Pilih tema](#pilih-tema) · [Jalankan lokal](#jalankan-lokal) · [Siapkan situs pelanggan](#siapkan-situs-pelanggan) · [Galeri desain](#galeri-desain)
 
-| Template | Warna bawaan |
-| --- | --- |
-| [01 · Teknologi](Portfolio%201%20-%20Teknologi/) | Biru |
-| [02 · Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau |
-| [03 · Management](Portfolio%203%20-%20Management/) | Kuning |
-| [04 · DKV](Portfolio%204%20-%20DKV/) | Merah |
-| [05 · General](Portfolio%205%20-%20General/) | Hitam putih |
-| [06 · Finance](Portfolio%206%20-%20Finance/) | Ungu elektrik |
+![Pratinjau Beranda tema Teknologi dengan foto profil, top bar, dan tombol Resume CV](.github/assets/pratinjau-teknologi.jpg)
 
-## Struktur tiap tema
+## Pilih tema
 
-| Lokasi | Isi |
-| --- | --- |
-| `Frontend/src/portfolio.json` | Satu file data pelanggan |
-| `Frontend/src/portfolio.ts` | Validasi data, terjemahan, dan penyusunan menu |
-| `Frontend/src/pages/` | Rute Astro untuk halaman utama dan galeri |
-| `Frontend/src/components/layout/` | Bingkai halaman, top bar, dan kontrol |
-| `Frontend/src/components/sections/` | Bagian portofolio dari Beranda sampai footer |
-| `Frontend/src/demos/` | Galeri dan pilihan tata letak |
-| `Frontend/src/styles/` | CSS dasar, tema, dan bagian halaman |
-| `Frontend/public/` | Gambar, font, dan logo yang disajikan sebagai aset statis |
-| `Documentation/PANDUAN.md` | Penyiapan situs dan deployment |
-| `Database/README.md` | Kontrak data |
-| `Backend/README.md` | Alur build statis |
+| Tema | Warna bawaan | Panduan |
+| --- | --- | --- |
+| [1 · Teknologi](Portfolio%201%20-%20Teknologi/README.md) | Biru | [Siapkan situs](Portfolio%201%20-%20Teknologi/Documentation/PANDUAN.md) |
+| [2 · Asuransi](Portfolio%202%20-%20Asuransi/README.md) | Hijau | [Siapkan situs](Portfolio%202%20-%20Asuransi/Documentation/PANDUAN.md) |
+| [3 · Management](Portfolio%203%20-%20Management/README.md) | Kuning | [Siapkan situs](Portfolio%203%20-%20Management/Documentation/PANDUAN.md) |
+| [4 · DKV](Portfolio%204%20-%20DKV/README.md) | Merah | [Siapkan situs](Portfolio%204%20-%20DKV/Documentation/PANDUAN.md) |
+| [5 · General](Portfolio%205%20-%20General/README.md) | Hitam putih | [Siapkan situs](Portfolio%205%20-%20General/Documentation/PANDUAN.md) |
+| [6 · Finance](Portfolio%206%20-%20Finance/README.md) | Ungu elektrik | [Siapkan situs](Portfolio%206%20-%20Finance/Documentation/PANDUAN.md) |
 
-## Jalankan dan periksa
+Setiap situs mencakup **Beranda, Tentang, Proyek, Keahlian, Pengalaman, dan Kontak**. Konten pelanggan diatur dari satu file data. Tombol bahasa mengganti teks tanpa memuat ulang halaman.
 
-Gunakan Node.js 24 LTS. Buka folder `Frontend` dari tema yang dipilih.
+## Jalankan lokal
+
+Gunakan Node.js 24 LTS. Contoh berikut membuka tema Teknologi. Ganti nama folder untuk mencoba tema lain.
 
 ```sh
+git clone https://github.com/HorizonMirza/TAPID-Portfolio-Template.git
+cd "TAPID-Portfolio-Template/Portfolio 1 - Teknologi/Frontend"
 npm ci
 npm run dev
-npm run check
-npm run build
 ```
 
-Untuk Vercel, pilih preset **Astro** dan gunakan folder `Frontend` tema sebagai **Root Directory**. Tema dapat disalin ke repositori pelanggan dan dibangun secara mandiri.
+Buka alamat yang ditampilkan Astro. Bahasa Indonesia tersedia di `/` dan English di `/en/`. Jalankan pemeriksaan dan build di terminal terpisah dari folder yang sama.
 
-## Dari Google Form ke portofolio
+```sh
+npm run check
+npm run build
+npm run preview
+```
 
-1. Siapkan Linktree dari tautan yang pelanggan izinkan untuk dipublikasikan. Simpan email koordinasi dan respons asli di akun TAP.ID.
-2. Untuk paket website, salin tema pilihan pelanggan. Isi `Frontend/src/portfolio.json` dan setel `settings.demo` ke `false`.
-3. Isi `profile` untuk Beranda, `about` untuk bio dan pendidikan opsional, lalu `projects`, `skills`, dan `experience`. Isi pasangan `id` dan `en` untuk teks bilingual. Gunakan daftar kosong jika bagian belum memiliki isi.
-4. Masukkan kanal footer pilihan pelanggan, sesuai urutan, ke `contact.links`. Pakai `detail` untuk nomor WhatsApp lengkap atau nama akun. Hapus entri contoh bertanda `sample: true`.
-5. Isi `profile.cvUrl` dengan tautan Google Drive untuk Resume CV. Setel `contact.showResume` ke `false` jika pelanggan hanya menginginkan tombol CV di Beranda.
-6. Atur `settings.defaultMode` dan, jika diperlukan, warna HEX di `settings.accent.light` dan `settings.accent.dark`.
-7. Deploy dan uji tautan website serta kontak publik sebelum menambahkan website ke Linktree pelanggan.
+## Siapkan situs pelanggan
+
+1. Salin folder tema yang dipilih. Setel `settings.demo` ke `false` di `Frontend/src/portfolio.json`.
+2. Pindahkan konten yang disetujui dari Google Form ke file tersebut. Isi versi `id` dan `en` untuk teks bilingual, lalu masukkan kanal footer yang dipilih pelanggan.
+3. Impor repositori ke Vercel dengan preset **Astro**, build command `npm run build`, dan output directory `dist`. Gunakan `Frontend` sebagai **Root Directory** apabila repositori dimulai dari isi satu folder tema.
+4. Cek kedua rute bahasa, mode tampilan, dan tautan publik. Setelah tautan website siap, tambahkan ke Linktree pelanggan.
+
+Formulir pemesanan, email koordinasi, dan jawaban mentah pelanggan dikelola di akun TAP.ID. Detail pemetaan dan langkah penyerahan situs ada di panduan tiap tema.
 
 ## Galeri desain
 
-Galeri tersedia ketika `settings.demo` aktif. Tambahkan `/en` di depan rute untuk versi Inggris atau `?pilihan=04` untuk membuka desain 04. Galeri footer juga menyimpan pilihan kanal kontak di URL.
+Galeri tersedia saat `settings.demo` aktif. Buka salah satu rute berikut setelah menjalankan tema secara lokal. Awali rute dengan `/en/` untuk versi English, misalnya `/en/demo-footer/`.
 
 | Bagian | Rute | Pilihan per tema |
 | --- | --- | ---: |
@@ -65,15 +60,30 @@ Galeri tersedia ketika `settings.demo` aktif. Tambahkan `/en` di depan rute untu
 | Pengalaman | `/demo-pengalaman/` | 15 |
 | Footer | `/demo-footer/` | 10 |
 
-[Galeri kontrol top bar](kontrol-topbar.html) memuat 10 variasi tombol. Nama, proyek, pengalaman, dan kontak demo bersifat fiktif. Potret demo dibuat dengan ImageGen.
+Tambahkan `?pilihan=04` untuk membuka desain 04 langsung. Galeri footer juga menyimpan kanal yang dicentang di URL. Untuk melihat 10 variasi tombol bahasa dan mode, unduh [galeri kontrol top bar](kontrol-topbar.html) lalu buka file HTML itu di browser.
 
-## Sumber logo footer
+## Struktur tiap tema
 
-Logo disimpan di `Frontend/public/brands`. GitHub dan Instagram memakai versi aset yang sesuai dengan mode terang atau gelap.
+```text
+Portfolio N - Nama Tema/
+├── Frontend/
+│   ├── public/                 Gambar, font, dan logo
+│   └── src/
+│       ├── components/         Top bar, bingkai halaman, dan bagian portofolio
+│       ├── demos/              Galeri dan pilihan desain per bagian
+│       ├── pages/              Rute Astro untuk kedua bahasa
+│       ├── styles/             CSS dasar, tema, dan bagian halaman
+│       ├── portfolio.json     Data yang diisi untuk pelanggan
+│       └── portfolio.ts       Validasi dan pemetaan isi halaman
+├── Documentation/PANDUAN.md   Penyiapan, deployment, dan serah terima
+├── Database/README.md          Kontrak data
+├── Backend/README.md           Alur build statis
+├── AGENTS.md                   Panduan kerja dalam tema
+└── README.md                   Ringkasan dan tautan panduan
+```
 
-- [WhatsApp Brand Resource Center](https://www.meta.com/en-gb/brand/resources/whatsapp/whatsapp-brand/)
-- [Instagram Brand Resource Center](https://www.meta.com/en-gb/brand/resources/instagram/instagram-brand/)
-- [LinkedIn [in] Logo](https://brand.linkedin.com/in-logo)
-- [GitHub Brand Toolkit](https://brand.github.com/foundations/logo)
-- [Google Drive product logo](https://developers.google.com/workspace/drive/api/guides/branding#use_google_drive_logo)
-- [Linktree](https://linktr.ee/)
+## Sumber aset
+
+Nama, proyek, pengalaman, dan kontak demo bersifat fiktif. Potret demo dibuat dengan ImageGen. Lisensi font tersedia di `Frontend/public/fonts/OFL.txt` pada masing-masing tema.
+
+Logo platform yang digunakan di footer tersimpan di `Frontend/public/brands/`. Sumber asetnya tersedia di [Meta WhatsApp](https://www.meta.com/en-gb/brand/resources/whatsapp/whatsapp-brand/), [Meta Instagram](https://www.meta.com/en-gb/brand/resources/instagram/instagram-brand/), [LinkedIn](https://brand.linkedin.com/in-logo), [GitHub](https://brand.github.com/foundations/logo), [Google Drive](https://developers.google.com/workspace/drive/api/guides/branding#use_google_drive_logo), dan [Linktree](https://linktr.ee/).
