@@ -1,24 +1,24 @@
-# Kontrak data portofolio
+# Portfolio Data Reference
 
-Edit `Frontend/src/portfolio.json`. Astro memvalidasi file terhadap [skema data](../Frontend/src/portfolio.ts) saat build. Teks bilingual berbentuk objek `{ "id": "...", "en": "..." }`.
+Edit `Frontend/src/portfolio.json`. Astro checks it against the [data schema](../Frontend/src/portfolio.ts) at build time. Bilingual fields use an object such as `{ "id": "...", "en": "..." }`.
 
-| Blok | Isi |
+| Field | Contents |
 | --- | --- |
-| `profile` | Nama, lokasi, peran, tagline, perkenalan, foto opsional, dan tautan Resume CV opsional |
-| `about` | Bio dan pendidikan opsional berupa universitas, jurusan, spesialisasi, serta IPK |
-| `projects` | Judul, kategori, deskripsi, gambar opsional, dan tautan HTTPS opsional |
-| `skills` | Daftar keahlian bilingual |
-| `experience` | Jabatan, organisasi, periode, serta deskripsi |
-| `contact` | Daftar tautan publik di `links` dan opsi kartu CV di `showResume` |
-| `settings` | Mode awal, warna aksen opsional, dan mode demo |
+| `profile` | Name, location, role, headline, introduction, optional portrait, and optional Resume CV link |
+| `about` | Bio and optional education, including university, major, specialization, and GPA |
+| `projects` | Title, category, description, optional image, and optional HTTPS link |
+| `skills` | Bilingual list of skills |
+| `experience` | Role, organization, dates, and description |
+| `contact` | Public links and whether Resume CV appears in the footer |
+| `settings` | Demo mode, initial appearance, and optional accent colors |
 
-Isi `about.education.gpa` dengan `value` serta `scale` jika pelanggan mengizinkan publikasi IPK. Nilai IPK tidak melebihi skalanya. Bagian proyek, keahlian, dan pengalaman boleh berupa array kosong.
+For `about.education.gpa`, provide both `value` and `scale`. The value must not exceed the scale. Projects, skills, and experience can be empty arrays.
 
-## Kontak dan Resume CV
+## Public contacts
 
-Footer mengikuti urutan `contact.links`. Setiap entri perlu `label` dan `href`. Tujuan dapat berupa URL HTTPS, `mailto:`, atau `tel:`. Logo dideteksi dari URL. Gunakan `kind` opsional untuk memilih `whatsapp`, `email`, `linkedin`, `github`, `instagram`, `linktree`, atau `website`.
+The footer follows the order of `contact.links`. Each item needs `label` and `href`. Supported destinations use HTTPS, `mailto:`, or `tel:`. The URL normally determines the icon. The optional `kind` field accepts `whatsapp`, `email`, `linkedin`, `github`, `instagram`, `linktree`, or `website`.
 
-Gunakan `detail` untuk menentukan nomor tampilan atau nama akun. Untuk WhatsApp, sertakan nomor lengkap dengan kode negara. Contoh entri untuk template demo:
+Use `detail` for an account name or formatted number. For WhatsApp, include the country code. This example shows a fictional number and links to WhatsApp’s public site.
 
 ```json
 {
@@ -30,12 +30,12 @@ Gunakan `detail` untuk menentukan nomor tampilan atau nama akun. Untuk WhatsApp,
 }
 ```
 
-Entri `sample: true` hanya tampil dalam mode demo. Untuk situs pelanggan, gunakan tautan WhatsApp yang sesuai dengan nomor pelanggan dan masukkan hanya kontak yang sudah disetujui.
+Links marked `sample: true` appear only in demo mode. For client sites, use the approved contact details and their matching destinations.
 
-Isi `profile.cvUrl` dengan tautan HTTPS dari Google Drive atau Google Docs yang dapat dibuka pengunjung. Pakai `contact.showResume: false` untuk menyembunyikan kartu footer sambil tetap menampilkan tombol CV di Beranda.
+## Resume CV and appearance
 
-## Mode tampilan dan warna
+Set `profile.cvUrl` to an accessible HTTPS link on Google Drive or Google Docs. Set `contact.showResume` to `false` to keep the CV button on Home only.
 
-`settings.defaultMode` menerima `system`, `light`, atau `dark`. Isi `settings.accent.light` dan `settings.accent.dark` dengan warna HEX enam digit jika pelanggan memilih palet khusus. Gunakan `settings.demo: false` pada situs pelanggan.
+`settings.defaultMode` supports `system`, `light`, and `dark`. To customize the palette, enter six-digit HEX colors in `settings.accent.light` and `settings.accent.dark`. Set `settings.demo` to `false` for client sites.
 
-[Panduan penyiapan pelanggan](../Documentation/PANDUAN.md) · [Kembali ke README tema](../README.md)
+[Client setup guide](../Documentation/PANDUAN.md) · [Theme README](../README.md)

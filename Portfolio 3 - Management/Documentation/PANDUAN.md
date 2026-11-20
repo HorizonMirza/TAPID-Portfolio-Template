@@ -1,29 +1,29 @@
-# Panduan penyiapan situs pelanggan
+# Client Setup Guide
 
-Panduan ini dipakai tim TAP.ID saat memindahkan jawaban Google Form ke website dan saat menyerahkan pengelolaan website kepada pelanggan.
+Use this guide to turn approved Google Form responses into a portfolio and hand the site over to the client.
 
-## 1. Siapkan data
+## 1. Prepare the content
 
-Salin satu folder tema ke repositori pelanggan. Edit `Frontend/src/portfolio.json` dan setel `settings.demo` ke `false` agar galeri dan kontak contoh disembunyikan. Gunakan jawaban yang pelanggan izinkan untuk dipublikasikan. Bersihkan profil, proyek, keahlian, pengalaman, dan aset contoh dari salinan pelanggan.
+Copy the chosen theme to the client’s repository. Edit `Frontend/src/portfolio.json` and set `settings.demo` to `false` to hide the demo galleries and sample contact links. Replace the sample profile, projects, skills, experience, and images with material cleared for publication.
 
-| Bagian Google Form | Data website |
+| Google Form section | Portfolio fields |
 | --- | --- |
-| Beranda dan tautan foto profil | `profile.name`, `profile.role`, `profile.location`, `profile.headline`, `profile.introduction`, `profile.portrait` |
-| Tentang dan pendidikan | `about.description` dan `about.education` |
-| Proyek, keahlian, dan pengalaman | `projects`, `skills`, `experience` |
-| Tautan Resume CV | `profile.cvUrl` |
-| Pilihan kanal dan tautan footer | `contact.links` dan `contact.showResume` |
-| Warna aksen dan mode awal | `settings.accent` dan `settings.defaultMode` |
+| Home and profile photo | `profile.name`, `profile.role`, `profile.location`, `profile.headline`, `profile.introduction`, `profile.portrait` |
+| About and education | `about.description` and `about.education` |
+| Projects, skills, and experience | `projects`, `skills`, and `experience` |
+| Resume CV | `profile.cvUrl` |
+| Public footer channels | `contact.links` and `contact.showResume` |
+| Accent colors and initial appearance | `settings.accent` and `settings.defaultMode` |
 
-Isi varian `id` dan `en` untuk setiap teks bilingual. Gunakan daftar kosong untuk bagian yang belum berisi data. Simpan email koordinasi, respons asli, dan kontak privat di akun TAP.ID.
+Provide `id` and `en` for bilingual text. Use empty arrays for sections without content. Keep the private coordination email, raw form responses, and other private contacts in TAP.ID’s account.
 
-Simpan foto dan gambar proyek yang disetujui di `Frontend/public/media/`. Di JSON, gunakan jalur seperti `/media/foto.webp` atau URL HTTPS. Sertakan teks alternatif dalam kedua bahasa.
+Store approved images in `Frontend/public/media/` and use paths such as `/media/photo.webp`. HTTPS image URLs are also supported. Supply alternative text in both languages.
 
-Susun `contact.links` sesuai urutan kanal yang dipilih pelanggan. Isi `detail` dengan nomor WhatsApp lengkap atau nama akun bila diperlukan. Jika pelanggan ingin menampilkan CV di Beranda saja, gunakan `contact.showResume: false`. [Contoh dan aturan data](../Database/README.md)
+List each approved footer channel in display order. Set `detail` for a formatted WhatsApp number or account name when needed. To show Resume CV only on Home, set `contact.showResume` to `false`. [Data reference and examples](../Database/README.md)
 
-## 2. Cek dan deploy
+## 2. Validate and deploy
 
-Jalankan perintah ini dari `Frontend` menggunakan Node.js 24 LTS.
+Use Node.js 24 LTS and run these commands from `Frontend`.
 
 ```sh
 npm ci
@@ -31,20 +31,20 @@ npm run check
 npm run build
 ```
 
-Impor repositori di Vercel. Pilih preset **Astro**, build command `npm run build`, dan output directory `dist`.
+In Vercel, use the **Astro** preset, the build command `npm run build`, and the output directory `dist`.
 
-| Isi repositori yang diimpor | Root Directory di Vercel |
+| Repository contents | Vercel root directory |
 | --- | --- |
-| Isi satu folder tema di root repositori | `Frontend` |
-| Keenam folder tema TAP.ID | `Portfolio N - Nama Tema/Frontend` sesuai tema |
+| One theme copied to the root | `Frontend` |
+| All six themes | The selected theme’s `Frontend` folder |
 
-Buka `/` dan `/en/` setelah deployment. Periksa foto, mode terang dan gelap, tampilan ponsel, serta tujuan tautan WhatsApp, email, Resume CV, dan Linktree. Tambahkan alamat website yang sudah dicek ke Linktree pelanggan. [Panduan Astro di Vercel](https://docs.astro.build/en/guides/deploy/vercel/)
+Open `/` and `/en/` after deployment. Check the portraits, responsive layout, light and dark modes, and the destination of each public link. Add the verified site URL to the client’s Linktree. [Astro on Vercel](https://docs.astro.build/en/guides/deploy/vercel/)
 
-## 3. Serahkan pengelolaan
+## 3. Hand over the site
 
-1. Beri pelanggan akses ke repositori situsnya dan tunjukkan lokasi `Frontend/src/portfolio.json`.
-2. Saat mengedit profil atau kontak, perbarui tampilan dan tujuan tautannya. Untuk email, ubah juga alamat pada `mailto:`.
-3. Simpan dengan **Commit changes**. Jika tim memakai pull request, gabungkan perubahan ke branch produksi agar Vercel membangun ulang situs.
-4. Buka website setelah deployment dan cek perubahan. Jika tautan yang sama juga ditampilkan di Linktree, perbarui di akun Linktree.
+1. Give the client access to their site repository and point them to `Frontend/src/portfolio.json`.
+2. Update both the contact label and its destination when addresses or numbers change. For email links, update the `mailto:` address as well.
+3. Commit the edits. If your team works through pull requests, merge the changes into the production branch to trigger the Vercel deployment.
+4. Check the deployed site. Update the client’s Linktree separately when a link appears in both places.
 
-[Kembali ke README tema](../README.md) · [Cara mengedit file di GitHub](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files)
+[Theme README](../README.md) · [Editing files on GitHub](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files)

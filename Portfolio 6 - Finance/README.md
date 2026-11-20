@@ -1,27 +1,27 @@
-# Portfolio 6 - Finance
+# Finance Portfolio Template
 
-Tema ungu elektrik untuk portofolio analisis dan perencanaan keuangan.
+A purple template for financial planning, analysis, and reporting.
 
-| Warna bawaan | Font | Profil demo |
+| Default palette | Typeface | Demo profile |
 | --- | --- | --- |
-| Ungu elektrik | Newsreader | Rania Hartono |
+| Electric purple | Newsreader | Rania Hartono |
 
-## Coba template
+## Run locally
 
-Buka folder `Frontend` pada tema ini dengan Node.js 24 LTS.
+Open `Frontend` in this theme using Node.js 24 LTS.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Situs memiliki rute Bahasa Indonesia `/` dan English `/en/`. Saat mode demo aktif, buka `/demo-beranda/` atau `/demo-footer/` untuk mencoba tata letak alternatif. [Daftar galeri](../README.md#galeri-desain)
+Open `/` for Indonesian or `/en/` for English. Enable `settings.demo` to explore the [interactive design demos](https://github.com/HorizonMirza/TAPID-Portfolio-Template#design-demos).
 
-## Siapkan situs pelanggan
+## Customize and deploy
 
-Edit [data portofolio](Frontend/src/portfolio.json) untuk mengganti profil, foto, pendidikan, proyek, keahlian, pengalaman, warna, Resume CV, dan kanal footer.
+Edit [portfolio.json](Frontend/src/portfolio.json) to update the profile, education, projects, skills, experience, theme preferences, Resume CV, and footer links.
 
-- [Panduan penyiapan, deployment, dan serah terima](Documentation/PANDUAN.md)
-- [Kontrak data dan contoh kontak](Database/README.md)
-- [Alur validasi dan build Astro](Backend/README.md)
-- [Kembali ke daftar tema TAP.ID](../README.md#pilih-tema)
+- [Client setup, deployment, and handoff](Documentation/PANDUAN.md)
+- [Data reference and contact examples](Database/README.md)
+- [Astro build instructions](Backend/README.md)
+- [All six templates](https://github.com/HorizonMirza/TAPID-Portfolio-Template#portfolio-templates)

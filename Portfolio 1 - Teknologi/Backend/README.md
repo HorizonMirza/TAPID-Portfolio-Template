@@ -1,12 +1,12 @@
-# Build statis
+# Static Build
 
-Astro membaca data portofolio dan menghasilkan halaman HTML siap disajikan oleh Vercel. Respons Google Form dipindahkan ke file data oleh tim TAP.ID sebelum build.
+Astro validates the portfolio data and generates HTML for Vercel. TAP.ID transfers the approved Google Form responses into the data file before building.
 
 ```text
-Google Form → portfolio.json → validasi Astro → dist/ → Vercel
+Google Form → portfolio.json → Astro validation → dist/ → Vercel
 ```
 
-Jalankan perintah ini dari `Frontend` dengan Node.js 24 LTS.
+Run the following commands from `Frontend` with Node.js 24 LTS.
 
 ```sh
 npm ci
@@ -14,7 +14,7 @@ npm run check
 npm run build
 ```
 
-Hasil build tersedia di `Frontend/dist/`. Jalankan `npm run preview` dari `Frontend` untuk memeriksa hasil build melalui browser.
+The output is in `Frontend/dist/`. Run `npm run preview` from `Frontend` to inspect the built site locally.
 
-- [Skema dan contoh data](../Database/README.md)
-- [Konfigurasi Vercel dan pemeriksaan sebelum serah terima](../Documentation/PANDUAN.md)
+- [Data schema and examples](../Database/README.md)
+- [Vercel configuration and client handoff](../Documentation/PANDUAN.md)
