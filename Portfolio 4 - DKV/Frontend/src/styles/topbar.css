@@ -70,7 +70,13 @@
 }
 .tapbar-tools .mobile-nav { display: none; position: static; color: var(--ink); }
 .tapbar-tools .mobile-nav summary { min-height: 2.75rem; font-size: .85rem; }
-.tapbar-tools .mobile-nav nav { z-index: 7; border-radius: var(--top-radius); }
+.tapbar-tools .mobile-nav nav {
+  z-index: 7;
+  max-block-size: calc(100dvh - var(--topbar-height) - 1rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: var(--top-radius);
+}
 
 .tapbar[data-nav="capsule"] .tapbar-desktop {
   gap: 0; padding: .13rem .24rem; border: 1px solid var(--line); border-radius: 99rem;

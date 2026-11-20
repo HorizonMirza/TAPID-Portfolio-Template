@@ -212,6 +212,15 @@
     min-height: 0;
   }
 }
+@media (49rem < width <= 64rem) {
+  .home-demo-stage:not([data-demo-stage]) {
+    min-height: min(var(--hero-height), 38rem);
+  }
+  .home-demo-stage:not([data-demo-stage], [data-art="spotlight"]) .home-demo-portrait {
+    height: auto;
+    aspect-ratio: 1;
+  }
+}
 @media (max-width: 70rem) {
   .home-demo-options { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }

@@ -3,7 +3,18 @@
   position: relative;
 }
 
-.project-preview-art .project-image-open { height: 100%; }
+.project-preview-art[data-loading-media] {
+  width: auto;
+  justify-self: stretch;
+  min-width: 0;
+}
+
+.project-preview-art .project-image-open {
+  position: absolute;
+  inset: 0;
+}
+
+.project-preview-art .project-image-open img { object-fit: contain; }
 .project-image-open:focus-visible { outline-offset: -4px; }
 
 .project-image-open > span {
