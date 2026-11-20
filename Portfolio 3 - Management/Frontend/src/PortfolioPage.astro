@@ -13,13 +13,15 @@ const previewHome = Astro.slots.has('home');
 const previewAbout = Astro.slots.has('about-preview');
 const previewProjects = Astro.slots.has('projects-preview');
 const previewSkills = Astro.slots.has('skills-preview');
-const previewPath = previewSkills ? 'demo-keahlian/' : previewProjects ? 'demo-proyek/' : previewAbout ? 'demo-tentang/' : previewHome ? 'demo-beranda/' : undefined;
+const previewExperience = Astro.slots.has('experience-preview');
+const previewPath = previewExperience ? 'demo-pengalaman/' : previewSkills ? 'demo-keahlian/' : previewProjects ? 'demo-proyek/' : previewAbout ? 'demo-tentang/' : previewHome ? 'demo-beranda/' : undefined;
 const languageHref = previewPath ? `${language === 'id' ? '/en/' : '/'}${previewPath}` : undefined;
 const { copy, p, projects, skills, experience, contact, demo } = localize(language);
 ---
 <Frame language={language} skip={copy.skip} previewPath={previewPath}>
   <TopBar language={language} languageHref={languageHref} />
   <main id="main" tabindex="-1">
+    {previewExperience && <slot name="experience-preview" />}
     {previewSkills && <slot name="skills-preview" />}
     {previewProjects && <slot name="projects-preview" />}
     {previewAbout && <slot name="about-preview" />}
@@ -40,7 +42,7 @@ const { copy, p, projects, skills, experience, contact, demo } = localize(langua
     {!previewAbout && <AboutSection language={language} />}
     {!previewProjects && projects.length > 0 && <ProjectSection language={language} />}
     {!previewSkills && skills.length > 0 && <SkillSection language={language} />}
-    {experience.length > 0 && <section id="experience" class="wrap ops-experience" aria-labelledby="experience-title">
+    {!previewExperience && experience.length > 0 && <section id="experience" class="wrap ops-experience" aria-labelledby="experience-title">
       <h2 id="experience-title">{copy.experience}</h2>
       <ol>{experience.map((job) => <li><p class="section-label">{job.period}</p><h3>{job.title}<small>{job.organization}</small></h3><p class="copy">{job.description}</p></li>)}</ol>
     </section>}

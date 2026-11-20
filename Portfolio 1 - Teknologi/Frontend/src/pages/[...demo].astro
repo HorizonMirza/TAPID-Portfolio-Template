@@ -4,6 +4,7 @@ import HomeDemos from '../HomeDemos.astro';
 import AboutDemos from '../AboutDemos.astro';
 import ProjectSection from '../ProjectSection.astro';
 import SkillSection from '../SkillSection.astro';
+import ExperienceDemos from '../ExperienceDemos.astro';
 import { portfolio, type Language } from '../portfolio';
 
 export function getStaticPaths() {
@@ -16,13 +17,19 @@ export function getStaticPaths() {
     { params: { demo: 'en/demo-proyek' }, props: { language: 'en' as const, section: 'projects' as const } },
     { params: { demo: 'demo-keahlian' }, props: { language: 'id' as const, section: 'skills' as const } },
     { params: { demo: 'en/demo-keahlian' }, props: { language: 'en' as const, section: 'skills' as const } },
+    { params: { demo: 'demo-pengalaman' }, props: { language: 'id' as const, section: 'experience' as const } },
+    { params: { demo: 'en/demo-pengalaman' }, props: { language: 'en' as const, section: 'experience' as const } },
   ] : [];
 }
 
-interface Props { language: Language; section: 'home' | 'about' | 'projects' | 'skills' }
+interface Props { language: Language; section: 'home' | 'about' | 'projects' | 'skills' | 'experience' }
 const { language, section } = Astro.props;
 ---
-{section === 'skills' ? (
+{section === 'experience' ? (
+  <PortfolioPage language={language}>
+    <ExperienceDemos slot="experience-preview" language={language} />
+  </PortfolioPage>
+) : section === 'skills' ? (
   <PortfolioPage language={language}>
     <SkillSection slot="skills-preview" language={language} preview />
   </PortfolioPage>
