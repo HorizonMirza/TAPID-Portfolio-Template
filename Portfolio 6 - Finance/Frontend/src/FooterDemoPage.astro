@@ -2,7 +2,8 @@
 import Frame from './Frame.astro';
 import TopBar from './TopBar.astro';
 import ContactFooter from './ContactFooter.astro';
-import { footerLayouts, type FooterChannel } from './footer-demos';
+import { footerLayouts } from './footer-demos';
+import type { FooterChannel } from './footer-channels';
 import { localize, type Language } from './portfolio';
 
 interface Props {
@@ -55,7 +56,7 @@ const channels: FooterChannel[] = [
       </fieldset>
     </div>
   </main>
-  <ContactFooter language={language} name={p.name} theme={theme} channels={channels} layout={footerLayouts[0].layout} />
+  <ContactFooter language={language} name={p.name} theme={theme} channels={channels} layout={footerLayouts[0].layout} preview />
 
 <script is:inline>
   (() => {

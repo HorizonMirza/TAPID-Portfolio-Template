@@ -16,14 +16,14 @@ Buka `/demo-pengalaman/` atau `/en/demo-pengalaman/` untuk mencoba 15 rancangan 
 
 Buka `/demo-footer/` atau `/en/demo-footer/` untuk mencoba 10 rancangan footer per tema. Centang kanal kontak yang ingin ditampilkan. Pilihan desain dan kanal ikut tersimpan di URL. Contoh kontak menggunakan data demo. Minta pelanggan memilih kanal yang akan ditampilkan dan mengirimkan tautan yang boleh dipublikasikan.
 
-| Template | Warna bawaan | Beranda utama | Tentang utama | Proyek utama | Keahlian utama | Pengalaman utama | Top bar |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 06 · Developer Panel | 05 · Studi Kasus | 01 · Kartu | 02 · Linimasa | 01 · Command Rail |
-| [Portfolio 2 - Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau | 04 · Green Frame | 09 · Academic Highlight | 05 · Galeri Kartu | 14 · Jalur | 10 · Sorotan | 05 · Advisor Capsule |
-| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | 03 · Team Lead | 06 · Yellow Statement | 01 · Linimasa | 09 · Mozaik | 11 · Akordeon | 02 · Ops Inline |
-| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | 01 · Poster Cover | 10 · Catalogue Index | 08 · Tab Proyek | 08 · Baris Warna | 05 · Organisasi Utama | 09 · Letterpress |
-| [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | 01 · Classic Editorial | 10 · Academic Record | 05 · Linimasa | 02 · Indeks | 01 · Judul Samping | 04 · Soft Capsule |
-| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu elektrik | 03 · Analyst at Desk | 10 · Editorial Center | 04 · Galeri Kartu | 10 · Jalur | 01 · Banding Peran | 09 · Review Note |
+| Template | Warna bawaan | Beranda utama | Tentang utama | Proyek utama | Keahlian utama | Pengalaman utama | Footer utama | Top bar |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| [Portfolio 1 - Teknologi](Portfolio%201%20-%20Teknologi/) | Biru | 04 · Blue Spotlight | 06 · Developer Panel | 05 · Studi Kasus | 01 · Kartu | 02 · Linimasa | 01 · Kartu Kontak | 01 · Command Rail |
+| [Portfolio 2 - Asuransi](Portfolio%202%20-%20Asuransi/) | Hijau | 04 · Green Frame | 09 · Academic Highlight | 05 · Galeri Kartu | 14 · Jalur | 10 · Sorotan | 04 · Dua Kolom | 05 · Advisor Capsule |
+| [Portfolio 3 - Management](Portfolio%203%20-%20Management/) | Kuning | 03 · Team Lead | 06 · Yellow Statement | 01 · Linimasa | 09 · Mozaik | 11 · Akordeon | 01 · Kartu Kontak | 02 · Ops Inline |
+| [Portfolio 4 - DKV](Portfolio%204%20-%20DKV/) | Merah | 01 · Poster Cover | 10 · Catalogue Index | 08 · Tab Proyek | 08 · Baris Warna | 05 · Organisasi Utama | 01 · Kartu Kontak | 09 · Letterpress |
+| [Portfolio 5 - General](Portfolio%205%20-%20General/) | Hitam putih | 01 · Classic Editorial | 10 · Academic Record | 05 · Linimasa | 02 · Indeks | 01 · Judul Samping | 01 · Kartu Kontak | 04 · Soft Capsule |
+| [Portfolio 6 - Finance](Portfolio%206%20-%20Finance/) | Ungu elektrik | 03 · Analyst at Desk | 10 · Editorial Center | 04 · Galeri Kartu | 10 · Jalur | 01 · Banding Peran | 01 · Kartu Kontak | 09 · Review Note |
 
 ## Jalankan satu template
 
@@ -40,9 +40,20 @@ Gunakan `npm run check` untuk pengecekan TypeScript dan `npm run build` untuk me
 
 1. Untuk kedua paket, siapkan Linktree menggunakan tautan yang pelanggan izinkan tampil. Simpan email koordinasi untuk komunikasi pesanan.
 2. Untuk paket website, gunakan pilihan tema di bagian **Data Website Portofolio**. Salin tema ke repo khusus pelanggan dan isi `Frontend/src/portfolio.json` dengan konten publiknya. Ubah `settings.demo` menjadi `false`.
-3. Gunakan `profile` untuk data Beranda, `about` untuk Tentang, `projects` untuk Proyek, `skills` untuk Keahlian, `experience` untuk Pengalaman, dan `contact.links` untuk kontak publik website. Isi pasangan `id` dan `en`; konfirmasikan terjemahan ke pelanggan bila form hanya diisi dalam satu bahasa.
+3. Gunakan `profile` untuk data Beranda, `about` untuk Tentang, `projects` untuk Proyek, `skills` untuk Keahlian, `experience` untuk Pengalaman, dan `contact.links` untuk kanal yang pelanggan pilih tampil di footer. Hapus entri bertanda `sample: true`, lalu isi tautan publik dari pelanggan. Isi pasangan `id` dan `en`; konfirmasikan terjemahan ke pelanggan bila form hanya diisi dalam satu bahasa.
 4. Untuk mengganti **aksen tema menjadi ungu**, isi `settings.accent.light` dengan `#6D28D9` dan `settings.accent.dark` dengan `#C4B5FD`. Pilihan mode awal ada di `settings.defaultMode`.
-5. Untuk menampilkan tombol **Resume CV**, isi `profile.cvUrl` dengan tautan HTTPS file CV dari Google Drive yang dapat dibuka oleh pengunjung. Gunakan `null` jika tautan belum tersedia. Tombol muncul sebagai pratinjau nonaktif pada profil demo.
+5. Untuk menampilkan tombol **Resume CV**, isi `profile.cvUrl` dengan tautan HTTPS file CV dari Google Drive yang dapat dibuka oleh pengunjung. Gunakan `null` jika tautan belum tersedia. Tombol Beranda muncul sebagai pratinjau nonaktif pada profil demo. Untuk menyembunyikan kartu Resume CV dari footer, gunakan `contact.showResume: false`.
 6. Deploy repo pelanggan di Vercel dan tambahkan URL ke Linktree. Serahkan akses ke repo tersebut agar pelanggan bisa mengedit satu file data dan menyimpan perubahannya untuk deployment berikutnya.
 
 Setiap tema menyertakan panduan pada `Documentation/PANDUAN.md`, dokumentasi backend pada `Backend/README.md`, dan kontrak data pada `Database/README.md`. Nama, pengalaman, dan proyek demo bersifat fiktif. Repo ini berisi template publik. Jawaban Google Form dan kontak pribadi dikelola dalam akun TAP.ID.
+
+## Sumber logo footer
+
+Aset lokal di `Frontend/public/brands` merujuk ke ikon dari masing-masing platform. Ikon GitHub dan Instagram memakai versi terang dan gelap yang disediakan mereknya.
+
+- [WhatsApp Brand Resource Center](https://www.meta.com/en-gb/brand/resources/whatsapp/whatsapp-brand/)
+- [Instagram Brand Resource Center](https://www.meta.com/en-gb/brand/resources/instagram/instagram-brand/)
+- [LinkedIn [in] Logo](https://brand.linkedin.com/in-logo)
+- [GitHub Brand Toolkit](https://brand.github.com/foundations/logo)
+- [Google Drive product logo](https://developers.google.com/workspace/drive/api/guides/branding#use_google_drive_logo)
+- [Linktree](https://linktr.ee/)

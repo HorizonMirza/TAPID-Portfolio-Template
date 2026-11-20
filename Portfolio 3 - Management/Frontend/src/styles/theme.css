@@ -26,10 +26,6 @@
 .location { margin-top: .4rem; color: var(--muted); }
 h2 { font-size: clamp(1.95rem, 4.3vw, 3.6rem); font-weight: 800; letter-spacing: -.07em; }
 .ops-about h2 { margin-bottom: .55rem; }
-.ops-footer section { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.15rem; }
-.ops-footer h2 { margin: .35rem 0; }
-.ops-footer .contact-links a { background: var(--button); color: var(--button-ink); padding-inline: .8rem; text-decoration-thickness: 1px; }
-.ops-footer-note { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: space-between; border-top: 1px solid var(--line); padding-block: .85rem; }
 @media (max-width: 42rem) {
   .ops-about { grid-template-columns: 1fr; }
   .ops-graphic { width: min(100%, 17rem); min-height: 8rem; margin-bottom: 1rem; }

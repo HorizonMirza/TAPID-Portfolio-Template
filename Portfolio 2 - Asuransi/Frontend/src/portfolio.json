@@ -260,8 +260,38 @@
     },
     "links": [
       {
+        "label": "WhatsApp",
+        "href": "https://www.whatsapp.com/",
+        "kind": "whatsapp",
+        "detail": "+62 8xx xxxx xxxx",
+        "sample": true
+      },
+      {
         "label": "alya.wicaksana@example.com",
-        "href": "mailto:alya.wicaksana@example.com"
+        "href": "mailto:alya.wicaksana@example.com",
+        "kind": "email",
+        "sample": true
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/",
+        "kind": "linkedin",
+        "detail": "Alya Wicaksana",
+        "sample": true
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/",
+        "kind": "github",
+        "detail": "alyawicaksana",
+        "sample": true
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/",
+        "kind": "instagram",
+        "detail": "@alyawicaksana",
+        "sample": true
       }
     ]
   },

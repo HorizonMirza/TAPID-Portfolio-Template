@@ -1,5 +1,5 @@
 ---
-import { footerChannelIcons, type FooterChannel } from './footer-demos';
+import type { FooterChannel } from './footer-channels';
 import type { Language } from './portfolio';
 import './styles/footer-demos.css';
 
@@ -9,40 +9,64 @@ interface Props {
   theme: string;
   channels: FooterChannel[];
   layout: string;
+  preview?: boolean;
 }
-const { language, name, theme, channels, layout } = Astro.props;
+const { language, name, theme, channels, layout, preview = false } = Astro.props;
 const english = language === 'en';
 const year = new Date().getUTCFullYear();
+const hasContact = preview || channels.length > 0;
+const logos = {
+  whatsapp: 'whatsapp.svg',
+  linkedin: 'linkedin.png',
+  github: 'github.svg',
+  instagram: 'instagram.svg',
+  resume: 'drive.png',
+  linktree: 'linktree.png',
+};
 ---
-<footer id="contact" class="contact-footer" data-theme={theme} data-footer-layout={layout} aria-labelledby="contact-footer-title">
+<footer id={hasContact ? 'contact' : undefined} class="contact-footer" data-theme={theme} data-footer-layout={layout}
+        aria-labelledby={hasContact ? 'contact-footer-title' : undefined}>
   <div class="contact-footer-inner">
-    <div class="contact-footer-heading">
-      <h2 id="contact-footer-title">{english ? 'Get in touch' : 'Hubungi saya'}</h2>
-    </div>
-    <ul class="footer-channels">
-      {channels.map(({ kind, label, detail, href, enabled }) => (
-        <li data-footer-channel={kind} hidden={!enabled}>
-          <a class="footer-channel" href={href} target={href.startsWith('https:') ? '_blank' : undefined}
-             rel={href.startsWith('https:') ? 'noopener noreferrer' : undefined}>
-            <span class="footer-channel-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
-                <path d={footerChannelIcons[kind]} />
-              </svg>
-            </span>
-            <span class="footer-channel-copy">
-              <strong>{label}</strong>
-              <span>{detail}</span>
-            </span>
-            <span class="footer-channel-arrow" aria-hidden="true">↗</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-    <p class="footer-empty" data-footer-empty hidden={channels.some(({ enabled }) => enabled)}>
+    {hasContact && <>
+      <div class="contact-footer-heading">
+        <h2 id="contact-footer-title">{english ? 'Get in touch' : 'Hubungi saya'}</h2>
+      </div>
+      <ul class="footer-channels">
+        {channels.map(({ kind, label, detail, href, enabled = true }) => (
+          <li data-footer-channel={kind} hidden={!enabled}>
+            <a class="footer-channel" href={href} target={href.startsWith('https:') ? '_blank' : undefined}
+               rel={href.startsWith('https:') ? 'noopener noreferrer' : undefined}>
+              <span class="footer-channel-icon" aria-hidden="true">
+                {kind === 'email' || kind === 'website' ? (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+                    <path d={kind === 'email'
+                      ? 'M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z M3 7l9 6 9-6'
+                      : 'M10 13.5a4 4 0 0 0 5.7 0l4-4a4 4 0 0 0-5.7-5.7l-2.2 2.2M14 10.5a4 4 0 0 0-5.7 0l-4 4a4 4 0 0 0 5.7 5.7l2.2-2.2'} />
+                  </svg>
+                ) : (
+                  <img class={kind === 'github' || kind === 'instagram' ? 'footer-logo-on-light' : undefined}
+                       src={'/brands/' + logos[kind]} alt="" width="24" height="24" decoding="async" />
+                )}
+                {(kind === 'github' || kind === 'instagram') && (
+                  <img class="footer-logo-on-dark" src={'/brands/' + kind + '-dark.svg'} alt="" width="24" height="24" decoding="async" />
+                )}
+              </span>
+              <span class="footer-channel-copy">
+                <strong>{label}</strong>
+                {detail && <span>{detail}</span>}
+              </span>
+              <span class="footer-channel-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </>}
+    {preview && <p class="footer-empty" data-footer-empty hidden={channels.some(({ enabled = true }) => enabled)}>
       {english ? 'Select a contact channel to preview it here.' : 'Centang kanal kontak untuk menampilkannya di sini.'}
-    </p>
+    </p>}
     <div class="contact-footer-signoff">
       <small>© {year} {name}</small>
+      {!preview && <a href="#home">{english ? 'Back to top' : 'Ke atas'}</a>}
     </div>
   </div>
 </footer>

@@ -1,5 +1,6 @@
 import { z } from 'astro/zod';
 import source from './portfolio.json';
+import { contactKinds, footerChannels } from './footer-channels';
 
 const text = z.string().trim().min(1);
 const localized = z.object({ id: text, en: text });
@@ -47,9 +48,16 @@ export const portfolio = z.object({
     description: localized,
   })),
   contact: z.object({
-    headline: localized,
-    description: localized,
-    links: z.array(z.object({ label: text, href: contactURL })),
+    headline: localized.optional(),
+    description: localized.optional(),
+    showResume: z.boolean().default(true),
+    links: z.array(z.object({
+      label: text,
+      href: contactURL,
+      kind: z.enum(contactKinds).optional(),
+      detail: text.optional(),
+      sample: z.boolean().optional(),
+    })),
   }),
   settings: z.object({
     demo: z.boolean().default(false),
@@ -67,8 +75,7 @@ const labels = {
     navigation: 'Navigasi utama', preferences: 'Preferensi tampilan',
     light: 'Mode terang', dark: 'Mode gelap', lightToDark: 'Pilih mode gelap',
     darkToLight: 'Pilih mode terang', menu: 'Menu', viewProjects: 'Lihat proyek',
-    viewProject: 'Buka proyek', viewContact: 'Hubungi saya', top: 'Ke atas',
-    demo: 'Profil demo TAP.ID',
+    viewProject: 'Buka proyek', viewContact: 'Hubungi saya',
   },
   en: {
     home: 'Home', about: 'About', projects: 'Projects', skills: 'Skills',
@@ -76,8 +83,7 @@ const labels = {
     navigation: 'Main navigation', preferences: 'Display preferences',
     light: 'Light mode', dark: 'Dark mode', lightToDark: 'Switch to dark mode',
     darkToLight: 'Switch to light mode', menu: 'Menu', viewProjects: 'View projects',
-    viewProject: 'Open project', viewContact: 'Get in touch', top: 'Back to top',
-    demo: 'TAP.ID demo profile',
+    viewProject: 'Open project', viewContact: 'Get in touch',
   },
 };
 
@@ -112,9 +118,8 @@ export function localize(language: Language) {
     description: item.description[language],
   }));
   const contact = {
-    headline: portfolio.contact.headline[language],
-    description: portfolio.contact.description[language],
     links: portfolio.contact.links,
+    channels: footerChannels(portfolio.contact.links, p.cvUrl, portfolio.contact.showResume, portfolio.settings.demo),
   };
   const nav = [
     ['home', copy.home, true],
@@ -122,7 +127,7 @@ export function localize(language: Language) {
     ['projects', copy.projects, projects.length > 0],
     ['skills', copy.skills, skills.length > 0],
     ['experience', copy.experience, experience.length > 0],
-    ['contact', copy.contact, contact.links.length > 0],
+    ['contact', copy.contact, contact.channels.length > 0],
   ].filter(([, , enabled]) => enabled).map(([id, name]) => ({ href: `#${id}`, name: String(name) }));
 
   return { copy, p, about, projects, skills, experience, contact, nav, demo: portfolio.settings.demo };

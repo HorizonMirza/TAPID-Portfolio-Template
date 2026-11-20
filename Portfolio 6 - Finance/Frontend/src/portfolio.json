@@ -231,7 +231,42 @@
   "contact": {
     "headline": { "id": "Mari bahas laporan Anda.", "en": "Let’s talk about your reporting." },
     "description": { "id": "Saya terbuka untuk kolaborasi analisis anggaran dan pelaporan manajemen.", "en": "I’m open to budget analysis and management reporting projects." },
-    "links": [{ "label": "rania.hartono@example.com", "href": "mailto:rania.hartono@example.com" }]
+    "links": [
+      {
+        "label": "WhatsApp",
+        "href": "https://www.whatsapp.com/",
+        "kind": "whatsapp",
+        "detail": "+62 8xx xxxx xxxx",
+        "sample": true
+      },
+      {
+        "label": "rania.hartono@example.com",
+        "href": "mailto:rania.hartono@example.com",
+        "kind": "email",
+        "sample": true
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/",
+        "kind": "linkedin",
+        "detail": "Rania Hartono",
+        "sample": true
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/",
+        "kind": "github",
+        "detail": "raniahartono",
+        "sample": true
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/",
+        "kind": "instagram",
+        "detail": "@raniahartono",
+        "sample": true
+      }
+    ]
   },
   "settings": { "demo": true, "defaultMode": "system" }
 }

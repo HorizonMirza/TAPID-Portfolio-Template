@@ -28,12 +28,6 @@
 h2, h3 { font-family: var(--finance-serif); font-weight: 580; letter-spacing: -.037em; }
 h2 { font-size: clamp(2.15rem, 4.25vw, 4rem); }
 h3 { font-size: clamp(1.4rem, 2.45vw, 2.3rem); }
-.finance-footer { color: var(--inverse-ink); background: var(--inverse); }
-.finance-footer section, .finance-footnote { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }
-.finance-footer h2 { margin-block: .44rem; }
-.finance-footer .contact-links a { color: var(--inverse-ink); border: 1px solid #ffffff6b; }
-.finance-footer a:focus-visible { outline-color: var(--inverse-ink); }
-.finance-footnote { border-top: 1px solid #ffffff6b; color: var(--inverse-muted); padding-block: .8rem; }
 @media (max-width: 43rem) {
   .finance-about { grid-template-columns: 1fr; }
 }

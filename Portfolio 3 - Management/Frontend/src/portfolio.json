@@ -260,8 +260,38 @@
     },
     "links": [
       {
+        "label": "WhatsApp",
+        "href": "https://www.whatsapp.com/",
+        "kind": "whatsapp",
+        "detail": "+62 8xx xxxx xxxx",
+        "sample": true
+      },
+      {
         "label": "bima.santosa@example.com",
-        "href": "mailto:bima.santosa@example.com"
+        "href": "mailto:bima.santosa@example.com",
+        "kind": "email",
+        "sample": true
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/",
+        "kind": "linkedin",
+        "detail": "Bima Santosa",
+        "sample": true
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/",
+        "kind": "github",
+        "detail": "bimasantosa",
+        "sample": true
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/",
+        "kind": "instagram",
+        "detail": "@bimasantosa",
+        "sample": true
       }
     ]
   },

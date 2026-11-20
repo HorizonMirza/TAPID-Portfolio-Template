@@ -36,13 +36,8 @@ h2 { font-size: clamp(2.1rem, 4.7vw, 4.5rem); font-weight: 800; letter-spacing: 
 .studio-about .wrap { display: grid; grid-template-columns: minmax(0,.65fr) minmax(0,2fr); align-items: center; gap: 1.5rem; padding-block: 2.9rem; }
 .studio-about h2 { margin: .4rem 0 .65rem; }
 .studio-mark { font-size: clamp(4rem, 12vw, 11rem); line-height: 1; justify-self: center; }
-.studio-footer h2 { margin-block: .35rem; }
-.studio-footer .contact-links { margin-top: .9rem; }
-.studio-footer .contact-links a { background: var(--button); color: var(--button-ink); }
-.studio-footer-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; border-top: 1px solid var(--line); padding-block: .8rem; }
 @media (max-width: 42rem) {
   .studio-about .wrap { grid-template-columns: 1fr; }
-  .studio-footer-bar { flex-wrap: wrap; }
   .studio-mark { display: none; }
   .studio-title { gap: .6rem; }
   .studio-title h1 { font-size: clamp(3rem, 14vw, 5.3rem); }

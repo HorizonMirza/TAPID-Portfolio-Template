@@ -40,9 +40,6 @@ main > #experience {
 :is(#skills, #experience, #contact) h2 { font-size: var(--section-heading-size); }
 :is(#skills, #experience, #contact) :is(p, li) { overflow-wrap: anywhere; }
 body > footer { border-block-start: 1px solid var(--line); }
-footer #contact { padding-block: var(--section-space); }
-#contact .contact-links a { max-inline-size: 100%; }
-#contact h2 + p { max-inline-size: 65ch; }
 .section-label { font-size: .82rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
 .copy { color: var(--muted); max-inline-size: 70ch; }
 .mobile-nav summary {
@@ -66,9 +63,6 @@ footer #contact { padding-block: var(--section-space); }
 .project-image { aspect-ratio: 3 / 2; }
 .project-link { display: inline-block; font-weight: 700; margin-top: .7rem; }
 #projects article .section-label { border-inline-start: 2px solid var(--detail-accent); padding-inline-start: .55rem; }
-.contact-links { display: flex; flex-wrap: wrap; gap: .55rem; }
-.contact-links a { display: inline-flex; min-height: 2.75rem; align-items: center; padding: .4rem .7rem; font-weight: 650; }
-.footer-note { color: var(--muted); font-size: .9rem; }
 
 .split-hero {
   display: grid;

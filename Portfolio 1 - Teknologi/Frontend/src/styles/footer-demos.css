@@ -109,7 +109,12 @@
   line-height: 1.35;
 }
 .footer-channel-icon { display: grid; place-items: center; inline-size: 1.38rem; block-size: 1.38rem; }
-.footer-channel-icon svg { display: block; width: 100%; height: 100%; }
+.footer-channel-icon :is(img, svg) { display: block; width: 100%; height: 100%; object-fit: contain; }
+.footer-channel-icon img.footer-logo-on-dark { display: none; }
+:root[data-mode="dark"] .footer-channel-icon img.footer-logo-on-light,
+:root:not([data-mode="dark"]) [data-footer-layout="lead"] li:nth-child(1 of :not([hidden])) .footer-logo-on-light { display: none; }
+:root[data-mode="dark"] .footer-channel-icon img.footer-logo-on-dark,
+:root:not([data-mode="dark"]) [data-footer-layout="lead"] li:nth-child(1 of :not([hidden])) .footer-logo-on-dark { display: block; }
 .footer-channel-copy { display: grid; gap: .12rem; }
 .footer-channel-copy strong { font-size: .99rem; }
 .footer-channel-copy > span { font-size: .85rem; color: var(--muted); }
@@ -118,7 +123,10 @@
 .footer-channel:hover { border-color: var(--focus); }
 [data-footer-channel="resume"] .footer-channel { background: var(--button); color: var(--button-ink); border-color: var(--button); }
 [data-footer-channel="resume"] .footer-channel :is(.footer-channel-arrow, .footer-channel-copy > span) { color: inherit; }
-.contact-footer-signoff { margin-block-start: 1rem; color: var(--muted); }
+.contact-footer-signoff { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; margin-block-start: 1rem; color: var(--muted); }
+.contact-footer-signoff a { margin-inline-start: auto; font-size: .85rem; }
+.contact-footer[data-footer-layout="centered"] .contact-footer-signoff { justify-content: center; }
+.contact-footer[data-footer-layout="letter"] .contact-footer-signoff { justify-content: end; }
 .footer-empty { color: var(--muted); margin-block: .6rem; }
 
 .contact-footer[data-footer-layout="cards"] #contact-footer-title { text-transform: uppercase; letter-spacing: .035em; }
@@ -226,7 +234,6 @@
 [data-footer-layout="letter"] .footer-channels { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 1rem; }
 [data-footer-layout="letter"] .footer-channel { padding: .8rem .5rem; border-width: 0 0 1px; border-radius: 0; }
 [data-footer-layout="letter"] li:not([data-footer-channel="resume"]) .footer-channel { background: transparent; }
-[data-footer-layout="letter"] .contact-footer-signoff { text-align: end; }
 
 @media (max-width: 55rem) {
   .footer-demo-options { grid-template-columns: repeat(4,minmax(0,1fr)); }

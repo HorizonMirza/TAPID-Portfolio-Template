@@ -7,6 +7,8 @@ import ProjectSection from './ProjectSection.astro';
 import SkillSection from './SkillSection.astro';
 import ExperienceSection from './ExperienceSection.astro';
 import CvLink from './CvLink.astro';
+import ContactFooter from './ContactFooter.astro';
+import { selectedFooterLayout } from './footer-demos';
 import { localize, type Language } from './portfolio';
 interface Props { language: Language }
 const { language } = Astro.props;
@@ -56,11 +58,5 @@ const { copy, p, projects, skills, experience, contact, demo } = localize(langua
     {!previewSkills && skills.length > 0 && <SkillSection language={language} />}
     {!previewExperience && experience.length > 0 && <ExperienceSection language={language} />}
   </main>
-  <footer class="tech-footer">
-    {contact.links.length > 0 && <section id="contact" class="wrap footer-main" aria-labelledby="contact-title">
-      <div><p class="section-label">{copy.contact}</p><h2 id="contact-title">{contact.headline}</h2><p>{contact.description}</p></div>
-      <div class="contact-links">{contact.links.map(({ href, label }) => <a href={href}>{label}</a>)}</div>
-    </section>}
-    <div class="wrap footer-bottom"><p>{demo ? copy.demo : p.name}</p><a href="#home">{copy.top}</a></div>
-  </footer>
+  <ContactFooter language={language} name={p.name} theme="teknologi" channels={contact.channels} layout={selectedFooterLayout} />
 </Frame>
