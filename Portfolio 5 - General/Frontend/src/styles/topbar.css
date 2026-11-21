@@ -128,12 +128,6 @@
   content: '';
 }
 
-.tapbar[data-nav="capsule"] .tapbar-desktop {
-  gap: 0; padding: .13rem .24rem; border: 1px solid var(--line); border-radius: 99rem;
-}
-
-.tapbar[data-skin="float"] .tapbar-desktop { background: var(--bg); }
-
 .tapbar nav a {
   position: relative;
   color: inherit;
