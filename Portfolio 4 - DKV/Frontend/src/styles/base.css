@@ -7,7 +7,7 @@
   --section-space: clamp(2.35rem, 3.75vw, 3.8rem);
   --section-heading-size: clamp(1.9rem, 3.4vw, 3.25rem);
   --topbar-height: 4.75rem;
-  --hero-height: calc(100svh - var(--topbar-height));
+  --hero-height: calc(100svh - var(--topbar-height) - var(--mobile-nav-space, 0px));
 }
 :root[data-mode="dark"] {
   color-scheme: dark;
@@ -38,20 +38,6 @@ main > #experience {
 :is(#skills, #experience, #contact) h2 { font-size: var(--section-heading-size); }
 :is(#skills, #experience, #contact) :is(p, li) { overflow-wrap: anywhere; }
 body > footer { border-block-start: 1px solid var(--line); }
-.mobile-nav summary {
-  display: inline-grid; place-items: center; min-width: 2.65rem; min-height: 2.65rem;
-  padding: .22rem .45rem; border: 1px solid var(--line); background: var(--surface);
-  color: var(--ink); border-radius: var(--control-radius, .35rem); font-weight: 700; text-decoration: none;
-}
-.mobile-nav summary:hover { border-color: var(--ink); }
-.mobile-nav { display: none; position: relative; }
-.mobile-nav nav {
-  position: absolute; top: calc(100% + .55rem); right: 0; z-index: 4;
-  width: min(14rem, calc(100vw - 3rem)); padding: .4rem;
-  background: var(--surface); border: 1px solid var(--line); box-shadow: 0 .6rem 1.4rem #0002;
-}
-.mobile-nav nav a { display: block; min-height: 2.75rem; padding: .48rem .65rem; text-decoration: none; }
-.mobile-nav summary::-webkit-details-marker { display: none; }
 .profile-image { width: 100%; object-fit: cover; }
 .project-link { display: inline-block; font-weight: 700; margin-top: .7rem; }
 

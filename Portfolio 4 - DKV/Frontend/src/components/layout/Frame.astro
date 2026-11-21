@@ -93,7 +93,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
           }
           const topbar = document.querySelector('.tapbar');
           if (topbar) {
-            const links = [...topbar.querySelectorAll('nav a[href^="#"]')];
+            const links = [...document.querySelectorAll('.tapbar-desktop a[href^="#"], .mobile-nav a[href^="#"]')];
             const sections = new Map();
             for (const link of links) {
               const section = document.getElementById(link.hash.slice(1));
@@ -221,9 +221,6 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               apply(chosen);
             }
           }, { signal });
-          document.querySelectorAll('[data-mobile-nav] a').forEach((link) => {
-            link.addEventListener('click', () => link.closest('details')?.removeAttribute('open'), { signal });
-          });
         }
 
         const languageLink = () => document.querySelector('.tapbar a.language');

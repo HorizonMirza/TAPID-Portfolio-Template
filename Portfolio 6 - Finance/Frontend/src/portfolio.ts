@@ -73,7 +73,7 @@ const labels = {
     experience: 'Pengalaman', contact: 'Kontak', skip: 'Lewati ke isi',
     navigation: 'Navigasi utama', preferences: 'Preferensi tampilan',
     dark: 'Mode gelap', lightToDark: 'Pilih mode gelap',
-    darkToLight: 'Pilih mode terang', menu: 'Menu',
+    darkToLight: 'Pilih mode terang',
     viewProject: 'Buka proyek',
   },
   en: {
@@ -81,7 +81,7 @@ const labels = {
     experience: 'Experience', contact: 'Contact', skip: 'Skip to content',
     navigation: 'Main navigation', preferences: 'Display preferences',
     dark: 'Dark mode', lightToDark: 'Switch to dark mode',
-    darkToLight: 'Switch to light mode', menu: 'Menu',
+    darkToLight: 'Switch to light mode',
     viewProject: 'Open project',
   },
 };
@@ -123,14 +123,14 @@ export function localize(language: Language) {
     links,
     channels: footerChannels(links, p.cvUrl, portfolio.contact.showResume, portfolio.settings.demo),
   };
-  const nav = [
+  const nav = ([
     ['home', copy.home, true],
     ['about', copy.about, true],
     ['projects', copy.projects, projects.length > 0],
     ['skills', copy.skills, skills.length > 0],
     ['experience', copy.experience, experience.length > 0],
     ['contact', copy.contact, contact.channels.length > 0],
-  ].filter(([, , enabled]) => enabled).map(([id, name]) => ({ href: `#${id}`, name: String(name) }));
+  ] as const).filter(([, , enabled]) => enabled).map(([id, name]) => ({ id, href: `#${id}`, name }));
 
   return { copy, p, about, projects, skills, experience, contact, nav, demo: portfolio.settings.demo };
 

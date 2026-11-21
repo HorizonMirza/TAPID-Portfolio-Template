@@ -21,8 +21,8 @@ const links = portfolioHref ? nav.map((item) => ({
       {links.map((item) => <a href={item.href}><span class="tapbar-label">{item.name}</span></a>)}
     </nav>
     <div class="tapbar-tools">
-      <MobileNav label={copy.navigation} menu={copy.menu} links={links} />
       <Controls language={language} languageHref={languageHref} />
     </div>
   </div>
 </header>
+<MobileNav label={copy.navigation} links={links} />

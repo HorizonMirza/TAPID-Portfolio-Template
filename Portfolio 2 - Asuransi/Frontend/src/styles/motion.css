@@ -28,7 +28,7 @@
 }
 
 .controls .control:focus-visible,
-:is(.home-cv[href], .project-link, .mobile-nav > summary):focus-visible {
+:is(.home-cv[href], .project-link):focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 3px;
 }
@@ -60,11 +60,11 @@
     animation: tapid-shimmer 1.25s .12s ease-in-out infinite;
   }
 
-  :is(button, .home-cv[href], .project-link, .mobile-nav > summary):not(:disabled, .control) {
+  :is(button, .home-cv[href], .project-link):not(:disabled, .control) {
     transition: translate .2s ease, scale .16s ease, background-color .2s ease, border-color .2s ease, color .2s ease;
   }
 
-  :is(button, .home-cv[href], .project-link, .mobile-nav > summary, .footer-channel):not(:disabled, .control):active {
+  :is(button, .home-cv[href], .project-link, .footer-channel):not(:disabled, .control):active {
     translate: 0 1px;
     scale: .97;
   }
@@ -75,7 +75,7 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    :is(button, .home-cv[href], .project-link, .mobile-nav > summary):not(:disabled, .control):hover:not(:active) {
+    :is(button, .home-cv[href], .project-link):not(:disabled, .control):hover:not(:active) {
       translate: 0 -2px;
     }
 

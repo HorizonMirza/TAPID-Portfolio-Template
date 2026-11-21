@@ -1,4 +1,4 @@
-.tapbar-teknologi { --top-font: var(--body); --top-radius: .55rem; }
+.tapbar-teknologi { --top-font: var(--body); }
 
 .tapbar {
   position: sticky;
@@ -64,14 +64,52 @@
   justify-self: end;
   gap: .38rem;
 }
-.tapbar-tools .mobile-nav { display: none; position: static; color: var(--ink); }
-.tapbar-tools .mobile-nav summary { min-height: 2.75rem; font-size: .85rem; }
-.tapbar-tools .mobile-nav nav {
-  z-index: 7;
-  max-block-size: calc(100dvh - var(--topbar-height) - 1rem);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  border-radius: var(--top-radius);
+.mobile-nav {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  inset-inline-start: max(.55rem, env(safe-area-inset-left, 0px));
+  inset-inline-end: max(.55rem, env(safe-area-inset-right, 0px));
+  inset-block-end: calc(.55rem + env(safe-area-inset-bottom, 0px));
+  inline-size: max-content;
+  max-inline-size: calc(100% - max(.55rem, env(safe-area-inset-left, 0px)) - max(.55rem, env(safe-area-inset-right, 0px)));
+  margin-inline: auto;
+  gap: .12rem;
+  padding: .26rem;
+  border: 1px solid var(--line);
+  border-radius: 2rem;
+  background: var(--surface);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  backdrop-filter: blur(.8rem);
+  box-shadow: 0 .45rem 1.25rem rgb(0 0 0 / 20%);
+}
+
+.mobile-nav a {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 1 1 clamp(2.75rem, 8vw, 3.45rem);
+  min-inline-size: 0;
+  inline-size: clamp(2.75rem, 8vw, 3.45rem);
+  min-block-size: 2.75rem;
+  border-radius: 1.55rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+.mobile-nav a:focus-visible { outline-offset: -2px; }
+.mobile-nav a[aria-current="location"] {
+  background: color-mix(in srgb, var(--focus) 14%, var(--surface));
+  color: var(--ink);
+}
+.mobile-nav a[aria-current="location"]::before {
+  position: absolute;
+  inset: 1px 0 auto;
+  inline-size: .95rem;
+  block-size: 2px;
+  margin-inline: auto;
+  border-radius: 1rem;
+  background: var(--focus);
+  content: '';
 }
 
 .tapbar[data-nav="capsule"] .tapbar-desktop {
@@ -119,18 +157,22 @@
 
 .tapbar[data-links="pill"] .tapbar-desktop a { border-radius: 99rem; }
 
-@media (max-width: 53rem) {
+@media (max-width: 64rem), (max-width: 86rem) and (pointer: coarse) {
+  html:has(> body > .mobile-nav) {
+    --mobile-nav-space: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+    scroll-padding-block-end: var(--mobile-nav-space);
+  }
+  body:has(> .mobile-nav) { padding-block-end: var(--mobile-nav-space); }
   .tapbar .tapbar-inner {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas: 'brand tools';
     min-height: 4.1rem;
   }
   .tapbar .tapbar-desktop { display: none; }
-  .tapbar .mobile-nav { display: block; }
+  .mobile-nav { display: flex; }
 }
 @media (max-width: 33rem) {
   .tapbar-tools, .tapbar-tools .controls { gap: .24rem; }
-  .tapbar-tools .mobile-nav summary { min-width: 2.62rem; padding-inline: .28rem; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .tapbar-label {
