@@ -108,7 +108,7 @@ def main():
     output = args.output.resolve()
     output.mkdir(parents=True)
     build_sites(output, not args.installed, args.prebuilt)
-    for filename in ("index.html", "404.html"):
+    for filename in ("index.html", "404.html", "demo-hover-topbar.html"):
         shutil.copyfile(Path(__file__).with_name(filename), output / filename)
     shutil.copytree(args.demo_archive, output / "demo-404")
     check_links(output)

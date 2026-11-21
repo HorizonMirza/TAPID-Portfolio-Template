@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Coba lima efek hover untuk menu portofolio TAP.ID.">
+  <title>Demo hover topbar · TAP.ID</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, sans-serif;
+      color: #101c35;
+      background: #f2f5fb;
+    }
+    *, ::before, ::after { box-sizing: border-box; }
+    body { margin: 0; }
+    button { font: inherit; cursor: pointer; }
+    a { color: inherit; }
+    button:focus-visible, a:focus-visible { outline: 2px solid #345bdf; outline-offset: 4px; }
+    main {
+      width: min(72rem, calc(100% - clamp(2rem, 8vw, 8rem)));
+      margin: clamp(1.4rem, 5vw, 4rem) auto;
+    }
+    .back { font-size: .86rem; font-weight: 650; text-decoration: none; text-underline-offset: .28em; }
+    .back:hover { text-decoration: underline; }
+    h1 { margin: .85rem 0 .6rem; font-size: clamp(2rem, 5.2vw, 4.3rem); line-height: 1; letter-spacing: -.065em; }
+    .intro { margin: 0 0 1.4rem; color: #42536f; line-height: 1.6; }
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr));
+      gap: .45rem;
+      margin: 0;
+    }
+    .option {
+      display: flex;
+      gap: .55rem;
+      align-items: baseline;
+      min-block-size: 2.75rem;
+      padding: .7rem .65rem;
+      border: 1px solid #bac8df;
+      border-radius: .5rem;
+      background: #fff;
+      color: inherit;
+      text-align: start;
+      font-size: .87rem;
+      font-weight: 700;
+    }
+    .option span { color: #435c9c; font-size: .72rem; font-variant-numeric: tabular-nums; }
+    .option:hover { border-color: #345bdf; }
+    .option[aria-pressed="true"] { border-color: #345bdf; background: #e7edff; box-shadow: inset 0 0 0 1px #345bdf; }
+    .description { margin: .8rem 0; color: #42536f; font-size: .89rem; line-height: 1.5; }
+    .preview {
+      --surface: #fff;
+      --tint: #e3e9fb;
+      --ink: #101c35;
+      --accent: #315eef;
+      --line: #c0ceec;
+      overflow: hidden;
+      border: 1px solid #bac8df;
+      border-radius: .85rem;
+      color: var(--ink);
+      box-shadow: 0 14px 34px #14295215;
+    }
+    .preview[data-mode="dark"] {
+      --surface: #15213a;
+      --tint: #243455;
+      --ink: #f4f7ff;
+      --accent: #a6c1ff;
+      --line: #485f8b;
+    }
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      grid-template-areas: "brand nav mode";
+      align-items: center;
+      gap: .35rem 1rem;
+      padding: .65rem clamp(.6rem, 2.5vw, 1.75rem);
+      background: linear-gradient(115deg, var(--surface) 55%, var(--tint));
+      border-block-end: 1px solid var(--line);
+    }
+    .brand { grid-area: brand; font-size: .99rem; letter-spacing: -.025em; }
+    .mode {
+      grid-area: mode;
+      justify-self: end;
+      min-block-size: 2.75rem;
+      padding: .3rem .55rem;
+      border: 1px solid var(--line);
+      border-radius: .5rem;
+      color: inherit;
+      background: var(--surface);
+      font-size: .76rem;
+      font-weight: 650;
+    }
+    .preview-nav { grid-area: nav; display: flex; flex-wrap: wrap; justify-content: center; gap: .15rem; }
+    .preview-link {
+      position: relative;
+      isolation: isolate;
+      min-block-size: 2.75rem;
+      min-inline-size: 2.75rem;
+      padding: .7rem .6rem;
+      border: 0;
+      background: none;
+      color: inherit;
+      font-size: .81rem;
+      font-weight: 680;
+    }
+    .preview button:focus-visible { outline-color: var(--accent); outline-offset: 0; }
+    .preview-link::before {
+      position: absolute;
+      z-index: -1;
+      content: '';
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .2s ease;
+    }
+    .preview-link[aria-current]::after {
+      position: absolute;
+      inset: auto .55rem .22rem;
+      block-size: 2px;
+      background: var(--accent);
+      content: '';
+    }
+    .preview-link:is(:hover, :focus-visible),
+    .preview-nav:not(:has(.preview-link:is(:hover, :focus-visible))) .preview-link[aria-pressed="true"] {
+      --hover-opacity: 1;
+      --hover-transform: none;
+      --hover-lift: -2px;
+    }
+    .preview[data-effect="01"] .preview-link::before {
+      inset: .3rem .12rem;
+      border-radius: 2rem;
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+    }
+    .preview[data-effect="02"] .preview-link::before {
+      inset: .32rem .14rem;
+      border: 1px solid var(--accent);
+      border-radius: .32rem;
+    }
+    .preview[data-effect="03"] .preview-link::before {
+      inset: .24rem .55rem auto;
+      block-size: 2px;
+      background: var(--accent);
+      transform: var(--hover-transform, scaleX(.2));
+    }
+    .preview[data-effect="04"] .preview-link::before {
+      inset: .2rem auto auto calc(50% - 2.5px);
+      inline-size: 5px;
+      block-size: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      transform: var(--hover-transform, translateY(3px));
+    }
+    .preview[data-effect="05"] .preview-label {
+      display: inline-block;
+      translate: 0 var(--hover-lift, 0px);
+      transition: translate .2s ease;
+    }
+    .preview[data-effect] .preview-link::before { opacity: var(--hover-opacity, 0); }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, .7fr);
+      min-block-size: clamp(8rem, 17vw, 13rem);
+      background: #121f37;
+      color: #f6f8ff;
+    }
+    .hero-copy { align-self: center; padding: clamp(.85rem, 3vw, 2rem); }
+    .hero p { margin: 0 0 .25rem; color: #b8caff; font-size: .72rem; font-weight: 700; letter-spacing: .075em; text-transform: uppercase; }
+    .hero strong { font-size: clamp(1.3rem, 4.5vw, 3.6rem); line-height: 1.04; letter-spacing: -.06em; }
+    .portrait { position: relative; }
+    .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; }
+    .portrait::after { position: absolute; inset: 0; content: ''; background: linear-gradient(90deg, #121f37, transparent 45%); }
+    @media (max-width: 53rem) {
+      .topbar { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "brand mode" "nav nav"; }
+    }
+    @media (max-width: 37rem) {
+      .options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .preview-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .preview-link { padding-inline: .42rem; font-size: .78rem; overflow-wrap: anywhere; }
+      .preview-link[aria-current]::after { inset-inline: .4rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .preview-link::before, .preview[data-effect="05"] .preview-label { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="./">← Portofolio TAP.ID</a>
+    <h1>Efek hover topbar</h1>
+    <p class="intro">Pilih efek 01–05, lalu arahkan kursor atau ketuk salah satu menu di pratinjau.</p>
+    <div class="options" role="group" aria-label="Pilihan efek hover">
+      <button type="button" class="option" data-effect="01" aria-pressed="true" data-description="Latar tipis membulat muncul di balik menu."><span>01</span> Pil lembut</button>
+      <button type="button" class="option" data-effect="02" aria-pressed="false" data-description="Bingkai tipis mengelilingi teks menu."><span>02</span> Bingkai tipis</button>
+      <button type="button" class="option" data-effect="03" aria-pressed="false" data-description="Garis pendek di atas teks melebar dari tengah."><span>03</span> Garis atas</button>
+      <button type="button" class="option" data-effect="04" aria-pressed="false" data-description="Titik kecil muncul tepat di atas tengah menu."><span>04</span> Titik aksen</button>
+      <button type="button" class="option" data-effect="05" aria-pressed="false" data-description="Teks naik sedikit lalu kembali ke posisi awal."><span>05</span> Naik ringan</button>
+    </div>
+    <p class="description" id="effect-description" aria-live="polite">Latar tipis membulat muncul di balik menu.</p>
+    <section class="preview" data-effect="01" data-mode="light" aria-label="Pratinjau topbar">
+      <header class="topbar">
+        <strong class="brand">Arga Pradana</strong>
+        <nav class="preview-nav" aria-label="Menu pratinjau">
+          <button type="button" class="preview-link" aria-current="location" aria-pressed="false"><span class="preview-label">Beranda</span></button>
+          <button type="button" class="preview-link" aria-pressed="false"><span class="preview-label">Tentang</span></button>
+          <button type="button" class="preview-link" aria-pressed="true"><span class="preview-label">Proyek</span></button>
+          <button type="button" class="preview-link" aria-pressed="false"><span class="preview-label">Keahlian</span></button>
+          <button type="button" class="preview-link" aria-pressed="false"><span class="preview-label">Pengalaman</span></button>
+          <button type="button" class="preview-link" aria-pressed="false"><span class="preview-label">Kontak</span></button>
+        </nav>
+        <button type="button" class="mode" aria-pressed="false">Mode gelap</button>
+      </header>
+      <div class="hero">
+        <div class="hero-copy"><p>Frontend Engineer</p><strong>Arga Pradana</strong></div>
+        <div class="portrait"><img src="teknologi/media/home-portrait.webp" alt="" width="1200" height="800" decoding="async"></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const preview = document.querySelector('.preview');
+    const options = [...document.querySelectorAll('.option')];
+    const links = [...preview.querySelectorAll('.preview-link')];
+    const description = document.getElementById('effect-description');
+    const mode = preview.querySelector('.mode');
+
+    const select = (buttons, selected) => {
+      for (const button of buttons) button.setAttribute('aria-pressed', String(button === selected));
+    };
+    for (const button of options) {
+      button.addEventListener('click', () => {
+        select(options, button);
+        preview.dataset.effect = button.dataset.effect;
+        description.textContent = button.dataset.description;
+      });
+    }
+    for (const link of links) link.addEventListener('click', () => select(links, link));
+    mode.addEventListener('click', () => {
+      const isDark = preview.dataset.mode === 'light';
+      preview.dataset.mode = isDark ? 'dark' : 'light';
+      mode.setAttribute('aria-pressed', String(isDark));
+      mode.textContent = isDark ? 'Mode terang' : 'Mode gelap';
+    });
+  </script>
+</body>
+</html>

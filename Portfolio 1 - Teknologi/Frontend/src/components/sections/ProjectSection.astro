@@ -58,7 +58,7 @@ const close = english ? 'Close' : 'Tutup';
       <ol class="project-preview-items" id="project-preview-items" hidden={layout === 'accordion'}>
         {projects.map((project, index) => (
           <li id={`project-preview-item-${index}`} data-project-card>
-            <article class="project-preview-card">
+            <article class="project-preview-card" data-project-image-card={project.image ? "" : undefined}>
               {project.image
                 ? <figure class="project-preview-art" data-loading-media>
                     <a class="project-image-open" href={project.image.src} data-project-image={project.title}
@@ -86,7 +86,7 @@ const close = english ? 'Close' : 'Tutup';
               <span class="project-preview-category">{project.category}</span>
               <span class="project-preview-detail-title">{project.title}</span>
             </summary>
-            <div class="project-preview-detail">
+            <div class="project-preview-detail" data-project-image-card={project.image ? "" : undefined}>
               {project.image && <figure class="project-detail-media" data-loading-media>
                 <a class="project-image-open" href={project.image.src} data-project-image={project.title}
                    aria-label={`${enlarge}: ${project.title}`}>
@@ -120,7 +120,18 @@ const close = english ? 'Close' : 'Tutup';
 <script is:inline>
   document.addEventListener('click', (event) => {
     if (event.defaultPrevented || event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
-    const link = event.target.closest?.('a[data-project-image]');
+    const target = event.target;
+    let link = target.closest?.('a[data-project-image]');
+    if (!link) {
+      const card = target.closest?.('[data-project-image-card]');
+      if (!card || target.closest('a, button, summary, input, select, textarea, label, [contenteditable]')) return;
+
+      // Dragging to select project text must not open the image.
+      const selection = window.getSelection();
+      if (selection && !selection.isCollapsed && card.contains(selection.anchorNode)) return;
+
+      link = card.querySelector('a[data-project-image]');
+    }
     if (!link) return;
     const dialog = link.closest('[data-project-section]')?.querySelector('[data-project-image-dialog]');
     if (!dialog || typeof dialog.showModal !== 'function' || dialog.open) return;

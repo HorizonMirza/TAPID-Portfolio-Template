@@ -16,6 +16,8 @@ a { display: grid; overflow: hidden; border: 1px solid #cbd5df; border-radius: .
 a:hover strong, a:focus-visible strong { text-decoration: underline; }
 a:focus-visible { outline: 3px solid #1675b8; outline-offset: 3px; }
 img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 33%; }
+.hover-demo-link { display: inline-flex; align-items: center; gap: .65rem; padding: .6rem .85rem; font-weight: 650; }
+.hover-demo-link:hover { text-decoration: underline; }
 .card { display: grid; gap: .32rem; padding: .85rem 1rem 1rem; }
 strong { font-size: 1.15rem; }
 small { color: #526170; }
@@ -29,6 +31,7 @@ small { color: #526170; }
 <body><main>
 <h1>Portofolio TAP.ID</h1>
 <p>Pilih salah satu dari enam website demo.</p>
+<a class="hover-demo-link" href="demo-hover-topbar.html">Coba 5 demo hover topbar <span aria-hidden="true">→</span></a>
 <ul>
 <li><a href="teknologi/"><img src="teknologi/media/home-portrait.webp" alt="" width="640" height="360"><span class="card"><strong>Teknologi</strong><span>Arga Pradana</span><small>Frontend Engineer</small></span></a></li>
 <li><a href="asuransi/"><img src="asuransi/media/home-portrait.webp" alt="" width="640" height="360"><span class="card"><strong>Asuransi</strong><span>Alya Wicaksana</span><small>Analis Risiko &amp; Polis</small></span></a></li>

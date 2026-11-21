@@ -1,3 +1,6 @@
+[data-project-image-card] { cursor: zoom-in; }
+[data-project-image-card] a.project-link { cursor: pointer; }
+
 .project-image-open {
   display: block;
   position: relative;
@@ -49,8 +52,11 @@
 
 .project-image-panel h2 {
   font: 750 clamp(1.1rem, 2.3vw, 1.65rem)/1.2 var(--project-display);
+  min-inline-size: 0;
   overflow-wrap: anywhere;
 }
+
+.project-image-panel form { flex: none; }
 
 .project-image-panel button {
   display: grid;
