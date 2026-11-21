@@ -136,20 +136,24 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               const progress = Math.min(1, distance / travel);
               topbar.style.setProperty('--section-progress', atBottom ? '1' : String(progress));
             };
-            const finishNavigation = () => {
-              window.clearTimeout(navigationTimer);
-              navigationTimer = undefined;
-              if (!pendingSection) return;
-
-              const hash = pendingSection;
-              pendingSection = undefined;
-              const target = sections.get(hash);
+            const sectionScrollTop = (target) => {
               const startInset = parseFloat(getComputedStyle(root).scrollPaddingBlockStart) || 0;
               const targetMargin = parseFloat(getComputedStyle(target).scrollMarginBlockStart) || 0;
               const targetPosition = window.scrollY + target.getBoundingClientRect().top - startInset - targetMargin;
-              const expectedScroll = Math.max(0, Math.min(targetPosition, root.scrollHeight - root.clientHeight));
+              return Math.max(0, Math.min(targetPosition, root.scrollHeight - root.clientHeight));
+            };
+            const finishNavigation = (event) => {
+              if (!pendingSection) return;
+              const hash = pendingSection;
+              const target = sections.get(hash);
+              const arrived = Math.abs(window.scrollY - sectionScrollTop(target)) <= 3;
+              if (event && !arrived) return;
+
+              window.clearTimeout(navigationTimer);
+              navigationTimer = undefined;
+              pendingSection = undefined;
               updateSection();
-              if (Math.abs(window.scrollY - expectedScroll) > 3) return;
+              if (!arrived) return;
 
               markSection(hash);
               if (!reducedMotion.matches && typeof target.animate === 'function') {
@@ -197,7 +201,18 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               if (event.defaultPrevented || event.button !== 0 || event.metaKey ||
                   event.ctrlKey || event.shiftKey || event.altKey) return;
               const link = event.target.closest?.('a[href^="#"]');
-              if (link) selectSection(link.hash);
+              if (!link || !selectSection(link.hash) || !link.closest('.mobile-nav')) return;
+
+              if (location.hash !== link.hash) {
+                try { history.pushState(history.state, '', link.hash); } catch { return; }
+              }
+              event.preventDefault();
+              const target = sections.get(link.hash);
+              if (event.detail === 0) {
+                if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+                target.focus({ preventScroll: true });
+              }
+              window.scrollTo({ top: sectionScrollTop(target), behavior: reducedMotion.matches ? 'instant' : 'smooth' });
             }, { signal });
             updateTopbarHeight();
             if ('ResizeObserver' in window) {
