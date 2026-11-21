@@ -33,12 +33,16 @@
   outline-offset: 3px;
 }
 
-.project-preview-card:focus-within, .footer-channel:focus-visible {
+.project-preview-card { outline: 2px solid transparent; }
+.project-preview-card:focus-within { outline-color: var(--focus); }
+
+.footer-channel:focus-visible {
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--focus) 65%, transparent);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  :is(.project-preview-card, .footer-channel, .skill-list > li):hover {
+  .project-preview-card:hover { outline-color: var(--focus); }
+  .footer-channel:hover {
     box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--focus) 60%, transparent);
   }
   .about-fact:hover {
@@ -70,7 +74,8 @@
   }
 
   .about-fact { transition: box-shadow .2s ease, background-color .2s ease; }
-  :is(.project-preview-card, .footer-channel, .skill-list > li) {
+  .project-preview-card { transition: translate .2s ease, outline-color .2s ease; }
+  .footer-channel {
     transition: translate .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
 
