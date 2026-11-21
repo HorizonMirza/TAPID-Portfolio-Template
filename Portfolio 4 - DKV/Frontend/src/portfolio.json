@@ -143,6 +143,78 @@
           "en": "Arah Festival board with three coloured direction signs."
         }
       }
+    },
+    {
+      "title": "Sisip Cerita",
+      "category": {
+        "id": "Kampanye literasi",
+        "en": "Literacy campaign"
+      },
+      "description": {
+        "id": "Konsep kampanye perpustakaan komunitas yang mengajak pengunjung menyisihkan sepuluh menit untuk membaca. Poster memakai judul singkat dan ilustrasi halaman terbuka, sementara pembatas buku membawa pesan yang sama ke dalam buku pinjaman.",
+        "en": "A community library campaign concept that invites visitors to set aside ten minutes for reading. A short headline and open-book motif lead the poster, and a bookmark carries the same message into borrowed books."
+      },
+      "image": {
+        "src": "/media/sisip-cerita.webp",
+        "alt": {
+          "id": "Poster merah Sisip Cerita bersama pembatas buku krem dan hijau.",
+          "en": "Red Sisip Cerita campaign poster with cream and green bookmarks."
+        }
+      }
+    },
+    {
+      "title": "Huruf Pesisir",
+      "category": {
+        "id": "Studi tipografi",
+        "en": "Typography study"
+      },
+      "description": {
+        "id": "Lembar spesimen tipografi untuk konsep arsip pesisir. Huruf besar memperlihatkan bentuk serif dan kontras goresan, sementara contoh judul, teks pendek, dan angka menunjukkan bagaimana karakter huruf berubah pada berbagai ukuran.",
+        "en": "A typography specimen for a coastal archive concept. Large letterforms show the serifs and stroke contrast, while headline, short-copy, and numeral samples show how the type reads at different sizes."
+      },
+      "image": {
+        "src": "/media/huruf-pesisir.webp",
+        "alt": {
+          "id": "Lembar spesimen Huruf Pesisir dengan huruf Aa besar, contoh judul, dan deret angka.",
+          "en": "Huruf Pesisir type specimen with oversized Aa letterforms, a headline sample, and numerals."
+        }
+      }
+    },
+    {
+      "title": "Arsip Bunyi",
+      "category": {
+        "id": "Desain sampul album",
+        "en": "Album artwork"
+      },
+      "description": {
+        "id": "Rancangan sampul dan label piringan untuk kompilasi fiktif bertema bunyi sekitar. Garis gelombang pada sampul dan aksen merah pada label membentuk satu identitas. Daftar lagu dibagi menjadi sisi A dan B agar mudah dipindai.",
+        "en": "Sleeve and record-label artwork for a fictional compilation of everyday sounds. Wave bands on the sleeve and the red centre label form a consistent identity. The track list is split into sides A and B for easy scanning."
+      },
+      "image": {
+        "src": "/media/arsip-bunyi.webp",
+        "alt": {
+          "id": "Sampul Arsip Bunyi bergaris merah, piringan hitam, dan daftar lagu sisi A serta B.",
+          "en": "Arsip Bunyi sleeve with red wave bands, a vinyl record, and a track list for sides A and B."
+        }
+      }
+    },
+    {
+      "title": "Peta Teduh",
+      "category": {
+        "id": "Desain informasi",
+        "en": "Information design"
+      },
+      "description": {
+        "id": "Peta ilustratif untuk rute jalan kaki di lingkungan fiktif. Jalur merah dipisahkan dari blok bangunan, sementara legenda menandai taman dan tempat istirahat agar rute mudah diikuti sekilas.",
+        "en": "An illustrated walking map for a fictional neighbourhood. A red route stands out from the building blocks, and the legend marks parks and rest stops so the route is easy to follow at a glance."
+      },
+      "image": {
+        "src": "/media/peta-teduh.webp",
+        "alt": {
+          "id": "Peta Teduh dengan rute merah berbelok, blok taman hijau, dan legenda.",
+          "en": "Peta Teduh map with a red walking route, green park blocks, and a legend."
+        }
+      }
     }
   ],
   "skills": [
