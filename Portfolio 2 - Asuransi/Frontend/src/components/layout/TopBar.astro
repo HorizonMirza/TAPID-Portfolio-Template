@@ -12,7 +12,7 @@ const links = portfolioHref ? nav.map((item) => ({
   href: item.href === '#contact' ? item.href : portfolioHref + item.href,
 })) : nav;
 ---
-<header class="tapbar tapbar-asuransi" data-nav="capsule" data-skin="float" data-links="pill">
+<header class="tapbar tapbar-asuransi" data-links="pill">
   <div class="tapbar-inner" data-motion="snap">
     <a class="tapbar-brand" href={(portfolioHref ?? "") + "#home"}>
       <strong>{p.name}</strong>

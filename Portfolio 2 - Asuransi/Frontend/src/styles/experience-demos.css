@@ -290,3 +290,28 @@
 [data-layout="feature"] .experience-entry:first-child .experience-org { color: inherit; }
 
 #experience:not([data-experience-demos]) .experience-stage-heading { border-block-end: 0; }
+
+#experience:not([data-experience-demos]) {
+  --record-gap: clamp(.75rem, 1.5vw, 1.2rem);
+  --record-pad: clamp(.95rem, 2vw, 1.5rem);
+}
+#experience:not([data-experience-demos]) .experience-entry {
+  padding: var(--record-pad);
+  outline: 1px solid transparent;
+}
+#experience:not([data-experience-demos]) .experience-entry h3 {
+  font-size: clamp(1.25rem, 2.3vw, 1.95rem);
+}
+
+@media (min-width: 45rem) {
+  #experience:not([data-experience-demos]) .experience-records {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  #experience:not([data-experience-demos]) .experience-entry:hover { outline-color: var(--focus); }
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  #experience:not([data-experience-demos]) .experience-entry { transition: outline-color .2s ease, translate .2s ease; }
+  #experience:not([data-experience-demos]) .experience-entry:hover { translate: 0 -2px; }
+}
