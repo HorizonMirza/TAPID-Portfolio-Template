@@ -238,7 +238,7 @@
 .experience-accordion summary::after { content: '+'; font-size: 1.3rem; }
 .experience-accordion details[open] summary::after { content: '−'; }
 .experience-accordion .experience-period { margin: 0; }
-.experience-accordion-content { display: grid; grid-template-rows: 1fr; }
+.experience-accordion-content { display: grid; grid-template-rows: 1fr; min-block-size: 0; overflow: hidden; }
 .experience-accordion-content > div { min-block-size: 0; overflow: hidden; }
 .experience-accordion-content p { margin-inline: var(--record-pad); }
 .experience-accordion-content .experience-org { margin-block-start: .52rem; }
@@ -246,6 +246,21 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .experience-accordion details[open] > .experience-accordion-content { animation: experience-expand .28s ease-out; }
+
+  @supports selector(::details-content) and (transition-behavior: allow-discrete) {
+    .experience-accordion details::details-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      overflow: clip;
+      opacity: 0;
+      transition: grid-template-rows .28s ease-out, opacity .22s ease-out, content-visibility .28s allow-discrete;
+    }
+    .experience-accordion details[open]::details-content {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+    .experience-accordion details[open] > .experience-accordion-content { animation: none; }
+  }
 }
 
 @keyframes experience-expand {
