@@ -33,7 +33,7 @@ const logos = {
       </div>
       <ul class="footer-channels">
         {channels.map(({ kind, label, detail, href, enabled = true, sample }) => {
-          const example = Boolean(sample || preview);
+          const example = Boolean(sample);
           const Card = example ? 'div' : 'a';
           const external = !example && href.startsWith('https:');
           return (
@@ -56,7 +56,7 @@ const logos = {
                 )}
               </span>
               <span class="footer-channel-copy">
-                <strong>{label}{example && <small class="footer-sample"> · {english ? 'Example' : 'Contoh'}</small>}</strong>
+                <strong>{label}</strong>
                 {detail && <span>{detail}</span>}
               </span>
               {!example && <span class="footer-channel-arrow" aria-hidden="true">↗</span>}
@@ -71,7 +71,6 @@ const logos = {
     </p>}
     <div class="contact-footer-signoff">
       <small>© {year} {name}</small>
-      {!preview && <a href="#home">{english ? 'Back to top' : 'Ke atas'}</a>}
     </div>
   </div>
 </footer>

@@ -1,6 +1,7 @@
 .project-image-open {
   display: block;
   position: relative;
+  cursor: zoom-in;
 }
 
 .project-preview-art[data-loading-media] {
@@ -17,26 +18,6 @@
 .project-preview-art .project-image-open img { object-fit: contain; }
 .project-image-open:focus-visible { outline-offset: -4px; }
 
-.project-image-open > span {
-  position: absolute;
-  z-index: 2;
-  inset: auto .65rem .65rem auto;
-  display: flex;
-  align-items: center;
-  min-height: 2rem;
-  max-width: calc(100% - 1.3rem);
-  padding: .3rem .55rem;
-  border: 1px solid var(--line);
-  border-radius: .3rem;
-  background: var(--surface);
-  color: var(--ink);
-  font-size: .78rem;
-  font-weight: 730;
-}
-
-.project-image-open:hover > span,
-.project-image-open:focus-visible > span { text-decoration: underline; }
-
 .project-image-dialog {
   position: fixed;
   inset: 0;
@@ -51,7 +32,10 @@
   background: var(--surface);
 }
 
-.project-image-dialog::backdrop { background: rgb(6 12 24 / 82%); }
+.project-image-dialog::backdrop {
+  background: rgb(6 12 24 / 60%);
+  backdrop-filter: blur(7px);
+}
 :root:has(.project-image-dialog[open]) { overflow: hidden; }
 
 .project-image-panel > header {
@@ -69,6 +53,7 @@
 }
 
 .project-image-panel button {
+  min-width: 2.75rem;
   min-height: 2.75rem;
   padding: .35rem .65rem;
   white-space: nowrap;
@@ -76,7 +61,7 @@
   border-radius: .3rem;
   background: var(--surface);
   color: var(--ink);
-  font: 700 .87rem/1.25 var(--body);
+  font: 650 1.45rem/1 var(--body);
   cursor: pointer;
 }
 

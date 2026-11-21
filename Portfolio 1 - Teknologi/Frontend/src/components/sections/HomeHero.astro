@@ -7,7 +7,7 @@ import '../../styles/home-demos-theme.css';
 
 interface Props { language: Language; preview?: boolean }
 const { language, preview = false } = Astro.props;
-const { p, projects, skills, demo } = localize(language);
+const { p, projects, skills } = localize(language);
 const project = projects[0];
 ---
 <div class="home-demo-stage" id={preview ? "home-demo-stage" : undefined} data-demo-stage={preview ? "" : undefined}
@@ -20,7 +20,7 @@ const project = projects[0];
     <div class="home-demo-copy">
       <p class="home-demo-headline">{p.headline}</p>
       <p class="home-demo-intro">{p.intro}</p>
-      <CvLink href={p.cvUrl} demo={demo} language={language} />
+      <CvLink href={p.cvUrl} />
     </div>
   </div>
   {p.portrait && <figure class="home-demo-portrait" data-loading-media>

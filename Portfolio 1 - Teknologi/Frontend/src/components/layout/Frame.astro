@@ -101,6 +101,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
             }
 
             let activeSection;
+            let pendingSection;
             let navigationTimer;
             let scrollFrame;
             const markSection = (hash) => {
@@ -112,7 +113,9 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               }
             };
             const updateSection = () => {
-              const readingLine = topbar.offsetHeight + 24;
+              const viewport = root.clientHeight;
+              const topbarHeight = topbar.offsetHeight;
+              const readingLine = topbarHeight + Math.max(24, (viewport - topbarHeight) * .22);
               const atBottom = window.scrollY > 0 && window.scrollY + root.clientHeight >= root.scrollHeight - 2;
               let current = '#home';
               let currentTop = -Infinity;
@@ -124,6 +127,17 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
                 }
               }
               markSection(current);
+              const section = sections.get(current);
+              const box = section?.getBoundingClientRect();
+              const remaining = root.scrollHeight - viewport - window.scrollY;
+              const distance = box ? Math.max(0, topbarHeight + 12 - box.top) : 0;
+              const travel = box ? Math.max(1, Math.min(box.height, remaining + distance)) : 1;
+              const progress = Math.min(1, distance / travel);
+              topbar.style.setProperty('--section-progress', atBottom ? '1' : String(progress));
+            };
+            const clearPendingSection = () => {
+              pendingSection = undefined;
+              for (const link of links) link.removeAttribute('data-scrolling');
             };
             // Keep the chosen label while scrolling to its anchor. If the user
             // scrolls elsewhere before it settles, mark the section now in view.
@@ -131,7 +145,9 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               window.clearTimeout(navigationTimer);
               navigationTimer = window.setTimeout(() => {
                 navigationTimer = undefined;
-                const target = sections.get(activeSection);
+                const hash = pendingSection;
+                const target = sections.get(hash);
+                clearPendingSection();
                 if (!target) {
                   updateSection();
                   return;
@@ -140,12 +156,14 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
                 const targetMargin = parseFloat(getComputedStyle(target).scrollMarginBlockStart) || 0;
                 const targetPosition = window.scrollY + target.getBoundingClientRect().top - startInset - targetMargin;
                 const expectedScroll = Math.max(0, Math.min(targetPosition, root.scrollHeight - root.clientHeight));
-                if (Math.abs(window.scrollY - expectedScroll) > 3) updateSection();
+                updateSection();
+                if (Math.abs(window.scrollY - expectedScroll) <= 3) markSection(hash);
               }, 140);
             };
             const selectSection = (hash) => {
               if (!sections.has(hash)) return false;
-              markSection(hash);
+              pendingSection = hash;
+              for (const link of links) link.toggleAttribute('data-scrolling', link.hash === hash);
               holdSection();
               return true;
             };
@@ -154,12 +172,11 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               if (!navigationTimer) updateSection();
             };
             window.addEventListener('scroll', () => {
-              if (navigationTimer) {
-                holdSection();
-              } else if (!scrollFrame) {
+              if (navigationTimer) holdSection();
+              if (!scrollFrame) {
                 scrollFrame = window.requestAnimationFrame(() => {
                   scrollFrame = undefined;
-                  if (!navigationTimer) updateSection();
+                  updateSection();
                 });
               }
             }, { passive: true, signal });
@@ -168,6 +185,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               if (!selectSection(location.hash)) {
                 window.clearTimeout(navigationTimer);
                 navigationTimer = undefined;
+                clearPendingSection();
                 updateSection();
               }
             }, { signal });
@@ -177,8 +195,8 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               const link = event.target.closest?.('a[href^="#"]');
               if (link) selectSection(link.hash);
             }, { signal });
-            selectSection(location.hash);
             updateTopbarHeight();
+            selectSection(location.hash);
             if ('ResizeObserver' in window) {
               const observer = new ResizeObserver(updateTopbarHeight);
               observer.observe(topbar);

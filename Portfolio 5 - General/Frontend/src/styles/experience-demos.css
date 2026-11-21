@@ -81,7 +81,7 @@
   font: 730 clamp(1.3rem, 2.55vw, 2.55rem)/1.1 var(--record-type);
   letter-spacing: -.035em;
 }
-.experience-period { color: var(--muted); font-size: .83rem; font-weight: 700; font-variant-numeric: tabular-nums; margin-block-end: .55rem; }
+.experience-period { color: var(--muted); font-size: clamp(1rem, 1.4vw, 1.22rem); font-weight: 750; line-height: 1.3; font-variant-numeric: tabular-nums; margin-block-end: .55rem; }
 .experience-org { font-weight: 730; margin-block: .42rem .65rem; }
 .experience-description { color: var(--muted); max-width: 66ch; line-height: 1.6; }
 

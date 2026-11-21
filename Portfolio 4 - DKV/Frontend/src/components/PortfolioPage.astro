@@ -20,7 +20,7 @@ interface Props {
 const { language, preview } = Astro.props;
 const previewPath = preview ? demoSlugs[preview] + '/' : undefined;
 const languageHref = previewPath ? `${language === 'id' ? '/en/' : '/'}${previewPath}` : undefined;
-const { copy, p, projects, skills, experience, contact, demo } = localize(language);
+const { copy, p, projects, skills, experience, contact } = localize(language);
 const heroImage = projects.find((project) => project.image)?.image;
 ---
 <Frame language={language} skip={copy.skip} previewPath={previewPath}>
@@ -46,7 +46,7 @@ const heroImage = projects.find((project) => project.image)?.image;
         <div class="studio-split split-hero">
           <div class="studio-intro hero-copy">
             <p class="studio-line">{p.headline}</p><p>{p.intro}</p>
-            <CvLink href={p.cvUrl} demo={demo} language={language} />
+            <CvLink href={p.cvUrl} />
           </div>
           {heroImage ? <figure class="studio-portrait hero-media"><img class="profile-image" src={heroImage.src} alt={heroImage.alt} fetchpriority="high" /></figure> :
             <div class="paper-fold hero-media" aria-hidden="true"><span></span></div>}

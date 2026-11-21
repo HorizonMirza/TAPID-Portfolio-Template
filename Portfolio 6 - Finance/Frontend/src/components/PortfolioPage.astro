@@ -20,7 +20,7 @@ interface Props {
 const { language, preview } = Astro.props;
 const previewPath = preview ? demoSlugs[preview] + '/' : undefined;
 const languageHref = previewPath ? `${language === 'id' ? '/en/' : '/'}${previewPath}` : undefined;
-const { copy, p, projects, skills, experience, contact, demo } = localize(language);
+const { copy, p, projects, skills, experience, contact } = localize(language);
 ---
 <Frame language={language} skip={copy.skip} previewPath={previewPath}>
   <TopBar language={language} languageHref={languageHref} />
@@ -38,7 +38,7 @@ const { copy, p, projects, skills, experience, contact, demo } = localize(langua
         <div class="finance-deck hero-copy">
           <p class="home-demo-role">{p.role}</p><h1>{p.name}</h1>
           <p class="finance-line">{p.headline}</p><p class="finance-intro">{p.intro}</p>
-          <CvLink href={p.cvUrl} demo={demo} language={language} />
+          <CvLink href={p.cvUrl} />
         </div>
       </section>
     )}

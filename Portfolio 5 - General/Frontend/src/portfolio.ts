@@ -1,6 +1,7 @@
 import { z } from 'astro/zod';
 import source from './portfolio.json';
 import { contactKinds, footerChannels } from './footer-channels';
+import { demoContactLinks, demoCvUrl } from './demo-contact';
 
 const text = z.string().trim().min(1);
 const localized = z.object({ id: text, en: text });
@@ -95,7 +96,7 @@ export function localize(language: Language) {
     headline: pr.headline[language],
     intro: pr.introduction[language],
     portrait: getImage(pr.portrait),
-    cvUrl: pr.cvUrl,
+    cvUrl: pr.cvUrl ?? (portfolio.settings.demo ? demoCvUrl : undefined),
   };
   const about = {
     description: portfolio.about.description[language],
@@ -115,9 +116,12 @@ export function localize(language: Language) {
     period: item.period[language],
     description: item.description[language],
   }));
+  const links = portfolio.settings.demo
+    ? [...demoContactLinks, ...portfolio.contact.links.filter((link) => !link.sample)]
+    : portfolio.contact.links;
   const contact = {
-    links: portfolio.contact.links,
-    channels: footerChannels(portfolio.contact.links, p.cvUrl, portfolio.contact.showResume, portfolio.settings.demo),
+    links,
+    channels: footerChannels(links, p.cvUrl, portfolio.contact.showResume, portfolio.settings.demo),
   };
   const nav = [
     ['home', copy.home, true],

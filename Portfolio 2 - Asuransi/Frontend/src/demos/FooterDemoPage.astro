@@ -17,17 +17,9 @@ const theme = 'asuransi';
 const path = english ? '/en/' : '/';
 const previewPath = demoSlugs.footer + '/';
 const languageHref = (english ? '/' : '/en/') + previewPath;
-const handle = p.name.toLowerCase().replace(/[^a-z0-9]/g, '');
-const whatsapp = contact.channels.find(({ kind }) => kind === 'whatsapp');
-const email = contact.links.find(({ href }) => href.startsWith('mailto:'));
 const channels: FooterChannel[] = [
-  { kind: 'whatsapp', label: 'WhatsApp', detail: whatsapp?.detail, href: whatsapp?.href ?? 'https://www.whatsapp.com/', enabled: true },
-  { kind: 'email', label: 'Email', detail: email?.label ?? 'halo@example.com', href: email?.href ?? 'mailto:halo@example.com', enabled: true },
-  { kind: 'linkedin', label: 'LinkedIn', detail: p.name, href: 'https://www.linkedin.com/', enabled: true },
-  { kind: 'github', label: 'GitHub', detail: handle, href: 'https://github.com/', enabled: true },
-  { kind: 'instagram', label: 'Instagram', detail: '@' + handle, href: 'https://www.instagram.com/', enabled: true },
-  { kind: 'resume', label: 'Resume CV', detail: 'Google Drive', href: p.cvUrl ?? 'https://drive.google.com/', enabled: true },
-  { kind: 'linktree', label: 'Linktree', detail: p.name, href: 'https://linktr.ee/', enabled: false },
+  ...contact.channels,
+  { kind: 'linktree', label: 'Linktree', detail: p.name, href: 'https://linktr.ee/', enabled: false, sample: true },
 ];
 ---
 <Frame language={language} skip={copy.skip} previewPath={previewPath}>
@@ -53,7 +45,7 @@ const channels: FooterChannel[] = [
         <legend>{english ? 'Contact channels' : 'Kanal kontak'}</legend>
         <div class="footer-demo-checks">
           {channels.map(({ kind, label, enabled }) => (
-            <label><input type="checkbox" value={kind} data-footer-toggle data-default={String(enabled)} checked={enabled} aria-controls="contact" /> {label}</label>
+            <label><input type="checkbox" value={kind} data-footer-toggle data-default={String(enabled ?? true)} checked={enabled ?? true} aria-controls="contact" /> {label}</label>
           ))}
         </div>
       </fieldset>

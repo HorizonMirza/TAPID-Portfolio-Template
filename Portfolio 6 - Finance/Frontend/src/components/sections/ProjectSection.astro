@@ -64,7 +64,6 @@ const close = english ? 'Close' : 'Tutup';
                     <a class="project-image-open" href={project.image.src} data-project-image={project.title}
                        aria-label={`${enlarge}: ${project.title}`}>
                       <img src={project.image.src} alt={project.image.alt} loading="lazy" />
-                      <span aria-hidden="true">{enlarge} ↗</span>
                     </a>
                   </figure>
                 : <div class="project-preview-art project-preview-graphic" data-graphic={index % 3} aria-hidden="true">
@@ -92,7 +91,6 @@ const close = english ? 'Close' : 'Tutup';
                 <a class="project-image-open" href={project.image.src} data-project-image={project.title}
                    aria-label={`${enlarge}: ${project.title}`}>
                   <img src={project.image.src} alt={project.image.alt} loading="lazy" />
-                  <span aria-hidden="true">{enlarge} ↗</span>
                 </a>
               </figure>}
               <p class="project-preview-description">{project.description}</p>
@@ -109,7 +107,7 @@ const close = english ? 'Close' : 'Tutup';
     <div class="project-image-panel">
       <header>
         <h2 id="project-image-heading" data-project-image-heading></h2>
-        <form method="dialog"><button type="submit" autofocus>{close} <span aria-hidden="true">×</span></button></form>
+        <form method="dialog"><button type="submit" aria-label={close} autofocus>×</button></form>
       </header>
       <img data-project-image-full alt="" />
       <p data-project-image-error role="status" hidden>

@@ -25,11 +25,8 @@
   text-decoration: none;
   transition: background-color .22s ease, border-color .22s ease, color .22s ease;
 }
-.controls .control:hover { border-color: var(--focus); background: var(--control-hover); }
+.controls .control:is(:hover, :active) { border-color: var(--focus); background: var(--control-hover); }
 .controls .control:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
-.controls .control-label { transition: transform .22s ease; }
-.controls .language:is(:hover, :focus-visible) .control-label { transform: translateY(-1px); }
-.controls .language:active .control-label { transform: scale(.88); }
 .controls .control-glyph {
   grid-area: 1 / 1;
   position: relative;
@@ -48,5 +45,5 @@
 :where([data-mode="dark"]) .controls .control-moon { opacity: 0; transform: translateY(-.28rem) rotate(32deg) scale(.82); }
 :where([data-mode="dark"]) .controls .control-sun { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  .controls .control, .controls .control-label, .controls .control-glyph { transition: none; }
+  .controls .control, .controls .control-glyph { transition: none; }
 }

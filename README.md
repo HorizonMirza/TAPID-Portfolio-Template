@@ -44,6 +44,8 @@ Each template links to its setup guide, data reference, and build instructions.
 
 GitHub Actions checks and builds all six demos on pushes to `main`, then publishes the verified output to GitHub Pages. Pull requests run the same checks and build. The public gallery retains the original theme URLs and the 404 design archive.
 
+The public demos use temporary contact and résumé links from each template's `Frontend/src/demo-contact.ts`. Client builds use the links in `portfolio.json`.
+
 ## Design demos
 
 Run a template locally with `settings.demo` enabled. Add `/en` before a path to open the English version, or append `?pilihan=04` to open option 04.

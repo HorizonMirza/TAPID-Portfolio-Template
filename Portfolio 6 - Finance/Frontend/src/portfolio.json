@@ -182,7 +182,7 @@
     {
       "title": { "id": "Analis Perencanaan Keuangan", "en": "Financial Planning Analyst" },
       "organization": "Neraca Karya",
-      "period": { "id": "2025–sekarang", "en": "2025–present" },
+      "period": { "id": "2025 - Sekarang", "en": "2025 - Present" },
       "description": {
         "id": "Menyiapkan tinjauan anggaran dan menyusun ringkasan perubahan operasional untuk rapat bulanan.",
         "en": "Prepared budget reviews and summarized operational changes for monthly meetings."
@@ -191,7 +191,7 @@
     {
       "title": { "id": "Asisten Pelaporan", "en": "Reporting Assistant" },
       "organization": "Studio Tilik Data",
-      "period": { "id": "2024–2025", "en": "2024–2025" },
+      "period": { "id": "2024 - 2025", "en": "2024 - 2025" },
       "description": {
         "id": "Mencocokkan data transaksi dan mendokumentasikan aturan rekonsiliasi untuk pelaporan internal.",
         "en": "Reconciled transaction data and documented reconciliation rules for internal reporting."

@@ -1,16 +1,12 @@
 ---
 interface Props {
   href?: string | null;
-  demo: boolean;
-  language: 'id' | 'en';
 }
 
-const { href, demo, language } = Astro.props;
+const { href } = Astro.props;
 ---
-{href ? (
+{href && (
   <a class="home-cv" href={href} target="_blank" rel="noopener noreferrer">Resume CV</a>
-) : demo && (
-  <button class="home-cv" type="button" disabled>Resume CV · {language === 'en' ? 'Example' : 'Contoh'}</button>
 )}
 
 <style>
@@ -33,5 +29,4 @@ const { href, demo, language } = Astro.props;
     text-decoration: underline;
   }
   a.home-cv:focus-visible { outline-color: currentColor; }
-  button.home-cv:disabled { opacity: .64; cursor: default; }
 </style>
