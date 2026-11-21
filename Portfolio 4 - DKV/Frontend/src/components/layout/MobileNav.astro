@@ -9,6 +9,6 @@ const { label, menu, links } = Astro.props;
 <details class="mobile-nav" data-mobile-nav>
   <summary>{menu}</summary>
   <nav aria-label={label}>
-    {links.map(({ href, name }) => <a href={href}>{name}</a>)}
+    {links.map(({ href, name }) => <a href={href}><span class="tapbar-label">{name}</span></a>)}
   </nav>
 </details>
