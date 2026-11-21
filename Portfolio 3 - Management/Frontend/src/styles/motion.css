@@ -1,3 +1,7 @@
+@media screen and (prefers-reduced-motion: no-preference) {
+  [data-scroll-reveal]:not(:focus-within) { opacity: 0; }
+}
+
 /* Keep the loading placeholder within the image's reserved space. */
 .project-detail-media {
   position: relative;

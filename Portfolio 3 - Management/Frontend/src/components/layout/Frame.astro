@@ -78,11 +78,79 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
           : root.dataset.defaultMode === 'system' ? (preference.matches ? 'dark' : 'light') : root.dataset.defaultMode;
         apply(getMode());
         let pageController;
+        function initializeScrollReveal(signal) {
+          if (signal.aborted || reducedMotion.matches || !document.body.hasAttribute('data-portfolio-page') ||
+              !('IntersectionObserver' in window) || typeof Element.prototype.animate !== 'function') return;
+
+          const targets = document.querySelectorAll(`
+            #about .about-stage:not([data-layout="spread"]) .about-intro,
+            #about .about-stage[data-layout="spread"] :is(.about-heading, .about-summary),
+            #about .about-fact,
+            #projects :is(.project-preview-title, .project-preview-tabs, [data-project-card], .project-preview-accordion > details),
+            #skills :is(.skill-stage-head, .skill-list > li),
+            #experience :is(.experience-stage-heading, .experience-entry, .experience-accordion > details),
+            .contact-footer :is(.contact-footer-heading, .footer-channels > li, .contact-footer-signoff)
+          `);
+          const viewportHeight = root.clientHeight;
+          const pending = new Set([...targets].filter((target) =>
+            target.getClientRects().length > 0 && target.getBoundingClientRect().top >= viewportHeight
+          ));
+          if (!pending.size) return;
+
+          const running = new Map();
+          const show = (target) => {
+            observer.unobserve(target);
+            pending.delete(target);
+            target.removeAttribute('data-scroll-reveal');
+          };
+          const observer = new IntersectionObserver((entries) => {
+            for (const { isIntersecting, target } of entries) {
+              if (!isIntersecting || !pending.has(target)) continue;
+              show(target);
+              if (reducedMotion.matches || target.matches(':focus-within')) continue;
+              const animation = target.animate([
+                { opacity: 0, transform: 'translateY(12px)' },
+                { opacity: 1, transform: 'translateY(0)' },
+              ], { duration: 420, easing: 'cubic-bezier(.22, 1, .36, 1)' });
+              running.set(target, animation);
+              animation.onfinish = () => running.delete(target);
+            }
+          });
+
+          for (const target of pending) {
+            target.setAttribute('data-scroll-reveal', '');
+            observer.observe(target);
+          }
+          document.addEventListener('focusin', (event) => {
+            for (const target of pending) {
+              if (target.contains(event.target)) show(target);
+            }
+            for (const [target, animation] of running) {
+              if (!target.contains(event.target)) continue;
+              animation.cancel();
+              running.delete(target);
+            }
+          }, { signal });
+
+          const reset = () => {
+            observer.disconnect();
+            for (const target of pending) target.removeAttribute('data-scroll-reveal');
+            pending.clear();
+            for (const animation of running.values()) animation.cancel();
+            running.clear();
+          };
+          signal.addEventListener('abort', reset, { once: true });
+          reducedMotion.addEventListener('change', () => {
+            if (reducedMotion.matches) reset();
+          }, { signal });
+        }
+
         function initializePage() {
           pageController?.abort();
           pageController = new AbortController();
           const { signal } = pageController;
           apply(getMode());
+          requestAnimationFrame(() => initializeScrollReveal(signal));
           for (const media of document.querySelectorAll('[data-loading-media]')) {
             const image = media.querySelector('img');
             if (!image || image.complete) continue;
@@ -427,7 +495,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
       })();
     </script>
   </head>
-  <body>
+  <body data-portfolio-page={path ? undefined : ''}>
     <a class="skip-link" href="#main">{skip}</a>
     <slot />
   </body>
