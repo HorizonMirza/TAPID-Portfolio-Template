@@ -53,19 +53,21 @@
 }
 
 .project-image-panel button {
+  display: grid;
+  place-items: center;
   min-width: 2.75rem;
   min-height: 2.75rem;
-  padding: .35rem .65rem;
-  white-space: nowrap;
-  border: 1px solid var(--line);
-  border-radius: .3rem;
-  background: var(--surface);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
   color: var(--ink);
-  font: 650 1.45rem/1 var(--body);
+  font: 650 1.55rem/1 var(--body);
   cursor: pointer;
 }
 
-.project-image-panel button:hover { border-color: var(--focus); }
+.project-image-panel button:hover { color: var(--focus); }
+.project-image-panel button:focus-visible { outline-offset: -3px; }
 
 .project-image-panel > img {
   display: block;

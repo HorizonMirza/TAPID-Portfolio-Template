@@ -52,7 +52,6 @@ body > footer { border-block-start: 1px solid var(--line); }
   background: var(--surface); border: 1px solid var(--line); box-shadow: 0 .6rem 1.4rem #0002;
 }
 .mobile-nav nav a { display: block; min-height: 2.75rem; padding: .48rem .65rem; text-decoration: none; }
-.mobile-nav nav a:hover { background: var(--subtle); }
 .mobile-nav summary::-webkit-details-marker { display: none; }
 .action { display: inline-flex; align-items: center; min-height: 2.85rem; padding: .56rem 1rem; text-decoration: none; font-weight: 750; }
 .action:hover { text-decoration: underline; }

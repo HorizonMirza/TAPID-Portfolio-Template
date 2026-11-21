@@ -104,6 +104,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
             let pendingSection;
             let navigationTimer;
             let scrollFrame;
+            let arrivalAnimation;
             const markSection = (hash) => {
               if (hash === activeSection) return;
               activeSection = hash;
@@ -135,44 +136,46 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               const progress = Math.min(1, distance / travel);
               topbar.style.setProperty('--section-progress', atBottom ? '1' : String(progress));
             };
-            const clearPendingSection = () => {
-              pendingSection = undefined;
-              for (const link of links) link.removeAttribute('data-scrolling');
-            };
-            // Keep the chosen label while scrolling to its anchor. If the user
-            // scrolls elsewhere before it settles, mark the section now in view.
-            const holdSection = () => {
+            const finishNavigation = () => {
               window.clearTimeout(navigationTimer);
-              navigationTimer = window.setTimeout(() => {
-                navigationTimer = undefined;
-                const hash = pendingSection;
-                const target = sections.get(hash);
-                clearPendingSection();
-                if (!target) {
-                  updateSection();
-                  return;
-                }
-                const startInset = parseFloat(getComputedStyle(root).scrollPaddingBlockStart) || 0;
-                const targetMargin = parseFloat(getComputedStyle(target).scrollMarginBlockStart) || 0;
-                const targetPosition = window.scrollY + target.getBoundingClientRect().top - startInset - targetMargin;
-                const expectedScroll = Math.max(0, Math.min(targetPosition, root.scrollHeight - root.clientHeight));
-                updateSection();
-                if (Math.abs(window.scrollY - expectedScroll) <= 3) markSection(hash);
-              }, 140);
+              navigationTimer = undefined;
+              if (!pendingSection) return;
+
+              const hash = pendingSection;
+              pendingSection = undefined;
+              const target = sections.get(hash);
+              const startInset = parseFloat(getComputedStyle(root).scrollPaddingBlockStart) || 0;
+              const targetMargin = parseFloat(getComputedStyle(target).scrollMarginBlockStart) || 0;
+              const targetPosition = window.scrollY + target.getBoundingClientRect().top - startInset - targetMargin;
+              const expectedScroll = Math.max(0, Math.min(targetPosition, root.scrollHeight - root.clientHeight));
+              updateSection();
+              if (Math.abs(window.scrollY - expectedScroll) > 3) return;
+
+              markSection(hash);
+              if (!reducedMotion.matches && typeof target.animate === 'function') {
+                arrivalAnimation = target.animate([{ opacity: .73 }, { opacity: 1 }], {
+                  duration: 290,
+                  easing: 'ease-out',
+                });
+              }
+            };
+            const waitForScroll = () => {
+              window.clearTimeout(navigationTimer);
+              navigationTimer = window.setTimeout(finishNavigation, 140);
             };
             const selectSection = (hash) => {
               if (!sections.has(hash)) return false;
+              arrivalAnimation?.cancel();
               pendingSection = hash;
-              for (const link of links) link.toggleAttribute('data-scrolling', link.hash === hash);
-              holdSection();
+              waitForScroll();
               return true;
             };
             const updateTopbarHeight = () => {
               root.style.setProperty('--topbar-height', `${Math.ceil(topbar.getBoundingClientRect().height)}px`);
-              if (!navigationTimer) updateSection();
+              if (!pendingSection) updateSection();
             };
             window.addEventListener('scroll', () => {
-              if (navigationTimer) holdSection();
+              if (pendingSection) waitForScroll();
               if (!scrollFrame) {
                 scrollFrame = window.requestAnimationFrame(() => {
                   scrollFrame = undefined;
@@ -180,12 +183,13 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
                 });
               }
             }, { passive: true, signal });
+            window.addEventListener('scrollend', finishNavigation, { signal });
             window.addEventListener('resize', updateTopbarHeight, { signal });
             window.addEventListener('hashchange', () => {
               if (!selectSection(location.hash)) {
                 window.clearTimeout(navigationTimer);
                 navigationTimer = undefined;
-                clearPendingSection();
+                pendingSection = undefined;
                 updateSection();
               }
             }, { signal });
@@ -196,7 +200,6 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               if (link) selectSection(link.hash);
             }, { signal });
             updateTopbarHeight();
-            selectSection(location.hash);
             if ('ResizeObserver' in window) {
               const observer = new ResizeObserver(updateTopbarHeight);
               observer.observe(topbar);
@@ -205,6 +208,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
             signal.addEventListener('abort', () => {
               window.clearTimeout(navigationTimer);
               window.cancelAnimationFrame(scrollFrame);
+              arrivalAnimation?.cancel();
             }, { once: true });
           }
           document.querySelector('[data-mode-toggle]')?.addEventListener('click', () => {

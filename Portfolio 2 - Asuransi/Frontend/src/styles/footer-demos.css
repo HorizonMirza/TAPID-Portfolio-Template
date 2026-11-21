@@ -119,7 +119,6 @@
 .footer-channel-copy strong { font-size: .99rem; }
 .footer-channel-copy > span { font-size: .85rem; color: var(--muted); }
 .footer-channel-arrow { color: var(--muted); font-size: 1.05rem; }
-a.footer-channel:hover .footer-channel-copy strong { text-decoration: underline; text-underline-offset: .18em; }
 a.footer-channel:hover { border-color: var(--focus); }
 [data-footer-channel="resume"] .footer-channel { background: var(--button); color: var(--button-ink); border-color: var(--button); }
 [data-footer-channel="resume"] .footer-channel :is(.footer-channel-arrow, .footer-channel-copy > span) { color: inherit; }
@@ -159,7 +158,6 @@ a.footer-channel:hover { border-color: var(--focus); }
   border-color: var(--line);
   padding: .65rem .4rem;
 }
-[data-footer-layout="directory"] [data-footer-channel="resume"] .footer-channel-copy strong { text-decoration: underline; }
 [data-footer-layout="directory"] .contact-footer-signoff { grid-column: 1 / -1; }
 
 [data-footer-layout="split"] .footer-channels { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .65rem clamp(.65rem, 4vw, 2rem); }

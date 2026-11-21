@@ -53,7 +53,6 @@
   font-weight: 680;
   line-height: 1.2;
   text-decoration: none;
-  transition: background-color .19s, color .19s;
 }
 
 .tapbar-tools {
@@ -88,16 +87,9 @@
 
 .tapbar nav a {
   position: relative;
-  transition: background-color .22s ease, color .22s ease;
-}
-
-.tapbar nav a[aria-current="location"] {
-  color: var(--focus);
+  color: inherit;
   text-decoration: none;
-}
-
-.tapbar nav a:not([aria-current="location"]):is(:hover, :focus-visible) {
-  background: color-mix(in srgb, var(--focus) 11%, transparent);
+  user-select: none;
 }
 
 .tapbar nav a::after {
@@ -114,12 +106,6 @@
 .tapbar nav a:not([aria-current="location"]):is(:hover, :focus-visible)::after {
   transform: scaleX(.42);
   opacity: .55;
-}
-
-.tapbar nav a[data-scrolling]:not([aria-current="location"])::after {
-  transform: scaleX(1);
-  opacity: .78;
-  background: repeating-linear-gradient(90deg, var(--focus) 0 4px, transparent 4px 7px);
 }
 
 .tapbar nav a[aria-current="location"]::after { transform: scaleX(1); }
@@ -172,5 +158,5 @@
   from { transform: scaleX(.91); opacity: .55; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .tapbar nav a, .tapbar nav a::after { transition: none; }
+  .tapbar nav a::after { transition: none; }
 }
