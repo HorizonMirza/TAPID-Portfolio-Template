@@ -238,7 +238,20 @@
 .experience-accordion summary::after { content: '+'; font-size: 1.3rem; }
 .experience-accordion details[open] summary::after { content: '−'; }
 .experience-accordion .experience-period { margin: 0; }
-.experience-accordion-content { padding: .1rem var(--record-pad) var(--record-pad); }
+.experience-accordion-content { display: grid; grid-template-rows: 1fr; }
+.experience-accordion-content > div { min-block-size: 0; overflow: hidden; }
+.experience-accordion-content p { margin-inline: var(--record-pad); }
+.experience-accordion-content .experience-org { margin-block-start: .52rem; }
+.experience-accordion-content .experience-description { margin-block-end: var(--record-pad); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .experience-accordion details[open] > .experience-accordion-content { animation: experience-expand .28s ease-out; }
+}
+
+@keyframes experience-expand {
+  from { grid-template-rows: 0fr; opacity: 0; }
+  to { grid-template-rows: 1fr; opacity: 1; }
+}
 
 .experience-pager { display: flex; gap: .5rem; align-items: center; }
 .experience-pager button { min-inline-size: 2.75rem; font-size: 1.2rem; }
@@ -287,6 +300,5 @@
 .experience-demos { --record-radius: 0; --record-start-border: 0; }
 .experience-stage { border-block-start: .28rem solid var(--button); }
 .experience-period { font-variant-numeric: tabular-nums; letter-spacing: .04em; }
-.experience-stage-heading { border-inline-start: .3rem solid var(--record-accent); padding-inline-start: .72rem; }
 
 #experience:not([data-experience-demos]) .experience-stage-heading { border-block-end: 0; }

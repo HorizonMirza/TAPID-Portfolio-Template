@@ -62,14 +62,16 @@ const titleId = preview ? 'experience-preview-title' : 'experience-title';
       </ol>}
       {(preview || layout === "accordion") && <div class="experience-accordion" hidden={layout !== "accordion"}>
         {experience.map((role, index) => (
-          <details name="experience-roles" data-language-details={`experience-${index}`} open={index === 0}>
+          <details name="experience-roles" data-language-details={`experience-${index}`}>
             <summary>
               <span class="experience-period">{role.period}</span>
               <strong>{role.title}</strong>
             </summary>
             <div class="experience-accordion-content">
-              <p class="experience-org">{role.organization}</p>
-              <p class="experience-description">{role.description}</p>
+              <div>
+                <p class="experience-org">{role.organization}</p>
+                <p class="experience-description">{role.description}</p>
+              </div>
             </div>
           </details>
         ))}

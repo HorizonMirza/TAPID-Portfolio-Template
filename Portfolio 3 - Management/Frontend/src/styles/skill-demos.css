@@ -280,5 +280,4 @@
 
 .skill-previews { --skill-radius: 0; }
 .skill-stage { border-block-start: .3rem solid var(--button); }
-.skill-stage-head { border-inline-start: .3rem solid var(--skill-accent); padding-inline-start: .8rem; }
 .skill-group h3 { text-wrap: balance; }
