@@ -33,17 +33,15 @@ class Page(HTMLParser):
 
 
 def check_links(output):
-    for file in output.rglob("*.html"):
-        page = Page(file.read_text(encoding="utf-8"))
+    pages = {
+        file: Page(file.read_text(encoding="utf-8"))
+        for file in output.rglob("*.html")
+    }
+    for file, page in pages.items():
         for address in page.links:
             url = urlsplit(address)
-            if url.fragment and not url.path and not url.netloc and not url.scheme:
-                if url.fragment not in page.ids:
-                    raise ValueError(f"{file} has no target for {address}")
+            if (url.scheme or url.netloc) and not address.startswith(SITE):
                 continue
-            if url.scheme or url.netloc:
-                if not address.startswith(SITE):
-                    continue
             pathname = unquote(url.path)
             if pathname.startswith(BASE):
                 target = output / pathname.removeprefix(BASE)
@@ -52,9 +50,14 @@ def check_links(output):
             elif pathname:
                 target = file.parent / pathname
             else:
-                continue
-            if not target.is_file() and not (target / "index.html").is_file():
+                target = file
+            if target.is_dir():
+                target = target / "index.html"
+            if not target.is_file():
                 raise ValueError(f"{file} references a missing path: {address}")
+            target_page = pages.get(target.resolve())
+            if url.fragment and target_page and unquote(url.fragment) not in target_page.ids:
+                raise ValueError(f"{file} has no target for {address} in {target}")
 
 
 def build_sites(output, require_install, prebuilt):
