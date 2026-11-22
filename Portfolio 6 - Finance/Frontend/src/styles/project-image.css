@@ -41,6 +41,33 @@
 }
 :root:has(.project-image-dialog[open]) { overflow: hidden; }
 
+@media (prefers-reduced-motion: no-preference) {
+  .project-image-dialog,
+  .project-image-dialog::backdrop {
+    opacity: 1;
+    transition: opacity .22s cubic-bezier(.22, .75, .25, 1);
+  }
+
+  .project-image-dialog {
+    transform: none;
+    transition-property: opacity, transform;
+  }
+
+  .project-image-dialog[data-closing],
+  .project-image-dialog[data-closing]::backdrop {
+    opacity: 0;
+    transition-duration: .16s;
+  }
+
+  .project-image-dialog[data-closing] { transform: translateY(8px) scale(.985); }
+
+  @starting-style {
+    .project-image-dialog[open],
+    .project-image-dialog[open]::backdrop { opacity: 0; }
+    .project-image-dialog[open] { transform: translateY(8px) scale(.985); }
+  }
+}
+
 .project-image-panel > header {
   display: flex;
   align-items: center;

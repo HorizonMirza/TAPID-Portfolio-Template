@@ -134,9 +134,10 @@ const close = english ? 'Close' : 'Tutup';
     }
     if (!link) return;
     const dialog = link.closest('[data-project-section]')?.querySelector('[data-project-image-dialog]');
-    if (!dialog || typeof dialog.showModal !== 'function' || dialog.open) return;
+    if (!dialog || typeof dialog.showModal !== 'function') return;
 
     event.preventDefault();
+    if (dialog.open || dialog.hasAttribute('data-closing')) return;
     const image = dialog.querySelector('[data-project-image-full]');
     const message = dialog.querySelector('[data-project-image-error]');
     const events = new AbortController();
@@ -149,11 +150,25 @@ const close = english ? 'Close' : 'Tutup';
       image.hidden = true;
       message.hidden = false;
     }, { once: true, signal });
+    const closePreview = async () => {
+      if (dialog.hasAttribute('data-closing')) return;
+      dialog.setAttribute('data-closing', '');
+      const fade = dialog.getAnimations?.().find((animation) => animation.transitionProperty === 'opacity');
+      if (fade) await Promise.allSettled([fade.finished]);
+      if (dialog.open) dialog.close();
+    };
+    const interceptClose = (event) => {
+      event.preventDefault();
+      void closePreview();
+    };
+    dialog.addEventListener('submit', interceptClose, { signal });
+    dialog.addEventListener('cancel', interceptClose, { signal });
     dialog.addEventListener('click', (click) => {
-      if (click.target === dialog) dialog.close();
+      if (click.target === dialog) void closePreview();
     }, { signal });
     dialog.addEventListener('close', () => {
       events.abort();
+      dialog.removeAttribute('data-closing');
       image.removeAttribute('src');
       if (link.isConnected) link.focus({ preventScroll: true });
     }, { once: true });
