@@ -108,12 +108,13 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               if (!isIntersecting || !pending.has(target)) continue;
               show(target);
               if (reducedMotion.matches || target.matches(':focus-within')) continue;
-              const animation = target.animate([
+              const done = () => running.delete(target);
+              const animation = window.tapidMotion?.reveal(target, done) ?? target.animate([
                 { opacity: 0, transform: 'translateY(8px)' },
                 { opacity: 1, transform: 'translateY(0)' },
               ], { duration: 260, easing: 'cubic-bezier(.22, 1, .36, 1)' });
+              if (animation instanceof Animation) animation.onfinish = done;
               running.set(target, animation);
-              animation.onfinish = () => running.delete(target);
             }
           });
 
@@ -170,7 +171,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
             }
 
             let activeSection;
-            let navigationFrame;
+            let cancelScroll;
             let scrollFrame;
             let arrivalAnimation;
             let landing;
@@ -215,8 +216,8 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               return Math.max(0, Math.min(targetPosition, root.scrollHeight - root.clientHeight));
             };
             const stopNavigation = () => {
-              window.cancelAnimationFrame(navigationFrame);
-              navigationFrame = undefined;
+              cancelScroll?.();
+              cancelScroll = undefined;
             };
             const navigateToSection = (hash, target) => {
               stopNavigation();
@@ -224,7 +225,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               const start = window.scrollY;
               const distance = sectionScrollTop(target) - start;
               const finish = () => {
-                navigationFrame = undefined;
+                cancelScroll = undefined;
                 window.scrollTo({ top: sectionScrollTop(target), behavior: 'instant' });
                 landing = { hash, y: window.scrollY };
                 updateSection();
@@ -241,7 +242,14 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               }
 
               const duration = Math.min(330, 165 + Math.abs(distance) * .055);
+              if (window.tapidMotion) {
+                cancelScroll = window.tapidMotion.scroll(start + distance, duration, finish);
+                return;
+              }
+
               const startedAt = performance.now();
+              let frame;
+              cancelScroll = () => window.cancelAnimationFrame(frame);
               const scroll = (now) => {
                 const progress = Math.max(0, Math.min(1, (now - startedAt) / duration));
                 if (progress === 1 || reducedMotion.matches) {
@@ -250,9 +258,9 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
                 }
                 const eased = progress * progress * (3 - 2 * progress);
                 window.scrollTo({ top: start + distance * eased, behavior: 'instant' });
-                navigationFrame = window.requestAnimationFrame(scroll);
+                frame = window.requestAnimationFrame(scroll);
               };
-              navigationFrame = window.requestAnimationFrame(scroll);
+              frame = window.requestAnimationFrame(scroll);
             };
             const updateTopbarHeight = () => {
               root.style.setProperty('--topbar-height', `${Math.ceil(topbar.getBoundingClientRect().height)}px`);
@@ -516,5 +524,9 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
   <body data-portfolio-page={path ? undefined : ''}>
     <a class="skip-link" href="#main">{skip}</a>
     <slot />
+    <script>
+      import { portfolioMotion } from '../../portfolio-motion';
+      window.tapidMotion = portfolioMotion;
+    </script>
   </body>
 </html>

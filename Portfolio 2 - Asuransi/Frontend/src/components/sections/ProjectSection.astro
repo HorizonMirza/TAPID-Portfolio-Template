@@ -142,6 +142,9 @@ const close = english ? 'Close' : 'Tutup';
     const message = dialog.querySelector('[data-project-image-error]');
     const events = new AbortController();
     const { signal } = events;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const motion = typeof dialog.animate === 'function' ? window.tapidMotion?.preview : undefined;
+    let animation;
     dialog.querySelector('[data-project-image-heading]').textContent = link.dataset.projectImage;
     image.alt = link.querySelector('img').alt;
     image.hidden = false;
@@ -153,9 +156,13 @@ const close = english ? 'Close' : 'Tutup';
     const closePreview = async () => {
       if (dialog.hasAttribute('data-closing')) return;
       dialog.setAttribute('data-closing', '');
-      const fade = dialog.getAnimations?.().find((animation) => animation.transitionProperty === 'opacity');
+      animation?.stop();
+      const fade = dialog.hasAttribute('data-motion-preview') && !reduced.matches
+        ? motion(dialog, false)
+        : dialog.getAnimations?.().find((animation) => animation.transitionProperty === 'opacity');
+      animation = dialog.hasAttribute('data-motion-preview') ? fade : undefined;
       if (fade) await Promise.allSettled([fade.finished]);
-      if (dialog.open) dialog.close();
+      if (!signal.aborted && dialog.open) dialog.close();
     };
     const interceptClose = (event) => {
       event.preventDefault();
@@ -168,11 +175,30 @@ const close = english ? 'Close' : 'Tutup';
     }, { signal });
     dialog.addEventListener('close', () => {
       events.abort();
+      if (dialog.hasAttribute('data-motion-preview')) {
+        animation?.cancel();
+        dialog.removeAttribute('data-motion-preview');
+        dialog.style.removeProperty('opacity');
+        dialog.style.removeProperty('transform');
+      }
       dialog.removeAttribute('data-closing');
       image.removeAttribute('src');
       if (link.isConnected) link.focus({ preventScroll: true });
     }, { once: true });
+    reduced.addEventListener('change', () => {
+      if (!reduced.matches || !dialog.open) return;
+      if (dialog.hasAttribute('data-closing')) {
+        dialog.close();
+      } else if (animation) {
+        animation.cancel();
+        animation = undefined;
+        dialog.style.removeProperty('opacity');
+        dialog.style.removeProperty('transform');
+      }
+    }, { signal });
+    if (motion && !reduced.matches) dialog.setAttribute('data-motion-preview', '');
     dialog.showModal();
+    if (dialog.hasAttribute('data-motion-preview')) animation = motion(dialog, true);
     image.src = link.href;
   });
 </script>
