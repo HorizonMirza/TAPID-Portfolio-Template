@@ -266,5 +266,5 @@
       }
     ]
   },
-  "settings": { "demo": true, "defaultMode": "system" }
+  "settings": { "demo": true, "defaultMode": "light" }
 }

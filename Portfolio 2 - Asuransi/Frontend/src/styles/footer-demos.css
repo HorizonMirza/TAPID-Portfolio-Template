@@ -162,7 +162,6 @@ a.footer-channel:hover { border-color: var(--focus); }
 
 [data-footer-layout="split"] .footer-channels { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .65rem clamp(.65rem, 4vw, 2rem); }
 [data-footer-layout="split"] .footer-channel { min-block-size: 4.25rem; border-inline-start: .2rem solid var(--focus); }
-[data-footer-layout="split"] .contact-footer-heading { border-block-end: 1px solid var(--line); padding-block-end: .85rem; }
 
 [data-footer-layout="rail"] .footer-channels { grid-template-columns: repeat(auto-fit,minmax(min(100%, 8.8rem),1fr)); gap: 0; }
 [data-footer-layout="rail"] .footer-channel {

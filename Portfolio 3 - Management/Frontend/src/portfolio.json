@@ -289,6 +289,6 @@
   },
   "settings": {
     "demo": true,
-    "defaultMode": "system"
+    "defaultMode": "light"
   }
 }

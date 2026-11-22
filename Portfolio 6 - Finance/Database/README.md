@@ -36,6 +36,6 @@ Links marked `sample: true` appear only in demo mode. For client sites, use the 
 
 Set `profile.cvUrl` to an accessible HTTPS link on Google Drive or Google Docs. Set `contact.showResume` to `false` to keep the CV button on Home only.
 
-`settings.defaultMode` supports `system`, `light`, and `dark`. To customize the palette, enter six-digit HEX colors in `settings.accent.light` and `settings.accent.dark`. Set `settings.demo` to `false` for client sites.
+`settings.defaultMode` defaults to `light`. Set it to `system` to follow the device’s color scheme or `dark` to start in dark mode. To customize the palette, enter six-digit HEX colors in `settings.accent.light` and `settings.accent.dark`. Set `settings.demo` to `false` for client sites.
 
 [Client setup guide](../Documentation/PANDUAN.md) · [Theme README](../README.md)

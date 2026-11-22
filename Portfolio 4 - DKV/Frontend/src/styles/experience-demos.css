@@ -289,4 +289,14 @@
 .experience-entry h3 { font-weight: 780; letter-spacing: -.05em; }
 [data-layout="folio"] .experience-entry:first-child { box-shadow: inset .33rem 0 var(--button); }
 
+@media (hover: hover) and (pointer: fine) {
+  #experience:not([data-experience-demos]) .experience-entry { outline: 2px solid transparent; }
+  #experience:not([data-experience-demos]) .experience-entry:hover { outline-color: var(--focus); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    #experience:not([data-experience-demos]) .experience-entry { transition: outline-color .2s ease, translate .2s ease; }
+    #experience:not([data-experience-demos]) .experience-entry:hover { translate: 0 -2px; }
+  }
+}
+
 #experience:not([data-experience-demos]) .experience-stage-heading { border-block-end: 0; }
