@@ -96,11 +96,11 @@
 
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
-  ::view-transition-group(root) { animation-duration: .36s; }
+  ::view-transition-group(root) { animation-duration: .26s; }
   ::view-transition { pointer-events: none; }
 
   .mode-color-fade :is(body, .tapbar, .tapbar-inner, main > section, footer) {
-    transition: background-color .32s ease, border-color .32s ease, color .32s ease;
+    transition: background-color .24s ease, border-color .24s ease, color .24s ease;
   }
 }
 

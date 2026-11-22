@@ -109,9 +109,9 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               show(target);
               if (reducedMotion.matches || target.matches(':focus-within')) continue;
               const animation = target.animate([
-                { opacity: 0, transform: 'translateY(12px)' },
+                { opacity: 0, transform: 'translateY(8px)' },
                 { opacity: 1, transform: 'translateY(0)' },
-              ], { duration: 420, easing: 'cubic-bezier(.22, 1, .36, 1)' });
+              ], { duration: 260, easing: 'cubic-bezier(.22, 1, .36, 1)' });
               running.set(target, animation);
               animation.onfinish = () => running.delete(target);
             }
@@ -161,6 +161,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
           }
           const topbar = document.querySelector('.tapbar');
           if (topbar) {
+            root.setAttribute('data-section-navigation', '');
             const links = [...document.querySelectorAll('.tapbar-desktop a[href^="#"], .mobile-nav a[href^="#"]')];
             const sections = new Map();
             for (const link of links) {
@@ -169,10 +170,10 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
             }
 
             let activeSection;
-            let pendingSection;
-            let navigationTimer;
+            let navigationFrame;
             let scrollFrame;
             let arrivalAnimation;
+            let landing;
             const markSection = (hash) => {
               if (hash === activeSection) return;
               activeSection = hash;
@@ -186,13 +187,16 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               const topbarHeight = topbar.offsetHeight;
               const readingLine = topbarHeight + Math.max(24, (viewport - topbarHeight) * .22);
               const atBottom = window.scrollY > 0 && window.scrollY + root.clientHeight >= root.scrollHeight - 2;
-              let current = '#home';
-              let currentTop = -Infinity;
-              for (const [hash, section] of sections) {
-                const top = section.getBoundingClientRect().top;
-                if ((atBottom || top <= readingLine) && (top > currentTop || (top === currentTop && hash === activeSection))) {
-                  current = hash;
-                  currentTop = top;
+              if (landing && Math.abs(window.scrollY - landing.y) > 2) landing = undefined;
+              let current = landing?.hash ?? '#home';
+              if (!landing) {
+                let currentTop = -Infinity;
+                for (const [hash, section] of sections) {
+                  const top = section.getBoundingClientRect().top;
+                  if ((atBottom || top <= readingLine) && (top > currentTop || (top === currentTop && hash === activeSection))) {
+                    current = hash;
+                    currentTop = top;
+                  }
                 }
               }
               markSection(current);
@@ -210,44 +214,51 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               const targetPosition = window.scrollY + target.getBoundingClientRect().top - startInset - targetMargin;
               return Math.max(0, Math.min(targetPosition, root.scrollHeight - root.clientHeight));
             };
-            const finishNavigation = (event) => {
-              if (!pendingSection) return;
-              const hash = pendingSection;
-              const target = sections.get(hash);
-              const arrived = Math.abs(window.scrollY - sectionScrollTop(target)) <= 3;
-              if (event && !arrived) return;
-
-              window.clearTimeout(navigationTimer);
-              navigationTimer = undefined;
-              pendingSection = undefined;
-              updateSection();
-              if (!arrived) return;
-
-              markSection(hash);
-              if (!reducedMotion.matches && typeof target.animate === 'function') {
-                arrivalAnimation = target.animate([{ opacity: .73 }, { opacity: 1 }], {
-                  duration: 290,
-                  easing: 'ease-out',
-                });
-              }
+            const stopNavigation = () => {
+              window.cancelAnimationFrame(navigationFrame);
+              navigationFrame = undefined;
             };
-            const waitForScroll = () => {
-              window.clearTimeout(navigationTimer);
-              navigationTimer = window.setTimeout(finishNavigation, 140);
-            };
-            const selectSection = (hash) => {
-              if (!sections.has(hash)) return false;
+            const navigateToSection = (hash, target) => {
+              stopNavigation();
               arrivalAnimation?.cancel();
-              pendingSection = hash;
-              waitForScroll();
-              return true;
+              const start = window.scrollY;
+              const distance = sectionScrollTop(target) - start;
+              const finish = () => {
+                navigationFrame = undefined;
+                window.scrollTo({ top: sectionScrollTop(target), behavior: 'instant' });
+                landing = { hash, y: window.scrollY };
+                updateSection();
+                if (!reducedMotion.matches && Math.abs(distance) > 2 && typeof target.animate === 'function') {
+                  arrivalAnimation = target.animate([{ opacity: .92 }, { opacity: 1 }], {
+                    duration: 140,
+                    easing: 'ease-out',
+                  });
+                }
+              };
+              if (reducedMotion.matches || Math.abs(distance) <= 2) {
+                finish();
+                return;
+              }
+
+              const duration = Math.min(330, 165 + Math.abs(distance) * .055);
+              const startedAt = performance.now();
+              const scroll = (now) => {
+                const progress = Math.max(0, Math.min(1, (now - startedAt) / duration));
+                if (progress === 1 || reducedMotion.matches) {
+                  finish();
+                  return;
+                }
+                const eased = progress * progress * (3 - 2 * progress);
+                window.scrollTo({ top: start + distance * eased, behavior: 'instant' });
+                navigationFrame = window.requestAnimationFrame(scroll);
+              };
+              navigationFrame = window.requestAnimationFrame(scroll);
             };
             const updateTopbarHeight = () => {
               root.style.setProperty('--topbar-height', `${Math.ceil(topbar.getBoundingClientRect().height)}px`);
-              if (!pendingSection) updateSection();
+              updateSection();
             };
             window.addEventListener('scroll', () => {
-              if (pendingSection) waitForScroll();
               if (!scrollFrame) {
                 scrollFrame = window.requestAnimationFrame(() => {
                   scrollFrame = undefined;
@@ -255,32 +266,39 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
                 });
               }
             }, { passive: true, signal });
-            window.addEventListener('scrollend', finishNavigation, { signal });
-            window.addEventListener('resize', updateTopbarHeight, { signal });
-            window.addEventListener('hashchange', () => {
-              if (!selectSection(location.hash)) {
-                window.clearTimeout(navigationTimer);
-                navigationTimer = undefined;
-                pendingSection = undefined;
-                updateSection();
+            window.addEventListener('wheel', stopNavigation, { passive: true, signal });
+            window.addEventListener('touchstart', stopNavigation, { passive: true, signal });
+            window.addEventListener('keydown', (event) => {
+              if (['PageUp', 'PageDown', 'Home', 'End', 'ArrowUp', 'ArrowDown', ' '].includes(event.key)) {
+                stopNavigation();
               }
             }, { signal });
+            window.addEventListener('resize', updateTopbarHeight, { signal });
+            const syncHistory = () => {
+              stopNavigation();
+              arrivalAnimation?.cancel();
+              landing = undefined;
+              updateSection();
+            };
+            window.addEventListener('popstate', syncHistory, { signal });
+            window.addEventListener('hashchange', syncHistory, { signal });
             document.addEventListener('click', (event) => {
               if (event.defaultPrevented || event.button !== 0 || event.metaKey ||
                   event.ctrlKey || event.shiftKey || event.altKey) return;
               const link = event.target.closest?.('a[href^="#"]');
-              if (!link || !selectSection(link.hash) || !link.closest('.mobile-nav')) return;
+              if (!link?.closest('.tapbar-desktop, .mobile-nav, .tapbar-brand')) return;
+              const target = sections.get(link.hash);
+              if (!target) return;
 
               if (location.hash !== link.hash) {
                 try { history.pushState(history.state, '', link.hash); } catch { return; }
               }
               event.preventDefault();
-              const target = sections.get(link.hash);
               if (event.detail === 0) {
                 if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
                 target.focus({ preventScroll: true });
               }
-              window.scrollTo({ top: sectionScrollTop(target), behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+              navigateToSection(link.hash, target);
             }, { signal });
             updateTopbarHeight();
             if ('ResizeObserver' in window) {
@@ -289,7 +307,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
               signal.addEventListener('abort', () => observer.disconnect(), { once: true });
             }
             signal.addEventListener('abort', () => {
-              window.clearTimeout(navigationTimer);
+              stopNavigation();
               window.cancelAnimationFrame(scrollFrame);
               arrivalAnimation?.cancel();
             }, { once: true });
@@ -436,7 +454,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
             } else {
               update();
               if (!reducedMotion.matches) {
-                document.querySelector('#main')?.animate([{ opacity: .5 }, { opacity: 1 }], 230);
+                document.querySelector('#main')?.animate([{ opacity: .8 }, { opacity: 1 }], 180);
               }
             }
           } catch {

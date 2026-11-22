@@ -15,7 +15,7 @@
   --button: #f4f4f4; --button-ink: #191919; --focus: #eee;
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-block-start: var(--topbar-height); }
+html { scroll-padding-block-start: var(--topbar-height); }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 1rem/1.6 var(--body); }
 body, button, a { -webkit-tap-highlight-color: transparent; }
 button, summary { cursor: pointer; }
@@ -79,6 +79,6 @@ body > footer { border-block-start: 1px solid var(--line); }
   .hero-copy { padding-block: clamp(1.8rem, 7vw, 3.2rem); }
   .hero-media { min-block-size: clamp(16rem, 73vw, 30rem); }
 }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-section-navigation]) { scroll-behavior: smooth; }
 }

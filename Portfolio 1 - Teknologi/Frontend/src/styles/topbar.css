@@ -193,7 +193,7 @@
   }
   .tapbar nav a:focus-visible > .tapbar-label { translate: 0 -2px; }
 
-  .tapbar-inner { animation-duration: 420ms; animation-timing-function: cubic-bezier(.22,.72,.22,1); }
+  .tapbar-inner { animation-duration: 300ms; animation-timing-function: cubic-bezier(.22,.72,.22,1); }
   .tapbar-inner[data-motion="glide"] { animation-name: topbar-glide; }
   .tapbar-inner[data-motion="snap"] { animation-name: topbar-snap; }
   .tapbar-inner[data-motion="rise"] { animation-name: topbar-rise; }
