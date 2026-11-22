@@ -46,6 +46,29 @@ GitHub Actions checks and builds all six demos on pushes to `main`, then publish
 
 The public demos use temporary contact and résumé links from each template's `Frontend/src/demo-contact.ts`. Client builds use the links in `portfolio.json`.
 
+### Verify a gallery release
+
+From the repository root, use Node.js 24 and Python 3. Read the 404 archive ref in the **Retrieve frozen 404 design gallery** step of the [Pages workflow](.github/workflows/portfolio-pages.yml). Replace `<archive-ref>` with that commit and use fresh output directories.
+
+```sh
+git fetch origin <archive-ref>
+mkdir .previous-pages
+git archive --format=tar <archive-ref> demo-404 | tar -xf - -C .previous-pages
+python3 .github/pages/build.py _site --demo-archive .previous-pages/demo-404
+```
+
+The script installs dependencies from the lockfiles, checks and builds each Astro template, and validates links in the combined GitHub Pages artifact.
+
+After publishing, open the [Pages workflow runs](https://github.com/HorizonMirza/TAPID-Portfolio-Template/actions/workflows/portfolio-pages.yml) and match the run's commit SHA to the release commit. Confirm the build and deploy jobs succeeded. Open the gallery, each theme's Indonesian and English pages, and a nonexistent URL under a theme. Check that the portfolio assets and section links work and that the nonexistent URL returns HTTP 404.
+
+### Recover a gallery release
+
+1. Identify the commit that introduced the problem using the workflow run and Git history.
+2. With a clean working tree on an up-to-date `main`, run `git revert <bad-commit>` to create a recovery commit. If several dependent commits caused the problem, revert those commits from newest to oldest.
+3. Build and verify the recovery commit using the steps above. Push to `main` and confirm its workflow deploys successfully. Repeat the public checks on the affected pages.
+
+Periodically check the latest Pages deployment and run `npm audit --audit-level=moderate` in each theme's `Frontend` folder. Open the public résumé and contact destinations to confirm they still point to the intended accounts and that the résumé can be viewed while signed out.
+
 ## Design demos
 
 Run a template locally with `settings.demo` enabled. Add `/en` before a path to open the English version, or append `?pilihan=04` to open option 04.
