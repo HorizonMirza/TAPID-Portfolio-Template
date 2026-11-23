@@ -2,8 +2,6 @@
 
 Six Portfolio Templates for TAP.ID.
 
-**Tech Stack** — Astro, CSS, and TypeScript.
-
 ## Portfolio Templates
 
 | [Technology](Portfolio%201%20-%20Teknologi/README.md) | [Insurance](Portfolio%202%20-%20Asuransi/README.md) |
