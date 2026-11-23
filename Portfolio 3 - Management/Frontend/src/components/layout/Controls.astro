@@ -8,7 +8,7 @@ const { copy } = localize(language);
 const alternate = language === 'id' ? 'en' : 'id';
 ---
 <div class="controls" role="group" aria-label={copy.preferences}>
-  <a class="control language" href={alternate === 'en' ? '/en/' : '/'} lang={alternate} hreflang={alternate}
+  <a class="control language" href={alternate === 'id' ? '/id/' : '/'} lang={alternate} hreflang={alternate}
      aria-label={alternate === 'en' ? 'EN — Switch to English' : 'ID — Ganti ke Bahasa Indonesia'}>
     <span class="control-label">{alternate.toUpperCase()}</span>
   </a>

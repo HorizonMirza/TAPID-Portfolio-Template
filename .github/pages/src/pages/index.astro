@@ -1,22 +1,22 @@
 ---
 const portfolios = [
-  { slug: 'teknologi', theme: 'Teknologi', name: 'Arga Pradana', role: 'Frontend Engineer' },
-  { slug: 'asuransi', theme: 'Asuransi', name: 'Alya Wicaksana', role: 'Analis Risiko & Polis' },
-  { slug: 'management', theme: 'Management', name: 'Bima Santosa', role: 'Manajer Proyek & Operasional' },
-  { slug: 'dkv', theme: 'DKV', name: 'Keira Maheswari', role: 'Desainer Komunikasi Visual' },
-  { slug: 'general', theme: 'General', name: 'Kirana Dewi', role: 'Peneliti & Koordinator Program' },
-  { slug: 'finance', theme: 'Finance', name: 'Rania Hartono', role: 'Analis Perencanaan Keuangan' },
+  { slug: 'teknologi', theme: 'Computer Science', name: 'Arga Pradana', role: 'Frontend Engineer' },
+  { slug: 'asuransi', theme: 'Insurence', name: 'Alya Wicaksana', role: 'Risk & Policy Analyst' },
+  { slug: 'management', theme: 'Management', name: 'Bima Santosa', role: 'Project & Operations Manager' },
+  { slug: 'dkv', theme: 'Visual Design', name: 'Keira Maheswari', role: 'Visual Communication Designer' },
+  { slug: 'finance', theme: 'Finance', name: 'Rania Hartono', role: 'Financial Planning Analyst' },
+  { slug: 'general', theme: 'General', name: 'Kirana Dewi', role: 'Researcher & Program Coordinator' },
 ];
 ---
 <!doctype html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Buka enam demo website portofolio TAP.ID.">
-<title>Portofolio TAP.ID</title>
+<meta name="description" content="Explore six portfolio templates for TAP.ID.">
+<title>TAP.ID Portfolio Templates</title>
 <style is:inline>
-:root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+:root { color-scheme: light; font-family: system-ui, sans-serif; }
 body { margin: 0; color: #1b2533; background: #f2f5f8; }
 main { width: min(70rem, calc(100% - 2rem)); margin: 3rem auto; }
 h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.06; margin: 0; letter-spacing: -.045em; }
@@ -29,16 +29,11 @@ img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fi
 .card { display: grid; gap: .32rem; padding: .85rem 1rem 1rem; }
 strong { font-size: 1.15rem; }
 small { color: #526170; }
-@media (prefers-color-scheme: dark) {
-  body { color: #eef2f8; background: #141b24; }
-  a { border-color: #455466; background: #202b38; }
-  p, small { color: #b8c5d6; }
-}
 </style>
 </head>
 <body><main>
-<h1>Portofolio TAP.ID</h1>
-<p>Pilih salah satu dari enam website demo.</p>
+<h1>TAP.ID Portfolio Templates</h1>
+<p>Choose a template to view its portfolio.</p>
 <ul>
   {portfolios.map(({ slug, theme, name, role }) => (
     <li>

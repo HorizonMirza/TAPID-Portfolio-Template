@@ -15,7 +15,7 @@ npm ci
 npm run dev
 ```
 
-Open `/` for Indonesian or `/en/` for English.
+Open `/` for English or `/id/` for Indonesian.
 
 ## Customize and deploy
 

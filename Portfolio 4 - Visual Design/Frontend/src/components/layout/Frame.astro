@@ -16,7 +16,7 @@ if (site && (site.protocol !== 'https:' || site.username || site.password || sit
   throw new Error('TAPID_SITE_URL must be a public HTTPS base URL.');
 }
 if (site && !site.pathname.endsWith('/')) site.pathname += '/';
-const localizedPath = (locale: Language) => (locale === 'en' ? 'en/' : '');
+const localizedPath = (locale: Language) => (locale === 'id' ? 'id/' : '');
 const alternateHref = (locale: Language) => site
   ? new URL(localizedPath(locale), site).href
   : '/' + localizedPath(locale);

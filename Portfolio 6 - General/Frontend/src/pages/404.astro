@@ -7,13 +7,13 @@ import '../styles/theme.css';
 const { profile, settings } = portfolio;
 ---
 <!doctype html>
-<html lang="id" data-default-mode={settings.defaultMode}>
+<html lang="en" data-default-mode={settings.defaultMode}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <meta name="robots" content="noindex" />
-    <title>404 · Halaman tidak ditemukan</title>
+    <title>404 · Page not found</title>
     <script is:inline>
       const root = document.documentElement;
       let mode = root.dataset.defaultMode;
@@ -25,10 +25,11 @@ const { profile, settings } = portfolio;
       applyMode();
       preference.addEventListener('change', applyMode);
       document.addEventListener('DOMContentLoaded', () => {
-        const english = document.querySelector('.not-found-en a');
-        if (location.pathname.startsWith(new URL(english.href).pathname)) {
-          root.lang = 'en';
-          document.title = '404 · Page not found';
+        const indonesian = document.querySelector('.not-found-id a');
+        const path = new URL(indonesian.href).pathname;
+        if (location.pathname === path.slice(0, -1) || location.pathname.startsWith(path)) {
+          root.lang = 'id';
+          document.title = '404 · Halaman tidak ditemukan';
         }
       }, { once: true });
     </script>
@@ -40,12 +41,12 @@ const { profile, settings } = portfolio;
         <div class="not-found-id">
           <h1>Halaman tidak ditemukan</h1>
           <p>Halaman ini mungkin telah dipindah atau alamatnya keliru.</p>
-          <a href="/" aria-label={`Kembali ke portofolio ${profile.name}`}>Kembali ke portofolio <span aria-hidden="true">↗</span></a>
+          <a href="/id/" aria-label={`Kembali ke portofolio ${profile.name}`}>Kembali ke portofolio <span aria-hidden="true">↗</span></a>
         </div>
         <div class="not-found-en">
           <h1>Page not found</h1>
           <p>This page may have moved, or the address may be incorrect.</p>
-          <a href="/en/" aria-label={`Return to ${profile.name}'s portfolio`}>Return to portfolio <span aria-hidden="true">↗</span></a>
+          <a href="/" aria-label={`Return to ${profile.name}'s portfolio`}>Return to portfolio <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </main>

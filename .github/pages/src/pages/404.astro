@@ -7,9 +7,9 @@ function applyVisitorPreferences(): void {
   const path = location.pathname.startsWith(base) ? location.pathname.slice(base.length) : '';
   const [theme, section] = path.split('/');
   if (themes.includes(theme)) root.dataset.theme = theme;
-  if (section === 'en' || theme === 'en') {
-    root.lang = 'en';
-    document.title = '404 · Page not found';
+  if (section === 'id' || theme === 'id') {
+    root.lang = 'id';
+    document.title = '404 · Halaman tidak ditemukan';
   }
   try {
     const mode = localStorage.getItem('tapid-color-mode');
@@ -18,13 +18,13 @@ function applyVisitorPreferences(): void {
 }
 ---
 <!doctype html>
-<html lang="id" data-theme="general" data-mode="light">
+<html lang="en" data-theme="general" data-mode="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="robots" content="noindex">
-  <title>404 · Halaman tidak ditemukan</title>
+  <title>404 · Page not found</title>
   <script is:inline set:html={`(${applyVisitorPreferences.toString()})();`}></script>
   <style is:inline>
     @font-face {

@@ -38,7 +38,7 @@ In Vercel, use the **Astro** preset, the build command `npm run build`, and the 
 | One theme copied to the root | `Frontend` |
 | All six themes | The selected theme’s `Frontend` folder |
 
-Open `/`, `/en/`, and an address that does not exist after deployment. Check the portraits, responsive layout, light and dark modes, and the custom 404 recovery link. Open the CV from a signed-out browser and check WhatsApp and Linktree on a phone. Add the verified site URL to the client’s Linktree. [Astro on Vercel](https://docs.astro.build/en/guides/deploy/vercel/)
+Open `/` for English, `/id/` for Indonesian, and an address that does not exist after deployment. Check the portraits, responsive layout, light and dark modes, and the custom 404 recovery link. Open the CV from a signed-out browser and check WhatsApp and Linktree on a phone. Add the verified site URL to the client’s Linktree. [Astro on Vercel](https://docs.astro.build/en/guides/deploy/vercel/)
 
 ## 3. Hand over the site
 
