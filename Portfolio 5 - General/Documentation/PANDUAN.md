@@ -4,7 +4,7 @@ Use this guide to turn approved Google Form responses into a portfolio and hand 
 
 ## 1. Prepare the content
 
-Copy the chosen theme to the client’s repository. Edit `Frontend/src/portfolio.json` and set `settings.demo` to `false` to hide the demo galleries and sample contact links. Replace the sample profile, projects, skills, experience, and images with material cleared for publication.
+Copy the chosen theme to the client’s repository. Edit `Frontend/src/portfolio.json` and set `settings.demo` to `false` to use the client’s contact links. Replace the sample profile, projects, skills, experience, and images with material cleared for publication.
 
 | Google Form section | Portfolio fields |
 | --- | --- |

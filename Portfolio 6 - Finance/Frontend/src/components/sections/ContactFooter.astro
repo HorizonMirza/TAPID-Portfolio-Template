@@ -1,7 +1,7 @@
 ---
 import type { FooterChannel } from '../../footer-channels';
 import type { Language } from '../../portfolio';
-import '../../styles/footer-demos.css';
+import '../../styles/contact.css';
 
 interface Props {
   language: Language;
@@ -9,12 +9,11 @@ interface Props {
   theme: string;
   channels: FooterChannel[];
   layout: string;
-  preview?: boolean;
 }
-const { language, name, theme, channels, layout, preview = false } = Astro.props;
+const { language, name, theme, channels, layout } = Astro.props;
 const english = language === 'en';
 const year = new Date().getUTCFullYear();
-const hasContact = preview || channels.length > 0;
+const hasContact = channels.length > 0;
 const logos = {
   whatsapp: 'whatsapp.svg',
   linkedin: 'linkedin.png',
@@ -66,9 +65,6 @@ const logos = {
         })}
       </ul>
     </>}
-    {preview && <p class="footer-empty" data-footer-empty hidden={channels.some(({ enabled = true }) => enabled)}>
-      {english ? 'Select a contact channel to preview it here.' : 'Centang kanal kontak untuk menampilkannya di sini.'}
-    </p>}
     <div class="contact-footer-signoff">
       <small>© {year} {name}</small>
     </div>

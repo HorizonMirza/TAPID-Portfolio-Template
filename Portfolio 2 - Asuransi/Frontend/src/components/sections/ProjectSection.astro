@@ -1,61 +1,22 @@
 ---
 import { localize, type Language } from '../../portfolio';
-import { projectLayouts, projectTheme, selectedProjectLayout } from '../../demos/project-demos';
-import '../../styles/project-demos.css';
+import '../../styles/projects.css';
 import '../../styles/project-image.css';
 
-interface Props { language: Language; preview?: boolean }
-const { language, preview = false } = Astro.props;
+interface Props { language: Language }
+const { language } = Astro.props;
 const { copy, projects } = localize(language);
 const english = language === 'en';
-const first = projectLayouts[0];
-const layout = preview ? first.layout : selectedProjectLayout;
-const titleId = preview ? 'project-preview-title' : 'work-title';
-const canUseRail = preview || layout === 'rail';
-const canUseTabs = preview || layout === 'tabs';
-const canUseAccordion = preview || layout === 'accordion';
-const picker = english ? 'Project layout demos' : 'Demo tata letak Proyek';
-const projectPicker = english ? 'Choose a project' : 'Pilih proyek';
 const enlarge = english ? 'Enlarge image' : 'Perbesar gambar';
 const close = english ? 'Close' : 'Tutup';
 ---
-<section id="projects" class="project-previews" data-project-section data-project-demos={preview ? '' : undefined}
-         data-theme={projectTheme} aria-labelledby={titleId}>
-  {preview && <div class="project-preview-picker wrap">
-    <div class="project-preview-picker-header">
-      <h2 id="project-picker-title">{picker}</h2>
-      <a href={english ? '/en/#projects' : '/#projects'}>{english ? 'Back to portfolio' : 'Kembali ke portofolio'}</a>
-    </div>
-    <div class="project-preview-options" role="group" aria-labelledby="project-picker-title">
-      {projectLayouts.map(({ id, layout, name }) => (
-        <button type="button" data-project-choice={id} data-layout={layout}
-                aria-pressed={id === first.id} aria-controls="project-preview-stage">
-          <span>{id}</span>
-          <strong>{name[language]}</strong>
-        </button>
-      ))}
-    </div>
-    <p class="project-preview-selection" aria-live="polite">{first.name[language]}</p>
-  </div>}
-  <div id="project-preview-stage" class="project-preview-stage wrap" data-layout={layout}>
+<section id="projects" class="project-previews" data-project-section data-theme="asuransi" aria-labelledby="work-title">
+  <div id="project-preview-stage" class="project-preview-stage wrap" data-layout="gallery">
     <header class="project-preview-title">
-      <h2 id={titleId}>{copy.projects}</h2>
-      {canUseRail && <div class="project-preview-rail-controls" role="group" aria-label={english ? 'Scroll projects' : 'Geser proyek'} hidden>
-        <button type="button" data-project-scroll="-1" aria-controls="project-preview-items"
-                aria-label={english ? 'Previous project' : 'Proyek sebelumnya'}>←</button>
-        <button type="button" data-project-scroll="1" aria-controls="project-preview-items"
-                aria-label={english ? 'Next project' : 'Proyek berikutnya'}>→</button>
-      </div>}
+      <h2 id="work-title">{copy.projects}</h2>
     </header>
     <div class="project-preview-showcase">
-      {canUseTabs && <div class="project-preview-tabs" role="group" aria-label={projectPicker} hidden>
-        {projects.map((project, index) => (
-          <button type="button" data-project-tab={index} aria-pressed={index === 0} aria-controls={`project-preview-item-${index}`}>
-            {project.title}
-          </button>
-        ))}
-      </div>}
-      <ol class="project-preview-items" id="project-preview-items" hidden={layout === 'accordion'}>
+      <ol class="project-preview-items" id="project-preview-items">
         {projects.map((project, index) => (
           <li id={`project-preview-item-${index}`} data-project-card>
             <article class="project-preview-card" data-project-image-card={project.image ? "" : undefined}>
@@ -79,26 +40,6 @@ const close = english ? 'Close' : 'Tutup';
           </li>
         ))}
       </ol>
-      {canUseAccordion && <div class="project-preview-accordion" hidden={layout !== 'accordion'}>
-        {projects.map((project, index) => (
-          <details name="preview-project" data-language-details={`project-${index}`} open={index === 0}>
-            <summary>
-              <span class="project-preview-category">{project.category}</span>
-              <span class="project-preview-detail-title">{project.title}</span>
-            </summary>
-            <div class="project-preview-detail" data-project-image-card={project.image ? "" : undefined}>
-              {project.image && <figure class="project-detail-media" data-loading-media>
-                <a class="project-image-open" href={project.image.src} data-project-image={project.title}
-                   aria-label={`${enlarge}: ${project.title}`}>
-                  <img src={project.image.src} alt={project.image.alt} loading="lazy" />
-                </a>
-              </figure>}
-              <p class="project-preview-description">{project.description}</p>
-              {project.href && <a class="project-link" href={project.href} aria-label={`${copy.viewProject}: ${project.title}`}>{copy.viewProject}</a>}
-            </div>
-          </details>
-        ))}
-      </div>}
     </div>
     {!projects.length && <p>{english ? 'No projects yet.' : 'Belum ada proyek.'}</p>}
   </div>
@@ -202,111 +143,3 @@ const close = english ? 'Close' : 'Tutup';
     image.src = link.href;
   });
 </script>
-
-{(canUseRail || canUseTabs) && <script is:inline>
-  (() => {
-    let controller;
-    let activeTab = 0;
-
-    function initializeProjects() {
-      controller?.abort();
-      controller = new AbortController();
-      const { signal } = controller;
-      const root = document.querySelector('[data-project-section]');
-      if (!root) return;
-
-      const choices = [...root.querySelectorAll('[data-project-choice]')];
-      const selection = root.querySelector('.project-preview-selection');
-      const stage = root.querySelector('#project-preview-stage');
-      const showcase = root.querySelector('.project-preview-showcase');
-      const list = root.querySelector('#project-preview-items');
-      const cards = [...list.children];
-      const tabs = root.querySelector('.project-preview-tabs');
-      const tabButtons = tabs ? [...tabs.querySelectorAll('button')] : [];
-      const accordion = root.querySelector('.project-preview-accordion');
-      const railControls = root.querySelector('.project-preview-rail-controls');
-      const railButtons = railControls ? [...railControls.querySelectorAll('button')] : [];
-      const [previous, next] = railButtons;
-      const languageLink = document.querySelector('.tapbar a.language');
-      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-      let animation;
-
-      function updateRailControls() {
-        previous.disabled = list.scrollLeft < 2;
-        next.disabled = list.scrollLeft + list.clientWidth >= list.scrollWidth - 2;
-      }
-
-      function showProject(index) {
-        activeTab = index;
-        const isTabbed = stage.dataset.layout === 'tabs';
-        cards.forEach((card, position) => { card.hidden = isTabbed && position !== index; });
-        tabButtons.forEach((button, position) => button.setAttribute('aria-pressed', String(position === index)));
-      }
-
-      function showLayout(layout) {
-        stage.dataset.layout = layout;
-        if (accordion) accordion.hidden = layout !== 'accordion';
-        list.hidden = layout === 'accordion';
-        if (tabs) tabs.hidden = layout !== 'tabs' || cards.length < 2;
-        showProject(activeTab);
-        if (railControls) {
-          railControls.hidden = layout !== 'rail' || cards.length < 2;
-          if (!railControls.hidden) {
-            list.scrollLeft = 0;
-            updateRailControls();
-          }
-        }
-      }
-
-      function selectChoice(choice, animate) {
-        choices.forEach((button) => button.setAttribute('aria-pressed', String(button === choice)));
-        selection.textContent = choice.querySelector('strong').textContent;
-        if (animate) activeTab = 0;
-        showLayout(choice.dataset.layout);
-        if (languageLink) {
-          const url = new URL(languageLink.href);
-          url.searchParams.set('pilihan', choice.dataset.projectChoice);
-          languageLink.href = url.href;
-        }
-        animation?.cancel();
-        if (animate && !reducedMotion.matches) {
-          animation = showcase.animate(
-            [{ opacity: .45, transform: 'translateY(5px)' }, { opacity: 1, transform: 'none' }],
-            { duration: 220, easing: 'ease-out' },
-          );
-        }
-      }
-
-      function selectFromAddress() {
-        const id = new URLSearchParams(location.search).get('pilihan');
-        selectChoice(choices.find((choice) => choice.dataset.projectChoice === id) ?? choices[0], false);
-      }
-
-      choices.forEach((choice) => choice.addEventListener('click', () => {
-        if (choice.getAttribute('aria-pressed') === 'true') return;
-        const url = new URL(location.href);
-        url.searchParams.set('pilihan', choice.dataset.projectChoice);
-        try { history.replaceState(history.state, '', url.href); } catch {}
-        selectChoice(choice, true);
-      }, { signal }));
-      tabButtons.forEach((button) => button.addEventListener('click', () => showProject(Number(button.dataset.projectTab)), { signal }));
-      railButtons.forEach((button) => button.addEventListener('click', () => {
-        const step = cards[0].offsetWidth + parseFloat(getComputedStyle(list).columnGap);
-        list.scrollBy({ left: step * Number(button.dataset.projectScroll), behavior: reducedMotion.matches ? 'instant' : 'smooth' });
-      }, { signal }));
-      if (railControls) {
-        list.addEventListener('scroll', updateRailControls, { passive: true, signal });
-        window.addEventListener('resize', updateRailControls, { signal });
-      }
-      if (choices.length) {
-        window.addEventListener('popstate', selectFromAddress, { signal });
-        selectFromAddress();
-      } else {
-        showLayout(stage.dataset.layout);
-      }
-    }
-
-    initializeProjects();
-    document.addEventListener('tapid:language-change', initializeProjects);
-  })();
-</script>}

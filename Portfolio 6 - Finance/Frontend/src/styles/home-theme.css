@@ -1,0 +1,27 @@
+.home-demo-stage:where([data-theme="finance"]) {
+  --demo-title-font: var(--finance-serif);
+  --demo-weight: 595;
+  --demo-tracking: -.049em;
+  --demo-line: .88;
+  --stage-surface: var(--surface);
+}
+.home-demo-stage[data-design="03"] {
+  --areas: "photo title" "photo copy";
+  --columns: minmax(0, 1.03fr) minmax(0, 0.97fr);
+  --mobile-areas: "photo" "title" "copy";
+  --main-areas: "photo content";
+  --subject: 24% top;
+  --stage-surface: var(--inverse);
+  --stage-ink: var(--inverse-ink);
+  --stage-muted: var(--inverse-muted);
+  --stage-rule: #ffffff70;
+  --portrait-size: 32rem;
+  --portrait-shape: .3rem 4rem .3rem .3rem;
+}
+
+@media (min-width: 49.01rem) {
+  .home-demo-stage[data-design="03"] {
+    --photo-width: 96%;
+    --photo-justify: end;
+  }
+}

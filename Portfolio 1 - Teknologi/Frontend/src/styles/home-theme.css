@@ -1,0 +1,28 @@
+.home-demo-stage:where([data-theme="teknologi"]) {
+  --demo-label-font: var(--mono);
+  --stage-surface: var(--surface);
+  background-image: linear-gradient(90deg, color-mix(in srgb, var(--focus) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--focus) 10%, transparent) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+}
+.home-demo-stage[data-design="04"] {
+  --areas: "title ." "copy .";
+  --columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  --main-areas: "content .";
+  --copy-width: 100%;
+  --headline-size: clamp(1.1rem, 2vw, 2.25rem);
+  --spotlight-photo-width: 70%;
+  --shade: #101b31;
+  --shade-solid: 32%;
+  --shade-clear: 73%;
+  --subject: 44% top;
+  --title-measure: 10ch;
+  --mobile-areas: "title" "photo" "copy";
+}
+
+@media (min-width: 49.01rem) {
+  .home-demo-stage[data-design="04"]:lang(id) {
+    --columns: minmax(0, 1.14fr) minmax(0, .86fr);
+    --headline-size: clamp(1rem, 1.8vw, 2.06rem);
+  }
+}

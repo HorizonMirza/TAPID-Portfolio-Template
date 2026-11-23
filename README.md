@@ -42,22 +42,19 @@ Each template links to its setup guide, data reference, and build instructions.
 
 ## Publishing the public gallery
 
-GitHub Actions checks and builds all six demos on pushes to `main`, then publishes the verified output to GitHub Pages. Pull requests run the same checks and build. The public gallery retains the original theme URLs and the 404 design archive.
+GitHub Actions checks and builds all six portfolios on pushes to `main`, then publishes the verified output to GitHub Pages. Pull requests run the same checks and build.
 
 The public demos use temporary contact and résumé links from each template's `Frontend/src/demo-contact.ts`. Client builds use the links in `portfolio.json`.
 
 ### Verify a gallery release
 
-From the repository root, use Node.js 24 and Python 3. Read the 404 archive ref in the **Retrieve frozen 404 design gallery** step of the [Pages workflow](.github/workflows/portfolio-pages.yml). Replace `<archive-ref>` with that commit and use fresh output directories.
+From the repository root, use Node.js 24 and Python 3. Use a fresh output directory.
 
 ```sh
-git fetch origin <archive-ref>
-mkdir .previous-pages
-git archive --format=tar <archive-ref> demo-404 | tar -xf - -C .previous-pages
-python3 .github/pages/build.py _site --demo-archive .previous-pages/demo-404
+python3 .github/pages/build.py _site
 ```
 
-The script installs dependencies from the lockfiles, checks and builds each Astro template, and validates links in the combined GitHub Pages artifact.
+The script installs dependencies from the lockfiles, checks and builds each Astro template, builds the gallery and its custom 404 from `.github/pages/src/pages/`, and validates links in the combined GitHub Pages artifact.
 
 After publishing, open the [Pages workflow runs](https://github.com/HorizonMirza/TAPID-Portfolio-Template/actions/workflows/portfolio-pages.yml) and match the run's commit SHA to the release commit. Confirm the build and deploy jobs succeeded. Open the gallery, each theme's Indonesian and English pages, and a nonexistent URL under a theme. Check that the portfolio assets and section links work and that the nonexistent URL returns HTTP 404.
 
@@ -68,21 +65,6 @@ After publishing, open the [Pages workflow runs](https://github.com/HorizonMirza
 3. Build and verify the recovery commit using the steps above. Push to `main` and confirm its workflow deploys successfully. Repeat the public checks on the affected pages.
 
 Periodically check the latest Pages deployment and run `npm audit --audit-level=moderate` in each theme's `Frontend` folder. Open the public résumé and contact destinations to confirm they still point to the intended accounts and that the résumé can be viewed while signed out.
-
-## Design demos
-
-Run a template locally with `settings.demo` enabled. Add `/en` before a path to open the English version, or append `?pilihan=04` to open option 04.
-
-| Section | Demo route | Layouts per theme |
-| --- | --- | ---: |
-| Home | `/demo-beranda/` | 10 |
-| About | `/demo-tentang/` | 10 |
-| Projects | `/demo-proyek/` | 10 |
-| Skills | `/demo-keahlian/` | 15 |
-| Experience | `/demo-pengalaman/` | 15 |
-| Footer | `/demo-footer/` | 10 |
-
-Download and open the [top bar control demo](kontrol-topbar.html) to try the language and appearance controls.
 
 ## Assets
 

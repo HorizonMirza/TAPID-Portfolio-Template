@@ -1,0 +1,25 @@
+.home-demo-stage:where([data-theme="dkv"]) {
+  --demo-weight: 820;
+  --demo-tracking: -.074em;
+  --demo-line: .86;
+  --stage-rule: var(--focus);
+  --stage-surface: var(--surface);
+}
+
+.home-demo-stage:is([data-design="01"], [data-design="06"]) {
+  --role-surface: var(--button-ink);
+  --role-ink: var(--button);
+}
+
+.home-demo-stage[data-design="01"] {
+  --areas: "title ." "copy .";
+  --columns: minmax(0, 1.09fr) minmax(0, 1fr);
+  --main-areas: "content .";
+  --spotlight-photo-width: 72%;
+  --shade: color-mix(in srgb, var(--button) 37%, #270e11);
+  --shade-solid: 30%;
+  --shade-clear: 75%;
+  --title-measure: 10ch;
+  --subject: 62% top;
+  --mobile-areas: "title" "photo" "copy";
+}

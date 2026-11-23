@@ -1,0 +1,24 @@
+.home-demo-stage:where([data-theme="general"]) {
+  --demo-title-font: var(--serif);
+  --demo-weight: 590;
+  --demo-tracking: -.06em;
+  --demo-line: .94;
+  --portrait-filter: grayscale(1);
+}
+
+.home-demo-stage[data-design="01"] {
+  --areas: "photo title" "photo copy";
+  --columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+  --mobile-areas: "photo" "title" "copy";
+  --main-areas: "photo content";
+  --subject: center top;
+  --portrait-size: 31rem;
+  --portrait-border: .45rem solid var(--surface);
+}
+
+@media (min-width: 49.01rem) {
+  .home-demo-stage[data-design="01"] {
+    --photo-width: 95%;
+    --photo-justify: end;
+  }
+}

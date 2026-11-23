@@ -7,30 +7,19 @@ import ProjectSection from './sections/ProjectSection.astro';
 import SkillSection from './sections/SkillSection.astro';
 import ExperienceSection from './sections/ExperienceSection.astro';
 import CvLink from './sections/CvLink.astro';
-import HomeDemos from '../demos/HomeDemos.astro';
-import AboutDemos from '../demos/AboutDemos.astro';
-import { demoSlugs, type DemoSection } from '../demos/routes';
 import ContactFooter from './sections/ContactFooter.astro';
-import { selectedFooterLayout } from '../demos/footer-demos';
 import { localize, type Language } from '../portfolio';
 interface Props {
   language: Language;
-  preview?: Exclude<DemoSection, 'footer'>;
 }
-const { language, preview } = Astro.props;
-const previewPath = preview ? demoSlugs[preview] + '/' : undefined;
-const languageHref = previewPath ? `${language === 'id' ? '/en/' : '/'}${previewPath}` : undefined;
+const { language } = Astro.props;
 const { copy, p, projects, skills, experience, contact } = localize(language);
 const heroImage = projects.find((project) => project.image)?.image;
 ---
-<Frame language={language} skip={copy.skip} previewPath={previewPath}>
-  <TopBar language={language} languageHref={languageHref} />
+<Frame language={language} skip={copy.skip}>
+  <TopBar language={language} />
   <main id="main" tabindex="-1">
-    {preview === 'experience' && <ExperienceSection language={language} preview />}
-    {preview === 'skills' && <SkillSection language={language} preview />}
-    {preview === 'projects' && <ProjectSection language={language} preview />}
-    {preview === 'about' && <AboutDemos language={language} />}
-    {preview === 'home' ? <HomeDemos language={language} /> : p.portrait ? (
+    {p.portrait ? (
       <section id="home" aria-labelledby="portfolio-home-title">
         <HomeHero language={language} />
       </section>
@@ -53,10 +42,10 @@ const heroImage = projects.find((project) => project.image)?.image;
         </div>
       </section>
     )}
-    {preview !== 'about' && <AboutSection language={language} />}
-    {preview !== 'projects' && projects.length > 0 && <ProjectSection language={language} />}
-    {preview !== 'skills' && skills.length > 0 && <SkillSection language={language} />}
-    {preview !== 'experience' && experience.length > 0 && <ExperienceSection language={language} />}
+    {<AboutSection language={language} />}
+    {projects.length > 0 && <ProjectSection language={language} />}
+    {skills.length > 0 && <SkillSection language={language} />}
+    {experience.length > 0 && <ExperienceSection language={language} />}
   </main>
-  <ContactFooter language={language} name={p.name} theme="dkv" channels={contact.channels} layout={selectedFooterLayout} />
+  <ContactFooter language={language} name={p.name} theme="dkv" channels={contact.channels} layout="cards" />
 </Frame>

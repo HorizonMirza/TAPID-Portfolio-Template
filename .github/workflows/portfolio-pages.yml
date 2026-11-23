@@ -22,20 +22,13 @@ jobs:
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - name: Retrieve frozen 404 design gallery
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
-        with:
-          ref: 462a5cfd96594e5cefc7771f95e196ef6b290a2a
-          sparse-checkout: demo-404
-          path: .previous-pages
-          persist-credentials: false
       - name: Set up Node.js 24
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: '24'
           package-manager-cache: false
-      - name: Build and verify all six demos
-        run: python3 .github/pages/build.py _site --demo-archive .previous-pages/demo-404
+      - name: Build and verify the portfolio gallery
+        run: python3 .github/pages/build.py _site
       - name: Upload the GitHub Pages artifact
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4

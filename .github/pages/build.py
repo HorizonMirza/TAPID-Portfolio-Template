@@ -1,4 +1,4 @@
-"""Build and verify the six public Astro demos for the GitHub Pages artifact."""
+"""Build and verify the public Astro portfolio gallery for GitHub Pages."""
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -8,6 +8,7 @@ import os
 import re
 import shutil
 import subprocess
+from tempfile import TemporaryDirectory
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -100,20 +101,40 @@ def build_sites(output, require_install, prebuilt):
             raise ValueError(f"{theme} is missing its customer 404 build")
 
 
+def build_gallery(output):
+    # The six themes build independently. Reuse the first theme's installed compiler
+    # without including gallery routes in any theme build.
+    frontend = ROOT / "Portfolio 1 - Teknologi" / "Frontend"
+    dependencies = frontend / "node_modules"
+    compiler = dependencies / "astro" / "bin" / "astro.mjs"
+    if not compiler.is_file():
+        raise RuntimeError("Install the Technology theme dependencies before building the gallery")
+    config = Path(os.path.relpath(Path(__file__).with_name("astro.config.ts"), frontend))
+    env = {**os.environ, "ASTRO_TELEMETRY_DISABLED": "1"}
+    with TemporaryDirectory(prefix="tapid-gallery-", dir=dependencies) as temporary:
+        out_dir = Path(temporary).relative_to(frontend)
+        subprocess.run(
+            ["node", str(compiler), "build", "--config", config.as_posix(), "--out-dir", out_dir.as_posix()],
+            cwd=frontend,
+            env=env,
+            check=True,
+        )
+        shutil.copytree(temporary, output, dirs_exist_ok=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("output", type=Path)
-    parser.add_argument("--demo-archive", type=Path, required=True)
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--installed", action="store_true", help="Reuse preinstalled npm dependencies")
-    mode.add_argument("--prebuilt", action="store_true", help="Package existing GitHub Pages builds")
+    mode.add_argument("--prebuilt", action="store_true", help="Reuse theme outputs and build the gallery")
     args = parser.parse_args()
     output = args.output.resolve()
-    output.mkdir(parents=True)
+    output.mkdir(parents=True, exist_ok=True)
+    if any(output.iterdir()):
+        parser.error(f"Use an empty output directory: {output}")
     build_sites(output, not args.installed, args.prebuilt)
-    for filename in ("index.html", "404.html", "demo-hover-topbar.html"):
-        shutil.copyfile(Path(__file__).with_name(filename), output / filename)
-    shutil.copytree(args.demo_archive, output / "demo-404")
+    build_gallery(output)
     check_links(output)
     print(f"Verified all links across {sum(1 for _ in output.rglob('*.html'))} HTML pages.")
 

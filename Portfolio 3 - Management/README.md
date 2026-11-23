@@ -15,7 +15,7 @@ npm ci
 npm run dev
 ```
 
-Open `/` for Indonesian or `/en/` for English. Enable `settings.demo` to explore the [interactive design demos](https://github.com/HorizonMirza/TAPID-Portfolio-Template#design-demos).
+Open `/` for Indonesian or `/en/` for English.
 
 ## Customize and deploy
 

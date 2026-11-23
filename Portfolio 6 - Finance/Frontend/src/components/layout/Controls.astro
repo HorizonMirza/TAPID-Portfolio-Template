@@ -2,13 +2,13 @@
 import { localize, type Language } from '../../portfolio';
 import '../../styles/controls.css';
 
-interface Props { language: Language; languageHref?: string }
-const { language, languageHref } = Astro.props;
+interface Props { language: Language }
+const { language } = Astro.props;
 const { copy } = localize(language);
 const alternate = language === 'id' ? 'en' : 'id';
 ---
 <div class="controls" role="group" aria-label={copy.preferences}>
-  <a class="control language" href={languageHref ?? (alternate === 'en' ? '/en/' : '/')} lang={alternate} hreflang={alternate}
+  <a class="control language" href={alternate === 'en' ? '/en/' : '/'} lang={alternate} hreflang={alternate}
      aria-label={alternate === 'en' ? 'EN — Switch to English' : 'ID — Ganti ke Bahasa Indonesia'}>
     <span class="control-label">{alternate.toUpperCase()}</span>
   </a>

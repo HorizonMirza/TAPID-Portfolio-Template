@@ -1,0 +1,21 @@
+.home-demo-stage:where([data-theme="management"]) {
+  --demo-weight: 800;
+  --demo-tracking: -.078em;
+  --stage-surface: var(--bg);
+  --portrait-border: 1px solid var(--stage-rule);
+}
+.home-demo-stage[data-design="03"] {
+  --areas: "photo title" "photo copy";
+  --columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+  --mobile-areas: "photo" "title" "copy";
+  --main-areas: "photo content";
+  --copy-width: 100%;
+  --headline-size: clamp(1.1rem, 2vw, 2.25rem);
+  --stage-surface: var(--button);
+  --stage-ink: var(--button-ink);
+  --role-surface: var(--button-ink);
+  --role-ink: var(--button);
+  --stage-muted: var(--button-ink);
+  --stage-rule: var(--button-ink);
+  --portrait-size: 30rem;
+}

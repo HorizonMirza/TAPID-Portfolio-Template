@@ -5,8 +5,8 @@ import '../../styles/font.css';
 import '../../styles/theme.css';
 import '../../styles/motion.css';
 
-interface Props { language: Language; skip: string; previewPath?: string }
-const { language, skip, previewPath: path = '' } = Astro.props;
+interface Props { language: Language; skip: string }
+const { language, skip } = Astro.props;
 const { profile, settings } = portfolio;
 const pageTitle = `${profile.name} | ${profile.role[language]}`;
 const productionHost = import.meta.env.VERCEL_PROJECT_PRODUCTION_URL;
@@ -16,7 +16,7 @@ if (site && (site.protocol !== 'https:' || site.username || site.password || sit
   throw new Error('TAPID_SITE_URL must be a public HTTPS base URL.');
 }
 if (site && !site.pathname.endsWith('/')) site.pathname += '/';
-const localizedPath = (locale: Language) => (locale === 'en' ? 'en/' : '') + path;
+const localizedPath = (locale: Language) => (locale === 'en' ? 'en/' : '');
 const alternateHref = (locale: Language) => site
   ? new URL(localizedPath(locale), site).href
   : '/' + localizedPath(locale);
@@ -41,11 +41,10 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content={profile.introduction[language]} />
     <meta name="color-scheme" content="light dark" />
-    {path && <meta name="robots" content="noindex" />}
     <title>{pageTitle}</title>
     <link rel="alternate" href={alternateHref('id')} hreflang="id" />
     <link rel="alternate" href={alternateHref('en')} hreflang="en" />
-    {site && !path && <>
+    {site && <>
       <link rel="canonical" href={canonical} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonical} />
@@ -521,7 +520,7 @@ const customColors = Object.entries(settings.accent ?? {}).map(([mode, color]) =
       })();
     </script>
   </head>
-  <body data-portfolio-page={path ? undefined : ''}>
+  <body data-portfolio-page>
     <a class="skip-link" href="#main">{skip}</a>
     <slot />
     <script>

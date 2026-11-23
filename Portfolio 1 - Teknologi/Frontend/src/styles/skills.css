@@ -1,0 +1,61 @@
+.skill-previews {
+  --skill-radius: .6rem;
+  --skill-gap: clamp(.65rem, 1.5vw, 1.2rem);
+  --skill-title: var(--body);
+  --skill-tint: color-mix(in srgb, var(--button) 14%, var(--surface));
+  --skill-accent: var(--focus);
+  background: var(--bg);
+  border-block-end: 1px solid var(--line);
+}
+#skills.skill-previews {
+  padding-block: 0;
+  border-block-start: 0;
+  scroll-margin-block-start: 0;
+}
+#skills.skill-previews:not([data-skill-demos]) {
+  border-block-start: var(--skill-start-border, 1px solid var(--line));
+  border-block-end: 0;
+}
+.skill-previews [hidden] { display: none !important; }
+.skill-previews #skill-picker-title { font: 750 clamp(1.05rem, 2vw, 1.42rem)/1.2 var(--body); letter-spacing: -.02em; }
+
+.skill-stage { padding-block: var(--section-space); }
+.skill-stage-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: .8rem;
+  margin-block-end: clamp(1.2rem, 2.6vw, 2.1rem);
+}
+.skill-previews :is(#skill-preview-title, #skills-title) { font: 730 var(--section-heading-size)/1.05 var(--skill-title); letter-spacing: -.05em; }
+.skill-content,
+.skill-list { min-inline-size: 0; }
+
+.skill-list { display: grid; gap: var(--skill-gap); grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.skill-list > li {
+  display: flex;
+  align-items: center;
+  min-block-size: 4.6rem;
+  padding: clamp(.65rem, 1.7vw, 1.45rem);
+  border: 1px solid var(--line);
+  border-radius: var(--skill-radius);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 720;
+  font-size: clamp(1rem, 1.65vw, 1.5rem);
+  line-height: 1.26;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 52rem) {
+  .skill-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 36rem) {
+  .skill-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.skill-previews { --skill-radius: .32rem; }
+.skill-stage {
+  background-image: linear-gradient(var(--skill-tint) 1px, transparent 1px), linear-gradient(90deg, var(--skill-tint) 1px, transparent 1px);
+  background-size: 2.3rem 2.3rem;
+}
+.skill-list > li { border-block-end-color: var(--skill-accent); }

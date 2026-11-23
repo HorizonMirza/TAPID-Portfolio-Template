@@ -1,0 +1,53 @@
+---
+const portfolios = [
+  { slug: 'teknologi', theme: 'Teknologi', name: 'Arga Pradana', role: 'Frontend Engineer' },
+  { slug: 'asuransi', theme: 'Asuransi', name: 'Alya Wicaksana', role: 'Analis Risiko & Polis' },
+  { slug: 'management', theme: 'Management', name: 'Bima Santosa', role: 'Manajer Proyek & Operasional' },
+  { slug: 'dkv', theme: 'DKV', name: 'Keira Maheswari', role: 'Desainer Komunikasi Visual' },
+  { slug: 'general', theme: 'General', name: 'Kirana Dewi', role: 'Peneliti & Koordinator Program' },
+  { slug: 'finance', theme: 'Finance', name: 'Rania Hartono', role: 'Analis Perencanaan Keuangan' },
+];
+---
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Buka enam demo website portofolio TAP.ID.">
+<title>Portofolio TAP.ID</title>
+<style is:inline>
+:root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+body { margin: 0; color: #1b2533; background: #f2f5f8; }
+main { width: min(70rem, calc(100% - 2rem)); margin: 3rem auto; }
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.06; margin: 0; letter-spacing: -.045em; }
+p { margin: .7rem 0 1.8rem; color: #526170; }
+ul { padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr)); gap: 1rem; }
+a { display: grid; overflow: hidden; border: 1px solid #cbd5df; border-radius: .75rem; background: #fff; color: inherit; text-decoration: none; }
+a:hover strong, a:focus-visible strong { text-decoration: underline; }
+a:focus-visible { outline: 3px solid #1675b8; outline-offset: 3px; }
+img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 33%; }
+.card { display: grid; gap: .32rem; padding: .85rem 1rem 1rem; }
+strong { font-size: 1.15rem; }
+small { color: #526170; }
+@media (prefers-color-scheme: dark) {
+  body { color: #eef2f8; background: #141b24; }
+  a { border-color: #455466; background: #202b38; }
+  p, small { color: #b8c5d6; }
+}
+</style>
+</head>
+<body><main>
+<h1>Portofolio TAP.ID</h1>
+<p>Pilih salah satu dari enam website demo.</p>
+<ul>
+  {portfolios.map(({ slug, theme, name, role }) => (
+    <li>
+      <a href={`${slug}/`}>
+        <img src={`${slug}/media/home-portrait.webp`} alt="" width="640" height="360" />
+        <span class="card"><strong>{theme}</strong><span>{name}</span><small>{role}</small></span>
+      </a>
+    </li>
+  ))}
+</ul>
+</main></body>
+</html>

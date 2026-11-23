@@ -1,12 +1,10 @@
 ---
 import { localize, type Language } from '../../portfolio';
-import { aboutTheme, selectedAbout } from '../../demos/about-demos';
-import '../../styles/about-demos.css';
+import '../../styles/about.css';
 
 interface Props { language: Language }
 const { language } = Astro.props;
 const { about, copy } = localize(language);
-const preview = Astro.slots.has('picker');
 const english = language === 'en';
 const format = new Intl.NumberFormat(english ? 'en-US' : 'id-ID', {
   minimumFractionDigits: 2,
@@ -24,11 +22,8 @@ const facts = [
   },
 ].filter((fact) => fact.value);
 ---
-<section id="about" class:list={['about-section', { 'about-demos': preview }]} data-theme={aboutTheme}
-         data-about-demos={preview ? "" : undefined} aria-labelledby={preview ? "about-demo-heading" : "about-title"}>
-  <slot name="picker" />
-  <div class="about-stage" id={preview ? "about-demo-stage" : undefined} data-about-stage={preview ? "" : undefined}
-       data-layout={selectedAbout.layout}>
+<section id="about" class="about-section" data-theme="dkv" aria-labelledby="about-title">
+  <div class="about-stage" data-layout="ledger">
     <div class="about-intro">
       <div class="about-heading">
         <h2 id="about-title">{copy.about}</h2>

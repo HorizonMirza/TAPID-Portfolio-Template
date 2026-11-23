@@ -1,56 +1,22 @@
 ---
 import { localize, type Language } from '../../portfolio';
-import { experienceOptions, selectedExperienceLayout } from '../../demos/experience-demos';
-import '../../styles/experience-demos.css';
+import '../../styles/experience.css';
 
 interface Props {
   language: Language;
-  preview?: boolean;
 }
-const { language, preview = false } = Astro.props;
+const { language } = Astro.props;
 const { experience, copy } = localize(language);
 const english = language === 'en';
-const first = experienceOptions[0];
-const layout = preview ? first.layout : selectedExperienceLayout;
-const titleId = preview ? 'experience-preview-title' : 'experience-title';
 ---
-<section id="experience" class="experience-demos" data-experience-demos={preview ? "" : undefined} aria-labelledby={titleId}>
-  {preview && <div class="experience-picker wrap">
-    <div class="experience-picker-heading">
-      <h2 id="experience-picker-title">{english ? 'Experience layout demos' : 'Demo tata letak Pengalaman'}</h2>
-      <a href={english ? '/en/#experience' : '/#experience'}>{english ? 'Back to portfolio' : 'Kembali ke portofolio'}</a>
-    </div>
-    <div class="experience-choices" role="group" aria-labelledby="experience-picker-title">
-      {experienceOptions.map(({ id, name, layout }) => (
-        <button type="button" data-experience-choice={id} data-layout={layout} aria-pressed={first.id === id}
-                aria-controls="experience-preview" aria-label={id + ' ' + name[language]}>
-          <span>{id}</span><strong>{name[language]}</strong>
-        </button>
-      ))}
-    </div>
-    <p class="experience-selection" aria-live="polite">{first.name[language]}</p>
-  </div>}
-
-  <div id={preview ? "experience-preview" : undefined} class="experience-stage wrap" data-layout={layout}>
+<section id="experience" class="experience-demos" aria-labelledby="experience-title">
+  <div class="experience-stage wrap" data-layout="compare">
     <header class="experience-stage-heading">
-      <h2 id={titleId}>{copy.experience}</h2>
-      {preview && <div class="experience-pager" role="group" aria-label={english ? 'Browse roles' : 'Jelajahi jabatan'} hidden>
-        <button type="button" data-experience-step="-1" aria-controls="experience-records" aria-label={english ? 'Previous role' : 'Jabatan sebelumnya'}>←</button>
-        <p class="experience-counter" aria-live="polite" aria-atomic="true"></p>
-        <button type="button" data-experience-step="1" aria-controls="experience-records" aria-label={english ? 'Next role' : 'Jabatan berikutnya'}>→</button>
-      </div>}
+      <h2 id="experience-title">{copy.experience}</h2>
     </header>
 
     <div class="experience-content">
-      {preview && <div class="experience-tabs" role="group" aria-label={english ? 'Choose a role' : 'Pilih jabatan'} hidden>
-        {experience.map((role, index) => (
-          <button type="button" data-experience-tab={index} aria-controls={'experience-role-' + index} aria-pressed={index === 0}>
-            {role.organization}
-            <small>{role.title}</small>
-          </button>
-        ))}
-      </div>}
-      {(preview || layout !== "accordion") && <ol class="experience-records" id="experience-records">
+      <ol class="experience-records" id="experience-records">
         {experience.map((role, index) => (
           <li class="experience-entry" id={'experience-role-' + index}>
             <p class="experience-period">{role.period}</p>
@@ -59,115 +25,8 @@ const titleId = preview ? 'experience-preview-title' : 'experience-title';
             <p class="experience-description">{role.description}</p>
           </li>
         ))}
-      </ol>}
-      {(preview || layout === "accordion") && <div class="experience-accordion" hidden={layout !== "accordion"}>
-        {experience.map((role, index) => (
-          <details name="experience-roles" data-language-details={`experience-${index}`} open={index === 0}>
-            <summary>
-              <span class="experience-period">{role.period}</span>
-              <strong>{role.title}</strong>
-            </summary>
-            <div class="experience-accordion-content">
-              <p class="experience-org">{role.organization}</p>
-              <p class="experience-description">{role.description}</p>
-            </div>
-          </details>
-        ))}
-      </div>}
+      </ol>
       {!experience.length && <p>{english ? 'No experience listed yet.' : 'Belum ada pengalaman.'}</p>}
     </div>
   </div>
 </section>
-
-{preview && <script is:inline>
-  (() => {
-    let controller;
-    let position = 0;
-    function initializeExperience() {
-      controller?.abort();
-      controller = new AbortController();
-      const { signal } = controller;
-      const root = document.querySelector('[data-experience-demos]');
-      if (!root) return;
-
-      const stage = root.querySelector('.experience-stage');
-      const content = root.querySelector('.experience-content');
-      const buttons = [...root.querySelectorAll('[data-experience-choice]')];
-      const selection = root.querySelector('.experience-selection');
-      const records = root.querySelector('.experience-records');
-      const entries = [...records.children];
-      const tabs = root.querySelector('.experience-tabs');
-      const tabButtons = [...tabs.children];
-      const accordion = root.querySelector('.experience-accordion');
-      const pager = root.querySelector('.experience-pager');
-      const [previous, next] = pager.querySelectorAll('button');
-      const counter = root.querySelector('.experience-counter');
-      const languageLink = document.querySelector('.tapbar a.language');
-      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-      let animation;
-
-      function showRole(index) {
-        position = Math.max(0, Math.min(index, entries.length - 1));
-        const isSingle = stage.dataset.layout === 'tabs' || stage.dataset.layout === 'pager';
-        entries.forEach((entry, number) => { entry.hidden = isSingle && number !== position; });
-        tabButtons.forEach((button, number) => button.setAttribute('aria-pressed', String(number === position)));
-        counter.textContent = (position + 1) + ' / ' + entries.length;
-        previous.disabled = position === 0;
-        next.disabled = position + 1 >= entries.length;
-      }
-
-      function showLayout(choice, animate) {
-        const layout = choice.dataset.layout;
-        stage.dataset.layout = layout;
-        buttons.forEach((button) => button.setAttribute('aria-pressed', String(button === choice)));
-        selection.textContent = choice.querySelector('strong').textContent;
-        accordion.hidden = layout !== 'accordion';
-        records.hidden = !accordion.hidden;
-        tabs.hidden = layout !== 'tabs' || entries.length < 2;
-        pager.hidden = layout !== 'pager' || entries.length < 2;
-        showRole(animate ? 0 : position);
-
-        if (languageLink) {
-          const url = new URL(languageLink.href);
-          url.searchParams.set('pilihan', choice.dataset.experienceChoice);
-          languageLink.href = url.href;
-        }
-        animation?.cancel();
-        if (animate && !reducedMotion.matches && content.animate) {
-          animation = content.animate(
-            [{ opacity: .5, transform: 'translateY(4px)' }, { opacity: 1, transform: 'none' }],
-            { duration: 180, easing: 'ease-out' },
-          );
-        }
-      }
-
-      function selectFromAddress() {
-        const id = new URLSearchParams(location.search).get('pilihan');
-        showLayout(buttons.find((button) => button.dataset.experienceChoice === id) ?? buttons[0], false);
-      }
-
-      for (const button of buttons) {
-        button.addEventListener('click', () => {
-          if (button.getAttribute('aria-pressed') === 'true') return;
-          const url = new URL(location.href);
-          url.searchParams.set('pilihan', button.dataset.experienceChoice);
-          try { history.replaceState(history.state, '', url.href); } catch {}
-          showLayout(button, true);
-        }, { signal });
-      }
-      for (const button of tabButtons) {
-        button.addEventListener('click', () => showRole(Number(button.dataset.experienceTab)), { signal });
-      }
-      for (const button of [previous, next]) {
-        button.addEventListener('click', () => {
-          showRole(position + Number(button.dataset.experienceStep));
-          if (button.disabled) (button === previous ? next : previous).focus({ preventScroll: true });
-        }, { signal });
-      }
-      window.addEventListener('popstate', selectFromAddress, { signal });
-      selectFromAddress();
-    }
-    initializeExperience();
-    document.addEventListener('tapid:language-change', initializeExperience);
-  })();
-</script>}
