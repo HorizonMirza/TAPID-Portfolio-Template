@@ -19,7 +19,7 @@ Provide `id` and `en` for bilingual text. Use empty arrays for sections without 
 
 Store approved images in `Frontend/public/media/` and use paths such as `/media/photo.webp`. The build checks that each local portrait and project image exists. HTTPS image URLs are also supported. Check external images from a browser and supply alternative text in both languages.
 
-List each approved footer channel in display order. Set `detail` for a formatted WhatsApp number or account name when needed. To show Resume CV only on Home, set `contact.showResume` to `false`. [Data reference and examples](../Database/README.md)
+List each approved footer channel in display order. Set `detail` for a formatted WhatsApp number or account name when needed. To show Resume CV only on Home, set `contact.showResume` to `false`. [Portfolio data schema](../Frontend/src/portfolio.ts)
 
 ## 2. Validate and deploy
 

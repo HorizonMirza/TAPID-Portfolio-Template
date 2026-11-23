@@ -21,7 +21,5 @@ Open `/` for Indonesian or `/en/` for English.
 
 Edit [portfolio.json](Frontend/src/portfolio.json) to update the profile, education, projects, skills, experience, theme preferences, Resume CV, and footer links.
 
-- [Client setup, deployment, and handoff](Documentation/PANDUAN.md)
-- [Data reference and contact examples](Database/README.md)
-- [Astro build instructions](Backend/README.md)
-- [All six templates](https://github.com/HorizonMirza/TAPID-Portfolio-Template#portfolio-templates)
+- [Client setup, build, deployment, and handoff](Documentation/PANDUAN.md)
+- [All six templates](https://github.com/HorizonMirza/TAPID-Portfolio-Templates#portfolio-templates)

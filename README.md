@@ -23,4 +23,4 @@ Six Portfolio Templates for TAP.ID.
 3. Set `TAPID_SITE_URL` to the public HTTPS URL if the client uses a preferred domain. Vercel's production URL is used by default when system environment variables are enabled.
 4. Check both languages, the custom 404 page, and all public contact links. Add the published site to the client’s Linktree.
 
-Each template links to its setup guide, data reference, and build instructions.
+Each template includes a guide to customizing, building, and deploying the site.
