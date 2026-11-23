@@ -2,7 +2,7 @@
 // Serialize the compiled function so preferences apply before the page paints.
 function applyVisitorPreferences(): void {
   const root = document.documentElement;
-  const base = '/TAPID-Portfolio-Template/';
+  const base = '/TAPID-Portfolio-Templates/';
   const themes = ['teknologi', 'asuransi', 'management', 'dkv', 'general', 'finance'];
   const path = location.pathname.startsWith(base) ? location.pathname.slice(base.length) : '';
   const [theme, section] = path.split('/');
@@ -29,37 +29,37 @@ function applyVisitorPreferences(): void {
   <style is:inline>
     @font-face {
       font-family: Technology;
-      src: url('/TAPID-Portfolio-Template/teknologi/fonts/theme.woff2') format('woff2');
+      src: url('/TAPID-Portfolio-Templates/teknologi/fonts/theme.woff2') format('woff2');
       font-weight: 100 900;
       font-display: swap;
     }
     @font-face {
       font-family: Insurance;
-      src: url('/TAPID-Portfolio-Template/asuransi/fonts/theme.woff2') format('woff2');
+      src: url('/TAPID-Portfolio-Templates/asuransi/fonts/theme.woff2') format('woff2');
       font-weight: 100 900;
       font-display: swap;
     }
     @font-face {
       font-family: Management;
-      src: url('/TAPID-Portfolio-Template/management/fonts/theme.woff2') format('woff2');
+      src: url('/TAPID-Portfolio-Templates/management/fonts/theme.woff2') format('woff2');
       font-weight: 100 900;
       font-display: swap;
     }
     @font-face {
       font-family: DKV;
-      src: url('/TAPID-Portfolio-Template/dkv/fonts/theme.woff2') format('woff2');
+      src: url('/TAPID-Portfolio-Templates/dkv/fonts/theme.woff2') format('woff2');
       font-weight: 100 900;
       font-display: swap;
     }
     @font-face {
       font-family: General;
-      src: url('/TAPID-Portfolio-Template/general/fonts/theme.woff2') format('woff2');
+      src: url('/TAPID-Portfolio-Templates/general/fonts/theme.woff2') format('woff2');
       font-weight: 100 900;
       font-display: swap;
     }
     @font-face {
       font-family: Finance;
-      src: url('/TAPID-Portfolio-Template/finance/fonts/theme.woff2') format('woff2');
+      src: url('/TAPID-Portfolio-Templates/finance/fonts/theme.woff2') format('woff2');
       font-weight: 100 900;
       font-display: swap;
     }
@@ -152,12 +152,12 @@ function applyVisitorPreferences(): void {
       <div class="indonesian">
         <h1>Halaman tidak ditemukan</h1>
         <p>Halaman ini mungkin telah dipindah atau alamatnya keliru.</p>
-        <a href="/TAPID-Portfolio-Template/">Lihat semua portofolio <span aria-hidden="true">↗</span></a>
+        <a href="/TAPID-Portfolio-Templates/">Lihat semua portofolio <span aria-hidden="true">↗</span></a>
       </div>
       <div class="english">
         <h1>Page not found</h1>
         <p>This page may have moved, or the address may be incorrect.</p>
-        <a href="/TAPID-Portfolio-Template/">View all portfolios <span aria-hidden="true">↗</span></a>
+        <a href="/TAPID-Portfolio-Templates/">View all portfolios <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </main>

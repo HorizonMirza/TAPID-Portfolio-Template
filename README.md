@@ -4,17 +4,17 @@ Six Portfolio Templates for TAP.ID.
 
 ## Portfolio Templates
 
-| [Technology](Portfolio%201%20-%20Teknologi/README.md) | [Insurance](Portfolio%202%20-%20Asuransi/README.md) |
+| [Technology](Portfolio%201%20-%20Computer%20Science/README.md) | [Insurance](Portfolio%202%20-%20Insurence/README.md) |
 | --- | --- |
-| [![Technology template with Arga Pradana](.github/assets/technology.jpg)](Portfolio%201%20-%20Teknologi/README.md) | [![Insurance template with Alya Wicaksana](.github/assets/insurance.jpg)](Portfolio%202%20-%20Asuransi/README.md) |
+| [![Technology template with Arga Pradana](.github/assets/technology.jpg)](Portfolio%201%20-%20Computer%20Science/README.md) | [![Insurance template with Alya Wicaksana](.github/assets/insurance.jpg)](Portfolio%202%20-%20Insurence/README.md) |
 
-| [Management](Portfolio%203%20-%20Management/README.md) | [Visual Communication Design](Portfolio%204%20-%20DKV/README.md) |
+| [Management](Portfolio%203%20-%20Management/README.md) | [Visual Communication Design](Portfolio%204%20-%20Visual%20Design/README.md) |
 | --- | --- |
-| [![Management template with Bima Santosa](.github/assets/management.jpg)](Portfolio%203%20-%20Management/README.md) | [![Visual Communication Design template with Keira Maheswari](.github/assets/visual-design.jpg)](Portfolio%204%20-%20DKV/README.md) |
+| [![Management template with Bima Santosa](.github/assets/management.jpg)](Portfolio%203%20-%20Management/README.md) | [![Visual Communication Design template with Keira Maheswari](.github/assets/visual-design.jpg)](Portfolio%204%20-%20Visual%20Design/README.md) |
 
-| [General](Portfolio%205%20-%20General/README.md) | [Finance](Portfolio%206%20-%20Finance/README.md) |
+| [Finance](Portfolio%205%20-%20Finance/README.md) | [General](Portfolio%206%20-%20General/README.md) |
 | --- | --- |
-| [![General template with Kirana Dewi](.github/assets/general.jpg)](Portfolio%205%20-%20General/README.md) | [![Finance template with Rania Hartono](.github/assets/finance.jpg)](Portfolio%206%20-%20Finance/README.md) |
+| [![Finance template with Rania Hartono](.github/assets/finance.jpg)](Portfolio%205%20-%20Finance/README.md) | [![General template with Kirana Dewi](.github/assets/general.jpg)](Portfolio%206%20-%20General/README.md) |
 
 ## Client Setup
 

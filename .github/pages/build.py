@@ -12,9 +12,16 @@ from tempfile import TemporaryDirectory
 
 
 ROOT = Path(__file__).resolve().parents[2]
-SITE = "https://horizonmirza.github.io/TAPID-Portfolio-Template/"
+SITE = "https://horizonmirza.github.io/TAPID-Portfolio-Templates/"
 BASE = urlsplit(SITE).path
-THEMES = ("Teknologi", "Asuransi", "Management", "DKV", "General", "Finance")
+PORTFOLIOS = (
+    ("teknologi", "Portfolio 1 - Computer Science"),
+    ("asuransi", "Portfolio 2 - Insurence"),
+    ("management", "Portfolio 3 - Management"),
+    ("dkv", "Portfolio 4 - Visual Design"),
+    ("finance", "Portfolio 5 - Finance"),
+    ("general", "Portfolio 6 - General"),
+)
 HTML_URL = re.compile(r"""(\b(?:href|src|poster|action)\s*=\s*)(["'])/(?!/)([^"']*)(\2)""")
 CSS_URL = re.compile(r"""(url\(\s*["']?)/(?!/)""")
 
@@ -66,14 +73,13 @@ def build_sites(output, require_install, prebuilt):
     if not npm:
         raise RuntimeError("npm must be installed")
 
-    for number, theme in enumerate(THEMES, 1):
-        slug = theme.lower()
-        frontend = ROOT / f"Portfolio {number} - {theme}" / "Frontend"
+    for slug, folder in PORTFOLIOS:
+        frontend = ROOT / folder / "Frontend"
         data = json.loads((frontend / "src/portfolio.json").read_text(encoding="utf-8"))
         if not data["settings"]["demo"] or data["profile"].get("cvUrl") or any(
             not link.get("sample") for link in data["contact"]["links"]
         ):
-            raise ValueError(f"{theme} must use demo-only contact data in the public gallery")
+            raise ValueError(f"{folder} must use demo-only contact data in the public gallery")
         env = {**os.environ, "ASTRO_TELEMETRY_DISABLED": "1", "TAPID_SITE_URL": f"{SITE}{slug}/"}
         if not prebuilt:
             if require_install:
@@ -98,17 +104,18 @@ def build_sites(output, require_install, prebuilt):
             else:
                 shutil.copyfile(file, target)
         if not (output / slug / "404.html").is_file():
-            raise ValueError(f"{theme} is missing its customer 404 build")
+            raise ValueError(f"{folder} is missing its customer 404 build")
 
 
 def build_gallery(output):
     # The six themes build independently. Reuse the first theme's installed compiler
     # without including gallery routes in any theme build.
-    frontend = ROOT / "Portfolio 1 - Teknologi" / "Frontend"
+    _, folder = PORTFOLIOS[0]
+    frontend = ROOT / folder / "Frontend"
     dependencies = frontend / "node_modules"
     compiler = dependencies / "astro" / "bin" / "astro.mjs"
     if not compiler.is_file():
-        raise RuntimeError("Install the Technology theme dependencies before building the gallery")
+        raise RuntimeError(f"Install dependencies in {frontend} before building the gallery")
     config = Path(os.path.relpath(Path(__file__).with_name("astro.config.ts"), frontend))
     env = {**os.environ, "ASTRO_TELEMETRY_DISABLED": "1"}
     with TemporaryDirectory(prefix="tapid-gallery-", dir=dependencies) as temporary:
