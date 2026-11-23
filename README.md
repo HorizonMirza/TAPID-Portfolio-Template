@@ -1,6 +1,6 @@
 # TAP.ID Portfolio Templates
 
-Six responsive, bilingual portfolio templates for TAP.ID.
+Six Portfolio Templates for TAP.ID.
 
 **Tech Stack** — Astro, CSS, and TypeScript.
 
